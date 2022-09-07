@@ -13,7 +13,8 @@ const createSpider = async (props) => {
   const y = (canvas.height / 2) - (frameHeight / 2)
 
   context.clearRect(0, 0, canvas.width, canvas.height)
-  const spider = new Spider({ sprite, context, frame: 0, x, y })
+  const spider = new Spider({ sprite, context, canvas, frame: 0, x, y })
+  spider.play()
   return spider
 }
 
