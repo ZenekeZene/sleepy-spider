@@ -1,4 +1,4 @@
-import random from 'canvas-sketch-util/random'
+import { range } from '../../lib/random'
 import STATES from '../../lib/spritesheet/states'
 import Frame from '../../lib/frame'
 import Position from '../../lib/position'
@@ -6,16 +6,16 @@ import Pupil from './pupil'
 import settings from './eyeSettings'
 
 class Eye  {
-  constructor ({ sprite, context, frame, x, y, ...rest }) {
+  constructor ({ sprite, context, x, y, ...rest }) {
     this.position = new Position(x, y, sprite)
     const props = { ...this.position, ...rest, context }
     this.sprite = sprite
     this.context = context
-    this.frame = new Frame(this, frame, this.sprite)
+    this.frame = new Frame(this, 0, this.sprite)
     this.params = props.params
 
     this.state = STATES.IDDLE
-    this.scale = random.range(settings.scale.min, settings.scale.max)
+    this.scale = range(settings.scale.min, settings.scale.max)
     this.pupil = new Pupil(props, this.frame, this.scale)
   }
 
@@ -42,6 +42,7 @@ class Eye  {
   draw (column, row) {
     const { x, y } = this.position
     const { width, height } = this.frame
+
     this.context.clearRect(x, y, width, height)
 
     const { image } = this.sprite

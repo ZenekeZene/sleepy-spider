@@ -1,10 +1,10 @@
-const Tweakpane = require('tweakpane')
+import { Pane } from 'tweakpane'
 
 const drawGUI = (params, callback) => {
-  const pane = new Tweakpane.Pane()
+  const pane = new Pane()
   const folder = pane.addFolder({ title: 'Grid' })
-  const columnsInput = folder.addInput(params, 'columns', { min: 2, max: 12, step: 1 })
-  const rowsInput = folder.addInput(params, 'rows', { min: 2, max: 12, step: 1 })
+  const columnsInput = folder.addInput(params, 'columns', { min: 1, max: 5, step: 1 })
+  const rowsInput = folder.addInput(params, 'rows', { min: 1, max: 5, step: 1 })
 
   const folderEye = pane.addFolder({ title: 'Eye' })
   folderEye.addInput(params.pupil, 'color')

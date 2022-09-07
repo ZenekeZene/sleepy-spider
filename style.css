@@ -1,12 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 canvas {
   position: absolute;
+  width: 100%;
+  height: auto;
 }
 
-canvas:first-child {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-canvas:last-child {
+.eyes {
   pointer-events: auto;
+}
+
+.body {
+  pointer-events: none;
 }

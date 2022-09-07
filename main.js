@@ -1,20 +1,13 @@
-import canvasSketch from 'canvas-sketch'
 import createEyes from './components/eye/eyeFactory'
+import createSpider from './components/spider/spiderFactory'
 import eyeWithMouse from './components/eye/eyeWithMouse'
 import drawGUI from './components/gui/drawGUI'
 
 let eyes = []
 
-const settings = {
-  dimensions: [ 3000, 3000 ],
-  animate: false,
-}
-
-let sketchController = null
-
 const params = {
-  columns: 10,
-  rows: 10,
+  columns: 5,
+  rows: 5,
   pupil: {
     color: '#f05',
     size: 0.1,
@@ -31,18 +24,24 @@ const onChange = async (context, canvas) => {
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
 
-const sketch = async ({ context, canvas }) => {
+const sketchEyes = async () => {
+  const canvas = document.getElementById('eyes')
+  const context = canvas.getContext('2d')
+
   eyes = await createEyes({ context, canvas, params })
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
   drawGUI(params, () => { onChange(context, canvas) })
-
-  return (async ({ context, width, height }) => {
-
-  })
 }
 
-const start = async () => {
-  sketchController = await canvasSketch(sketch, settings)
+const sketchSpider = async () => {
+  const canvas = document.getElementById('body')
+  const context = canvas.getContext('2d')
+  createSpider({ context, canvas, params })
+}
+
+const start = () => {
+  sketchEyes()
+  sketchSpider()
 }
 
 start()

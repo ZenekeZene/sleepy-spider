@@ -4,7 +4,7 @@ import Eye from './eye'
 
 const createEyes = async (props) => {
   const { context, canvas, params } = props
-  const image = await load('./spider/sprites/eye/spritesheet.png')
+  const image = await load('../sprites/eye/eye-spritesheet.png')
   const sprite = new Spritesheet(10, 1, image)
 
   const w = sprite.frameWidth
@@ -22,8 +22,8 @@ const createEyes = async (props) => {
       x = ix + (w + gap) * i
       y = iy + (h + gap) * j
 
-      const totalWidth = params.columns * sprite.frameWidth
-      const totalHeight = params.rows * sprite.frameHeight
+      const totalWidth = params.columns * w
+      const totalHeight = params.rows * h
       const xx = x + (w * 0.5) + ((canvas.width - totalWidth) / 2)
       const yy = y + (h * 0.5) + ((canvas.height - totalHeight) / 2)
 
