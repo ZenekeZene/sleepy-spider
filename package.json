@@ -1,0 +1,23 @@
+{
+  "name": "sleepy-spider",
+  "version": "1.0.0",
+  "description": "A creative experiment",
+  "main": "spider.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "canvas-sketch": "^0.7.6",
+    "canvas-sketch-util": "^1.10.0",
+    "load-asset": "^1.2.0",
+    "tweakpane": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "canvas-sketch spider.js --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "creativecode", "canvas-sketch", "spider"],
+  "author": "ZenekeZene",
+  "license": "ISC"
+}

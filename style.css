@@ -1,0 +1,12 @@
+canvas {
+  position: absolute;
+}
+
+canvas:first-child {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+canvas:last-child {
+  pointer-events: auto;
+}
