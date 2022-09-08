@@ -8,7 +8,7 @@ class Pupil {
     this.frame = frame
     this.setCoordinates(x, y, frame, scale)
     this.calculateCanvasOffset(params)
-    this.canvas.addEventListener("mousemove", (event) => { this.onMouseMove(event) })
+    document.addEventListener("mousemove", (event) => { this.onMouseMove(event) })
     this.params = params
     this.enabled = true
   }

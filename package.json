@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "canvas-tint-image": "^2.1.0",
     "load-asset": "^1.2.0",
     "tweakpane": "^3.1.0"
   },

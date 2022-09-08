@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-canvas {
+.eyes,
+.body {
   position: absolute;
   width: auto;
   height: 100%;
