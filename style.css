@@ -29,3 +29,32 @@
   transform: translate(-58%, -4%);
   pointer-events: none;
 }
+
+.icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.1, 1.1)
+}
+
+#settings-close-icon {
+  display: none;
+}
+
+.tp-dfwv.tp-dfwv {
+  top: 5rem;
+}
+
+.credits {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  font-family: Helvetica;
+  color: #afafaf;
+}

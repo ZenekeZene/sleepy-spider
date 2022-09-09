@@ -1,6 +1,3 @@
-import _ from 'lodash'
-import controlSleep from '../sleep/sleepControl'
-
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
 const handleOpenAndCloseEyes = (eyes, x, y) => {
