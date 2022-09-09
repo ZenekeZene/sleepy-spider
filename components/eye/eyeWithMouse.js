@@ -1,5 +1,8 @@
-const audio = new Audio('../../sounds/bubble-sound2.mp3')
-const audio2 = new Audio('../../sounds/bubble-sound3.mp3')
+const url = new URL('../../sounds/bubble-sound2.mp3', import.meta.url).href
+const url2 = new URL('../../sounds/bubble-sound3.mp3', import.meta.url).href
+
+const audio = new Audio(url)
+const audio2 = new Audio(url2)
 
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
