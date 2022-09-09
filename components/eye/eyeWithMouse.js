@@ -1,31 +1,31 @@
+import _ from 'lodash'
+import controlSleep from '../sleep/sleepControl'
+
+const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
+
 const handleOpenAndCloseEyes = (eyes, x, y) => {
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
-    if (isAround) {
-      eye.open()
-    } else {
-      //if (!eye.isIddle()) return
-      eye.close()
-    }
+    isAround ? eye.open() : eye.close()
   })
 }
 
 const handleOpenAndCloseEyesSmoothly = (eyes, x, y) => {
-  const rangeOffset = [0, 50, 100, 150, 200, 300, 400, 500]
+  const rangeOffset = rangeOfCollisionInPixels
 
   eyes.forEach(eye => {
     let limit = 0
-    let touch = false
+    let touched = false
+
     for (const extraOffset of rangeOffset) {
       const isAround = eye.isAroundToTheMouse(x, y, extraOffset)
       if (!isAround) continue
-      touch = true
+      touched = true
       limit = Math.floor(extraOffset / 60)
       eye.openSemi({ limit })
     }
-    if (!touch) {
-      eye.close()
-    }
+    if (touched) return
+    eye.close()
   })
 }
 
@@ -33,23 +33,20 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
   const rect = canvas.getBoundingClientRect()
   const scale = canvas.width / rect.width
 
-  canvas.onmousemove = (event) => {
+  canvas.onmousemove = _.throttle((event) => {
+    controlSleep(eyes)
+
     const realX = event.clientX - rect.left
     const realY = event.clientY - rect.top
     const x = realX * scale
     const y = realY * scale
-
-    if (params.wave) {
-      handleOpenAndCloseEyesSmoothly(eyes, x, y)
-    } else {
+    params.wave ?
+      handleOpenAndCloseEyesSmoothly(eyes, x, y) :
       handleOpenAndCloseEyes(eyes, x, y)
-    }
-  }
+  }, 500)
 
   canvas.onmouseleave = () => {
-    eyes.forEach(eye => {
-      eye.close()
-    })
+    eyes.forEach(eye => { eye.close() })
   }
 }
 

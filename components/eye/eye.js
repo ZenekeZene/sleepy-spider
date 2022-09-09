@@ -5,7 +5,9 @@ import Position from '../../lib/position'
 import Pupil from './pupil'
 import settings from './eyeSettings'
 
-class Eye  {
+const FRAME_WITHOUT_PUPIL_INDEX = 8
+
+class Eye {
   constructor ({ sprite, context, x, y, ...rest }) {
     this.position = new Position(x, y, sprite)
     const props = { ...this.position, ...rest, context }
@@ -93,6 +95,10 @@ class Eye  {
   close () {
     this.play({ isReverse: false })
     return this
+  }
+
+  isOpen () {
+    return this.frame.value < FRAME_WITHOUT_PUPIL_INDEX
   }
 }
 

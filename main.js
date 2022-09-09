@@ -2,6 +2,7 @@ import createEyes from './components/eye/eyeFactory'
 import createSpider from './components/spider/spiderFactory'
 import eyeWithMouse from './components/eye/eyeWithMouse'
 import drawGUI from './components/gui/drawGUI'
+import controlSleep from './components/sleep/sleepControl'
 
 let eyes = []
 
@@ -42,6 +43,7 @@ const sketchSpider = async () => {
 const start = () => {
   sketchEyes()
   sketchSpider()
+  controlSleep(eyes)
 }
 
 start()
