@@ -3,7 +3,7 @@ import Spritesheet from '../../../lib/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 
-const url = '../../sprites/eye/eye-spritesheet.png'
+const url = new URL('../../../sprites/eye/eye-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 10
 
 const createEyes = async (props) =>
