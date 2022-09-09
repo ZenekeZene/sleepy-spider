@@ -1,21 +1,34 @@
-import load from 'load-asset'
 import Spritesheet from '../../lib/spritesheet/spritesheet'
 import Spider from './spider'
 
-const createSpider = async (props) => {
-  const { context, canvas } = props
-  const image = await load('/sprites/spider/spider-spritesheet.png')
-  const sprite = new Spritesheet(9, 1, image)
+const url = '../../sprites/spider/spider-spritesheet.png'
+const NUM_FRAMES = 9
 
-  const { frameWidth, frameHeight } = sprite
+const createSpider = async (props) =>
+  new Promise((resolve, reject) => {
+    const { context, canvas } = props
+    const image = new Image()
+    image.src = url
 
-  const x = (canvas.width / 2) - (frameWidth / 2)
-  const y = (canvas.height / 2) - (frameHeight / 2)
+    try {
+      const onload = () => {
+        const sprite = new Spritesheet(NUM_FRAMES, 1, image)
+        const { frameWidth, frameHeight } = sprite
 
-  context.clearRect(0, 0, canvas.width, canvas.height)
-  const spider = new Spider({ sprite, context, canvas, frame: 0, x, y })
-  spider.play()
-  return spider
-}
+        const x = (canvas.width / 2) - (frameWidth / 2)
+        const y = (canvas.height / 2) - (frameHeight / 2)
+
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        const spider = new Spider({ sprite, context, canvas, frame: 0, x, y })
+        spider.play()
+        resolve(spider)
+      }
+
+      image.onload = onload
+    } catch (error) {
+      console.error(error)
+      reject(new Error('Error loading the image', error))
+    }
+  })
 
 export default createSpider

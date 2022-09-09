@@ -1,20 +1,34 @@
-import load from 'load-asset'
+import { SHAPES } from '../../../settings/settings'
 import Spritesheet from '../../../lib/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 
-const createEyes = async (props) => {
-  const { params } = props
-  const image = await load('/sprites/eye/eye-spritesheet.png')
-  const sprite = new Spritesheet(10, 1, image)
+const url = '../../sprites/eye/eye-spritesheet.png'
+const NUM_FRAMES = 10
 
-  let eyes
-  if (params.shape === 'square') {
-    eyes = createEyesInSquareShape({ ...props, sprite })
-  } else if (params.shape === 'circle') {
-    eyes = createEyesInCircleShape({ ...props, sprite })
-  }
-  return eyes
-}
+const createEyes = async (props) =>
+  new Promise ((resolve, reject) => {
+    const { params } = props
+    const { shape } = params
+    const image = new Image()
+    image.src = url
+
+    try {
+      const onload = () => {
+        const sprite = new Spritesheet(NUM_FRAMES, 1, image)
+        let eyes
+        if (shape === SHAPES.SQUARE) {
+          eyes = createEyesInSquareShape({ ...props, sprite })
+        } else if (shape === SHAPES.CIRCLE) {
+          eyes = createEyesInCircleShape({ ...props, sprite })
+        }
+        resolve(eyes)
+      }
+      image.onload = onload
+    } catch (error) {
+      console.error(error)
+      reject(new Error('Error loading the image', error))
+    }
+  })
 
 export default createEyes
