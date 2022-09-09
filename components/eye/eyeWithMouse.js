@@ -33,10 +33,6 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
   const rect = canvas.getBoundingClientRect()
   const scale = canvas.width / rect.width
 
-  canvas.onmousemove = _.throttle((event) => {
-    controlSleep(eyes)
-  }, 500)
-
   canvas.onmousemove = (event) => {
     const realX = event.clientX - rect.left
     const realY = event.clientY - rect.top

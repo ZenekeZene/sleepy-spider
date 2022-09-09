@@ -2,7 +2,7 @@ import createEyes from './components/eye/factory/eyeFactory'
 import createSpider from './components/spider/spiderFactory'
 import eyeWithMouse from './components/eye/eyeWithMouse'
 import drawGUI from './components/gui/drawGUI'
-import controlSleep from './components/sleep/sleepControl'
+import listenTheSleepCycle from './components/sleep/sleepControl'
 
 let eyes = []
 
@@ -16,7 +16,7 @@ const params = {
     size: 0.1,
   },
   wave: false,
-  sizeColision: 1,
+  sizeColision: 0.1,
 }
 
 const onChange = async (context, canvas) => {
@@ -24,6 +24,7 @@ const onChange = async (context, canvas) => {
     eye.pupil.disable()
   })
   eyes = await createEyes({ context, canvas, params })
+  listenTheSleepCycle(eyes)
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
 
@@ -42,10 +43,10 @@ const sketchSpider = async () => {
   createSpider({ context, canvas, params })
 }
 
-const start = () => {
-  sketchEyes()
+const start = async () => {
+  await sketchEyes()
   sketchSpider()
-  controlSleep(eyes)
+  listenTheSleepCycle(eyes)
 }
 
 start()

@@ -1,6 +1,8 @@
+import _ from 'lodash'
 import { startSleep, stopSleep } from '../sleep/sleep'
 
 let sleepLaunched = false
+let sleepTimer
 
 const searchEyesOpen = (eyes) => {
   let areAnyEyesOpen = false
@@ -12,7 +14,7 @@ const searchEyesOpen = (eyes) => {
   return areAnyEyesOpen
 }
 
-const controlSleep = (eyes) => {
+const handleSleep = (eyes) => {
   const areAny = searchEyesOpen(eyes)
   if (areAny) {
     sleepLaunched && stopSleep()
@@ -24,4 +26,15 @@ const controlSleep = (eyes) => {
   }
 }
 
-export default controlSleep
+const listenTheSleepCycle = (eyes) => {
+  clearInterval(sleepTimer)
+  const checkSleep = () => {
+    sleepTimer = _.delay(() => {
+      handleSleep(eyes)
+      checkSleep()
+    }, 1000)
+  }
+  checkSleep()
+}
+
+export default listenTheSleepCycle
