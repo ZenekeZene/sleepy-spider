@@ -5,7 +5,7 @@ import createEyesInSquareShape from './eyeFactory.square'
 
 const createEyes = async (props) => {
   const { params } = props
-  const image = await load('../sprites/eye/eye-spritesheet.png')
+  const image = await load('/sprites/eye/eye-spritesheet.png')
   const sprite = new Spritesheet(10, 1, image)
 
   let eyes

@@ -4,7 +4,7 @@ import Spider from './spider'
 
 const createSpider = async (props) => {
   const { context, canvas } = props
-  const image = await load('../sprites/spider/spider-spritesheet.png')
+  const image = await load('/sprites/spider/spider-spritesheet.png')
   const sprite = new Spritesheet(9, 1, image)
 
   const { frameWidth, frameHeight } = sprite
