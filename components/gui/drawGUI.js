@@ -64,6 +64,7 @@ const drawGUI = (params, callback) => {
   const folderSettings = pane.addFolder({ title: 'Settings' })
   folderSettings.addInput(params, 'wave')
   folderSettings.addInput(params, 'sizeColision', { min: 0.01, max: 3, step: 0.1 })
+  folderSettings.addInput(params, 'sound')
 }
 
 const toggleGUI = (showSettings) => {

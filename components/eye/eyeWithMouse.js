@@ -1,13 +1,27 @@
+const audio = new Audio('../../sounds/bubble-sound2.mp3')
+const audio2 = new Audio('../../sounds/bubble-sound3.mp3')
+
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
-const handleOpenAndCloseEyes = (eyes, x, y) => {
+const playSound = (eye) => {
+  const audioTarget = eye.isBigEye ? audio : audio2
+  audioTarget.play()
+}
+
+const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
-    isAround ? eye.open() : eye.close()
+    if (isAround) {
+      if (!eye.isIddle()) return
+      sound && !eye.isOpen() && playSound(eye)
+      eye.open()
+    } else {
+      eye.close()
+    }
   })
 }
 
-const handleOpenAndCloseEyesSmoothly = (eyes, x, y) => {
+const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
   const rangeOffset = rangeOfCollisionInPixels
 
   eyes.forEach(eye => {
@@ -36,8 +50,8 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
     const x = realX * scale
     const y = realY * scale
     params.wave ?
-      handleOpenAndCloseEyesSmoothly(eyes, x, y) :
-      handleOpenAndCloseEyes(eyes, x, y)
+      handleOpenAndCloseEyesSmoothly(eyes, x, y, params) :
+      handleOpenAndCloseEyes(eyes, x, y, params)
   }
 
   canvas.onmouseleave = () => {

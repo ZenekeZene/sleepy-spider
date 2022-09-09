@@ -8,13 +8,14 @@ import settings from './eyeSettings'
 const FRAME_WITHOUT_PUPIL_INDEX = 8
 
 class Eye {
-  constructor ({ sprite, context, x, y, scale, pupilScale, ...rest }) {
+  constructor ({ sprite, context, x, y, scale, pupilScale, isBigEye, ...rest }) {
     this.position = new Position(x, y, sprite)
     const props = { ...this.position, ...rest, context }
     this.sprite = sprite
     this.context = context
     this.frame = new Frame(this, 0, this.sprite)
     this.params = props.params
+    this.isBigEye = isBigEye || false
 
     this.state = STATES.IDDLE
     this.scale = scale || range(settings.scale.min, settings.scale.max)

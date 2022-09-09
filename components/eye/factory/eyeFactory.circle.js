@@ -9,7 +9,7 @@ const createCentralEye = (props, cx, cy) => {
   const x = cx - (sprite.frameWidth * bigScale) / 2 + offset
   const y = cy - (sprite.frameHeight * bigScale) / 2 + offset
   const initialPosition = { x, y }
-  const bigEye = new Eye({ sprite, ...props, ...initialPosition, scale: bigScale, pupilScale: 2 })
+  const bigEye = new Eye({ sprite, ...props, ...initialPosition, scale: bigScale, pupilScale: 2, isBigEye: true })
   bigEye.stop(initialFrame)
   return bigEye
 }

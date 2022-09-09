@@ -14,6 +14,7 @@ const params = {
   },
   wave: false,
   sizeColision: 0.1,
+  sound: false,
 }
 
 export default params
