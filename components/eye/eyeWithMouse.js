@@ -35,7 +35,9 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
 
   canvas.onmousemove = _.throttle((event) => {
     controlSleep(eyes)
+  }, 500)
 
+  canvas.onmousemove = (event) => {
     const realX = event.clientX - rect.left
     const realY = event.clientY - rect.top
     const x = realX * scale
@@ -43,7 +45,7 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
     params.wave ?
       handleOpenAndCloseEyesSmoothly(eyes, x, y) :
       handleOpenAndCloseEyes(eyes, x, y)
-  }, 500)
+  }
 
   canvas.onmouseleave = () => {
     eyes.forEach(eye => { eye.close() })

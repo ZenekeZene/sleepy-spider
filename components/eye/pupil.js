@@ -1,9 +1,10 @@
 const FRAME_LIMIT = 4
 
 class Pupil {
-  constructor ({ x, y, canvas, params, context }, frame, scale) {
+  constructor ({ x, y, canvas, params, context }, frame, scale, pupilScale) {
     this.context = context
     this.radius = frame.width / 2
+    this.pupilScale = pupilScale || 1
     this.canvas = canvas
     this.frame = frame
     this.setCoordinates(x, y, frame, scale)
@@ -61,7 +62,7 @@ class Pupil {
   }
 
   renderPupil () {
-    const pupilSize = this.params.pupil.size
+    const pupilSize = this.params.pupil.size * this.pupilScale
     this.context.beginPath()
     this.context.arc(this.radius * 0.4, 0, this.radius * pupilSize, 0, Math.PI * 2)
     this.context.fill()

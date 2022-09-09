@@ -1,6 +1,19 @@
 import { degToRad } from '../../../lib/degree'
 import Eye from '../eye'
 
+const createCentralEye = (props, cx, cy) => {
+  const offset = 80
+  const { sprite } = props
+  const initialFrame = sprite.length
+  const bigScale = 2.7
+  const x = cx - (sprite.frameWidth * bigScale) / 2 + offset
+  const y = cy - (sprite.frameHeight * bigScale) / 2 + offset
+  const initialPosition = { x, y }
+  const bigEye = new Eye({ sprite, ...props, ...initialPosition, scale: bigScale, pupilScale: 2 })
+  bigEye.stop(initialFrame)
+  return bigEye
+}
+
 const createEyesInCircleShape = (props) => {
   const { context, canvas, params, sprite } = props
   const w = 400
@@ -33,13 +46,7 @@ const createEyesInCircleShape = (props) => {
 
     context.restore()
   }
-  // A big eye:
-  const bigScale = 2.7
-  const bigX = cx - (sprite.frameWidth * bigScale) / 2 + 80
-  const bigY = cy - (sprite.frameHeight * bigScale) / 2 + 80
-  const initialPositionForBigEye = { x: bigX, y: bigY }
-  const bigEye = new Eye({ sprite, ...props, ...initialPositionForBigEye, scale: bigScale })
-  bigEye.stop(initialFrame)
+  const bigEye = createCentralEye(props, cx, cy)
   eyes.push(bigEye)
 
   return eyes
