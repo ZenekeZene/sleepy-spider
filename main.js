@@ -6,6 +6,8 @@ import listenTheSleepCycle from './components/sleep/sleepControl'
 import params from './settings/settings'
 
 let eyes = []
+const canvas = document.getElementById('eyes')
+const context = canvas.getContext('2d')
 
 const onChange = async (context, canvas) => {
   eyes.forEach(eye => {
@@ -16,10 +18,7 @@ const onChange = async (context, canvas) => {
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
 
-
 const sketchEyes = async () => {
-  const canvas = document.getElementById('eyes')
-  const context = canvas.getContext('2d')
   eyes = await createEyes({ context, canvas, params })
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
