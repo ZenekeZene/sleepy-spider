@@ -1,4 +1,4 @@
-import createEyes from './components/eye/eyeFactory'
+import createEyes from './components/eye/factory/eyeFactory'
 import createSpider from './components/spider/spiderFactory'
 import eyeWithMouse from './components/eye/eyeWithMouse'
 import drawGUI from './components/gui/drawGUI'
@@ -9,6 +9,8 @@ let eyes = []
 const params = {
   columns: 5,
   rows: 5,
+  shape: 'circle',
+  totalEyesInCircle: 12,
   pupil: {
     color: '#f05',
     size: 0.1,

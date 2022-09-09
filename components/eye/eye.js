@@ -8,7 +8,7 @@ import settings from './eyeSettings'
 const FRAME_WITHOUT_PUPIL_INDEX = 8
 
 class Eye {
-  constructor ({ sprite, context, x, y, ...rest }) {
+  constructor ({ sprite, context, x, y, scale, ...rest }) {
     this.position = new Position(x, y, sprite)
     const props = { ...this.position, ...rest, context }
     this.sprite = sprite
@@ -17,7 +17,7 @@ class Eye {
     this.params = props.params
 
     this.state = STATES.IDDLE
-    this.scale = range(settings.scale.min, settings.scale.max)
+    this.scale = scale || range(settings.scale.min, settings.scale.max)
     this.pupil = new Pupil(props, this.frame, this.scale)
   }
 
@@ -45,7 +45,7 @@ class Eye {
     const { x, y } = this.position
     const { width, height } = this.frame
 
-    this.context.clearRect(x, y, width, height)
+    this.context.clearRect(x, y, width * this.scale, height * this.scale)
 
     const { image } = this.sprite
     const sx = column * width

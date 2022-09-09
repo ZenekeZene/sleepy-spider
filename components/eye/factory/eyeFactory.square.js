@@ -1,12 +1,7 @@
-import load from 'load-asset'
-import Spritesheet from '../../lib/spritesheet/spritesheet'
-import Eye from './eye'
+import Eye from '../eye'
 
-const createEyes = async (props) => {
-  const { context, canvas, params } = props
-  const image = await load('../sprites/eye/eye-spritesheet.png')
-  const sprite = new Spritesheet(10, 1, image)
-
+const createEyesInSquareShape = (props) => {
+  const { context, canvas, params, sprite } = props
   const w = sprite.frameWidth
   const h = sprite.frameHeight
   const gap = 0
@@ -37,4 +32,4 @@ const createEyes = async (props) => {
   return eyes
 }
 
-export default createEyes
+export default createEyesInSquareShape
