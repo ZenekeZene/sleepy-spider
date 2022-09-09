@@ -36,6 +36,7 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
       if (!isAround) continue
       touched = true
       limit = Math.floor(extraOffset / 60)
+      sound && !eye.isOpen() && playSound(eye)
       eye.openSemi({ limit })
     }
     if (touched) return
