@@ -5,8 +5,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "canvas-tint-image": "^2.1.0",
-    "lodash": "^4.17.21",
     "tweakpane": "^3.1.0"
   },
   "devDependencies": {

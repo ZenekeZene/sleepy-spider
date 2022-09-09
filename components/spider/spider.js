@@ -1,4 +1,3 @@
-import canvasTintImage from 'canvas-tint-image'
 import Frame from '../../lib/frame'
 import Position from '../../lib/position'
 import STATES from '../../lib/spritesheet/states'

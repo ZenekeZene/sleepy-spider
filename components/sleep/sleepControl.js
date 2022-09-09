@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { startSleep, stopSleep } from '../sleep/sleep'
 
 let sleepLaunched = false
@@ -29,7 +28,7 @@ const handleSleep = (eyes) => {
 const listenTheSleepCycle = (eyes) => {
   clearInterval(sleepTimer)
   const checkSleep = () => {
-    sleepTimer = _.delay(() => {
+    sleepTimer = setTimeout(() => {
       handleSleep(eyes)
       checkSleep()
     }, 1000)
