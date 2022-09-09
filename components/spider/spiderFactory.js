@@ -1,7 +1,7 @@
 import Spritesheet from '../../lib/spritesheet/spritesheet'
 import Spider from './spider'
 
-const url = new URL('../../../sprites/spider/spider-spritesheet.png', import.meta.url).href
+const url = new URL('../../sprites/spider/spider-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 9
 
 const createSpider = async (props) =>
