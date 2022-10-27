@@ -14,7 +14,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: #cd879f;
-  font-family: 'Secular One', sans-serif;
+  font-family: 'Secular One', Helvetica, sans-serif;
 }
 
 .title {
@@ -187,4 +187,29 @@ body {
   25% { transform: scale(0.9, 1.1); }
   50% { transform: scale(1.1, 0.9); }
   75% { transform: scale(0.95, 1.05); }
+}
+
+@media screen and (max-height: 860px) {
+  .spider {
+    width: 50rem;
+  }
+}
+
+@media screen and (max-height: 640px) {
+  .shadow {
+    width: 58%;
+    bottom: 0;
+    max-width: 14rem;
+  }
+
+  .credits {
+    background: rgb(0 0 0 / 14%);
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-height: 540px) {
+  .shadow {
+    display: none;
+  }
 }
