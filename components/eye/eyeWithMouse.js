@@ -5,7 +5,6 @@ const url2 = new URL('../../sounds/bubble-sound3.mp3', import.meta.url).href
 const audio = new Audio(url)
 const audio2 = new Audio(url2)
 
-const spiderWrapper = document.getElementById('spider-wrapper')
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
 const playSound = (eye) => {
@@ -13,21 +12,14 @@ const playSound = (eye) => {
   audioTarget.play()
 }
 
-const applyGelatine = () => {
-  spiderWrapper.classList.add('gelatine', '--only-mobile')
-  setTimeout(() => {
-    spiderWrapper.classList.remove('gelatine', '--only-mobile')
-  }, 300)
-}
-
 const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
     if (isAround) {
       if (!eye.isIddle()) return
-      isMobile() && applyGelatine()
       sound && !eye.isOpen() && playSound(eye)
       eye.open()
+      if (!isMobile()) return
       setTimeout(() => {
         eye.close()
       }, 2000)
@@ -47,14 +39,16 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
     for (const extraOffset of rangeOffset) {
       const isAround = eye.isAroundToTheMouse(x, y, extraOffset)
       if (!isAround) continue
-      isMobile() && applyGelatine()
       touched = true
       limit = Math.floor(extraOffset / 60)
       sound && !eye.isOpen() && playSound(eye)
       eye.openSemi({ limit })
     }
     if (touched) return
-    eye.close()
+    if (!isMobile()) return
+    setTimeout(() => {
+      eye.close()
+    }, 2000)
   })
 }
 

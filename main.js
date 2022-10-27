@@ -28,7 +28,6 @@ const sketchSpider = async () => {
   const canvas = document.getElementById('body')
   const context = canvas.getContext('2d')
   spider = await createSpider({ context, canvas, params })
-  console.log(spider)
 }
 
 const start = async () => {

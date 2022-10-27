@@ -65,7 +65,6 @@ const drawGUI = (params, callback) => {
 
   const folderEye = pane.addFolder({ title: 'Eye' })
   folderEye.addInput(params.pupil, 'color')
-  console.log(params.pupil)
   folderEye.addInput(params.pupil, 'size', {
     min: params.pupil.minSize,
     max: params.pupil.maxSize,
