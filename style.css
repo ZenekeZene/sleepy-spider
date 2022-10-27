@@ -82,7 +82,8 @@ body {
   }
 
   .sleep {
-    top: -3rem;
+    top: -13vh;
+    width: 53vh;
   }
 }
 
