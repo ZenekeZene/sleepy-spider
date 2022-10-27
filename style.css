@@ -194,6 +194,12 @@ a {
   }
 }
 
+@media screen and (max-height: 784px) {
+  .sleep {
+    top: -6%;
+  }
+}
+
 @media screen and (max-height: 640px) {
   .shadow {
     width: 58%;
@@ -219,6 +225,7 @@ a {
 
 .info {
   position: relative;
+  z-index: 1;
 }
 
 .title {

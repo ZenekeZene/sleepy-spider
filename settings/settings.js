@@ -6,7 +6,7 @@ const SHAPES = {
 const params = {
   columns: 3,
   rows: 3,
-  shape: SHAPES.CIRCLE,
+  shape: SHAPES.SQUARE,
   totalEyesInCircle: 9,
   pupil: {
     color: '#f05',
