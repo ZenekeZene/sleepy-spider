@@ -2,7 +2,7 @@ import Frame from '../../lib/frame'
 import Position from '../../lib/position'
 import STATES from '../../lib/spritesheet/states'
 
-const intervalInMS = 100
+const intervalInMS = 250
 
 class Spider {
   constructor ({ sprite, context, canvas, frame, x, y }) {
@@ -29,6 +29,7 @@ class Spider {
   }
 
   doStep () {
+    if (this.isPaused) return
     this.frame.value += this.direction
     if (!this.frame.isLimitPingPong({ direction: this.state })) return
     this.direction = this.state === STATES.FORWARD ? -1 : 1
@@ -43,6 +44,17 @@ class Spider {
       this.draw(column, row)
     }, intervalInMS)
     return this
+  }
+
+  stop () {
+    this.frame.drawFrame(this.frame.value)
+    // this.state = STATES.IDDLE
+    this.isPaused = true
+    return this
+  }
+
+  resume () {
+    this.isPaused = false
   }
 }
 

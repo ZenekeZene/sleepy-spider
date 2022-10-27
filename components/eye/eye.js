@@ -27,7 +27,8 @@ class Eye {
   }
 
   isAroundToTheMouse (mouseX, mouseY, extraOffset = 0) {
-    this.offsetBoundaries = (this.frame.width * this.params.sizeColision)
+    const realWidth = this.frame.width * this.scale
+    this.offsetBoundaries = realWidth * (this.params.sizeColision + 0.5)
     const { x, y } = this.position
     const { width, height } = this.frame
     const sideLeftX = x - (width / 2) - this.offsetBoundaries - extraOffset

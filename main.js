@@ -5,6 +5,7 @@ import { drawGUI, toggleGUI } from './components/gui/drawGUI'
 import listenTheSleepCycle from './components/sleep/sleepControl'
 import params from './settings/settings'
 
+let spider
 let eyes = []
 const canvas = document.getElementById('eyes')
 const context = canvas.getContext('2d')
@@ -14,7 +15,7 @@ const onChange = async (context, canvas) => {
     eye.pupil.disable()
   })
   eyes = await createEyes({ context, canvas, params })
-  listenTheSleepCycle(eyes)
+  listenTheSleepCycle(eyes, spider)
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
 
@@ -26,15 +27,16 @@ const sketchEyes = async () => {
 const sketchSpider = async () => {
   const canvas = document.getElementById('body')
   const context = canvas.getContext('2d')
-  createSpider({ context, canvas, params })
+  spider = await createSpider({ context, canvas, params })
+  console.log(spider)
 }
 
 const start = async () => {
   await sketchEyes()
   drawGUI(params, () => { onChange(context, canvas) })
   toggleGUI()
-  sketchSpider()
-  listenTheSleepCycle(eyes)
+  await sketchSpider()
+  listenTheSleepCycle(eyes, spider)
 }
 
 start()

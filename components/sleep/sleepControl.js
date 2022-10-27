@@ -13,23 +13,26 @@ const searchEyesOpen = (eyes) => {
   return areAnyEyesOpen
 }
 
-const handleSleep = (eyes) => {
+const handleSleep = (eyes, spider) => {
   const areAny = searchEyesOpen(eyes)
   if (areAny) {
     sleepLaunched && stopSleep()
     sleepLaunched = false
+    spider.resume()
   } else {
     if (sleepLaunched) return
     sleepLaunched = true
     startSleep()
+    console.log(spider)
+    spider.stop()
   }
 }
 
-const listenTheSleepCycle = (eyes) => {
+const listenTheSleepCycle = (eyes, spider) => {
   clearInterval(sleepTimer)
   const checkSleep = () => {
     sleepTimer = setTimeout(() => {
-      handleSleep(eyes)
+      handleSleep(eyes, spider)
       checkSleep()
     }, 1000)
   }

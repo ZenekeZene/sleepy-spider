@@ -4,13 +4,16 @@ const SHAPES = {
 }
 
 const params = {
-  columns: 5,
-  rows: 5,
+  columns: 3,
+  rows: 3,
   shape: SHAPES.CIRCLE,
-  totalEyesInCircle: 12,
+  totalEyesInCircle: 9,
   pupil: {
     color: '#f05',
     size: 0.1,
+    minSize: 0.1,
+    maxSize: 0.2,
+    step: 0.05,
   },
   wave: false,
   sizeColision: 0.1,

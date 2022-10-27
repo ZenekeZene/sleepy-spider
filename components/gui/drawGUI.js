@@ -41,6 +41,7 @@ const drawSettingButtons = () => {
 const drawGUI = (params, callback) => {
   drawSettingButtons()
   const folder = pane.addFolder({ title: 'Grid' })
+
   const shapeInput = folder.addInput(params, 'shape', {
     options: { ...SHAPES }
   })
@@ -49,9 +50,14 @@ const drawGUI = (params, callback) => {
     callback()
     toggleParametersByShape(params.shape)
   })
-  columnsInput = folder.addInput(params, 'columns', { min: 1, max: 5, step: 1 })
-  rowsInput = folder.addInput(params, 'rows', { min: 1, max: 5, step: 1 })
-  totalEyesInCircleInput = folder.addInput(params, 'totalEyesInCircle', { label: 'number of eyes', min: 0, max: 13, step: 1 })
+  columnsInput = folder.addInput(params, 'columns', { min: 2, max: 3, step: 1 })
+  rowsInput = folder.addInput(params, 'rows', { min: 1, max: 3, step: 1 })
+  totalEyesInCircleInput = folder.addInput(params, 'totalEyesInCircle', {
+    label: 'number of eyes',
+    min: 0,
+    max: 9,
+    step: 1
+  })
   toggleParametersByShape(params.shape)
   columnsInput.on('change', callback)
   rowsInput.on('change', callback)
@@ -59,7 +65,12 @@ const drawGUI = (params, callback) => {
 
   const folderEye = pane.addFolder({ title: 'Eye' })
   folderEye.addInput(params.pupil, 'color')
-  folderEye.addInput(params.pupil, 'size', { min: 0.1, max: 0.3, step: 0.1 })
+  console.log(params.pupil)
+  folderEye.addInput(params.pupil, 'size', {
+    min: params.pupil.minSize,
+    max: params.pupil.maxSize,
+    step: params.pupil.step
+  })
 
   const folderSettings = pane.addFolder({ title: 'Settings' })
   folderSettings.addInput(params, 'wave')
