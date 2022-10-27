@@ -66,27 +66,6 @@ body {
   }
 }
 
-@media screen and (max-width: 30rem) {
-  .spider {
-    width: 206%;
-    top: 35%;
-  }
-
-  .shadow {
-    width: 54%;
-    bottom: 5rem;
-  }
-
-  .rope {
-    left: calc(50% - 7px);
-  }
-
-  .sleep {
-    top: -13vh;
-    width: 53vh;
-  }
-}
-
 .eyes,
 .body {
   position: absolute;
@@ -113,6 +92,27 @@ body {
   top: 14%;
   transform: translate(-58%, -14%);
   pointer-events: none;
+}
+
+@media screen and (max-width: 30rem) {
+  .spider {
+    width: 206%;
+    top: 35%;
+  }
+
+  .shadow {
+    width: 54%;
+    bottom: 5rem;
+  }
+
+  .rope {
+    left: calc(50% - 7px);
+  }
+
+  .sleep {
+    top: -13vh;
+    width: 53vh;
+  }
 }
 
 .icon {
