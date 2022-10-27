@@ -5,6 +5,7 @@ const url2 = new URL('../../sounds/bubble-sound3.mp3', import.meta.url).href
 const audio = new Audio(url)
 const audio2 = new Audio(url2)
 
+const spiderWrapper = document.getElementById('spider-wrapper')
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
 const playSound = (eye) => {
@@ -13,14 +14,13 @@ const playSound = (eye) => {
 }
 
 const applyGelatine = () => {
-  document.body.classList.add('gelatine', '--only-mobile')
+  spiderWrapper.classList.add('gelatine', '--only-mobile')
   setTimeout(() => {
-    document.body.classList.remove('gelatine', '--only-mobile')
+    spiderWrapper.classList.remove('gelatine', '--only-mobile')
   }, 300)
 }
 
 const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
-
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
     if (isAround) {
