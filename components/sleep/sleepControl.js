@@ -23,7 +23,6 @@ const handleSleep = (eyes, spider) => {
     if (sleepLaunched) return
     sleepLaunched = true
     startSleep()
-    console.log(spider)
     spider.stop()
   }
 }

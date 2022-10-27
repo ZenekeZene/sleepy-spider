@@ -48,7 +48,6 @@ class Spider {
 
   stop () {
     this.frame.drawFrame(this.frame.value)
-    // this.state = STATES.IDDLE
     this.isPaused = true
     return this
   }

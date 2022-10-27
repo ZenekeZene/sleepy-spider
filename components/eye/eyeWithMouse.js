@@ -1,3 +1,4 @@
+import isMobile from '../../lib/isMobile'
 const url = new URL('../../sounds/bubble-sound2.mp3', import.meta.url).href
 const url2 = new URL('../../sounds/bubble-sound3.mp3', import.meta.url).href
 
@@ -11,13 +12,25 @@ const playSound = (eye) => {
   audioTarget.play()
 }
 
+const applyGelatine = () => {
+  document.body.classList.add('gelatine', '--only-mobile')
+  setTimeout(() => {
+    document.body.classList.remove('gelatine', '--only-mobile')
+  }, 300)
+}
+
 const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
+
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
     if (isAround) {
       if (!eye.isIddle()) return
+      isMobile() && applyGelatine()
       sound && !eye.isOpen() && playSound(eye)
       eye.open()
+      setTimeout(() => {
+        eye.close()
+      }, 2000)
     } else {
       eye.close()
     }
@@ -34,6 +47,7 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
     for (const extraOffset of rangeOffset) {
       const isAround = eye.isAroundToTheMouse(x, y, extraOffset)
       if (!isAround) continue
+      isMobile() && applyGelatine()
       touched = true
       limit = Math.floor(extraOffset / 60)
       sound && !eye.isOpen() && playSound(eye)
