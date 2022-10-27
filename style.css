@@ -68,7 +68,21 @@ body {
 
 @media screen and (max-width: 30rem) {
   .spider {
-    width: 146%;
+    width: 206%;
+    top: 35%;
+  }
+
+  .shadow {
+    width: 54%;
+    bottom: 5rem;
+  }
+
+  .rope {
+    left: calc(50% - 7px);
+  }
+
+  .sleep {
+    top: -3rem;
   }
 }
 
