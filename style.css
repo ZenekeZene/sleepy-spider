@@ -64,6 +64,7 @@ a {
   left: 2rem;
   width: 2.5rem;
   cursor: pointer;
+  z-index: 2;
 }
 
 .icon:hover {
@@ -74,6 +75,7 @@ a {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
+  z-index: 2;
   padding: 1rem;
   font-family: Helvetica;
   color: white;
@@ -255,4 +257,5 @@ a {
   top: unset;
   bottom: 5rem;
   left: 1rem;
+  z-index: 3;
 }
