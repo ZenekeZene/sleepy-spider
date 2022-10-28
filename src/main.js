@@ -8,7 +8,7 @@ import {
   updateAwakeningsCounter,
 } from './components/gui/drawGUI'
 
-import listenTheSleepCycle from './components/sleep/sleepControl'
+import listenTheSleepCycle, { applySurprise } from './components/sleep/sleepControl'
 import params from './settings/settings'
 import initModal from './lib/modal'
 import { startAwakeningsSystem } from './lib/firebase'

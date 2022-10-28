@@ -523,3 +523,15 @@ a {
 .transparent {
   opacity: 0;
 }
+
+.body-collider {
+  position: absolute;
+  top: 66%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 17rem;
+  height: 12rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
