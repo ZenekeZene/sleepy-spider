@@ -182,7 +182,7 @@ a {
   top: unset;
   bottom: 5rem;
   left: 1rem;
-  z-index: 3;
+  z-index: 5;
   display: none;
 }
 
