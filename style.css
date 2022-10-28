@@ -350,6 +350,10 @@ a {
 }
 
 @media screen and (max-width: 30rem) {
+  .hide-in-mobile {
+    display: none;
+  }
+
   .modal__inner {
     top: unset;
     left: unset;
