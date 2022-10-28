@@ -1,11 +1,16 @@
 import { Pane } from 'tweakpane'
 import { SHAPES } from '../../settings/settings'
+import { numberWithCommas } from '../../lib/number'
 
 let showSettings = false
 const pane = new Pane()
 let columnsInput
 let rowsInput
 let totalEyesInCircleInput
+
+const INVISIBLE_CLASSNAME = 'invisible'
+const TRANSPARENT_CLASSNAME = 'transparent'
+const ENTRANCE_CLASSNAME = 'bounceInDown'
 
 const toggleParametersByShape = (shape) => {
   if (shape === SHAPES.SQUARE) {
@@ -39,7 +44,7 @@ const drawSettingButtons = () => {
   })
 }
 
-const drawGUI = (params, callback) => {
+const drawGUI = ({ params, onChange }) => {
   drawSettingButtons()
   const folder = pane.addFolder({ title: 'Grid' })
 
@@ -48,7 +53,7 @@ const drawGUI = (params, callback) => {
   })
 
   shapeInput.on('change', () => {
-    callback()
+    onChange()
     toggleParametersByShape(params.shape)
   })
   columnsInput = folder.addInput(params, 'columns', { min: 2, max: 3, step: 1 })
@@ -60,9 +65,9 @@ const drawGUI = (params, callback) => {
     step: 1
   })
   toggleParametersByShape(params.shape)
-  columnsInput.on('change', callback)
-  rowsInput.on('change', callback)
-  totalEyesInCircleInput.on('change', callback)
+  columnsInput.on('change', onChange)
+  rowsInput.on('change', onChange)
+  totalEyesInCircleInput.on('change', onChange)
 
   const folderEye = pane.addFolder({ title: 'Eye' })
   folderEye.addInput(params.pupil, 'color')
@@ -82,7 +87,36 @@ const toggleGUI = (showSettings) => {
   pane.hidden = !showSettings
 }
 
+const toggleElements = (elements, classname, callback) => {
+  if (!elements || elements?.length === 0) return
+  const collection = Array.from(elements)
+  collection.forEach(element => {
+    element.classList.toggle(classname)
+    callback && callback(element)
+  })
+}
+
+const toggleInvisibleElements = () => {
+  setTimeout(() => {
+    const invisibleElements = document.getElementsByClassName(INVISIBLE_CLASSNAME)
+    const transparentElements = document.getElementsByClassName(TRANSPARENT_CLASSNAME)
+    toggleElements(invisibleElements, INVISIBLE_CLASSNAME)
+    toggleElements(transparentElements, TRANSPARENT_CLASSNAME, ({ classList }) => {
+      classList.add(ENTRANCE_CLASSNAME)
+    })
+    const loaderElement = document.getElementById('loader')
+    loaderElement.classList.add(INVISIBLE_CLASSNAME)
+  }, 1000)
+}
+
+const updateAwakeningsCounter = (value) => {
+  const counter = document.getElementById('counter')
+  counter.textContent = numberWithCommas(value)
+}
+
 export {
   drawGUI,
   toggleGUI,
+  toggleInvisibleElements,
+  updateAwakeningsCounter,
 }

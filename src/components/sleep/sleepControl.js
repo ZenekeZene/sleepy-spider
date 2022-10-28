@@ -25,11 +25,12 @@ const removeSurprise = () => {
   spiderWrapper.classList.remove(SURPRISE_CLASSNAME)
 }
 
-const handleSleep = (eyes, spider) => {
+const handleSleep = (eyes, spider, onSleepInterrupted) => {
   const areAny = searchEyesOpen(eyes)
   if (areAny) {
     sleepLaunched && stopSleep()
     sleepLaunched = false
+    onSleepInterrupted()
     spider.resume()
   } else {
     if (sleepLaunched) return
@@ -39,13 +40,13 @@ const handleSleep = (eyes, spider) => {
   }
 }
 
-const listenTheSleepCycle = (eyes, spider) => {
+const listenTheSleepCycle = (eyes, spider, onSleepInterrupted) => {
   clearInterval(sleepTimer)
   clearInterval(surpriseTimer)
 
   const checkSleep = () => {
     sleepTimer = setTimeout(() => {
-      handleSleep(eyes, spider)
+      handleSleep(eyes, spider, onSleepInterrupted)
       checkSleep()
     }, 1000)
   }
