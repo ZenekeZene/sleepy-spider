@@ -494,7 +494,7 @@ a {
 .loader .loader__ball {
   position: absolute;
   top: calc(50% - 15rem);
-  left: 52%;
+  left: calc(50% + 0.5rem);
   height: 6rem;
   transform: translate(-50%, calc(-50% + 23rem));
 }
