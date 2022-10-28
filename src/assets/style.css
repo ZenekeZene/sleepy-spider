@@ -67,6 +67,7 @@ a {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,11 +78,6 @@ a {
 .icon {
   width: 2rem;
   cursor: pointer;
-  z-index: 2;
-}
-
-img {
-  fill: var(--primary-color);
 }
 
 .icon:hover {
@@ -250,10 +246,6 @@ img {
   cursor: pointer;
 }
 
-.icon-share {
-  bottom: 6rem;
-}
-
 .modal-link {
   display: flex;
   align-items: center;
@@ -286,11 +278,6 @@ img {
 
 .modal-link:hover {
   color: currentColor;
-}
-
-.icon-info {
-  bottom: 10rem;
-  width: 3rem;
 }
 
 .info-modal p {
@@ -400,10 +387,6 @@ img {
   }
 }
 
-.bounceInLeft {
-  animation-name: bounceInLeft;
-}
-
 @media screen and (max-width: 30rem) {
   .spider-wrapper {
     width: 150%;
@@ -444,13 +427,6 @@ img {
   .icons {
     bottom: 1rem;
     left: 1rem;
-  }
-
-  .icon-info {
-    top: 2.5rem;
-    right: 1rem;
-    left: unset;
-    width: 3rem;
   }
 }
 
@@ -504,9 +480,9 @@ img {
 
 .loader .loader__ball {
   position: absolute;
-  width: 8rem;
-  top: 64%;
-  left: 50%;
+  height: 6rem;
+  top: 68%;
+  left: 52%;
   transform: translate(-50%, -50%);
   animation: spin 10s linear infinite;
 }
