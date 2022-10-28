@@ -84,6 +84,10 @@ a {
   transform: scale(1.1, 1.1)
 }
 
+.icon-info {
+  width: 2.5rem;
+}
+
 .texture {
   position: fixed;
   top: 0;
@@ -441,7 +445,7 @@ a {
 
 @media screen and (max-height: 784px) {
   .sleep {
-    top: -5vh;
+    top: 7vh;
   }
 }
 
@@ -457,6 +461,10 @@ a {
 
   .spider-wrapper {
     top: -7rem;
+  }
+
+  .sleep {
+    top: -2vh;
   }
 }
 
@@ -476,26 +484,19 @@ a {
 
 .loader .loader__thread {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 21rem);
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 15rem;
+  transform: translate(-50%, calc(-50% + 21rem));
+  width: auto;
+  height: 21rem;
 }
 
 .loader .loader__ball {
   position: absolute;
-  height: 6rem;
-  top: 68%;
+  top: calc(50% - 15rem);
   left: 52%;
-  transform: translate(-50%, -50%);
-  animation: spin 10s linear infinite;
-}
-
-@keyframes spin {
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
+  height: 6rem;
+  transform: translate(-50%, calc(-50% + 23rem));
 }
 
 .loader:before {
