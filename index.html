@@ -18,6 +18,7 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:domain" content="Sleepy" />
+    <meta name="twitter:creator" content="@zenekezene" />
 
     <title>Sleepy spider has fallen into a deep sleep!</title>
 
@@ -30,7 +31,7 @@
   <body>
 
     <!-- INFO -->
-    <header class="info">
+    <header class="info invisible surprise">
       <h1 class="title">WAKE UP<span class="hide-in-mobile">, SLEEPY</span>!</h1>
       <p class="subtitle">If we all wake her up a <span class="text-underline">million times</span>, a surprise will happen.</p>
       <p class="counter-text">We wake her up <span id="counter" class="counter">1024</span>times.</p>
@@ -38,24 +39,31 @@
 
     <!-- SLEEPY -->
     <main class="spider-wrapper" id="spider-wrapper">
-      <article class="spider">
+      <section class="bounce-wrapper transparent">
+      <article class="spider transparent">
         <span class="rope"></span>
         <canvas id="body" class="body" width="3000" height="3000"></canvas>
         <canvas id="eyes" class="eyes" width="3000" height="3000"></canvas>
         <canvas id="sleep" class="sleep" width="3000" height="3000"></canvas>
       </article>
+      </section>
     </main>
 
     <!-- ICONS -->
-    <nav class="icons">
-      <img src="src/assets/icons/share-icon.svg" class="icon icon-share modal-trigger" />
+    <nav class="icons invisible bounceInLeft">
       <img src="src/assets/icons/info-icon.svg" class="icon icon-info info-modal-trigger" />
+      <img src="src/assets/icons/share-icon.svg" class="icon icon-share modal-trigger" />
+      <img src="src/assets/icons/close-icon.svg" id="settings-close-icon" class="icon" />
       <img src="src/assets/icons/settings-icon.svg" id="settings-icon" class="icon" />
     </nav>
 
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+      <img src="src/assets/images/loader.gif" class="loader__thread" />
+    </div>
+
     <img src="src/assets/images/texture.jpg" class="texture" />
-    <img src="src/assets/images/shadow.png" class="shadow" />
-    <img src="src/assets/icons/close-icon.svg" id="settings-close-icon" class="icon" />
+    <img src="src/assets/images/shadow.png" class="shadow invisible" />
 
     <!-- SHARE MODAL -->
     <article class="modal" id="modal">

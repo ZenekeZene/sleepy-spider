@@ -25,10 +25,27 @@ const sketchEyes = async () => {
   eyeWithMouse({ eyes, context, canvas, sprite: eyes[0].sprite, params })
 }
 
+const toggleInvisible = () => {
+  setTimeout(() => {
+    const invisibleElements = document.querySelectorAll('.invisible')
+    const transparentElements = document.querySelectorAll('.transparent')
+    invisibleElements.forEach((invisibleElement) => {
+      invisibleElement.classList.toggle('invisible')
+    })
+    transparentElements.forEach((transparentElement) => {
+      transparentElement.classList.toggle('transparent')
+      transparentElement.classList.add('bounceInDown')
+    })
+    const loaderElement = document.getElementById('loader')
+    loaderElement.classList.add('invisible')
+  }, 1000)
+}
+
 const sketchSpider = async () => {
   const canvas = document.getElementById('body')
   const context = canvas.getContext('2d')
   spider = await createSpider({ context, canvas, params })
+  toggleInvisible()
 }
 
 const start = async () => {

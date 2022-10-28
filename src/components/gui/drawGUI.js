@@ -25,6 +25,7 @@ const drawSettingButtons = () => {
 
   settingsButton.addEventListener('click', function () {
     showSettings = true
+    document.querySelector('.tp-dfwv').style.display = 'block'
     this.style.display = 'none'
     settingsCloseButton.style.display = 'block'
     toggleGUI(showSettings)
