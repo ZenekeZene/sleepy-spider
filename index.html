@@ -3,18 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleepy Spider</title>
+    <title>Sleepy spider has fallen into a deep sleep!</title>
+    <meta name="description" content="We have to wake her up!" />
+    <meta property="og:url" content="http://sleepy.zenekezene.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sleepy spider has fallen into a deep sleep!" />
+    <meta property="og:description" content="If we all wake her up a million times, she will finally wake up and weave a surprise for us." />
+    <meta property="og:image" content="https://sleepy.zenekezene.com/sleepy.jpg" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:image:type" content="jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Sleepy Spider" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="Sleepy Spider" />
+
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
   </head>
+
   <body class="">
     <img src="assets/texture.jpg" class="texture" />
     <img src="assets/shadow.png" class="shadow" />
     <header class="info">
       <h1 class="title">WAKE UP!</h1>
-      <p class="subtitle">If we all wake her up a million times, a surprise will happen.</p>
+      <p class="subtitle">If we all wake her up a <span class="text-underline">million times</span>, a surprise will happen.</p>
       <p class="counter-text">We wake her up <span id="counter" class="counter">1024</span>times.</p>
     </header>
     <main class="spider-wrapper" id="spider-wrapper">
@@ -25,9 +41,92 @@
         <canvas id="sleep" class="sleep" width="3000" height="3000"></canvas>
       </article>
     </main>
+    <img src="icons/share-icon.svg" class="icon icon-share modal-trigger" />
+    <img src="icons/info-icon.svg" class="icon icon-info info-modal-trigger" />
     <img src="icons/settings-icon.svg" id="settings-icon" class="icon" />
     <img src="icons/close-icon.svg" id="settings-close-icon" class="icon" />
-    <p class="credits">This spider is called Sleepy. She was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
+    <p style="display: none;" class="credits">This spider is called Sleepy. She was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
+
+    <article class="modal" id="modal">
+      <div class="modal__backdrop modal-trigger"></div>
+      <section class="modal__inner">
+        <header class="modal__header">
+          <h1 class="modal__title">Share Sleepy, maybe we can wake her up!</h1>
+          <svg class="modal__close modal-trigger" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="24" height="24"
+            viewBox="0 0 24 24"
+            style=" fill:#000000;"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
+        </header>
+
+        <ul class="modal__social-list">
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="https://www.facebook.com/sharer.php?u=https://sleepy.zenekezene.com">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><rect width="24" height="24.0004" rx="4" fill="#1877F2"></rect><path d="M18 12.0002C18 8.68611 15.3141 6.00012 12 6.00012C8.68594 6.00012 6 8.68611 6 12.0002C6 14.9956 8.19375 17.4777 11.0625 17.9277V13.7346H9.53906V12.0002H11.0625V10.6783C11.0625 9.17479 11.9578 8.34391 13.3289 8.34391C13.9852 8.34391 14.6719 8.4611 14.6719 8.4611V9.93769H13.9148C13.1695 9.93769 12.9375 10.4006 12.9375 10.8752V12.0002H14.6016L14.3355 13.7346H12.9375V17.9277C15.8062 17.4777 18 14.9956 18 12.0002Z" fill="white"></path></svg>
+              <p class="modal-link__title">Share on Facebook</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://sleepy.zenekezene.com">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><g clip-path="url(#clip0_657_585)"><rect y="0.000488281" width="24" height="24.0004" rx="4" fill="#0A66C2"></rect><path d="M8.65574 10.1318H6.19672V18.0008H8.65574V10.1318ZM8.87705 7.42687C8.87835 7.24086 8.84299 7.05642 8.77301 6.88407C8.70302 6.71173 8.59977 6.55486 8.46916 6.42242C8.33855 6.28997 8.18313 6.18456 8.01178 6.11218C7.84043 6.03981 7.6565 6.0019 7.47049 6.00061H7.42623C7.04797 6.00061 6.6852 6.15088 6.41773 6.41835C6.15026 6.68583 6 7.0486 6 7.42687C6 7.80513 6.15026 8.16791 6.41773 8.43538C6.6852 8.70285 7.04797 8.85312 7.42623 8.85312C7.61225 8.8577 7.79734 8.82557 7.97094 8.75859C8.14454 8.69161 8.30324 8.59107 8.43797 8.46273C8.57271 8.33439 8.68083 8.18076 8.75617 8.01062C8.83151 7.84047 8.87258 7.65715 8.87705 7.47113V7.42687ZM18 13.2204C18 10.8548 16.4951 9.93511 15 9.93511C14.5105 9.91059 14.0231 10.0149 13.5864 10.2375C13.1498 10.4601 12.7791 10.7934 12.5115 11.204H12.4426V10.1318H10.1311V18.0008H12.5902V13.8155C12.5546 13.3869 12.6896 12.9615 12.9659 12.6318C13.2421 12.3022 13.6373 12.0948 14.0656 12.0548H14.159C14.941 12.0548 15.5213 12.5466 15.5213 13.786V18.0008H17.9803L18 13.2204Z" fill="white"></path></g><defs><clipPath id="clip0_657_585"><path d="M0 4.00049C0 1.79135 1.79086 0.000488281 4 0.000488281H20C22.2091 0.000488281 24 1.79135 24 4.00049V20.0009C24 22.2101 22.2091 24.0009 20 24.0009H4C1.79086 24.0009 0 22.2101 0 20.0009V4.00049Z" fill="white"></path></clipPath></defs></svg>
+              <p class="modal-link__title">Share on Linkedin</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="https://twitter.com/intent/tweet?text=Wake%20up,Sleepy!!%20-%20https://sleepy.zenekezene.com">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><g clip-path="url(#clip0_657_1097)"><rect y="0.000854492" width="24" height="24.0004" rx="4" fill="#1DA1F2"></rect><path d="M18 8.35151C17.5587 8.54635 17.0846 8.67799 16.5863 8.7375C17.0947 8.43419 17.4847 7.95289 17.6686 7.37997C17.193 7.66116 16.6661 7.86548 16.1053 7.975C15.6561 7.49897 15.0166 7.20093 14.3085 7.20093C12.9492 7.20093 11.8467 8.29938 11.8467 9.6548C11.8467 9.84648 11.8689 10.0329 11.9102 10.213C9.8633 10.1103 8.05003 9.13349 6.83555 7.64958C6.62415 8.01292 6.5026 8.43419 6.5026 8.88283C6.5026 9.73379 6.93755 10.4852 7.59764 10.9249C7.19387 10.9118 6.81441 10.8017 6.48252 10.6179V10.6495C6.48252 11.838 7.33075 12.8296 8.4575 13.055C8.25033 13.1108 8.03312 13.1403 7.80904 13.1403C7.65049 13.1403 7.49564 13.1255 7.34555 13.0971C7.65894 14.0713 8.56796 14.7811 9.64556 14.8C8.80261 15.4583 7.74086 15.8506 6.58769 15.8506C6.38897 15.8506 6.1929 15.839 6 15.8164C7.08976 16.513 8.38351 16.9185 9.77345 16.9185C14.3027 16.9185 16.7786 13.1808 16.7786 9.93916C16.7786 9.83384 16.776 9.72747 16.7712 9.62216C17.2522 9.27566 17.6697 8.84439 17.9989 8.35309L18 8.35151Z" fill="white"></path></g><defs><clipPath id="clip0_657_1097"><path d="M0 4.00085C0 1.79172 1.79086 0.000854492 4 0.000854492H20C22.2091 0.000854492 24 1.79172 24 4.00085V20.0013C24 22.2104 22.2091 24.0013 20 24.0013H4C1.79086 24.0013 0 22.2104 0 20.0013V4.00085Z" fill="white"></path></clipPath></defs></svg>
+              <p class="modal-link__title">Share on Twitter</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="https://wa.me/?text=Wake up, Sleepy! - https://sleepy.zenekezene.com">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><g clip-path="url(#clip0_657_572)"><rect y="0.0012207" width="24" height="24.0004" rx="4" fill="#00E676"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M16.201 7.74608C15.0805 6.61991 13.5866 6.00122 11.9957 6.00122C8.71989 6.00122 6.05132 8.66984 6.04847 11.9457C6.04847 12.9949 6.32217 14.0156 6.84105 14.9194L6 18.0014L9.15324 17.1746C10.0228 17.6479 11.0007 17.8988 11.9957 17.8988H11.9986C15.2744 17.8988 17.943 15.2302 17.9458 11.9514C17.943 10.3634 17.3243 8.86941 16.201 7.74608ZM11.9957 16.8924C11.1062 16.8924 10.2366 16.6529 9.47826 16.2024L9.29865 16.0941L7.42837 16.5844L7.9273 14.7598L7.81041 14.5716C7.31433 13.7847 7.05488 12.8752 7.05488 11.9429C7.05488 9.22295 9.27299 7.0048 11.9986 7.0048C13.3186 7.0048 14.5588 7.52085 15.4939 8.45315C16.4262 9.38831 16.9394 10.6285 16.9394 11.9486C16.9366 14.6771 14.7185 16.8924 11.9957 16.8924ZM14.7071 13.1917C14.5588 13.1175 13.8289 12.7583 13.6921 12.707C13.5552 12.6585 13.4555 12.6328 13.3585 12.7811C13.2587 12.9294 12.9736 13.2658 12.8881 13.3627C12.8026 13.4625 12.7142 13.4739 12.5659 13.3998C12.4177 13.3257 11.9387 13.1688 11.3713 12.6614C10.9294 12.2679 10.6329 11.7804 10.5445 11.6321C10.459 11.4839 10.536 11.404 10.6101 11.3299C10.6757 11.2643 10.7584 11.156 10.8325 11.0704C10.9066 10.9849 10.9323 10.9222 10.9808 10.8224C11.0292 10.7226 11.0064 10.6371 10.9694 10.563C10.9323 10.4888 10.6358 9.7561 10.5103 9.45959C10.3906 9.16878 10.268 9.20869 10.1768 9.20584C10.0912 9.20014 9.99145 9.20014 9.89166 9.20014C9.79187 9.20014 9.63222 9.2372 9.49537 9.38546C9.35852 9.53371 8.97648 9.89295 8.97648 10.6257C8.97648 11.3584 9.50962 12.0626 9.58375 12.1624C9.65788 12.2622 10.6301 13.7619 12.1212 14.4062C12.4747 14.5602 12.7512 14.6514 12.9679 14.7198C13.3243 14.8339 13.6465 14.8168 13.9031 14.7797C14.1882 14.7369 14.7812 14.4205 14.9066 14.0726C15.0292 13.7248 15.0292 13.4283 14.9922 13.3656C14.9551 13.3028 14.8553 13.2658 14.7071 13.1917Z" fill="white"></path></g><defs><clipPath id="clip0_657_572"><path d="M0 4.00122C0 1.79208 1.79086 0.0012207 4 0.0012207H20C22.2091 0.0012207 24 1.79208 24 4.00122V20.0016C24 22.2108 22.2091 24.0016 20 24.0016H4C1.79086 24.0016 0 22.2108 0 20.0016V4.00122Z" fill="white"></path></clipPath></defs></svg>
+              <p class="modal-link__title">Share via Whatsapp</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="https://www.messenger.com/new">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><g clip-path="url(#clip0_657_559)"><rect y="0.00170898" width="24" height="24.0004" rx="4" fill="#F1F1F1"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6.00171C8.62002 6.00171 6 8.4776 6 11.8218C6 13.5711 6.71688 15.0826 7.88434 16.1267C7.98234 16.2144 8.0415 16.3373 8.04552 16.4688L8.0782 17.5361C8.08864 17.8765 8.44029 18.0981 8.75181 17.9605L9.94273 17.4348C10.0437 17.3903 10.1568 17.382 10.2632 17.4113C10.8104 17.5618 11.3929 17.6419 12 17.6419C15.38 17.6419 18 15.166 18 11.8218C18 8.4776 15.38 6.00171 12 6.00171Z" fill="url(#paint0_radial_657_559)"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.39691 13.5238L10.1594 10.7275C10.4398 10.2827 11.0401 10.1719 11.4608 10.4874L12.8626 11.5388C12.9912 11.6353 13.1682 11.6347 13.2962 11.5375L15.1895 10.1007C15.4421 9.90896 15.772 10.2114 15.6029 10.4797L13.8404 13.276C13.56 13.7208 12.9596 13.8316 12.539 13.5161L11.1372 12.4647C11.0086 12.3682 10.8316 12.3688 10.7035 12.466L8.81031 13.9028C8.55762 14.0945 8.22777 13.7921 8.39691 13.5238Z" fill="white"></path></g><defs><radialGradient id="paint0_radial_657_559" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(8.3097 17.9377) scale(13.0752 13.0754)"><stop stop-color="#0099FF"></stop><stop offset="0.609754" stop-color="#A033FF"></stop><stop offset="0.934823" stop-color="#FF5280"></stop><stop offset="1" stop-color="#FF7061"></stop></radialGradient><clipPath id="clip0_657_559"><path d="M0 4.00171C0 1.79257 1.79086 0.00170898 4 0.00170898H20C22.2091 0.00170898 24 1.79257 24 4.00171V20.0021C24 22.2113 22.2091 24.0021 20 24.0021H4C1.79086 24.0021 0 22.2113 0 20.0021V4.00171Z" fill="white"></path></clipPath></defs></svg>
+              <p class="modal-link__title">Share via Messenger</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+          <li class="modal-link">
+            <a class="modal-link__share" target="_blank" href="mailto:?subject= Wake up, Sleepy! &body= Wake up, Sleepy! - https://sleepy.zenekezene.com">
+              <svg class="modal-link__icon" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12.154 14.5703C12.2473 14.6591 12.3712 14.7086 12.5 14.7083C12.6288 14.7086 12.7527 14.6591 12.846 14.5703L14.2624 13.2163L19.454 18.1923C19.5471 18.2815 19.6711 18.3313 19.8 18.3313C20.0042 18.3313 20.1879 18.2072 20.264 18.0177C20.3401 17.8283 20.2934 17.6115 20.146 17.4703L14.986 12.5246L20.214 7.52727C20.3432 7.40383 20.3966 7.22087 20.3543 7.04731C20.312 6.87374 20.1803 6.73594 20.0088 6.68581C19.8373 6.63567 19.6522 6.68083 19.523 6.80427L13.9411 12.1398C13.9242 12.1539 13.9083 12.1691 13.8934 12.1854L12.5 13.5173L11.1138 12.1923C11.1093 12.1872 11.1047 12.1822 11.1 12.1773C11.0849 12.1615 11.0689 12.1469 11.0524 12.1335L5.477 6.80427C5.34785 6.68083 5.16266 6.63567 4.99118 6.68581C4.81971 6.73594 4.688 6.87374 4.64568 7.04731C4.60336 7.22087 4.65685 7.40383 4.786 7.52727L10.0145 12.5251L4.853 17.4723C4.70619 17.6138 4.66001 17.8303 4.73631 18.0194C4.81261 18.2085 4.99609 18.3323 5.2 18.3323C5.32963 18.3328 5.45441 18.283 5.548 18.1933L10.7381 13.2169L12.154 14.5703Z" fill="#111821"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M23 17.3203C22.9978 19.3512 21.3519 20.9971 19.321 20.9993H5.679C3.64806 20.9971 2.0022 19.3512 2 17.3203V7.67827C2.0022 5.64733 3.64806 4.00147 5.679 3.99927H19.321C21.3519 4.00147 22.9978 5.64733 23 7.67827V17.3203ZM5.679 4.99927C4.20011 5.00092 3.00165 6.19938 3 7.67827V17.3203C3.00165 18.7992 4.20011 19.9976 5.679 19.9993H19.321C20.7999 19.9976 21.9983 18.7992 22 17.3203V7.67827C21.9983 6.19938 20.7999 5.00092 19.321 4.99927H5.679Z" fill="#111821"></path></svg>
+              <p class="modal-link__title">Share via Email</p>
+              <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z" fill="black"></path></svg>
+            </a>
+          </li>
+
+        </ul>
+      </section>
+    </article>
+
+    <article class="modal info-modal" id="info-modal">
+      <div class="modal__backdrop info-modal-trigger"></div>
+      <section class="modal__inner">
+        <header class="modal__header">
+          <h1 class="modal__title">Sleepy has fallen into a deep sleep!</h1>
+          <svg class="modal__close info-modal-trigger" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="24" height="24"
+            viewBox="0 0 24 24"
+            style=" fill:#000000;"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
+        </header>
+
+        <p>If we all wake her up a <span class="text-underline">million times</span>, she will finally wake up and weave a surprise for us.</p>
+
+        <p class="credits">Sleepy was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
+    </article>
+
     <script type="module" src="/main.js"></script>
   </body>
 </html>

@@ -4,6 +4,7 @@ import eyeWithMouse from './components/eye/eyeWithMouse'
 import { drawGUI, toggleGUI } from './components/gui/drawGUI'
 import listenTheSleepCycle from './components/sleep/sleepControl'
 import params from './settings/settings'
+import initModal from './lib/modal'
 
 let spider
 let eyes = []
@@ -31,6 +32,7 @@ const sketchSpider = async () => {
 }
 
 const start = async () => {
+  initModal()
   await sketchEyes()
   drawGUI(params, () => { onChange(context, canvas) })
   toggleGUI()

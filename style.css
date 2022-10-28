@@ -18,7 +18,7 @@ body {
 }
 
 a {
-  color: black;
+  color: #b95377;
 }
 
 .shadow {
@@ -69,20 +69,6 @@ a {
 
 .icon:hover {
   transform: scale(1.1, 1.1)
-}
-
-.credits {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 2;
-  padding: 1rem;
-  font-family: Helvetica;
-  color: white;
-  font-size: 0.8rem;
-  text-align: right;
-  max-width: 14rem;
-  opacity: 0.8;
 }
 
 .texture {
@@ -258,4 +244,139 @@ a {
   bottom: 5rem;
   left: 1rem;
   z-index: 3;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  color: black;
+  pointer-events: auto;
+}
+
+.modal.visible {
+  display: block;
+}
+
+.modal__backdrop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 67%);
+}
+
+.modal__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 384px;
+  min-height: 24rem;
+  padding: 2rem;
+  background-color: rgb(255 255 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.modal__header {
+  margin-bottom: 4rem;
+}
+
+.modal__title {
+  width: 19rem;
+  font-size: 1.5rem;
+  text-align: left;
+  border: 1px solid white;
+}
+
+.modal__close {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.icon-share {
+  bottom: 6rem;
+}
+
+.modal-link {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-link:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.modal-link__icon {
+  width: 2rem;
+}
+
+.modal-link__title {
+  text-align: left;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-link__share {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.modal-link:hover {
+  color: currentColor;
+}
+
+.icon-info {
+  bottom: 10rem;
+  width: 3rem;
+}
+
+@media screen and (max-width: 30rem) {
+  .modal__inner {
+    top: unset;
+    left: unset;
+    bottom: 0;
+    transform: translate(0, 0);
+    max-width: unset;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .icon-info {
+    top: 2.5rem;
+    right: 1rem;
+    left: unset;
+    width: 3rem;
+  }
+}
+
+.info-modal p {
+  margin-bottom: 1rem;
+}
+
+.credits {
+  font-family: Helvetica;
+  font-size: 0.8rem;
+}
+
+.text-underline {
+  text-decoration: underline;
 }
