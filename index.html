@@ -7,17 +7,17 @@
     <meta name="description" content="We have to wake her up!" />
     <meta property="og:url" content="http://sleepy.zenekezene.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sleepy spider has fallen into a deep sleep!" />
+    <meta property="og:title" content="Sleepy has fallen into a deep sleep!" />
     <meta property="og:description" content="If we all wake her up a million times, she will finally wake up and weave a surprise for us." />
     <meta property="og:image" content="https://sleepy.zenekezene.com/sleepy.jpg" />
     <meta property="og:image:height" content="600" />
     <meta property="og:image:type" content="jpg" />
     <meta property="og:image:width" content="600" />
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Sleepy Spider" />
+    <meta property="og:site_name" content="Sleepy" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:domain" content="Sleepy Spider" />
+    <meta name="twitter:domain" content="Sleepy" />
 
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,11 +41,14 @@
         <canvas id="sleep" class="sleep" width="3000" height="3000"></canvas>
       </article>
     </main>
-    <img src="icons/share-icon.svg" class="icon icon-share modal-trigger" />
-    <img src="icons/info-icon.svg" class="icon icon-info info-modal-trigger" />
-    <img src="icons/settings-icon.svg" id="settings-icon" class="icon" />
+
+    <nav class="icons">
+      <img src="icons/share-icon.svg" class="icon icon-share modal-trigger" />
+      <img src="icons/info-icon.svg" class="icon icon-info info-modal-trigger" />
+      <img src="icons/settings-icon.svg" id="settings-icon" class="icon" />
+    </nav>
+
     <img src="icons/close-icon.svg" id="settings-close-icon" class="icon" />
-    <p style="display: none;" class="credits">This spider is called Sleepy. She was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
 
     <article class="modal" id="modal">
       <div class="modal__backdrop modal-trigger"></div>

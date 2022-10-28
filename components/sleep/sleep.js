@@ -40,7 +40,7 @@ function startSleep () {
 
         context.translate(parts[len].x-offsetX, parts[len].y-offsetY)
         context.globalAlpha  = parts[len].alpha
-        context.font = "30px Arial"
+        context.font = "30px Secular One"
         context.fillStyle = "black"
         context.fillText('Z', 0, 0)
 
