@@ -391,15 +391,24 @@ a {
   .spider-wrapper {
     width: 150%;
     left: -25%;
+    top: -22%;
   }
 
   .shadow {
     width: 54%;
-    bottom: 5rem;
+    bottom: 11rem;
   }
 
   .rope {
     left: calc(50% - 7px);
+  }
+
+  .info {
+    position: absolute;
+    z-index: 1;
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
   }
 
   .title,
@@ -438,20 +447,16 @@ a {
 
 @media screen and (max-height: 640px) {
   .shadow {
-    width: 58%;
-    bottom: 0;
-    max-width: 14rem;
+    display: none;
   }
 
   .credits {
     background: rgb(0 0 0 / 14%);
     border-radius: 10px;
   }
-}
 
-@media screen and (max-height: 540px) {
-  .shadow {
-    display: none;
+  .spider-wrapper {
+    top: -7rem;
   }
 }
 
