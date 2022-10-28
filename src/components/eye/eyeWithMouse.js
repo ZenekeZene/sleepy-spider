@@ -1,4 +1,3 @@
-import isMobile from '../../lib/isMobile'
 const url = new URL('../../assets/sounds/bubble-sound2.mp3', import.meta.url).href
 const url2 = new URL('../../assets/sounds/bubble-sound3.mp3', import.meta.url).href
 
@@ -7,25 +6,30 @@ const audio2 = new Audio(url2)
 
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
+const CLOSE_EYES_INTERVAL_IN_MS = 2000
+
 const playSound = (eye) => {
   const audioTarget = eye.isBigEye ? audio : audio2
   audioTarget.play()
 }
 
+const automaticallyCloseEye = (eye) => {
+  setTimeout(() => {
+    eye.close()
+  }, CLOSE_EYES_INTERVAL_IN_MS)
+}
+
 const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
   eyes.forEach(eye => {
     const isAround = eye.isAroundToTheMouse(x, y)
-    if (isAround) {
-      if (!eye.isIddle()) return
-      sound && !eye.isOpen() && playSound(eye)
-      eye.open()
-      if (!isMobile()) return
-      setTimeout(() => {
-        eye.close()
-      }, 2000)
-    } else {
+    if (!isAround) {
       eye.close()
+      return
     }
+    if (!eye.isIddle()) return
+    sound && !eye.isOpen() && playSound(eye)
+    eye.open()
+    automaticallyCloseEye(eye)
   })
 }
 
@@ -45,11 +49,22 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
       eye.openSemi({ limit })
     }
     if (touched) return
-    if (!isMobile()) return
-    setTimeout(() => {
-      eye.close()
-    }, 2000)
+    automaticallyCloseEye(eye)
   })
+}
+
+const handleInteractionWithCanvas = (eyes, x, y, params) => {
+  params.wave ?
+    handleOpenAndCloseEyesSmoothly(eyes, x, y, params) :
+    handleOpenAndCloseEyes(eyes, x, y, params)
+}
+
+const calculateCoordinates = (event, rect, scale) => {
+  const realX = event.clientX - rect.left
+  const realY = event.clientY - rect.top
+  const x = realX * scale
+  const y = realY * scale
+  return { x, y }
 }
 
 const eyeWithMouse = ({ eyes, canvas, params }) => {
@@ -57,14 +72,14 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
   const scale = canvas.width / rect.width
 
   canvas.onmousemove = (event) => {
-    const realX = event.clientX - rect.left
-    const realY = event.clientY - rect.top
-    const x = realX * scale
-    const y = realY * scale
-    params.wave ?
-      handleOpenAndCloseEyesSmoothly(eyes, x, y, params) :
-      handleOpenAndCloseEyes(eyes, x, y, params)
+    const { x, y } = calculateCoordinates(event, rect, scale)
+    handleInteractionWithCanvas(eyes, x, y, params)
   }
+
+  canvas.addEventListener('click', (event) => {
+    const { x, y } = calculateCoordinates(event, rect, scale)
+    handleInteractionWithCanvas(eyes, x, y, params)
+  })
 
   canvas.onmouseleave = () => {
     eyes.forEach(eye => { eye.close() })

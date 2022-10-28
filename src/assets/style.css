@@ -525,6 +525,7 @@ a {
 }
 
 .body-collider {
+  border: 2px solid red;;
   position: absolute;
   top: 66%;
   left: 48%;
