@@ -1,7 +1,7 @@
 import { startSleep, stopSleep } from '../sleep/sleep'
 
 let sleepLaunched = false
-let clicked = false
+let activeCheckSurprise = false
 const spiderWrapper = document.getElementById('spider-wrapper')
 const SURPRISE_CLASSNAME = 'surprise'
 const CHECK_SLEEP_INTERVAL_IN_MS = 1000
@@ -25,9 +25,8 @@ const searchEyesOpen = (eyes) => {
   return areAnyEyesOpen
 }
 
-const applySurprise = (onSleepInterrupted) => {
+const applySurprise = () => {
   if (spiderWrapper.classList.contains(SURPRISE_CLASSNAME)) return
-  onSleepInterrupted()
   spiderWrapper.classList.add(SURPRISE_CLASSNAME)
 }
 
@@ -64,28 +63,34 @@ const checkSleep = (eyes, spider) => {
 
 const checkSurprise = (eyes, onSleepInterrupted) => {
   setChecker(() => {
-    if (clicked) return
     const areAny = searchEyesOpen(eyes)
-    areAny ? applySurprise(onSleepInterrupted) : removeSurprise()
+    if (areAny) {
+      applySurprise()
+      !activeCheckSurprise && onSleepInterrupted()
+      activeCheckSurprise = true
+    } else {
+      removeSurprise()
+      activeCheckSurprise = false
+    }
     checkSurprise(eyes, onSleepInterrupted)
   }, CHECK_SURVIVE_INTERVAL_IN_MS)
 }
 
 const checkBodyClicked = (eyes, spider, onSleepInterrupted) => {
   const handleClickOnBodyCollider = () => {
-    if (clicked) return
-    clicked = true
-    applySurprise(onSleepInterrupted)
+    spiderWrapper.classList.add(SURPRISE_CLASSNAME)
+    applySurprise()
+    onSleepInterrupted()
     stopSleep()
     openEyes(eyes)
     spider.stop()
 
     setTimeout(() => {
-      clicked = false
+      spiderWrapper.classList.remove(SURPRISE_CLASSNAME)
       checkSurprise(eyes, onSleepInterrupted)
       closeEyes(eyes)
       spider.resume()
-    }, 1000)
+    }, 250)
   }
 
   const bodyCollider = document.getElementById('body-collider')

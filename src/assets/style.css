@@ -142,7 +142,7 @@ a {
 }
 
 .surprise {
-  animation: surprise 0.5s;
+  animation: surprise 0.250s;
 }
 
 #settings-close-icon {

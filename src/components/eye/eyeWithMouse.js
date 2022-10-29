@@ -26,10 +26,9 @@ const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
       eye.close()
       return
     }
-    if (!eye.isIddle()) return
     sound && !eye.isOpen() && playSound(eye)
     eye.open()
-    automaticallyCloseEye(eye)
+    isMobile() && automaticallyCloseEye(eye)
   })
 }
 
@@ -49,7 +48,7 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
       eye.openSemi({ limit })
     }
     if (touched) return
-    automaticallyCloseEye(eye)
+    isMobile() && automaticallyCloseEye(eye)
   })
 }
 
