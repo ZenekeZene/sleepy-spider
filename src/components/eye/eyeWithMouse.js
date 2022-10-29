@@ -1,3 +1,4 @@
+import isMobile from '../../lib/isMobile'
 const url = new URL('../../assets/sounds/bubble-sound2.mp3', import.meta.url).href
 const url2 = new URL('../../assets/sounds/bubble-sound3.mp3', import.meta.url).href
 
@@ -6,7 +7,7 @@ const audio2 = new Audio(url2)
 
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
 
-const CLOSE_EYES_INTERVAL_IN_MS = 2000
+const CLOSE_EYES_INTERVAL_IN_MS = 500
 
 const playSound = (eye) => {
   const audioTarget = eye.isBigEye ? audio : audio2
