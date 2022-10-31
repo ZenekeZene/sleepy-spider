@@ -1,23 +1,12 @@
-import isMobile from '../../lib/isMobile'
-const url = new URL('../../assets/sounds/bubble-sound2.mp3', import.meta.url).href
-const url2 = new URL('../../assets/sounds/bubble-sound3.mp3', import.meta.url).href
-
-const audio = new Audio(url)
-const audio2 = new Audio(url2)
+import { INTERVAL_TO_CLOSE_EYES_IN_MS } from '../spider/spider'
+import { playSound } from './eyeSound'
 
 const rangeOfCollisionInPixels = [0, 50, 100, 150, 200, 300, 400, 500]
-
-const CLOSE_EYES_INTERVAL_IN_MS = 500
-
-const playSound = (eye) => {
-  const audioTarget = eye.isBigEye ? audio : audio2
-  audioTarget.play()
-}
 
 const automaticallyCloseEye = (eye) => {
   setTimeout(() => {
     eye.close()
-  }, CLOSE_EYES_INTERVAL_IN_MS)
+  }, INTERVAL_TO_CLOSE_EYES_IN_MS)
 }
 
 const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
@@ -29,7 +18,7 @@ const handleOpenAndCloseEyes = (eyes, x, y, { sound }) => {
     }
     sound && !eye.isOpen() && playSound(eye)
     eye.open()
-    isMobile() && automaticallyCloseEye(eye)
+    automaticallyCloseEye(eye)
   })
 }
 
@@ -49,14 +38,13 @@ const handleOpenAndCloseEyesSmoothly = (eyes, x, y, { sound }) => {
       eye.openSemi({ limit })
     }
     if (touched) return
-    isMobile() && automaticallyCloseEye(eye)
+    automaticallyCloseEye(eye)
   })
 }
 
 const handleInteractionWithCanvas = (eyes, x, y, params) => {
-  params.wave ?
-    handleOpenAndCloseEyesSmoothly(eyes, x, y, params) :
-    handleOpenAndCloseEyes(eyes, x, y, params)
+  const handler = params.wave ? handleOpenAndCloseEyesSmoothly : handleOpenAndCloseEyes
+  handler(eyes, x, y, params)
 }
 
 const calculateCoordinates = (event, rect, scale) => {
@@ -76,10 +64,12 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
     handleInteractionWithCanvas(eyes, x, y, params)
   }
 
-  canvas.addEventListener('click', (event) => {
+  const doThing = (event) => {
     const { x, y } = calculateCoordinates(event, rect, scale)
     handleInteractionWithCanvas(eyes, x, y, params)
-  })
+  }
+
+  canvas.addEventListener('click', doThing)
 
   canvas.onmouseleave = () => {
     eyes.forEach(eye => { eye.close() })
@@ -87,3 +77,4 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
 }
 
 export default eyeWithMouse
+export { calculateCoordinates }

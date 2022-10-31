@@ -2,6 +2,7 @@ function listenTriggers (target, triggers) {
   triggers.forEach(trigger => {
     trigger.addEventListener('click', (event) => {
       event.stopPropagation()
+      console.log('Click')
       if (target.classList.contains('visible')) {
         target.classList.remove('visible')
       } else {
@@ -23,7 +24,7 @@ function handleModal () {
 }
 
 function initModal () {
-  document.addEventListener("DOMContentLoaded", handleModal)
+  handleModal()
 }
 
 export default initModal

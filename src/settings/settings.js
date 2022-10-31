@@ -9,8 +9,8 @@ const params = {
   shape: SHAPES.SQUARE,
   totalEyesInCircle: 9,
   pupil: {
-    color: '#f05',
-    size: 0.1,
+    color: '#b95377',
+    size: 0.2,
     minSize: 0.1,
     maxSize: 0.2,
     step: 0.05,

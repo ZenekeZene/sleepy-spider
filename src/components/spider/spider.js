@@ -2,7 +2,9 @@ import Frame from '../../lib/frame'
 import Position from '../../lib/position'
 import STATES from '../../lib/spritesheet/states'
 
-const intervalInMS = 250
+const INTERVAL_ANIMATION_IN_MS = 250
+const SURPRISE_CLASSNAME = 'surprise'
+export const INTERVAL_TO_CLOSE_EYES_IN_MS = 2000
 
 class Spider {
   constructor ({ sprite, context, canvas, frame, x, y }) {
@@ -13,6 +15,7 @@ class Spider {
     this.sprite = sprite
     this.direction = 1
     this.state = STATES.IDDLE
+    this.wrapper = document.getElementById('spider-wrapper')
   }
 
   draw (column, row) {
@@ -42,18 +45,60 @@ class Spider {
       this.doStep()
       const { column, row } = this.sprite.getSlide(this.frame.value)
       this.draw(column, row)
-    }, intervalInMS)
+    }, INTERVAL_ANIMATION_IN_MS)
     return this
   }
 
-  stop () {
+  stopIddleAnimation () {
     this.frame.drawFrame(this.frame.value)
     this.isPaused = true
     return this
   }
 
-  resume () {
+  resumeIddleAnimation () {
     this.isPaused = false
+  }
+
+  closeEyes (eyes) {
+    eyes.forEach((eye) => eye.close())
+  }
+
+  openEyes (eyes) {
+    eyes.forEach((eye) => eye.open())
+  }
+
+  searchOpenEyes (eyes) {
+    let areAnyEyesOpen = false
+    for (const eye of eyes) {
+      if (!eye.isOpen()) continue
+      areAnyEyesOpen = true
+      break
+    }
+    return areAnyEyesOpen
+  }
+
+  addSurpriseClassname () {
+    if (this.wrapper.classList.contains(SURPRISE_CLASSNAME)) return
+    this.wrapper.classList.add(SURPRISE_CLASSNAME)
+  }
+
+  removeSurpriseClassname () {
+    this.wrapper.classList.remove(SURPRISE_CLASSNAME)
+  }
+
+  toBeSurprised (eyes) {
+    this.addSurpriseClassname()
+    this.openEyes(eyes)
+    this.stopIddleAnimation()
+  }
+
+  relax (eyes) {
+    this.removeSurpriseClassname()
+    this.resumeIddleAnimation()
+
+    setTimeout(() => {
+      this.closeEyes(eyes)
+    }, INTERVAL_TO_CLOSE_EYES_IN_MS)
   }
 }
 

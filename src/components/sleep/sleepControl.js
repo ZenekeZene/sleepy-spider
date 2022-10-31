@@ -1,102 +1,83 @@
-import { startSleep, stopSleep } from '../sleep/sleep'
+import { calculateCoordinates } from '../eye/eyeWithMouse'
+import { initSleep, drawDream, stopDream } from '../sleep/sleep'
 
-let sleepLaunched = false
-let clicked = false
-const spiderWrapper = document.getElementById('spider-wrapper')
-const SURPRISE_CLASSNAME = 'surprise'
-const CHECK_SLEEP_INTERVAL_IN_MS = 1000
-const CHECK_SURVIVE_INTERVAL_IN_MS = 100
+let dreamIsLaunched = false
+let spiderIsClicked = false
+const CHECK_SLEEP_INTERVAL_IN_MS = 100
 
-const closeEyes = (eyes) => {
-  eyes.forEach((eye) => eye.close())
-}
-
-const openEyes = (eyes) => {
-  eyes.forEach((eye) => eye.open())
-}
-
-const searchEyesOpen = (eyes) => {
-  let areAnyEyesOpen = false
-  for (const eye of eyes) {
-    if (!eye.isOpen()) continue
-    areAnyEyesOpen = true
-    break
+const handleDream = (eyes, spider) => {
+  const areAnyEyesOpen = spider.searchOpenEyes(eyes)
+  if (areAnyEyesOpen) {
+    if (!dreamIsLaunched) return
+    dreamIsLaunched = false
+    stopDream()
+    spider.resumeIddleAnimation()
+    return
   }
-  return areAnyEyesOpen
+  if (dreamIsLaunched) return
+  dreamIsLaunched = true
+  drawDream()
+  spider.stopIddleAnimation()
 }
 
-const applySurprise = (onSleepInterrupted) => {
-  if (spiderWrapper.classList.contains(SURPRISE_CLASSNAME)) return
-  onSleepInterrupted()
-  spiderWrapper.classList.add(SURPRISE_CLASSNAME)
-}
-
-const removeSurprise = () => {
-  spiderWrapper.classList.remove(SURPRISE_CLASSNAME)
-}
-
-const handleSleep = (eyes, spider) => {
-  const areAny = searchEyesOpen(eyes)
-  if (areAny) {
-    sleepLaunched && stopSleep()
-    sleepLaunched = false
-    spider.resume()
-  } else {
-    if (sleepLaunched) return
-    sleepLaunched = true
-    startSleep()
-    spider.stop()
-  }
-}
-
-const setChecker = (onCheck, interval = 100) => {
-  setTimeout(() => {
-    onCheck()
-  }, interval)
-}
-
-const checkSleep = (eyes, spider) => {
-  setChecker(() => {
-    handleSleep(eyes, spider)
-    checkSleep(eyes, spider)
+const checkIsSleeping = (eyes, spider) => {
+  setInterval(() => {
+    handleDream(eyes, spider)
   }, CHECK_SLEEP_INTERVAL_IN_MS)
 }
 
-const checkSurprise = (eyes, onSleepInterrupted) => {
-  setChecker(() => {
-    if (clicked) return
-    const areAny = searchEyesOpen(eyes)
-    areAny ? applySurprise(onSleepInterrupted) : removeSurprise()
-    checkSurprise(eyes, onSleepInterrupted)
-  }, CHECK_SURVIVE_INTERVAL_IN_MS)
+const handleSleep = (eyes, spider, onSleepInterrupted) => {
+  spider.relax(eyes)
+  if (spiderIsClicked) return
+  spiderIsClicked = true
+  onSleepInterrupted()
+  stopDream()
+  spider.toBeSurprised(eyes)
+
+  setTimeout(() => {
+    spider.relax(eyes)
+    spiderIsClicked = false
+  }, 250)
 }
 
-const checkBodyClicked = (eyes, spider, onSleepInterrupted) => {
-  const handleClickOnBodyCollider = () => {
-    if (clicked) return
-    clicked = true
-    applySurprise(onSleepInterrupted)
-    stopSleep()
-    openEyes(eyes)
-    spider.stop()
+const checkClickOnEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
+  const rect = eyesCanvas.getBoundingClientRect()
+  const scale = eyesCanvas.width / rect.width
 
-    setTimeout(() => {
-      clicked = false
-      checkSurprise(eyes, onSleepInterrupted)
-      closeEyes(eyes)
-      spider.resume()
-    }, 1000)
+  const handleClick = (event) => {
+    event.preventDefault()
+    let isThereAnEyeNearby = false
+    const { x, y } = calculateCoordinates(event, rect, scale)
+    for (const eye of eyes) {
+      const isAround = eye.isAroundToTheMouse(x, y)
+      if (!isAround) return
+      isThereAnEyeNearby = isAround
+      break
+    }
+    isThereAnEyeNearby && handleSleep(eyes, spider, onSleepInterrupted)
   }
 
-  const bodyCollider = document.getElementById('body-collider')
-  bodyCollider.addEventListener('click', handleClickOnBodyCollider)
+  eyesCanvas.addEventListener('click', handleClick)
 }
 
-const listenTheSleepCycle = (eyes, spider, onSleepInterrupted) => {
-  checkSleep(eyes, spider)
-  checkSurprise(eyes, onSleepInterrupted)
-  checkBodyClicked(eyes, spider, onSleepInterrupted)
+const checkClicksOnColliders = (eyes, spider, onSleepInterrupted) => {
+  const handClickOnCollider = (event) => {
+    event.preventDefault()
+    handleSleep(eyes, spider, onSleepInterrupted)
+  }
+  const colliders = Array.from(document.getElementsByClassName('collider'))
+  colliders.forEach((collider) => collider.addEventListener('click', handClickOnCollider))
 }
 
-export default listenTheSleepCycle
-export { applySurprise, removeSurprise }
+const updateListenEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
+  checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
+}
+
+const listenTheSleepCycle = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
+  initSleep()
+  checkIsSleeping(eyes, spider)
+  checkClicksOnColliders(eyes, spider, onSleepInterrupted)
+  checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
+}
+
+export { listenTheSleepCycle, updateListenEyes }

@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content="We have to wake her up!" />
+    <meta name="description" content="Let's wake up!" />
     <meta property="og:url" content="http://sleepy.zenekezene.com" />
     <meta property="og:type" content="profile" />
     <meta property="og:title" content="Sleepy has fallen into a deep sleep!" />
-    <meta property="og:description" content="If we all wake her up a million times, she will finally wake up and weave a surprise for us." />
+    <meta property="og:description" content="Let’s wake up a million times, and a surprise will happen." />
     <meta property="og:image" content="https://sleepy.zenekezene.com/sleepy.jpg" />
     <meta property="og:image:height" content="600" />
     <meta property="og:image:type" content="jpg" />
@@ -28,24 +28,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="noselect">
 
     <!-- INFO -->
     <header class="info invisible surprise">
       <h1 class="title">WAKE UP<span class="hide-in-mobile">, SLEEPY</span>!</h1>
-      <p class="subtitle">If we all wake her up a <span class="text-underline">million times</span>, a surprise will happen.</p>
-      <p class="counter-text">We wake her up <span id="counter" class="counter">1024</span>times.</p>
+      <p class="subtitle">Let’s wake up a <span class="text-underline">million times</span>, and a surprise will happen.</p>
+      <p class="counter-text">We wake <span class="counter">0</span>times.</p>
     </header>
 
     <!-- SLEEPY -->
     <main class="spider-wrapper" id="spider-wrapper">
       <section class="bounce-wrapper transparent">
-      <article class="spider">
+      <article class="spider" id="spider">
         <span class="rope"></span>
         <canvas id="body" class="body" width="3000" height="3000"></canvas>
         <canvas id="eyes" class="eyes" width="3000" height="3000"></canvas>
         <canvas id="sleep" class="sleep" width="3000" height="3000"></canvas>
-        <section id="body-collider" class="body-collider"></section>
+        <section class="collider"></section>
       </article>
       </section>
     </main>
@@ -144,7 +144,7 @@
             style=" fill:#000000;"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
         </header>
 
-        <p>If we all wake her up a <span class="text-underline">million times</span>, she will finally wake up and weave a surprise for us.</p>
+        <p>Let’s wake up a <span class="text-underline">million times</span>, and a surprise will happen. We wake <span class="counter">153</span> times. If we get it, she'll finally wake up and weave a gift for us.</p>
 
         <p class="credits">Sleepy was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
     </article>

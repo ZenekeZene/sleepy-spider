@@ -2,10 +2,8 @@ let canvas
 let context
 let isEnabled = true
 
-function startSleep () {
+function drawDream () {
   isEnabled = true
-  canvas = document.getElementById("sleep")
-  context = canvas.getContext("2d")
 
   canvas.height = 300
   canvas.width = 300
@@ -51,7 +49,7 @@ function startSleep () {
     requestAnimationFrame(render)
   }
 
-  function smoke(x, y) {
+  function smoke (x, y) {
     this.x = x
     this.y = y
 
@@ -86,12 +84,18 @@ function startSleep () {
   render()
 }
 
-function stopSleep () {
+function stopDream () {
   isEnabled = false
   context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
+function initSleep () {
+  canvas = document.getElementById("sleep")
+  context = canvas.getContext("2d")
+}
+
 export {
-  startSleep,
-  stopSleep
+  initSleep,
+  drawDream,
+  stopDream
 }

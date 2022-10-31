@@ -45,6 +45,8 @@ const drawSettingButtons = () => {
 }
 
 const drawGUI = ({ params, onChange }) => {
+  toggleGUI()
+  toggleInvisibleElements()
   drawSettingButtons()
   const folder = pane.addFolder({ title: 'Grid' })
 
@@ -110,8 +112,10 @@ const toggleInvisibleElements = () => {
 }
 
 const updateAwakeningsCounter = (value) => {
-  const counter = document.getElementById('counter')
-  counter.textContent = numberWithCommas(value)
+  const counters = document.getElementsByClassName('counter')
+  Array.from(counters).forEach((counter) => counter.textContent = numberWithCommas(value))
+  const description = "Let’s wake up a million times, and a surprise will happen. We wake " + value + " times."
+  document.querySelector('meta[name="description"]').setAttribute("content", description)
 }
 
 export {

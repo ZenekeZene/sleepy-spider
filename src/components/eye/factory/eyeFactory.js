@@ -5,6 +5,9 @@ import createEyesInSquareShape from './eyeFactory.square'
 
 const url = new URL('../../../assets/sprites/eye/eye-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 10
+const SIZE = 3000
+let eyesCanvas = document.getElementById('eyes')
+let eyesContext = eyesCanvas.getContext('2d')
 
 const createEyes = async (props) =>
   new Promise ((resolve, reject) => {
@@ -31,4 +34,29 @@ const createEyes = async (props) =>
     }
   })
 
-export default createEyes
+const removeEyesCanvas = () => {
+  document.getElementById('eyes').remove()
+}
+
+const createEyesCanvas = () => {
+  removeEyesCanvas()
+  const spiderElement = document.getElementById('spider')
+  eyesCanvas = document.createElement('canvas')
+  eyesCanvas.width = SIZE
+  eyesCanvas.height = SIZE
+  eyesCanvas.id = 'eyes'
+  eyesCanvas.className = 'eyes'
+  spiderElement.append(eyesCanvas)
+  eyesContext = eyesCanvas.getContext('2d')
+
+  return {
+    canvas: eyesCanvas,
+    context: eyesContext,
+  }
+}
+
+
+export {
+  createEyes,
+  createEyesCanvas,
+}

@@ -20,6 +20,7 @@ body {
   height: 100%;
   background-color: var(--background-color);
   font-family: 'Secular One', Helvetica, sans-serif;
+  touch-action: none;
 }
 
 a {
@@ -143,6 +144,12 @@ a {
 
 .surprise {
   animation: surprise 0.250s;
+}
+
+@media screen and (max-width: 30rem) {
+  .surprise {
+    animation: surprise-mobile 0.250s;
+  }
 }
 
 #settings-close-icon {
@@ -304,6 +311,14 @@ a {
   75% { transform: scale(0.95, 1.05); }
 }
 
+@keyframes surprise-mobile {
+  0% { transform: scale(1.4, 0.1); }
+  25% { transform: scale(0.6, 0.4); }
+  50% { transform: scale(1.5, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+  100% { transform: scale(0.95, 1.05); }
+}
+
 @keyframes iddle {
   0% {
     transform: translate(-50%, -50%);
@@ -346,7 +361,7 @@ a {
 
   0% {
     opacity: 0;
-    transform: translate3d(-50%, -100%, 0) scaleY(1);
+    transform: translate3d(-50%, -100%, 0) scaleY(2.5);
   }
 
   60% {
@@ -524,7 +539,7 @@ a {
   opacity: 0;
 }
 
-.body-collider {
+.collider {
   position: absolute;
   top: 66%;
   left: 48%;
@@ -534,4 +549,14 @@ a {
   height: 12rem;
   border-radius: 2rem;
   cursor: pointer;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
