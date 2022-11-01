@@ -31,13 +31,13 @@ const checkIsSleeping = (eyes, spider) => {
 
 const handleSleep = (eyes, spider, onSleepInterrupted) => {
   spider.relax(eyes)
+  incrementClickForCombo()
   if (spiderIsClicked) return
   spiderIsClicked = true
   onSleepInterrupted()
-  incrementClickForCombo()
+  createCombo(1)
   stopDream()
   spider.toBeSurprised(eyes)
-
 
   setTimeout(() => {
     spider.relax(eyes)

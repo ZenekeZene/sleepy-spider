@@ -147,6 +147,10 @@ a {
   animation: surprise 0.250s;
 }
 
+.big-surprise {
+  animation: big-surprise 1s;
+}
+
 #settings-close-icon {
   display: none;
 }
@@ -303,6 +307,13 @@ a {
   from, to { transform: scale(1, 1); }
   25% { transform: scale(0.9, 1.1); }
   50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+@keyframes big-surprise {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.5); }
+  50% { transform: scale(1.5, 0.9); }
   75% { transform: scale(0.95, 1.05); }
 }
 
@@ -590,6 +601,11 @@ a {
 }
 
 .--combo-mini {
+  font-size: 1rem;
+  text-shadow: none;
+}
+
+.--combo-small {
   font-size: 1.6rem;
 }
 
