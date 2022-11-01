@@ -1,8 +1,11 @@
 import { calculateCoordinates } from '../eye/eyeWithMouse'
 import { initSleep, drawDream, stopDream } from '../sleep/sleep'
+import { createClicksPerSecCounter, calculateMegaCombo } from '../combos/Combo'
+import { createCombo } from '../combos/comboFactory'
 
 let dreamIsLaunched = false
 let spiderIsClicked = false
+let incrementClickForCombo
 const CHECK_SLEEP_INTERVAL_IN_MS = 100
 
 const handleDream = (eyes, spider) => {
@@ -31,13 +34,15 @@ const handleSleep = (eyes, spider, onSleepInterrupted) => {
   if (spiderIsClicked) return
   spiderIsClicked = true
   onSleepInterrupted()
+  incrementClickForCombo()
   stopDream()
   spider.toBeSurprised(eyes)
+
 
   setTimeout(() => {
     spider.relax(eyes)
     spiderIsClicked = false
-  }, 250)
+  }, 100)
 }
 
 const checkClickOnEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
@@ -61,8 +66,7 @@ const checkClickOnEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
 }
 
 const checkClicksOnColliders = (eyes, spider, onSleepInterrupted) => {
-  const handClickOnCollider = (event) => {
-    event.preventDefault()
+  const handClickOnCollider = () => {
     handleSleep(eyes, spider, onSleepInterrupted)
   }
   const colliders = Array.from(document.getElementsByClassName('collider'))
@@ -78,6 +82,13 @@ const listenTheSleepCycle = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
   checkIsSleeping(eyes, spider)
   checkClicksOnColliders(eyes, spider, onSleepInterrupted)
   checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
+
+  const { incrementClick } = createClicksPerSecCounter((combo) => {
+    createCombo(combo)
+    const scaledCombo = calculateMegaCombo(combo)
+    onSleepInterrupted(scaledCombo)
+  })
+  incrementClickForCombo = incrementClick
 }
 
 export { listenTheSleepCycle, updateListenEyes }

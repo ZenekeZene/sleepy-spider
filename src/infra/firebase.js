@@ -2,6 +2,10 @@ import { initializeApp } from "firebase/app"
 import { increment, getFirestore, collection, getDocs } from 'firebase/firestore'
 import { doc, onSnapshot, updateDoc } from "firebase/firestore"
 
+const INTERVAL_TO_UPDATE = 10000
+let cachedCount = 0
+let timerToUpdate
+
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
@@ -29,11 +33,20 @@ async function getTotalAwakenings (db) {
   return awakeningsValue[0].value
 }
 
-async function addAwakening (db) {
-  const awakeningsRef = doc(db, DOCUMENT, FIELD);
-  await updateDoc(awakeningsRef, {
-    value: increment(1)
-  })
+async function addAwakening (value = 1, onCachedChange) {
+  cachedCount += value
+  onCachedChange(value)
+}
+
+function handleAwakeningUpdatesWithInterval (db) {
+  const awakeningsRef = doc(db, DOCUMENT, FIELD)
+  timerToUpdate = setInterval(async () => {
+    if (cachedCount <= 0) return
+    await updateDoc(awakeningsRef, {
+      value: increment(cachedCount)
+    })
+    cachedCount = 0
+  }, INTERVAL_TO_UPDATE)
 }
 
 function listenAwakenings (db, callback) {
@@ -43,17 +56,19 @@ function listenAwakenings (db, callback) {
   return unsub
 }
 
-async function startAwakeningsSystem ({ onChange }) {
+async function startAwakeningsSystem ({ onChange, onCachedChange }) {
   const db = initializeDatabase()
   const initialAwakeningsValue = await getTotalAwakenings(db)
-  const addAwakeningWithDB = () => addAwakening(db)
+  const addAwakeningWithCache = (value) => addAwakening(value, onCachedChange)
 
   onChange(initialAwakeningsValue)
   listenAwakenings(db, ({ value }) => { onChange(value) })
+  handleAwakeningUpdatesWithInterval(db)
 
   return {
     initialValue: initialAwakeningsValue,
-    addAwakening: addAwakeningWithDB,
+    addAwakening: addAwakeningWithCache,
+    timerToUpdate,
   }
 }
 
