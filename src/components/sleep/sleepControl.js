@@ -1,6 +1,6 @@
 import { calculateCoordinates } from '../eye/eyeWithMouse'
 import { initSleep, drawDream, stopDream } from '../sleep/sleep'
-import { createClicksPerSecCounter, calculateMegaCombo } from '../combos/Combo'
+import { launchComboSystem } from '../combos/Combo'
 import { createCombo } from '../combos/comboFactory'
 
 let dreamIsLaunched = false
@@ -82,13 +82,9 @@ const listenTheSleepCycle = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
   checkIsSleeping(eyes, spider)
   checkClicksOnColliders(eyes, spider, onSleepInterrupted)
   checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
-
-  const { incrementClick } = createClicksPerSecCounter((combo) => {
-    createCombo(combo)
-    const scaledCombo = calculateMegaCombo(combo)
-    onSleepInterrupted(scaledCombo)
-  })
+  const { incrementClick } = launchComboSystem({ onCombo: onSleepInterrupted })
   incrementClickForCombo = incrementClick
+
 }
 
 export { listenTheSleepCycle, updateListenEyes }

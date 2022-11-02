@@ -2,9 +2,9 @@ import { MINIMUN_MEGACOMBO } from "./Combo"
 const COMBO_TEXT = 'Combo X'
 const MEGACOMBO_TEXT = 'MEGACOMBO!'
 
-function evalCombo (value) {
+function calculateCombo ({ value }) {
   const combos = Object.entries(COMBO_TYPES)
-  const [id, currentCombo] = combos.find(combo => combo[1].condition(value) === true)
+  const [id, currentCombo] = combos.find(combo => combo[1].condition(value))
 
   if (!id || !currentCombo) {
     throw new Error('[Combo Error] Error with value: ', value)
@@ -43,9 +43,9 @@ const COMBO_TYPES = {
   }
 }
 
-const isMegaCombo = (idCombo) => idCombo === COMBO_TYPES.MONSTER
+const isMegaCombo = ({ comboId }) => comboId === COMBO_TYPES.MONSTER
 
 export {
-  evalCombo,
+  calculateCombo,
   isMegaCombo,
 }

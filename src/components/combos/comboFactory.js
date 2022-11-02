@@ -1,34 +1,31 @@
-import { evalCombo, isMegaCombo } from "./combo.types"
+import { calculateCombo, isMegaCombo } from "./combo.types"
+import { applyMegaComboEffect } from './combo.effect'
+
 const COMBO_CLASSNAME = 'combo'
 const DELAY_TO_BE_REMOVED_IN_MS = 3000
-const DELAY_MEGACOMBO_EFFECT_IN_MS = 3000
-const MEGACOMBO_EFFECT_CLASSNAME = 'big-surprise'
 
 const wrapperCombos = document.getElementById('combos')
 
-function applyMegaComboEffect () {
-  document.body.classList.add(MEGACOMBO_EFFECT_CLASSNAME)
-
-  setTimeout(() => {
-    document.body.classList.remove(MEGACOMBO_EFFECT_CLASSNAME)
-  }, DELAY_MEGACOMBO_EFFECT_IN_MS)
+function appendComboElement ({ text, classname }) {
+  const comboElement = document.createElement('span')
+  comboElement.classList.add(COMBO_CLASSNAME, `--${COMBO_CLASSNAME}-${classname}`)
+  comboElement.innerText = text
+  wrapperCombos.appendChild(comboElement)
+  return comboElement
 }
 
-function createCombo (value) {
-  const comboElement = document.createElement('span')
-  comboElement.classList.add(COMBO_CLASSNAME)
-
-  const { id, classname, getText } = evalCombo(value)
-
-  if (id === isMegaCombo()) { applyMegaComboEffect() }
-
-  comboElement.innerText = getText(value)
-  comboElement.classList.add(`--${COMBO_CLASSNAME}-${classname}`)
-  wrapperCombos.appendChild(comboElement)
-
+function removeComboElement ({ comboElement }) {
   setTimeout(() => {
     wrapperCombos.removeChild(comboElement)
   }, DELAY_TO_BE_REMOVED_IN_MS)
+}
+
+function createCombo (value) {
+  const { id: comboId, classname, getText } = calculateCombo({ value })
+  const text = getText(value)
+  const comboElement = appendComboElement({ text, classname })
+  if (isMegaCombo({ comboId })) { applyMegaComboEffect() }
+  removeComboElement({ comboElement })
 }
 
 export {
