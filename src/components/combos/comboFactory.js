@@ -1,52 +1,33 @@
-import { MINIMUN_MEGACOMBO } from "./Combo"
-
+import { evalCombo, isMegaCombo } from "./combo.types"
 const COMBO_CLASSNAME = 'combo'
-const COMBO_TEXT = 'Combo X'
-const MEGACOMBO_TEXT = 'MEGACOMBO!'
 const DELAY_TO_BE_REMOVED_IN_MS = 3000
-const CLASSNAMES = {
-  MINI: 'mini',
-  SMALL: 'small',
-  NORMAL: 'normal',
-  HUGE: 'huge',
-  MONSTER: 'monster'
-}
+const DELAY_MEGACOMBO_EFFECT_IN_MS = 3000
+const MEGACOMBO_EFFECT_CLASSNAME = 'big-surprise'
 
 const wrapperCombos = document.getElementById('combos')
+
+function applyMegaComboEffect () {
+  document.body.classList.add(MEGACOMBO_EFFECT_CLASSNAME)
+
+  setTimeout(() => {
+    document.body.classList.remove(MEGACOMBO_EFFECT_CLASSNAME)
+  }, DELAY_MEGACOMBO_EFFECT_IN_MS)
+}
 
 function createCombo (value) {
   const comboElement = document.createElement('span')
   comboElement.classList.add(COMBO_CLASSNAME)
 
-  let className
-  let text = `${COMBO_TEXT} ${value}`
+  const { id, classname, getText } = evalCombo(value)
 
-  if (value === 1) {
-    text = '+1'
-    className = CLASSNAMES.MINI
-  } else if (value === 2) {
-    className = CLASSNAMES.SMALL
-    text = `DOUBLE!`
-  } else if (value > 2 && value < 4) {
-    className = CLASSNAMES.NORMAL
-    text = `TRIPLE!`
-  } else if (value > 4 && value < 7) {
-    className = CLASSNAMES.HUGE
-  } else if (value >= MINIMUN_MEGACOMBO) {
-    className = CLASSNAMES.MONSTER
-    text = MEGACOMBO_TEXT
-    document.body.classList.add('big-surprise')
+  if (id === isMegaCombo()) { applyMegaComboEffect() }
 
-    setTimeout(() => {
-      document.body.classList.remove('big-surprise')
-    }, 3000)
-  }
-  comboElement.innerText = text
-  comboElement.classList.add(`--${COMBO_CLASSNAME}-${className}`)
-  wrapperCombos.append(comboElement)
+  comboElement.innerText = getText(value)
+  comboElement.classList.add(`--${COMBO_CLASSNAME}-${classname}`)
+  wrapperCombos.appendChild(comboElement)
 
   setTimeout(() => {
-    comboElement.remove()
+    wrapperCombos.removeChild(comboElement)
   }, DELAY_TO_BE_REMOVED_IN_MS)
 }
 
