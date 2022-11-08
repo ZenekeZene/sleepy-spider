@@ -1,6 +1,6 @@
-import { initializeFirebase } from './firebase'
-import { initializeDatabase } from './database'
-import { initializeAuth } from './authentication'
+import { initializeFirebase } from './firebase/firebase'
+import { initializeDatabase } from './firebase/database'
+import { initializeAuth } from './firebase/authentication'
 
 function initializeInfra () {
   const firebaseApp = initializeFirebase()

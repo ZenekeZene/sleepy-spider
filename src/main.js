@@ -4,7 +4,7 @@ import { sketchSpiderWithEyes, onRefreshReferences } from './components/spider/s
 import params from './settings/settings'
 import initModal from './lib/modal'
 import { initializeInfra } from './infra/infra'
-import { startAwakeningsSystem } from './infra/awakening.repository'
+import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
 
 const start = async () => {
   initModal()
