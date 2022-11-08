@@ -1,4 +1,4 @@
-import { calculateCoordinates } from '../eye/eyeWithMouse'
+import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
 import { initSleep, drawDream, stopDream } from '../sleep/sleep'
 import { launchComboSystem } from '../combos/Combo'
 import { createCombo } from '../combos/comboFactory'

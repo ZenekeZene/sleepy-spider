@@ -1,9 +1,9 @@
-import { SHAPES } from '../../../settings/settings'
-import Spritesheet from '../../../lib/animation/spritesheet/spritesheet'
+import { SHAPES } from '../../../../settings/settings'
+import Spritesheet from '../../../../lib/animation/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 
-const url = new URL('../../../assets/sprites/eye/eye-spritesheet.png', import.meta.url).href
+const url = new URL('../../../../assets/sprites/eye/eye-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 10
 const SIZE = 3000
 let eyesCanvas = document.getElementById('eyes')

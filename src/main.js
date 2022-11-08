@@ -4,7 +4,7 @@ import {
   updateAwakeningsCachedCounter
 } from './components/gui/drawAwakeningCount'
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
-import { sketchSpiderWithEyes, onRefreshReferences } from './components/spider/sketchSpiderWithEyes'
+import { sketchSpiderWithEyes, onRefreshReferences } from './components/sleepy/spider/sketchSpiderWithEyes'
 import params from './settings/settings'
 import { initializeInfra } from './infra/infra'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'

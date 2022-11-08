@@ -1,0 +1,28 @@
+.icons {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation-duration: 1s;
+}
+
+.icon {
+  width: 2rem;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.1, 1.1)
+}
+
+.icon-info {
+  width: 2.5rem;
+}
+
+#settings-close-icon {
+  display: none;
+}

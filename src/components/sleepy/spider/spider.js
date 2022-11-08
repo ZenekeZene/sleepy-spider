@@ -1,6 +1,6 @@
-import Frame from '../../lib/animation/frame'
-import Position from '../../lib/animation/position'
-import STATES from '../../lib/animation/spritesheet/states'
+import Frame from '../../../lib/animation/frame'
+import Position from '../../../lib/animation/position'
+import STATES from '../../../lib/animation/spritesheet/states'
 
 const INTERVAL_ANIMATION_IN_MS = 250
 const SURPRISE_CLASSNAME = 'surprise'

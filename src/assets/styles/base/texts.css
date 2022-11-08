@@ -1,0 +1,49 @@
+.info {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  padding: 2rem 2rem 0;
+  color: white;
+  text-shadow: 3px 2px 6px var(--primary-color);
+  font-size: 3rem;;
+}
+
+.subtitle {
+  max-width: 20rem;
+  padding: 0 2rem;
+}
+
+.counter-text {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 2rem;
+}
+
+.counter {
+  margin: -3px 5px;
+  padding: 0rem 0.7rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 30rem) {
+  .info {
+    position: absolute;
+    z-index: 1;
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
+  }
+
+  .title,
+  .subtitle,
+  .counter-text {
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

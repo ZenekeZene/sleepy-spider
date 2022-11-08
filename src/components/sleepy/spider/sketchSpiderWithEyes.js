@@ -1,7 +1,7 @@
+import { updateListenEyes } from '../../sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
 import eyeWithMouse from '../eye/eyeWithMouse'
 import createSpider from '../spider/spiderFactory'
-import { updateListenEyes } from '../sleep/sleepControl'
 
 let spider
 let eyes = []

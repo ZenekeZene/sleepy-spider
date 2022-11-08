@@ -1,0 +1,27 @@
+@import './variables.css';
+@import './icons.css';
+@import './texts.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  touch-action: none;
+}
+
+a {
+  color: var(--primary-color);
+}

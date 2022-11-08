@@ -1,3 +1,5 @@
+import './modal.css'
+
 const VISIBLE_CLASSNAME = 'visible'
 const TRIGGERS_CLASSNAME = 'modal-trigger'
 const INFO_TRIGGERS_CLASSNAME = 'info-modal-trigger'
