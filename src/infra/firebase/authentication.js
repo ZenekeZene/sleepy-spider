@@ -1,10 +1,10 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { getAuth, signInWithPopup as signInWithPopupFirebase, GoogleAuthProvider } from "firebase/auth"
 
 const initializeAuth = ({ app }) => getAuth(app)
 
-function callAuthentication ({ authentication }) {
+function signInWithPopup ({ authentication }) {
   const provider = new GoogleAuthProvider()
-  signInWithPopup(authentication, provider)
+  signInWithPopupFirebase(authentication, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result)
       const token = credential.accessToken
@@ -19,8 +19,15 @@ function callAuthentication ({ authentication }) {
     })
 }
 
+function onAuthenticationStateChanged ({ authentication, onChange }) {
+  authentication.onAuthStateChanged((user) => {
+    onChange({ user })
+  })
+}
+
 export {
   initializeAuth,
-  callAuthentication,
+  signInWithPopup,
+  onAuthenticationStateChanged,
 }
 

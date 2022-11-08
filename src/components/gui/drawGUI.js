@@ -21,13 +21,20 @@ const toggleParametersByShape = (shape) => {
   }
 }
 
+const drawUserIcon = ({ onClick }) => {
+  const userIcon = document.getElementById('user-icon')
+  userIcon.addEventListener('click', () => {
+    onClick()
+  })
+}
+
 const drawGUI = ({ params, onChange }) => {
   initModal()
   toggleGUI()
   toggleInvisibleElements()
   drawSettingButtons({ toggleGUI })
-  const folder = pane.addFolder({ title: 'Grid' })
 
+  const folder = pane.addFolder({ title: 'Grid' })
   const shapeInput = folder.addInput(params, 'shape', {
     options: { ...SHAPES }
   })
@@ -69,5 +76,5 @@ const toggleGUI = (showSettings) => {
 
 export {
   drawGUI,
-  toggleGUI,
+  drawUserIcon,
 }

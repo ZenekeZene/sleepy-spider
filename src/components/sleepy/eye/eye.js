@@ -2,7 +2,7 @@ import { range } from '../../../lib/math/random'
 import STATES from '../../../lib/animation/spritesheet/states'
 import Frame from '../../../lib/animation/frame'
 import Position from '../../../lib/animation/position'
-import Pupil from '../pupil/pupil'
+import Pupil from '../pupil/Pupil'
 import settings from './eyeSettings'
 
 const FRAME_WITHOUT_PUPIL_INDEX = 8

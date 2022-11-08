@@ -1,5 +1,5 @@
 import { degToRad } from '../../../../lib/math/degree'
-import Eye from '../eye'
+import Eye from '../Eye'
 
 const createCentralEye = (props, cx, cy) => {
   const offset = 80
