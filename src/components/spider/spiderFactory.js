@@ -1,4 +1,4 @@
-import Spritesheet from '../../lib/spritesheet/spritesheet'
+import Spritesheet from '../../lib/animation/spritesheet/spritesheet'
 import Spider from './spider'
 
 const url = new URL('../../assets/sprites/spider/spider-spritesheet.png', import.meta.url).href

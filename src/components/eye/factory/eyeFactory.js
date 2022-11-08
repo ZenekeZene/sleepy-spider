@@ -1,5 +1,5 @@
 import { SHAPES } from '../../../settings/settings'
-import Spritesheet from '../../../lib/spritesheet/spritesheet'
+import Spritesheet from '../../../lib/animation/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 

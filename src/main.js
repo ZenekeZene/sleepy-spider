@@ -1,8 +1,12 @@
-import { drawGUI, updateAwakeningsCounter, updateAwakeningsCachedCounter } from './components/gui/drawGUI'
+import { drawGUI } from './components/gui/drawGUI'
+import {
+  updateAwakeningsCounter,
+  updateAwakeningsCachedCounter
+} from './components/gui/drawAwakeningCount'
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
 import { sketchSpiderWithEyes, onRefreshReferences } from './components/spider/sketchSpiderWithEyes'
 import params from './settings/settings'
-import initModal from './lib/modal'
+import { initModal } from './lib/misc/modal'
 import { initializeInfra } from './infra/infra'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
 
