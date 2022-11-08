@@ -1,10 +1,4 @@
 import { initializeApp } from "firebase/app"
-import { increment, getFirestore, collection, getDocs } from 'firebase/firestore'
-import { doc, onSnapshot, updateDoc } from "firebase/firestore"
-
-const INTERVAL_TO_UPDATE = 10000
-let cachedCount = 0
-let timerToUpdate
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -17,66 +11,8 @@ const firebaseConfig = {
   appId: "1:146527522996:web:139660912fa4c6aeb007e1"
 }
 
-const DOCUMENT = 'awakenings'
-const FIELD = 'total'
-
-const initializeDatabase = () => {
-  const app = initializeApp(firebaseConfig)
-  const db = getFirestore(app)
-  return db
-}
-
-async function getTotalAwakenings (db) {
-  const awakeningsCol = collection(db, DOCUMENT)
-  const awakeningsSnapshot = await getDocs(awakeningsCol)
-  const awakeningsValue = awakeningsSnapshot.docs.map(doc => doc.data())
-  return awakeningsValue[0].value
-}
-
-async function addAwakening (value = 1, onCachedChange) {
-  cachedCount += value
-  onCachedChange(value)
-}
-
-function handleAwakeningUpdatesWithInterval (db) {
-  const awakeningsRef = doc(db, DOCUMENT, FIELD)
-  timerToUpdate = setInterval(async () => {
-    if (cachedCount <= 0) return
-    await updateDoc(awakeningsRef, {
-      value: increment(cachedCount)
-    })
-    cachedCount = 0
-  }, INTERVAL_TO_UPDATE)
-}
-
-function listenAwakenings (db, callback) {
-  const unsub = onSnapshot(doc(db, DOCUMENT, FIELD), (doc) => {
-    callback(doc.data())
-  })
-  return unsub
-}
-
-async function startAwakeningsSystem ({ onChange, onCachedChange }) {
-  const db = initializeDatabase()
-  const initialAwakeningsValue = await getTotalAwakenings(db)
-  const addAwakeningWithCache = (value) => addAwakening(value, onCachedChange)
-
-  onChange(initialAwakeningsValue)
-  listenAwakenings(db, ({ value }) => { onChange(value) })
-  handleAwakeningUpdatesWithInterval(db)
-
-  return {
-    initialValue: initialAwakeningsValue,
-    addAwakening: addAwakeningWithCache,
-    timerToUpdate,
-  }
-}
+const initializeFirebase = () => initializeApp(firebaseConfig)
 
 export {
-  startAwakeningsSystem,
-  getTotalAwakenings,
-  addAwakening,
-  listenAwakenings,
+  initializeFirebase,
 }
-
-export default initializeDatabase
