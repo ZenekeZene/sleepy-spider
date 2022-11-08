@@ -6,12 +6,10 @@ import {
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
 import { sketchSpiderWithEyes, onRefreshReferences } from './components/spider/sketchSpiderWithEyes'
 import params from './settings/settings'
-import { initModal } from './lib/misc/modal'
 import { initializeInfra } from './infra/infra'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
 
 const start = async () => {
-  initModal()
   const { eyesCanvas, spider, eyes } = await sketchSpiderWithEyes(params)
   const { database } = initializeInfra()
   const { addAwakening } = await startAwakeningsSystem({

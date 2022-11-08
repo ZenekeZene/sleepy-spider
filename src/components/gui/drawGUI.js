@@ -1,5 +1,6 @@
 import { Pane } from 'tweakpane'
 import { SHAPES } from '../../settings/settings'
+import { initModal } from '../modal/modal'
 import { drawSettingButtons } from './drawSettingsButtons'
 import { toggleInvisibleElements } from './toggleInvisibleElements'
 
@@ -21,6 +22,7 @@ const toggleParametersByShape = (shape) => {
 }
 
 const drawGUI = ({ params, onChange }) => {
+  initModal()
   toggleGUI()
   toggleInvisibleElements()
   drawSettingButtons({ toggleGUI })
