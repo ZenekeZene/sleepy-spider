@@ -9,31 +9,38 @@ import params from './settings/settings'
 import { initializeInfra } from './infra/infra'
 import { signInWithPopup, onAuthenticationStateChanged } from './infra/firebase/authentication'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
+import { renderLeaderboard } from './components/leaderboard/leaderboard'
 
-const start = async () => {
-  const { eyesCanvas, spider, eyes } = await sketchSpiderWithEyes(params)
-  const { database, authentication } = initializeInfra()
+async function initSystem ({ user, database, eyesCanvas, spider, eyes }) {
+  // Awakenings persistence:
   const { addAwakening } = await startAwakeningsSystem({
+    userUid: user.uid,
     database,
     onChange: updateAwakeningsCounter,
     onCachedChange: updateAwakeningsCachedCounter,
   })
 
-  onAuthenticationStateChanged({ authentication, onChange: ({ user }) => {
-    if (!user?.displayName) return
-    document.getElementById('user-icon').src = user.photoURL
-    console.log(user.displayName)
-    console.log(user.email)
-    console.log(user.photoURL)
-  }})
-
+  // GUI:
   drawGUI({ params, onChange: () => {
     onRefreshReferences(addAwakening, params)
   }})
+
   drawUserIcon({ onClick: () => {
     signInWithPopup({ authentication })
   }})
+  renderLeaderboard({ currentUser: user })
+
+  // Sleep:
   listenTheSleepCycle(eyesCanvas, eyes, spider, addAwakening)
+}
+
+const start = async () => {
+  const spider = await sketchSpiderWithEyes(params)
+  const { database, authentication } = initializeInfra()
+
+  onAuthenticationStateChanged({ authentication, onChange: async ({ user }) => {
+    initSystem({ database, user, ...spider })
+  }})
 }
 
 document.addEventListener("DOMContentLoaded", () => {

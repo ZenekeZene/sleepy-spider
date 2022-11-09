@@ -2,6 +2,7 @@
 @import './utils/utils.css';
 @import './loader/loader.css';
 @import './spider/spider.css';
+@import './leaderboard/leaderboard.css';
 @import './vendor/vendor.css';
 
 .bounce-wrapper {
@@ -20,6 +21,10 @@
 
   .icons {
     bottom: 1rem;
+    left: 1rem;
+  }
+
+  .leaderboard {
     left: 1rem;
   }
 }
