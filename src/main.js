@@ -7,7 +7,7 @@ import { listenTheSleepCycle } from './components/sleep/sleepControl'
 import { sketchSpiderWithEyes, onRefreshReferences } from './components/sleepy/spider/sketchSpiderWithEyes'
 import params from './settings/settings'
 import { initializeInfra } from './infra/infra'
-import { signInWithPopup, onAuthenticationStateChanged } from './infra/firebase/authentication'
+import { signInWithPopup, onAuthenticationStateChanged } from './infra/services/authentication/authentication'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
 import { renderLeaderboard } from './components/leaderboard/leaderboard'
 

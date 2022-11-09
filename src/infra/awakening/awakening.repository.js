@@ -1,26 +1,15 @@
-import { increment, getDoc } from 'firebase/firestore'
-import { doc, onSnapshot, setDoc, updateDoc } from "firebase/firestore"
+import { onSnapshot } from 'firebase/firestore'
+import { incrementFieldOnDocument } from '../services/database/incrementField'
+import { getSnapshot } from '../services/database/getSnapshot'
 
 const DOCUMENT = 'awakenings'
 
 let cachedCount = 0
 const INTERVAL_TO_UPDATE = 10000
 
-async function getSnapshot ({ userUid, database }) {
-  const documentRef = doc(database, DOCUMENT, userUid)
-  const documentSnap = await getDoc(documentRef)
-
-  return {
-    data: documentSnap.data(),
-    existsDocument: documentSnap.exists(),
-    documentSnap,
-    documentRef,
-  }
-}
-
 async function getTotalAwakenings ({ userUid, database }) {
   if (!userUid) return
-  const { data } = await getSnapshot({ userUid, database })
+  const { data } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
   return data?.value || 0
 }
 
@@ -29,18 +18,11 @@ async function addAwakening (value = 1, onCachedChange) {
   onCachedChange(value)
 }
 
-async function updateDocument ({ existsDocument, documentRef }) {
-  const action = existsDocument ? updateDoc : setDoc
-  await action(documentRef, {
-    value: increment(cachedCount),
-  })
-}
-
 function handleAwakeningUpdatesWithInterval ({ userUid, database }) {
   const timerToUpdate = setInterval(async () => {
     if (cachedCount <= 0) return
-    const { existsDocument, documentRef } = await getSnapshot({ userUid, database })
-    updateDocument({ existsDocument, documentRef })
+    const { existsDocument, documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
+    incrementFieldOnDocument({ existsDocument, documentRef, value: cachedCount })
     cachedCount = 0
   }, INTERVAL_TO_UPDATE)
   return timerToUpdate
@@ -48,7 +30,7 @@ function handleAwakeningUpdatesWithInterval ({ userUid, database }) {
 
 async function listenAwakenings ({ userUid, database, callback }) {
   if (!userUid) return
-  const { documentRef } = await getSnapshot({ userUid, database })
+  const { documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
   const unsub = onSnapshot(documentRef, (document) => {
     const data = document.data() || { value: 0 }
     callback(data)

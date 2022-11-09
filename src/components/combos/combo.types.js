@@ -1,6 +1,7 @@
 import { MINIMUN_MEGACOMBO } from "./Combo"
 const COMBO_TEXT = 'Combo X'
 const MEGACOMBO_TEXT = 'MEGACOMBO!'
+const MONSTER_ID = 'MONSTER'
 
 function calculateCombo ({ value }) {
   const combos = Object.entries(COMBO_TYPES)
@@ -9,10 +10,7 @@ function calculateCombo ({ value }) {
   if (!id || !currentCombo) {
     throw new Error('[Combo Error] Error with value: ', value)
   }
-  return {
-    id,
-    ...currentCombo,
-  }
+  return { id, ...currentCombo }
 }
 
 const COMBO_TYPES = {
@@ -36,14 +34,14 @@ const COMBO_TYPES = {
     getText: (value) => `${COMBO_TEXT} ${value}`,
     condition: (value) => value >= 4 && value < 7,
   },
-  MONSTER: {
+  [MONSTER_ID]: {
     classname: 'monster',
     getText: () => MEGACOMBO_TEXT,
     condition: (value) => value >= MINIMUN_MEGACOMBO,
   }
 }
 
-const isMegaCombo = ({ comboId }) => comboId === COMBO_TYPES.MONSTER
+const isMegaCombo = ({ comboId }) => comboId.localeCompare(MONSTER_ID) === 0
 
 export {
   calculateCombo,
