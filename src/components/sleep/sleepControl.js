@@ -1,5 +1,5 @@
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
-import { initSleep, drawDream, stopDream } from '../sleep/sleep'
+import { initDreamController, drawDream, stopDream } from './dreamController'
 import { launchComboSystem } from '../combos/Combo'
 import { createCombo } from '../combos/comboFactory'
 
@@ -8,44 +8,52 @@ let spiderIsClicked = false
 let incrementClickForCombo
 const CHECK_SLEEP_INTERVAL_IN_MS = 100
 
-const handleDream = (eyes, spider) => {
-  const areAnyEyesOpen = spider.searchOpenEyes(eyes)
+const handleDream = ({ ...spider }) => {
+  const { eyes, body } = spider
+  if (!eyes || !body) throw new Error('Error with the eyes or body of spider')
+  const areAnyEyesOpen = body.searchOpenEyes(eyes)
   if (areAnyEyesOpen) {
     if (!dreamIsLaunched) return
     dreamIsLaunched = false
     stopDream()
-    spider.resumeIddleAnimation()
+    body.resumeIddleAnimation()
     return
   }
   if (dreamIsLaunched) return
   dreamIsLaunched = true
   drawDream()
-  spider.stopIddleAnimation()
+  body.stopIddleAnimation()
 }
 
-const checkIsSleeping = (eyes, spider) => {
+const checkIsSleeping = ({ ...spider }) => {
   setInterval(() => {
-    handleDream(eyes, spider)
+    handleDream({ ...spider })
   }, CHECK_SLEEP_INTERVAL_IN_MS)
 }
 
-const handleSleep = (eyes, spider, onSleepInterrupted) => {
-  spider.relax(eyes)
+const handleSleep = ({ onInterruptedSleep, ...spider }) => {
+  const { eyes, body } = spider
+  if (!eyes || !body) throw new Error('Error with the eyes or body of spider')
+  if (!onInterruptedSleep) throw new Error('sleep callback not recognized')
+
+  body.relax(eyes)
   incrementClickForCombo()
+
   if (spiderIsClicked) return
   spiderIsClicked = true
-  onSleepInterrupted()
+  onInterruptedSleep()
   createCombo(1)
   stopDream()
-  spider.toBeSurprised(eyes)
+  body.toBeSurprised(eyes)
 
   setTimeout(() => {
-    spider.relax(eyes)
+    body.relax(eyes)
     spiderIsClicked = false
   }, 100)
 }
 
-const checkClickOnEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
+const checkClickOnEyes = ({ onInterruptedSleep, ...spider }) => {
+  const { eyesCanvas, eyes } = spider
   const rect = eyesCanvas.getBoundingClientRect()
   const scale = eyesCanvas.width / rect.width
 
@@ -59,32 +67,32 @@ const checkClickOnEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
       isThereAnEyeNearby = isAround
       break
     }
-    isThereAnEyeNearby && handleSleep(eyes, spider, onSleepInterrupted)
+    isThereAnEyeNearby && handleSleep({ onInterruptedSleep, ...spider })
   }
 
   eyesCanvas.addEventListener('click', handleClick)
 }
 
-const checkClicksOnColliders = (eyes, spider, onSleepInterrupted) => {
+const checkClicksOnColliders = ({ onInterruptedSleep, ...spider }) => {
   const handClickOnCollider = () => {
-    handleSleep(eyes, spider, onSleepInterrupted)
+    handleSleep({ onInterruptedSleep, ...spider })
   }
   const colliders = Array.from(document.getElementsByClassName('collider'))
   colliders.forEach((collider) => collider.addEventListener('click', handClickOnCollider))
 }
 
-const updateListenEyes = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
-  checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
+const updateListenEyes = ({ onInterruptedSleep, ...spider }) => {
+  checkClickOnEyes({ onInterruptedSleep, ...spider })
 }
 
-const listenTheSleepCycle = (eyesCanvas, eyes, spider, onSleepInterrupted) => {
-  initSleep()
-  checkIsSleeping(eyes, spider)
-  checkClicksOnColliders(eyes, spider, onSleepInterrupted)
-  checkClickOnEyes(eyesCanvas, eyes, spider, onSleepInterrupted)
-  const { incrementClick } = launchComboSystem({ onCombo: onSleepInterrupted })
+const listenTheSleepCycle = ({ onInterruptedSleep, ...spider }) => {
+  const spiderWithInterruptedSleep = { onInterruptedSleep, ...spider }
+  initDreamController()
+  checkIsSleeping(spider)
+  checkClicksOnColliders(spiderWithInterruptedSleep)
+  checkClickOnEyes(spiderWithInterruptedSleep)
+  const { incrementClick } = launchComboSystem({ onCombo: onInterruptedSleep })
   incrementClickForCombo = incrementClick
-
 }
 
 export { listenTheSleepCycle, updateListenEyes }

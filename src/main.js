@@ -6,11 +6,10 @@ import {
   updateAwakeningsCachedCounter
 } from './ui/awakeningCounter/drawAwakeningCount'
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
-import { sketchSpiderWithEyes, onRefreshReferences } from './components/sleepy/spider/sketchSpiderWithEyes'
+import { drawSpider, onRefreshReferences } from './components/sleepy/spider/drawSpider'
 import { initializeInfra } from './infra/infra'
 import { signInWithPopup, onAuthenticationStateChanged } from './infra/services/authentication/authentication'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
-import { renderLeaderboard } from './components/leaderboard/leaderboard'
 import params from './settings/settings'
 
 async function startAwakenings ({ database }) {
@@ -22,28 +21,20 @@ async function startAwakenings ({ database }) {
   })
 }
 
-async function initSystem ({ database, authentication, ...spider }) {
-
-  // renderLeaderboard({ currentUser: user })
-}
-
 const start = async () => {
-  const spider = await sketchSpiderWithEyes(params)
+  const spider = await drawSpider({ params })
+  listenTheSleepCycle(spider)
+
   const infraServices = initializeInfra()
-  initSystem({ ...spider, ...infraServices })
 
   drawAuthentication({
     onLogin: () => { signInWithPopup({ authentication: infraServices.authentication }) },
     onLogout: () => { infraServices.authentication.signOut() }
   })
 
-  // Sleep:
-  const { eyesCanvas, body, eyes } = spider
-  listenTheSleepCycle(eyesCanvas, eyes, body)
-
   // GUI:
   drawGUI({ params, onChange: () => {
-    // onRefreshReferences(addAwakening, params)
+    // onRefreshReferences({ addAwakening, params })
   }})
 
   onAuthenticationStateChanged({
