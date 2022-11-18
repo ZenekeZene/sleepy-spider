@@ -11,12 +11,12 @@ async function handleLogin ({ user, database }) {
   if (!database) throw new Error('Unknown database')
   if (!user) throw new Error('Error with unknown user')
 
-  const { addAwakening, setUserUid } = await startAwakeningsSystem({
+  const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
     onChange: updateAwakeningsCounter,
     onCachedChange: updateAwakeningsCachedCounter,
   })
-  await setUserUid(user.uid)
+  await setUser(user)
 
   signInSubtitle.style.display = 'none'
   userCounter.style.display = 'block'

@@ -1,6 +1,6 @@
 .leaderboard {
   position: absolute;
-  bottom: 12rem;
+  bottom: 15rem;
   left: 2rem;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,10 @@
   margin-bottom: 0.7rem;
   color: white;
   font-size: 0.7rem;
+}
+
+.leaderboard__item.current {
+  border: 2px solid red;
 }
 
 .leaderboard__image {
@@ -54,6 +58,7 @@
   width: 0.4rem;
   height: 0.4rem;
   display: inline-block;
+  z-index: 1;
   padding: 0.5rem;
   text-align: center;
   line-height: 0.7;

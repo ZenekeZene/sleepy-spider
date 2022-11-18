@@ -17,11 +17,11 @@ async function addAwakening (value = 1, onCachedChange) {
   onCachedChange(value)
 }
 
-function handleAwakeningUpdatesWithInterval ({ userUid, database }) {
+function handleAwakeningUpdatesWithInterval ({ userUid, user, database }) {
   const timerToUpdate = setInterval(async () => {
     if (cachedCount > 0) {
       const { existsDocument, documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
-      incrementFieldOnDocument({ existsDocument, documentRef, value: cachedCount })
+      incrementFieldOnDocument({ existsDocument, documentRef, value: cachedCount, user })
       cachedCount = 0
     }
   }, INTERVAL_TO_UPDATE_IN_MS)
@@ -43,11 +43,11 @@ async function startAwakeningsSystem ({ database, onChange, onCachedChange }) {
 
   return {
     addAwakening: (value = 1) => addAwakening(value, onCachedChange),
-    setUserUid: async (uid) => {
-      userUid = uid
+    setUser: async (user) => {
+      userUid = user.uid
       const initialAwakeningsValue = await getTotalAwakenings({ userUid, database })
       onChange(initialAwakeningsValue)
-      handleAwakeningUpdatesWithInterval({ userUid, database })
+      handleAwakeningUpdatesWithInterval({ userUid, user, database })
       listenAwakenings({ userUid, database, callback: ({ value }) => { onChange(value) }})
     }
   }

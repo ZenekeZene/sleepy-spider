@@ -1,19 +1,29 @@
 import { createElement } from "@/lib/dom/dom"
-import './leaderboard/leaderboard.css'
+import { getUsersByLimit } from "@/infra/user/user.repository"
+import './leaderboard.css'
 
 const CLASSNAME__PREFIX = 'leaderboard__'
+const imageFallbackSrc = new URL('/src/assets/images/spider-fallback.svg', import.meta.url).href
 
-function renderLeaderboard ({ currentUser }) {
-  if (!currentUser?.displayName) return
-  document.getElementById('user-icon').style.display = 'none'
-
-  const { displayName, photoURL } = currentUser
-  const wrapper = document.getElementById('leaderboard-user')
-  createElement({
+function createUser ({ listElement, user, isCurrent = fals }) {
+  const { displayName, photoURL } = user
+  const wrapper = createElement({
+    tag: 'li',
+    classNames: `${CLASSNAME__PREFIX}item`,
+    target: listElement
+  })
+  if (isCurrent) {
+    wrapper.classList.add('current')
+  }
+  const image = createElement({
     tag: 'img',
     classNames: `${CLASSNAME__PREFIX}image`,
     target: wrapper
-  }).src = photoURL
+  })
+  image.src = photoURL
+  image.onerror = () => {
+    image.src = imageFallbackSrc
+  }
 
   createElement({
     classNames: `${CLASSNAME__PREFIX}nickname`,
@@ -21,9 +31,26 @@ function renderLeaderboard ({ currentUser }) {
   }).textContent = displayName
 
   createElement({
-    classNames: [`${CLASSNAME__PREFIX}counter`, 'counter'],
+    classNames: [`${CLASSNAME__PREFIX}counter`],
     target: wrapper,
-  })
+  }).textContent = user.value
+}
+
+async function drawUsers ({ currentUser, database }) {
+  const listElement = document.getElementById('leaderboard')
+  listElement.innerHTML = ''
+
+  const users = await getUsersByLimit({ database, limitSize: 2 })
+  users.forEach((user => {
+    createUser({ listElement, user, isCurrent: user.id === currentUser.uid })
+  }))
+}
+
+async function renderLeaderboard ({ currentUser, database }) {
+  drawUsers({ currentUser, database })
+  setInterval(async () => {
+    drawUsers({ currentUser, database })
+  }, 3000)
 }
 
 export {
