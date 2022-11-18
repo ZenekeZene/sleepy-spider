@@ -38,9 +38,9 @@ async function listenAwakenings ({ userUid, database, callback }) {
   return unsub
 }
 
-async function startAwakeningsSystem ({ userUid, database, onChange, onCachedChange }) {
+async function startAwakeningsSystem ({ database, onChange, onCachedChange }) {
   if (!database) throw new Error('Error with unknown database.')
-
+  let userUid
   const initialAwakeningsValue = await getTotalAwakenings({ userUid, database })
   const addAwakeningWithCache = (value) => addAwakening(value, onCachedChange)
 
@@ -50,6 +50,9 @@ async function startAwakeningsSystem ({ userUid, database, onChange, onCachedCha
 
   return {
     addAwakening: addAwakeningWithCache,
+    setUserUid: (value) => {
+      userUid = value
+    }
   }
 }
 

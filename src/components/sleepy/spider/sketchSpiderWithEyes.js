@@ -3,7 +3,7 @@ import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
 import eyeWithMouse from '../eye/eyeWithMouse'
 import createSpider from '../spider/spiderFactory'
 
-let spider
+let body
 let eyes = []
 let eyesCanvas
 let eyesContext
@@ -25,7 +25,7 @@ const sketchEyes = async (params) => {
 const sketchSpider = async (params) => {
   const canvas = document.getElementById('body')
   const context = canvas.getContext('2d')
-  spider = await createSpider({ context, canvas, eyes, params })
+  body = await createSpider({ context, canvas, eyes, params })
 }
 
 const sketchSpiderWithEyes = async (params) => {
@@ -35,7 +35,7 @@ const sketchSpiderWithEyes = async (params) => {
   await sketchSpider(params)
   return {
     eyes,
-    spider,
+    body,
     eyesCanvas
   }
 }

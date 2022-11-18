@@ -1,46 +1,61 @@
-import { drawGUI, drawUserIcon } from './components/gui/drawGUI'
+import { drawGUI } from './ui/gui/drawGUI'
+import { drawAuthentication } from './ui/authentication/drawAuthentication'
 import {
   updateAwakeningsCounter,
   updateAwakeningsCachedCounter
-} from './components/gui/drawAwakeningCount'
+} from './ui/drawAwakeningCount'
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
 import { sketchSpiderWithEyes, onRefreshReferences } from './components/sleepy/spider/sketchSpiderWithEyes'
-import params from './settings/settings'
 import { initializeInfra } from './infra/infra'
 import { signInWithPopup, onAuthenticationStateChanged } from './infra/services/authentication/authentication'
 import { startAwakeningsSystem } from './infra/awakening/awakening.repository'
 import { renderLeaderboard } from './components/leaderboard/leaderboard'
+import params from './settings/settings'
 
-async function initSystem ({ user, database, eyesCanvas, spider, eyes }) {
+async function startAwakenings ({ database }) {
   // Awakenings persistence:
-  const { addAwakening } = await startAwakeningsSystem({
-    userUid: user.uid,
+  const { addAwakening, setUserUid } = await startAwakeningsSystem({
     database,
     onChange: updateAwakeningsCounter,
     onCachedChange: updateAwakeningsCachedCounter,
   })
+}
 
-  // GUI:
-  drawGUI({ params, onChange: () => {
-    onRefreshReferences(addAwakening, params)
-  }})
+async function initSystem ({ database, authentication, ...spider }) {
 
-  drawUserIcon({ onClick: () => {
-    signInWithPopup({ authentication })
-  }})
-  renderLeaderboard({ currentUser: user })
-
-  // Sleep:
-  listenTheSleepCycle(eyesCanvas, eyes, spider, addAwakening)
+  // renderLeaderboard({ currentUser: user })
 }
 
 const start = async () => {
   const spider = await sketchSpiderWithEyes(params)
-  const { database, authentication } = initializeInfra()
+  const infraServices = initializeInfra()
+  initSystem({ ...spider, ...infraServices })
 
-  onAuthenticationStateChanged({ authentication, onChange: async ({ user }) => {
-    initSystem({ database, user, ...spider })
+  drawAuthentication({
+    onLogin: () => { signInWithPopup({ authentication: infraServices.authentication }) },
+    onLogout: () => { infraServices.authentication.signOut() }
+  })
+
+  // Sleep:
+  const { eyesCanvas, body, eyes } = spider
+  listenTheSleepCycle(eyesCanvas, eyes, body)
+
+  // GUI:
+  drawGUI({ params, onChange: () => {
+    // onRefreshReferences(addAwakening, params)
   }})
+
+  onAuthenticationStateChanged({
+    authentication: infraServices.authentication,
+    onChange: async ({ user }) => {
+      if (!user) {
+        console.warn('Unknown user')
+        return
+      }
+      console.log(user)
+      setUserUid(user.uid)
+    }
+  })
 }
 
 document.addEventListener("DOMContentLoaded", () => {
