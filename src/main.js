@@ -1,9 +1,10 @@
-import { drawGUI } from './ui/gui/drawGUI'
+import { drawGUI } from './ui/gui'
 import { drawAuthentication } from './ui/authentication/drawAuthentication'
+
 import {
   updateAwakeningsCounter,
   updateAwakeningsCachedCounter
-} from './ui/drawAwakeningCount'
+} from './ui/awakeningCounter/drawAwakeningCount'
 import { listenTheSleepCycle } from './components/sleep/sleepControl'
 import { sketchSpiderWithEyes, onRefreshReferences } from './components/sleepy/spider/sketchSpiderWithEyes'
 import { initializeInfra } from './infra/infra'

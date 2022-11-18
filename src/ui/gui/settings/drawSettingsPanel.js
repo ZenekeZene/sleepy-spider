@@ -1,8 +1,6 @@
 import { Pane } from 'tweakpane'
-import { SHAPES } from '../../settings/settings'
-import { initModal } from '../../components/modal/modal'
+import { SHAPES } from '../../../settings/settings'
 import { drawSettingButtons } from './drawSettingsButtons'
-import { toggleInvisibleElements } from './toggleInvisibleElements'
 
 const toggleParametersByShape = ({ shape, inputs }) => {
   const { columns, rows, totalEyesInCircle } = inputs
@@ -71,10 +69,7 @@ const drawSettingsFolder = ({ params, panel }) => {
   settingsFolder.addInput(params, 'sound')
 }
 
-const drawGUI = ({ params, onChange }) => {
-  initModal()
-  toggleInvisibleElements()
-
+const drawSettingsPanel = ({ params, onChange }) => {
   const { panel } = drawGridFolder({ params, onChange })
   drawSettingButtons({ panel, onClick: toggleSettingsPanel })
   drawEyeFolder({ params, panel })
@@ -82,5 +77,5 @@ const drawGUI = ({ params, onChange }) => {
 }
 
 export {
-  drawGUI,
+  drawSettingsPanel,
 }
