@@ -1,10 +1,10 @@
-import Spritesheet from '../../../lib/animation/spritesheet/spritesheet'
-import Spider from './Spider'
+import Spritesheet from '@/lib/animation/spritesheet/spritesheet'
+import Spider from '../Spider'
 
-const url = new URL('../../../assets/images/sprites/spider/spider-spritesheet.png', import.meta.url).href
+const url = new URL('/src/assets/images/sprites/spider/spider-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 5
 
-const createSpider = async (props) =>
+const createSpiderBody = async (props) =>
   new Promise((resolve, reject) => {
     const { context, canvas } = props
     const image = new Image()
@@ -31,4 +31,6 @@ const createSpider = async (props) =>
     }
   })
 
-export default createSpider
+export {
+  createSpiderBody,
+}

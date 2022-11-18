@@ -1,4 +1,5 @@
-import { createElement } from "../../lib/dom/dom"
+import { createElement } from "@/lib/dom/dom"
+import './leaderboard/leaderboard.css'
 
 const CLASSNAME__PREFIX = 'leaderboard__'
 

@@ -1,4 +1,5 @@
-import { MINIMUN_MEGACOMBO } from "./Combo"
+import { MINIMUN_MEGACOMBO } from "../Combo"
+
 const COMBO_TEXT = 'Combo X'
 const MEGACOMBO_TEXT = 'MEGACOMBO!'
 const MONSTER_ID = 'MONSTER'

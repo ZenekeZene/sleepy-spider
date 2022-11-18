@@ -1,5 +1,5 @@
 import { Pane } from 'tweakpane'
-import { SHAPES } from '../../../settings/settings'
+import { SHAPES } from '@/settings/settings'
 import { drawSettingButtons } from './drawSettingsButtons'
 
 const toggleParametersByShape = ({ shape, inputs }) => {

@@ -1,12 +1,12 @@
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
-import { initDreamController, drawDream, stopDream } from './dreamController'
 import { launchComboSystem } from '../combos/Combo'
-import { createCombo } from '../combos/comboFactory'
+import { createCombo } from '../combos/factory/comboFactory'
+import { initDreamController, drawDream, stopDream } from './dream/dreamController'
 
+const CHECK_SLEEP_INTERVAL_IN_MS = 100
 let dreamIsLaunched = false
 let spiderIsClicked = false
 let incrementClickForCombo
-const CHECK_SLEEP_INTERVAL_IN_MS = 100
 
 const handleDream = ({ ...spider }) => {
   const { eyes, body } = spider

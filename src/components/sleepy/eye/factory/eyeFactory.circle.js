@@ -1,4 +1,4 @@
-import { degToRad } from '../../../../lib/math/degree'
+import { degToRad } from '@/lib/math/degree'
 import Eye from '../Eye'
 
 const createCentralEye = (props, cx, cy) => {

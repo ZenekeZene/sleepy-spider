@@ -1,7 +1,7 @@
-import { range } from '../../../lib/math/random'
-import STATES from '../../../lib/animation/spritesheet/states'
-import Frame from '../../../lib/animation/frame'
-import Position from '../../../lib/animation/position'
+import { range } from '@/lib/math/random'
+import STATES from '@/lib/animation/spritesheet/states'
+import Frame from '@/lib/animation/frame'
+import Position from '@/lib/animation/position'
 import Pupil from '../pupil/Pupil'
 import settings from './eyeSettings'
 

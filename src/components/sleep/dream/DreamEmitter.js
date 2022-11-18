@@ -27,9 +27,9 @@ class DreamEmitter {
 
     const lifePerc = ((this.lifeTime / this.maxLifeTime) * 100)
 
-    this.size = this.startSize + ((this.endSize - this.startSize) * lifePerc * .1)
+    this.size = this.startSize + ((this.endSize - this.startSize) * lifePerc * 0.1)
 
-    this.alpha = 1 - (lifePerc * .01)
+    this.alpha = 1 - (lifePerc * 0.01)
     this.alpha = Math.max(this.alpha, 0)
 
     this.x += this.velX

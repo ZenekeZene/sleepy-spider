@@ -1,7 +1,7 @@
-import { updateListenEyes } from '../../sleep/sleepControl'
+import { updateListenEyes } from '@/components/sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
 import eyeWithMouse from '../eye/eyeWithMouse'
-import createSpider from './spiderFactory'
+import { createSpiderBody } from './factory/spiderBodyFactory'
 
 let body
 let eyes = []
@@ -25,7 +25,7 @@ const drawSpiderEyes = async ({ params }) => {
 const drawSpiderBody = async ({ params }) => {
   const canvas = document.getElementById('body')
   const context = canvas.getContext('2d')
-  body = await createSpider({ context, canvas, eyes, params })
+  body = await createSpiderBody({ context, canvas, eyes, params })
 }
 
 const drawSpider = async ({ params }) => {

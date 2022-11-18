@@ -1,4 +1,4 @@
-import { createCombo } from './comboFactory'
+import { createCombo } from './factory/comboFactory'
 
 const INTERVAL_PER_SECONDS_IN_MS = 1000
 const INTERVAL_PER_CALCULATION_IN_MS = 100
