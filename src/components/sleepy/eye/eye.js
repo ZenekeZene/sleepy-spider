@@ -22,10 +22,6 @@ class Eye {
     this.pupil = new Pupil(props, this.frame, this.scale, pupilScale)
   }
 
-  isIddle () {
-    return this.state === STATES.IDDLE
-  }
-
   isAroundToTheMouse (mouseX, mouseY, extraOffset = 0) {
     const realWidth = this.frame.width * this.scale
     this.offsetBoundaries = realWidth * (this.params.sizeColision + 0.5)
@@ -64,6 +60,10 @@ class Eye {
     if (!this.frame.isLimit({ isReverse, limit })) return
     const frame = this.state === STATES.BACKWARD ? this.sprite.length : (limit || 0)
     this.stop(frame)
+  }
+
+  isIddle () {
+    return this.state === STATES.IDDLE
   }
 
   play ({ isReverse, limit }) {

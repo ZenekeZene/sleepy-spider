@@ -17,8 +17,11 @@ const updateAwakeningsCounter = (value) => {
 }
 
 const updateAwakeningsCachedCounter = (value) => {
+  const valueParsed = value || 0
   const counters = document.getElementsByClassName('counter')
-  const total = Number(counters[0].textContent) + Number(value)
+  let lastTest = counters[0].textContent || 0
+  const lastNumber = Number(lastTest)
+  const total = lastNumber + Number(valueParsed)
   updateCounters(total)
   updateDescription(total)
 }

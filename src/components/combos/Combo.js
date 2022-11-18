@@ -1,4 +1,5 @@
 import { createCombo } from './factory/comboFactory'
+import './combos.css'
 
 const INTERVAL_PER_SECONDS_IN_MS = 1000
 const INTERVAL_PER_CALCULATION_IN_MS = 100
@@ -55,11 +56,11 @@ function calculateMegaCombo (combo) {
   return scaledCombo
 }
 
-function launchComboSystem ({ onCombo }) {
+function launchComboSystem ({ onCombo = () => null }) {
   const { incrementClick } = createClicksPerSecCounter((combo) => {
     createCombo(combo)
     const scaledCombo = calculateMegaCombo(combo)
-    onCombo?.(scaledCombo)
+    onCombo(scaledCombo)
   })
   return {
     incrementClick,

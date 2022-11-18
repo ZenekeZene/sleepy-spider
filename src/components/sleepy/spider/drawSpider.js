@@ -9,18 +9,18 @@ let eyes = []
 let eyesCanvas
 let eyesContext
 
-const onRefreshReferences = async ({ addAwakening, params }) => {
+const drawSpiderEyes = async ({ params }) => {
+  eyes = await createEyes({ context: eyesContext, canvas: eyesCanvas, params })
+  eyeWithMouse({ eyes, context: eyesContext, canvas: eyesCanvas, sprite: eyes[0].sprite, params })
+}
+
+const onRefreshReferences = async ({ params, onInterruptedSleep }) => {
   eyes.forEach(({ pupil }) => { pupil.disable() })
   const { context, canvas } = createEyesCanvas()
   eyesCanvas = canvas
   eyesContext = context
   await drawSpiderEyes({ params })
-  //updateListenEyes({ eyesCanvas, eyes, body, addAwakening })
-}
-
-const drawSpiderEyes = async ({ params }) => {
-  eyes = await createEyes({ context: eyesContext, canvas: eyesCanvas, params })
-  eyeWithMouse({ eyes, context: eyesContext, canvas: eyesCanvas, sprite: eyes[0].sprite, params })
+  updateListenEyes({ eyesCanvas, eyes, body, onInterruptedSleep })
 }
 
 const drawSpiderBody = async ({ params }) => {
@@ -29,19 +29,14 @@ const drawSpiderBody = async ({ params }) => {
   body = await createSpiderBody({ context, canvas, eyes, params })
 }
 
-const drawSpider = async ({ params }) => {
+const drawSpider = async ({ params, onInterruptedSleep }) => {
   eyesCanvas = document.getElementById('eyes')
   eyesContext = eyesCanvas.getContext('2d')
   await drawSpiderEyes({ params })
   await drawSpiderBody({ params })
-  const spider = { eyes, eyesCanvas, body }
+  const spider = { eyes, eyesCanvas, body, onInterruptedSleep }
   listenTheSleepCycle(spider)
-
-  return {
-    eyes,
-    eyesCanvas,
-    body,
-  }
+  return spider
 }
 
 export {

@@ -32,19 +32,17 @@ const checkIsSleeping = ({ ...spider }) => {
 }
 
 const handleSleep = ({ onInterruptedSleep, ...spider }) => {
+  const isLogged = onInterruptedSleep !== null
   const { eyes, body } = spider
-  if (!eyes || !body) throw new Error('Error with the eyes or body of spider')
-  if (!onInterruptedSleep) console.info('sleep callback not recognized')
-
   body.relax(eyes)
-  incrementClickForCombo()
+  isLogged && incrementClickForCombo()
 
+  body.toBeSurprised(eyes)
   if (spiderIsClicked) return
   spiderIsClicked = true
-  onInterruptedSleep?.()
-  createCombo(1)
+  onInterruptedSleep?.(1)
+  isLogged && createCombo(1)
   stopDream()
-  body.toBeSurprised(eyes)
 
   setTimeout(() => {
     body.relax(eyes)
@@ -81,12 +79,8 @@ const checkClicksOnColliders = ({ onInterruptedSleep, ...spider }) => {
   colliders.forEach((collider) => collider.addEventListener('click', handClickOnCollider))
 }
 
-const updateListenEyes = ({ onInterruptedSleep, ...spider }) => {
-  checkClickOnEyes({ onInterruptedSleep, ...spider })
-}
-
-const listenTheSleepCycle = ({ onInterruptedSleep, ...spider }) => {
-  const spiderWithInterruptedSleep = { onInterruptedSleep, ...spider }
+const listenTheSleepCycle = (spiderWithInterruptedSleep) => {
+  const { onInterruptedSleep, ...spider } = spiderWithInterruptedSleep
   initDreamController()
   checkIsSleeping(spider)
   checkClicksOnColliders(spiderWithInterruptedSleep)
@@ -95,4 +89,7 @@ const listenTheSleepCycle = ({ onInterruptedSleep, ...spider }) => {
   incrementClickForCombo = incrementClick
 }
 
-export { listenTheSleepCycle, updateListenEyes }
+export {
+  listenTheSleepCycle,
+  checkClickOnEyes as updateListenEyes,
+}
