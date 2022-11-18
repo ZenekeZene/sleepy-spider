@@ -1,10 +1,10 @@
-import { getAuth, signInWithPopup as signInWithPopupFirebase, GoogleAuthProvider } from "firebase/auth"
+import { getAuth, signInWithRedirect as signInWithRedirectFirebase, GoogleAuthProvider } from "firebase/auth"
 
 const initializeAuth = ({ app }) => getAuth(app)
 
-function signInWithPopup ({ authentication }) {
+const signInWithRedirect = ({ authentication }) => {
   const provider = new GoogleAuthProvider()
-  signInWithPopupFirebase(authentication, provider)
+  signInWithRedirectFirebase(authentication, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result)
       const token = credential.accessToken
@@ -15,11 +15,14 @@ function signInWithPopup ({ authentication }) {
       const errorMessage = error.message
       const email = error.customData.email
       const credential = GoogleAuthProvider.credentialFromError(error)
+      if (errorCode === 'auth/popup-blocked') {
+        alert('Let')
+      }
       console.error(errorCode, errorMessage, email, credential)
     })
 }
 
-function onAuthenticationStateChanged ({ authentication, onChange }) {
+const onAuthenticationStateChanged = ({ authentication, onChange }) => {
   authentication.onAuthStateChanged((user) => {
     onChange({ user })
   })
@@ -27,7 +30,7 @@ function onAuthenticationStateChanged ({ authentication, onChange }) {
 
 export {
   initializeAuth,
-  signInWithPopup,
+  signInWithRedirect,
   onAuthenticationStateChanged,
 }
 

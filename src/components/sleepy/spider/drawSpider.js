@@ -1,3 +1,4 @@
+import { listenTheSleepCycle } from '@/components/sleep/sleepControl'
 import { updateListenEyes } from '@/components/sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
 import eyeWithMouse from '../eye/eyeWithMouse'
@@ -13,8 +14,8 @@ const onRefreshReferences = async ({ addAwakening, params }) => {
   const { context, canvas } = createEyesCanvas()
   eyesCanvas = canvas
   eyesContext = context
-  await drawSpiderEyes(params)
-  updateListenEyes({ eyesCanvas, eyes, body, addAwakening })
+  await drawSpiderEyes({ params })
+  //updateListenEyes({ eyesCanvas, eyes, body, addAwakening })
 }
 
 const drawSpiderEyes = async ({ params }) => {
@@ -33,6 +34,9 @@ const drawSpider = async ({ params }) => {
   eyesContext = eyesCanvas.getContext('2d')
   await drawSpiderEyes({ params })
   await drawSpiderBody({ params })
+  const spider = { eyes, eyesCanvas, body }
+  listenTheSleepCycle(spider)
+
   return {
     eyes,
     eyesCanvas,

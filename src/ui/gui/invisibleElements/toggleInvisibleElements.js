@@ -4,7 +4,7 @@ const TRANSPARENT_CLASSNAME = 'transparent'
 const ENTRANCE_CLASSNAME = 'bounceInDown'
 
 const toggleElements = ({ elements, classname, callback }) => {
-  if (!elements || elements?.length === 0) return
+  if (!elements || elements?.length === 0) throw new Error('Zero elements to be toggled')
   const collection = Array.from(elements)
   collection.forEach(element => {
     element.classList.toggle(classname)
@@ -13,7 +13,7 @@ const toggleElements = ({ elements, classname, callback }) => {
 }
 
 const toggleInvisibleElements = () => {
-  setTimeout(() => {
+  function toggle () {
     const invisibleElements = document.getElementsByClassName(INVISIBLE_CLASSNAME)
     const transparentElements = document.getElementsByClassName(TRANSPARENT_CLASSNAME)
     toggleElements({ elements: invisibleElements, classname: INVISIBLE_CLASSNAME })
@@ -25,7 +25,9 @@ const toggleInvisibleElements = () => {
     const loaderElement = document.getElementById('loader')
     if (!loaderElement) throw new Error('Loader component is not found')
     loaderElement.classList.add(INVISIBLE_CLASSNAME)
-  }, TOGGLE_DELAY_IN_MS)
+  }
+
+  setTimeout(toggle, TOGGLE_DELAY_IN_MS)
 }
 
 export {

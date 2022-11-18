@@ -26,3 +26,13 @@
 #settings-close-icon {
   display: none;
 }
+
+.icon-user,
+.icon-logout {
+  display: none;
+}
+
+.icon-user.visible,
+.icon-logout.visible {
+  display: block;
+}

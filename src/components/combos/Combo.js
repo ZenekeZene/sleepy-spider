@@ -59,7 +59,7 @@ function launchComboSystem ({ onCombo }) {
   const { incrementClick } = createClicksPerSecCounter((combo) => {
     createCombo(combo)
     const scaledCombo = calculateMegaCombo(combo)
-    onCombo(scaledCombo)
+    onCombo?.(scaledCombo)
   })
   return {
     incrementClick,

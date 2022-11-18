@@ -34,14 +34,14 @@ const checkIsSleeping = ({ ...spider }) => {
 const handleSleep = ({ onInterruptedSleep, ...spider }) => {
   const { eyes, body } = spider
   if (!eyes || !body) throw new Error('Error with the eyes or body of spider')
-  if (!onInterruptedSleep) throw new Error('sleep callback not recognized')
+  if (!onInterruptedSleep) console.info('sleep callback not recognized')
 
   body.relax(eyes)
   incrementClickForCombo()
 
   if (spiderIsClicked) return
   spiderIsClicked = true
-  onInterruptedSleep()
+  onInterruptedSleep?.()
   createCombo(1)
   stopDream()
   body.toBeSurprised(eyes)
