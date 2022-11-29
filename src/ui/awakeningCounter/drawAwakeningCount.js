@@ -1,32 +1,35 @@
-const TOTAL_TEXT = `Let’s wake up a million times, and a surprise will happen. We wake `
+import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
-const updateDescription = (value) => {
+const cachedCounter = new CachedCounter()
+
+const TOTAL_TEXT = `Let’s wake up a million times, and a surprise will happen. We wake `
+export const COUNTER_CLASSNAME = 'counter'
+const COUNTER_EFFECT_CLASSNAME = 'counter-effect'
+
+const updateDescription = () => {
+  const value = cachedCounter.value
   const description = `${TOTAL_TEXT} ${value} times.`
   document.querySelector('meta[name="description"]').setAttribute("content", description)
 }
 
-const updateCounters = (value) => {
-  const counters = document.getElementsByClassName('counter')
-  Array.from(counters).forEach((counter) => counter.textContent = value)
+const updateCounters = () => {
+  const value = cachedCounter.value
+  const counters = document.getElementsByClassName(COUNTER_CLASSNAME)
+  Array.from(counters).forEach((counter) => {
+    counter.classList.add(COUNTER_EFFECT_CLASSNAME)
+    setTimeout(() => {
+      counter.classList.remove(COUNTER_EFFECT_CLASSNAME)
+    }, 250)
+    counter.textContent = value
+  })
   return counters
 }
 
-const updateAwakeningsCounter = (value) => {
-  updateCounters(value)
-  updateDescription(value)
-}
-
-const updateAwakeningsCachedCounter = (value) => {
-  const valueParsed = value || 0
-  const counters = document.getElementsByClassName('counter')
-  let lastTest = counters[0].textContent || 0
-  const lastNumber = Number(lastTest)
-  const total = lastNumber + Number(valueParsed)
-  updateCounters(total)
-  updateDescription(total)
+const updateAwakeningsCounter = () => {
+  updateCounters()
+  updateDescription()
 }
 
 export {
   updateAwakeningsCounter,
-  updateAwakeningsCachedCounter,
 }

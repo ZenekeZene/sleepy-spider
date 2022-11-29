@@ -1,8 +1,5 @@
 import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
-import {
-  updateAwakeningsCounter,
-  updateAwakeningsCachedCounter
-} from '@/ui/awakeningCounter/drawAwakeningCount'
+import { updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'
 
 const signInSubtitle = document.getElementById('sign-in-subtitle')
 const userCounter = document.getElementById('user-counter')
@@ -14,7 +11,7 @@ async function handleLogin ({ user, database }) {
   const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
     onChange: updateAwakeningsCounter,
-    onCachedChange: updateAwakeningsCachedCounter,
+    onCachedChange: updateAwakeningsCounter,
   })
   await setUser(user)
 

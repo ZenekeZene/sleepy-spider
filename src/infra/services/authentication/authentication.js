@@ -9,6 +9,7 @@ const signInWithRedirect = ({ authentication }) => {
       const credential = GoogleAuthProvider.credentialFromResult(result)
       const token = credential.accessToken
       const user = result.user
+      console.log(result)
       console.log(user, token)
     }).catch((error) => {
       const errorCode = error.code

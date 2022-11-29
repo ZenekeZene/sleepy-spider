@@ -11,8 +11,8 @@ const logout = ({ authentication }) => {
 
 const drawLogin = ({ authentication }) => {
   loginIcon.classList.add('visible')
-  loginIcon.addEventListener('click', () => {
-    signIn({ authentication })
+  loginIcon.addEventListener('click', async () => {
+    await signIn({ authentication })
     hideLogin()
   })
 }
@@ -37,8 +37,8 @@ const initAuthenticationUI = ({ authentication, onLogin, onLogout }) => {
   onAuthenticationStateChanged({
     authentication,
     onChange: async ({ user }) => {
+      console.log(user)
       if (!user) {
-        console.warn('Unknown user')
         drawLogin({ authentication })
         onLogout()
         return

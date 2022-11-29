@@ -14,7 +14,7 @@ const drawSpiderEyes = async ({ params }) => {
   eyeWithMouse({ eyes, context: eyesContext, canvas: eyesCanvas, sprite: eyes[0].sprite, params })
 }
 
-const onRefreshReferences = async ({ params, onInterruptedSleep }) => {
+const onRefreshReferences = async ({ params, onInterruptedSleep = () => null }) => {
   eyes.forEach(({ pupil }) => { pupil.disable() })
   const { context, canvas } = createEyesCanvas()
   eyesCanvas = canvas

@@ -1,10 +1,12 @@
 import { onSnapshot } from 'firebase/firestore'
 import { incrementFieldOnDocument } from '../services/database/incrementField'
 import { getSnapshot } from '../services/database/getSnapshot'
+import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const DOCUMENT = 'awakenings'
 
-let cachedCount = 0
+let clicksSinceTheLastUpdate = 0
+let cachedCounter
 const INTERVAL_TO_UPDATE_IN_MS = 10000
 
 async function getTotalAwakenings ({ userUid, database }) {
@@ -12,17 +14,18 @@ async function getTotalAwakenings ({ userUid, database }) {
   return data?.value || 0
 }
 
-async function addAwakening (value = 1, onCachedChange) {
-  cachedCount += value
-  onCachedChange(value)
+async function addAwakening (value = 1, onChange) {
+  clicksSinceTheLastUpdate += value
+  cachedCounter.increment(value)
+  onChange(value)
 }
 
 function handleAwakeningUpdatesWithInterval ({ userUid, user, database }) {
   const timerToUpdate = setInterval(async () => {
-    if (cachedCount > 0) {
-      const { existsDocument, documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
-      incrementFieldOnDocument({ existsDocument, documentRef, value: cachedCount, user })
-      cachedCount = 0
+    if (clicksSinceTheLastUpdate > 0) {
+      const snapshot = await getSnapshot({ database, documentId: DOCUMENT, userUid })
+      incrementFieldOnDocument({ value: clicksSinceTheLastUpdate, user, ...snapshot })
+      clicksSinceTheLastUpdate = 0
     }
   }, INTERVAL_TO_UPDATE_IN_MS)
   return timerToUpdate
@@ -37,20 +40,33 @@ async function listenAwakenings ({ userUid, database, callback }) {
   return unsubcribe
 }
 
-async function startAwakeningsSystem ({ database, onChange, onCachedChange }) {
-  if (!database) throw new Error('Error with unknown database.')
-  let userUid
+async function setInitialAwakenings ({ userUid, database, onChange }) {
+  const initialAwakeningsValue = await getTotalAwakenings({ userUid, database })
+  cachedCounter.update(initialAwakeningsValue)
+  onChange(initialAwakeningsValue)
+}
 
-  return {
-    addAwakening: (value = 1) => addAwakening(value, onCachedChange),
-    setUser: async (user) => {
-      userUid = user.uid
-      const initialAwakeningsValue = await getTotalAwakenings({ userUid, database })
-      onChange(initialAwakeningsValue)
-      handleAwakeningUpdatesWithInterval({ userUid, user, database })
-      listenAwakenings({ userUid, database, callback: ({ value }) => { onChange(value) }})
-    }
+async function setUser ({ user, database, onChange }) {
+  let userUid = user.uid
+  setInitialAwakenings({ userUid, database, onChange })
+  handleAwakeningUpdatesWithInterval({ userUid, user, database })
+
+  listenAwakenings({ userUid, database, callback: ({ value }) => {
+    cachedCounter.update(value)
+    onChange(value)
+  }})
+}
+
+async function startAwakeningsSystem (props) {
+  if (!props?.database) throw new Error('Error with unknown database.')
+  if (!props?.onChange) throw new Error('Error with unknown callback onChange.')
+  cachedCounter = new CachedCounter(0)
+
+  const api = {
+    addAwakening: (value = 1) => addAwakening(value, props.onChange),
+    setUser: (user) => setUser({ user, ...props }),
   }
+  return api
 }
 
 export {

@@ -124,6 +124,10 @@
   animation: big-surprise 1s;
 }
 
+.counter-effect {
+  animation: big-surprise 250ms;
+}
+
 @keyframes slideOutUp {
   from {
     transform: translate3d(-50%, 0, 0);

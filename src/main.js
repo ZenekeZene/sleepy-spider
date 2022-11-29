@@ -1,15 +1,17 @@
 import { drawGUI } from '@/ui/gui'
 import { getInfraServices } from '@/infra/infra'
+import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import params from '@/settings/settings'
-import { startSpider } from './ui/authentication'
+import { startSpider } from '@/ui/authentication'
 import { onRefreshReferences } from '@/components/sleepy/spider/drawSpider'
+
 
 const start = async () => {
   const services = getInfraServices()
   startSpider(services)
 
   drawGUI({ params, onSettingsChanges: () => {
-    onRefreshReferences({ params, onInterruptedSleep: () => null })
+    onRefreshReferences({ params })
   }})
 }
 
