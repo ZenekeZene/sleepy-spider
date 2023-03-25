@@ -1,13 +1,12 @@
 import { onSnapshot } from 'firebase/firestore'
-import { incrementFieldOnDocument } from '../services/database/incrementField'
-import { getSnapshot } from '../services/database/getSnapshot'
+import { incrementFieldOnDocument } from '@/infra/services/database/incrementField'
+import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-
-const DOCUMENT = 'awakenings'
 
 let clicksSinceTheLastUpdate = 0
 let cachedCounter
 const INTERVAL_TO_UPDATE_IN_MS = 10000
+const DOCUMENT = 'awakenings'
 
 async function getTotalAwakenings ({ userUid, database }) {
   const { data } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
@@ -20,13 +19,16 @@ async function addAwakening (value = 1, onChange) {
   onChange(value)
 }
 
-function handleAwakeningUpdatesWithInterval ({ userUid, user, database }) {
+async function syncClickCounter ({ database, user, userUid }) {
+  if (clicksSinceTheLastUpdate <= 0) return
+  const snapshot = await getSnapshot({ database, documentId: DOCUMENT, userUid })
+  incrementFieldOnDocument({ value: clicksSinceTheLastUpdate, user, ...snapshot })
+  clicksSinceTheLastUpdate = 0
+}
+
+function handleAwakeningUpdatesWithInterval (props) {
   const timerToUpdate = setInterval(async () => {
-    if (clicksSinceTheLastUpdate > 0) {
-      const snapshot = await getSnapshot({ database, documentId: DOCUMENT, userUid })
-      incrementFieldOnDocument({ value: clicksSinceTheLastUpdate, user, ...snapshot })
-      clicksSinceTheLastUpdate = 0
-    }
+    syncClickCounter(props)
   }, INTERVAL_TO_UPDATE_IN_MS)
   return timerToUpdate
 }
@@ -46,8 +48,17 @@ async function setInitialAwakenings ({ userUid, database, onChange }) {
   onChange(initialAwakeningsValue)
 }
 
+async function listenUnload (props) {
+  window.onbeforeunload = async function (event) {
+    event.preventDefault()
+    await syncClickCounter(props)
+  }
+}
+
 async function setUser ({ user, database, onChange }) {
   let userUid = user.uid
+
+  // listenUnload({ user, userUid, database })
   setInitialAwakenings({ userUid, database, onChange })
   handleAwakeningUpdatesWithInterval({ userUid, user, database })
 

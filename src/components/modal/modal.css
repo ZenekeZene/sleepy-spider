@@ -112,3 +112,73 @@
     border-bottom-right-radius: 0;
   }
 }
+
+.share-modal {
+  z-index: 6;
+}
+
+/* Question */
+.question-modal pre {
+  border-radius: 4px;
+}
+
+.question-modal .modal__title {
+  width: 15ch;
+}
+
+.question-modal .code-toolbar {
+  margin-bottom: 3rem;
+}
+
+.question-modal__exam-score {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.question-modal .modal__header {
+  margin-bottom: 3rem;
+}
+
+.question-icon {
+  width: 5rem;
+}
+
+.answers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.answers li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  background-color: pink;
+  border-radius: 4px;
+  border-bottom: 8px solid #ee9fad;
+  box-shadow: 0px 3px 3px rgb(0 0 0 / 16%);
+}
+
+.answers li.correct {
+  color: #4caf50;
+  background-color: #c8e6c9;
+  border-bottom-color: #4caf50;
+  transform: scale(2);
+}
+
+.answers li.incorrect {
+  color: white;
+  background-color: #d84f4f;
+  border-bottom-color: #974251;
+}

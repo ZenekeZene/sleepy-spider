@@ -25,6 +25,10 @@
 
 #settings-close-icon {
   display: none;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 7;
 }
 
 .icon-user,
@@ -35,4 +39,10 @@
 .icon-user.visible,
 .icon-logout.visible {
   display: block;
+}
+
+.info-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }

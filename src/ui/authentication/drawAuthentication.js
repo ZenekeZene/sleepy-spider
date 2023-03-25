@@ -37,13 +37,11 @@ const initAuthenticationUI = ({ authentication, onLogin, onLogout }) => {
   onAuthenticationStateChanged({
     authentication,
     onChange: async ({ user }) => {
-      console.log(user)
       if (!user) {
         drawLogin({ authentication })
         onLogout()
         return
       }
-      console.log(user)
       onLogin({ user })
       drawLogout({ authentication })
     }

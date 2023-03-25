@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="/src/vendor/prism.css" rel="stylesheet" />
   </head>
 
   <body class="noselect">
@@ -56,9 +57,7 @@
       <img src="src/assets/images/icons/user-icon.svg" class="icon icon-user" id="login-icon" />
       <img src="src/assets/images/icons/close-icon.svg" class="icon icon-logout" id="logout-icon" />
       <img src="src/assets/images/icons/info-icon.svg" class="icon icon-info info-modal-trigger" />
-      <img src="src/assets/images/icons/share-icon.svg" class="icon icon-share modal-trigger" />
-      <img src="src/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />
-      <img src="src/assets/images/icons/settings-icon.svg" id="settings-icon" class="icon" />
+      <img src="src/assets/images/icons/info-icon.svg" class="icon icon-info question-modal-trigger" />
     </nav>
 
     <!-- LEADERBOARD -->
@@ -75,8 +74,10 @@
     <img src="src/assets/images/texture.jpg" class="texture" />
     <img src="src/assets/images/shadow.png" class="shadow invisible" />
 
-    <!-- SHARE MODAL -->
-    <article class="modal invisible" id="modal">
+    <!-- MODALS -->
+
+    <!-- A.- SHARE MODAL -->
+    <article class="modal share-modal invisible" id="modal">
       <div class="modal__backdrop modal-trigger"></div>
       <section class="modal__inner">
         <header class="modal__header">
@@ -140,7 +141,7 @@
       </section>
     </article>
 
-    <!-- INFO MODAL -->
+    <!-- B.- INFO MODAL -->
     <article class="modal info-modal invisible" id="info-modal">
       <div class="modal__backdrop info-modal-trigger"></div>
       <section class="modal__inner">
@@ -155,8 +156,38 @@
         <p>Let’s wake up a <span class="text-underline">million times</span>, and a surprise will happen. We wake <span class="counter">153</span> times. If we get it, she'll finally wake up and weave a gift for us.</p>
 
         <p class="credits">Sleepy was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
+
+        <nav class="info-icons bounceInLeft">
+          <img src="src/assets/images/icons/share-icon.svg" class="icon icon-share modal-trigger" />
+          <img src="src/assets/images/icons/settings-icon.svg" id="settings-icon" class="icon" />
+        </nav>
     </article>
 
+    <!-- C.- QUESTION MODAL -->
+    <article class="modal question-modal invisible" id="question-modal">
+      <div class="modal__backdrop"></div>
+      <section class="modal__inner">
+        <header class="modal__header">
+          <h1 class="modal__title">Calculate the CSS specificity!</h1>
+          <section class="question-modal__exam-score">
+            <img src="src/assets/images/icons/fail-icon.svg" class="icon question-icon" />
+          </section>
+        </header>
+
+        <pre><code class="language-css">#my-id .classname > a { ... }</code></pre>
+
+        <ul class="answers">
+          <li>31</li>
+          <li>111</li>
+          <li>81</li>
+          <li>100</li>
+        </ul>
+      </section>
+    </article>
+
+    <img src="src/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />
+
     <script type="module" src="/src/main.js"></script>
+    <script src="/src/vendor/prism.js"></script>
   </body>
 </html>
