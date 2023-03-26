@@ -1,3 +1,4 @@
+import { launchQuestion } from '../question/question'
 import './modal.css'
 
 const VISIBLE_CLASSNAME = 'visible'
@@ -20,6 +21,16 @@ function listenTriggers (target, triggers) {
   })
 }
 
+function listenQuestionTriggers (target, triggers) {
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (event) => {
+      event.stopPropagation()
+      toggleElement(target)
+      launchQuestion()
+    })
+  })
+}
+
 function handleModal () {
   const modal = document.getElementById('modal')
   const triggers = document.querySelectorAll(`.${TRIGGERS_CLASSNAME}`)
@@ -32,12 +43,7 @@ function handleModal () {
 
   listenTriggers(modal, triggers)
   listenTriggers(infoModal, infoTriggers)
-  listenTriggers(questionModal, questionTriggers)
-}
-
-function launchQuestionModal () {
-  const questionModal = document.getElementById('question-modal')
-  toggleElement(questionModal)
+  listenQuestionTriggers(questionModal, questionTriggers)
 }
 
 function initModal () {
@@ -46,5 +52,5 @@ function initModal () {
 
 export {
   initModal,
-  launchQuestionModal,
+  toggleElement,
 }
