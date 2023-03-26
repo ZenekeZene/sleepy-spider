@@ -1,3 +1,5 @@
+const findById = id => document.getElementById(id)
+
 const createElement = ({ tag = 'p', classNames = [], target, text = '' }) => {
   if (!target) throw new Error('You have to specify a target')
   const element = document.createElement(tag)
@@ -15,4 +17,5 @@ const createElement = ({ tag = 'p', classNames = [], target, text = '' }) => {
 
 export {
   createElement,
+  findById,
 }

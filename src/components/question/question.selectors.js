@@ -1,16 +1,21 @@
+import { findById } from '@/lib/dom/dom'
+
 const CLASSNAMES = {
   CORRECT: 'correct',
   INCORRECT: 'incorrect',
   VISIBLE: 'visible',
-  ALL() {
-    return [this.CORRECT, this.INCORRECT, this.VISIBLE]
+  DISABLED: 'disabled',
+  get all () {
+    return [
+      this.CORRECT,
+      this.INCORRECT,
+      this.VISIBLE
+    ]
   },
   get (value) {
     return value ? this.CORRECT : this.INCORRECT
   }
 }
-
-const findById = id => document.getElementById(id)
 
 function setContent (key, content) {
   if (!questionSelectors[key]) {
@@ -27,6 +32,11 @@ const questionSelectors = {
   title: findById('question-title'),
   value: findById('question-value'),
   options: findById('question-options'),
+  getPossibleAnswers: () => questionSelectors.options.querySelectorAll('li'),
+  eachAnswer: (callback) => {
+    const answers = questionSelectors.getPossibleAnswers()
+    answers.forEach(callback)
+  },
   examScore: {
     correct: findById('question-exam-score-correct'),
     incorrect: findById('question-exam-score-incorrect'),

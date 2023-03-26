@@ -12,4 +12,6 @@ function getHighlightedCode(code, lang = 'css') {
   return highlightedCode
 }
 
-export default getHighlightedCode
+export {
+  getHighlightedCode
+}
