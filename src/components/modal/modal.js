@@ -1,16 +1,10 @@
+import { toggleElement } from '@/lib/dom/dom'
 import { launchQuestion } from '../question/question'
 import './modal.css'
 
-const VISIBLE_CLASSNAME = 'visible'
 const TRIGGERS_CLASSNAME = 'modal-trigger'
 const INFO_TRIGGERS_CLASSNAME = 'info-modal-trigger'
 const QUESTION_TRIGGERS_CLASSNAME = 'question-modal-trigger'
-
-function toggleElement (element) {
-  const contains = element.classList.contains(VISIBLE_CLASSNAME)
-  const toggle = contains ? 'remove' : 'add'
-  element.classList[toggle](VISIBLE_CLASSNAME)
-}
 
 function listenTriggers (target, triggers) {
   triggers.forEach(trigger => {

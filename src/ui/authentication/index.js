@@ -7,9 +7,9 @@ import {
   renderLeaderboardWithLoggedUser,
 } from '@/components/leaderboard/leaderboard'
 
-async function onLogin ({ user, database }) {
+async function onLogin ({ user, database, onShowQuestion }) {
   renderLeaderboardWithLoggedUser({ currentUser: user, database })
-  const { addAwakening: onInterruptedSleep } = await handleLogin({ user, database })
+  const { addAwakening: onInterruptedSleep } = await handleLogin({ user, database, onShowQuestion })
   await drawSpider({ params, onInterruptedSleep })
 }
 
@@ -19,9 +19,9 @@ async function onLogout ({ database }) {
   await drawSpider({ params, onInterruptedSleep: () => null })
 }
 
-function startSpider ({ authentication, database }) {
+function startSpider ({ authentication, database }, onShowQuestion) {
   initAuthenticationUI({ authentication,
-    onLogin: ({ user }) => onLogin({ user, database }),
+    onLogin: ({ user }) => onLogin({ user, database, onShowQuestion }),
     onLogout: () => onLogout({ database }),
   })
 }

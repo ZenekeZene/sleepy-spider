@@ -3,6 +3,24 @@ import { incrementFieldOnDocument } from '@/infra/services/database/incrementFie
 import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
+const untilShowQuestionCounter = {
+  LIMIT_TO_SHOW_QUESTION: 20,
+  value: 0,
+  increment (value) {
+    this.value += value
+  },
+  reset () {
+    this.value = 0
+  },
+  isLimitToShowQuestionReached () {
+    const isLimitReached = this.value >= this.LIMIT_TO_SHOW_QUESTION
+    if (isLimitReached) {
+      this.reset()
+    }
+    return isLimitReached
+  }
+}
+
 let clicksSinceTheLastUpdate = 0
 let cachedCounter
 const INTERVAL_TO_UPDATE_IN_MS = 10000
@@ -13,9 +31,13 @@ async function getTotalAwakenings ({ userUid, database }) {
   return data?.value || 0
 }
 
-async function addAwakening (value = 1, onChange) {
+async function addAwakening (value = 1, onChange, onShowQuestion) {
   clicksSinceTheLastUpdate += value
   cachedCounter.increment(value)
+  untilShowQuestionCounter.increment(value)
+  if (untilShowQuestionCounter.isLimitToShowQuestionReached()) {
+    onShowQuestion()
+  }
   onChange(value)
 }
 
@@ -72,12 +94,12 @@ async function startAwakeningsSystem (props) {
   if (!props?.database) throw new Error('Error with unknown database.')
   if (!props?.onChange) throw new Error('Error with unknown callback onChange.')
   cachedCounter = new CachedCounter(0)
+  const onShowQuestion = props?.onShowQuestion || (() => {})
 
-  const api = {
-    addAwakening: (value = 1) => addAwakening(value, props.onChange),
+  return {
+    addAwakening: (value = 1) => addAwakening(value, props.onChange, onShowQuestion),
     setUser: (user) => setUser({ user, ...props }),
   }
-  return api
 }
 
 export {

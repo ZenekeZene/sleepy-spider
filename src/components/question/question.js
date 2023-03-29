@@ -1,7 +1,7 @@
 import * as $class from "@/lib/dom/class.helper"
 import { getHighlightedCode } from "@/lib/prism"
 import { delay } from "@/lib/time"
-import { toggleElement } from "@/components/modal/modal"
+import { toggleElement } from "@/lib/dom/dom"
 import { createQuestion } from "./question.factory"
 import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
 import './question.css'
@@ -59,7 +59,6 @@ function checkAnswer(question) {
     unlisten()
     closeQuestion(event)
   }
-
   listen()
 }
 
@@ -71,6 +70,7 @@ function initQuestion() {
 
 function launchQuestion() {
   if (!$el.modal) return
+  toggleElement($el.modal)
   initQuestion()
 }
 

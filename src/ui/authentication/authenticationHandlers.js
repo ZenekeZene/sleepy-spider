@@ -4,14 +4,14 @@ import { updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCoun
 const signInSubtitle = document.getElementById('sign-in-subtitle')
 const userCounter = document.getElementById('user-counter')
 
-async function handleLogin ({ user, database }) {
+async function handleLogin ({ user, database, onShowQuestion }) {
   if (!database) throw new Error('Unknown database')
   if (!user) throw new Error('Error with unknown user')
 
   const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
     onChange: updateAwakeningsCounter,
-    onCachedChange: updateAwakeningsCounter,
+    onShowQuestion,
   })
   await setUser(user)
 

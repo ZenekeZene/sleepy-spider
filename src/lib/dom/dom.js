@@ -15,7 +15,15 @@ const createElement = ({ tag = 'p', classNames = [], target, text = '' }) => {
   return element
 }
 
+function toggleElement (element) {
+  const VISIBLE_CLASSNAME = 'visible'
+  const contains = element.classList.contains(VISIBLE_CLASSNAME)
+  const toggle = contains ? 'remove' : 'add'
+  element.classList[toggle](VISIBLE_CLASSNAME)
+}
+
 export {
   createElement,
+  toggleElement,
   findById,
 }
