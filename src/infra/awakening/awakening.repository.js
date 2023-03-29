@@ -2,24 +2,7 @@ import { onSnapshot } from 'firebase/firestore'
 import { incrementFieldOnDocument } from '@/infra/services/database/incrementField'
 import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-
-const untilShowQuestionCounter = {
-  LIMIT_TO_SHOW_QUESTION: 20,
-  value: 0,
-  increment (value) {
-    this.value += value
-  },
-  reset () {
-    this.value = 0
-  },
-  isLimitToShowQuestionReached () {
-    const isLimitReached = this.value >= this.LIMIT_TO_SHOW_QUESTION
-    if (isLimitReached) {
-      this.reset()
-    }
-    return isLimitReached
-  }
-}
+import { untilShowQuestionCounter } from '@/infra/awakening/untilShowQuestionCounter'
 
 let clicksSinceTheLastUpdate = 0
 let cachedCounter
@@ -34,11 +17,9 @@ async function getTotalAwakenings ({ userUid, database }) {
 async function addAwakening (value = 1, onChange, onShowQuestion) {
   clicksSinceTheLastUpdate += value
   cachedCounter.increment(value)
-  untilShowQuestionCounter.increment(value)
-  if (untilShowQuestionCounter.isLimitToShowQuestionReached()) {
-    onShowQuestion()
-  }
   onChange(value)
+  if (!untilShowQuestionCounter.isLimitReachedByValue(value)) return
+  onShowQuestion()
 }
 
 async function syncClickCounter ({ database, user, userUid }) {
