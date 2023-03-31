@@ -1,4 +1,4 @@
-import Eye from '../Eye'
+import Eye from '../eye'
 
 const createEyesInSquareShape = (props) => {
   const { context, canvas, params, sprite } = props
