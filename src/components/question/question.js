@@ -17,7 +17,7 @@ async function closeQuestion ({ target }) {
 
 const render = {
   answers: (options) => {
-    const answers = options.map(({ label }) => `<li>${label}</li>`)
+    const answers = options.map((value) => `<li>${value}</li>`)
     return answers.join('')
   },
   question: ({ title, value, options }) => {

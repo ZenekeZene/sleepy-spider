@@ -1,18 +1,22 @@
+import { generateSelectors } from "@/domain/selectorsCSS/selectorsCSS"
+import {
+  calculateSpecificity,
+  generateSimilarSpecificities,
+} from "@/domain/specificity/specificity"
+
 const title =  'Calculate the CSS specificity!'
 
-const question = {
-  title,
-  value: '#my-id .classname > a { ... }',
-  answer: '111',
-  options: [
-    { value: 11, label: '11' },
-    { value: 111, label: '111' },
-    { value: 1, label: '1' },
-    { value: 100, label: '100' },
-  ]
-}
-
 function createQuestion () {
+  const selector = generateSelectors()[0]
+  const value = calculateSpecificity(selector).specificity
+  const possibleOptions = generateSimilarSpecificities(value.toString())
+  const options = possibleOptions.concat([value]).sort(() => Math.random() - 0.5)
+  const question = {
+    title,
+    value: selector,
+    answer: value,
+    options,
+  }
   return question
 }
 

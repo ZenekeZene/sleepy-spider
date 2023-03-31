@@ -1,4 +1,4 @@
-const calculate = function(input) {
+const calculateSpecificity = function(input) {
 	let selectors,
 		selector,
 		i,
@@ -148,4 +148,28 @@ const calculateSingle = function(input) {
 	}
 }
 
-export default calculate
+function generateSimilarSpecificities(specificity) {
+  const digits = specificity.split('').map(Number);
+  const usedDigits = new Set(digits);
+
+  for (let i = 0; i < 3; i++) {
+    let randomDigit;
+    do {
+      randomDigit = Math.floor(Math.random() * 9) + 1;
+    } while (usedDigits.has(randomDigit));
+
+    usedDigits.add(randomDigit);
+    digits.push(randomDigit);
+  }
+
+  return [
+    `0${digits[0]}${digits[1]}${digits[2]}`,
+    `0${digits[3]}${digits[0]}${digits[2]}`,
+    `0${digits[4]}${digits[1]}${digits[0]}`
+  ].sort(() => Math.random() - 0.5);
+}
+
+export {
+	calculateSpecificity,
+	generateSimilarSpecificities
+}
