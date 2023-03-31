@@ -27,8 +27,8 @@ class Eye {
     this.offsetBoundaries = realWidth * (this.params.sizeColision + 0.5)
     const { x, y } = this.position
     const { width, height } = this.frame
-    const sideLeftX = x - (width / 2) - this.offsetBoundaries - extraOffset
-    const sideTopY = y - (height / 2) - this.offsetBoundaries - extraOffset
+    const sideLeftX = x - (width / 2) - this.offsetBoundaries
+    const sideTopY = y - (height / 2) - this.offsetBoundaries
 
     const sideRightX = x + width + this.offsetBoundaries + extraOffset
     const sideBottomY = y + height + this.offsetBoundaries + extraOffset

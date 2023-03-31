@@ -54,13 +54,14 @@ const checkClickOnEyes = ({ onInterruptedSleep, ...spider }) => {
   const { eyesCanvas, eyes } = spider
   const rect = eyesCanvas.getBoundingClientRect()
   const scale = eyesCanvas.width / rect.width
+  const offset = 360
 
-  const handleClick = (event) => {
+  const handleClickOnEyes = (event) => {
     event.preventDefault()
     let isThereAnEyeNearby = false
     const { x, y } = calculateCoordinates(event, rect, scale)
     for (const eye of eyes) {
-      const isAround = eye.isAroundToTheMouse(x, y)
+      const isAround = eye.isAroundToTheMouse(x, y, offset)
       if (!isAround) return
       isThereAnEyeNearby = isAround
       break
@@ -68,7 +69,7 @@ const checkClickOnEyes = ({ onInterruptedSleep, ...spider }) => {
     isThereAnEyeNearby && handleSleep({ onInterruptedSleep, ...spider })
   }
 
-  eyesCanvas.addEventListener('click', handleClick)
+  eyesCanvas.addEventListener('click', handleClickOnEyes)
 }
 
 const checkClicksOnColliders = ({ onInterruptedSleep, ...spider }) => {
