@@ -1,5 +1,5 @@
 import Spritesheet from '@/lib/animation/spritesheet/spritesheet'
-import Spider from '@/components/sleepy/spider/Spider.js'
+import Spider from '@/components/sleepy/spider/spider.js'
 
 const url = new URL('/src/assets/images/sprites/spider/spider-spritesheet.png', import.meta.url).href
 const NUM_FRAMES = 5
