@@ -31,7 +31,9 @@ function ClicksPerSecCounter (onCombo) {
   }, INTERVAL_PER_SECONDS_IN_MS)
 
   this.clicksPerSecond = function () {
-    return Math.floor(numClicks / secondsSpent)
+    const cps = Math.floor(numClicks / secondsSpent)
+    if (isNaN(cps) || cps === Infinity) return 1
+    return cps
   }
 
   this.incrementClick = incrementClick
