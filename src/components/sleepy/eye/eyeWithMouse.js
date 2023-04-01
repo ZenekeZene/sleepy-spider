@@ -64,12 +64,12 @@ const eyeWithMouse = ({ eyes, canvas, params }) => {
     handleInteractionWithCanvas(eyes, x, y, params)
   }
 
-  const doThing = (event) => {
+  const onClick = (event) => {
     const { x, y } = calculateCoordinates(event, rect, scale)
     handleInteractionWithCanvas(eyes, x, y, params)
   }
 
-  canvas.addEventListener('click', doThing)
+  canvas.addEventListener('click', onClick)
 
   canvas.onmouseleave = () => {
     eyes.forEach(eye => { eye.close() })
