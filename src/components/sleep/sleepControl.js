@@ -1,5 +1,5 @@
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
-import { launchComboSystem } from '../combos/combo'
+import { launchComboSystem } from '../combos/combo.js'
 import { showComboMessage } from '../combos/combo.message'
 import { initDreamController, drawDream, stopDream } from './dream/dreamController'
 
