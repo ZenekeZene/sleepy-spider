@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest'
-import calculateSpecificityCSS from './specificity.js'
+import { calculateSpecificity } from './specificity'
 
 describe('Specificity', () => {
   test.each([
@@ -25,7 +25,7 @@ describe('Specificity', () => {
     { actual: 'img.class#id[attribute]:pseudo-class > a::before:hover', expected: '0143' },
     { actual: '.\\--cool', expected: '0010' },
   ])('calculate($actual) -> $expected', ({ actual, expected }) => {
-    const { specificity } = calculateSpecificityCSS(actual)
+    const { specificity } = calculateSpecificity(actual)
     expect(specificity).toBe(expected)
   })
 })

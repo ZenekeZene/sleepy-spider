@@ -6,7 +6,7 @@ function createQuestion () {
   const question = generateQuestion()
   const finalQuestion = {
     title,
-    question
+    ...question,
   }
   return finalQuestion
 }

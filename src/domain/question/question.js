@@ -1,4 +1,4 @@
-import { generateSelectors } from "@/domain/selectorsCSS/selectorsCSS"
+import { generateSelector } from "@/domain/selectorsCSS/selectorsCSS"
 import {
   calculateSpecificity,
   generateSimilarSpecificities,
@@ -48,7 +48,7 @@ function generateOptions(answer) {
 }
 
 function generateQuestion() {
-  const selector = generateSelectors()[0]
+  const selector = generateSelector()
   const { specificity } = calculateSpecificity(selector)
   const options = generateOptions(specificity)
   const question = isCorrectQuestion({

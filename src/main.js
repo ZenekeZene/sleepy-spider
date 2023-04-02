@@ -6,7 +6,7 @@ import { onRefreshReferences } from '@/components/sleepy/spider/drawSpider'
 import { launchQuestion } from '@/components/question/question'
 
 function onShowQuestion () {
-  // launchQuestion()
+  launchQuestion()
 }
 
 const start = async () => {
