@@ -1,4 +1,4 @@
-import { calculateCombo, isMegaComboById } from "./combo.types"
+import { calculateCombo, isMegaComboById } from "@/domain/combo/combo"
 import { applyMegaComboEffect } from './combo.effect'
 
 const COMBO_CLASSNAME = 'combo'

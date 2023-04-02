@@ -1,6 +1,6 @@
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
-import { launchComboSystem } from '../combos/Combo'
-import { showComboMessage } from '../combos/factory/comboFactory'
+import { launchComboSystem } from '../combos/combo'
+import { showComboMessage } from '../combos/combo.message'
 import { initDreamController, drawDream, stopDream } from './dream/dreamController'
 
 const CHECK_SLEEP_INTERVAL_IN_MS = 100

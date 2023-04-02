@@ -1,12 +1,9 @@
 import { createClicksPerSecCounter } from '../clicksPerSecond/clicksPerSecond'
-import {
-  SINGLE_COMBO_VALUE,
-} from './combo.constants'
 import { showComboMessage } from './combo.message'
 import {
   isMegaComboByValue,
   scaleComboToMegaCombo
-} from './combo.types'
+} from '@/domain/combo/combo'
 import './combos.css'
 
 function handleCombo (value, onCombo) {
@@ -22,7 +19,7 @@ function handleCombo (value, onCombo) {
 function launchComboSystem ({ onCombo = () => null }) {
   const incrementClick = createClicksPerSecCounter({
     onAction: (value) => handleCombo(value, onCombo),
-    minToAction: SINGLE_COMBO_VALUE,
+    minToAction: 1,
   })
   return incrementClick
 }
