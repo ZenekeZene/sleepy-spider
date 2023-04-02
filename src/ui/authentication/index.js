@@ -12,27 +12,27 @@ import { updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCoun
 async function onLogin ({ user, database }) {
   renderLeaderboardWithLoggedUser({ currentUser: user, database })
   renderLogin()
-
-  const { addAwakening, setUser } = await startAwakeningsSystem({
-    database,
-    onChange: updateAwakeningsCounter,
-  })
-  await setUser(user)
-  await drawSpider({ params, onInterruptedSleep: addAwakening })
 }
 
 async function onLogout ({ database }) {
   renderLeaderboardWithoutLoggedUser({ database })
   renderLogout()
-  await drawSpider({ params, onInterruptedSleep: () => null })
 }
 
-function startSpider ({ authentication, database }) {
+async function startSpider ({ authentication, database }, onShowQuestion) {
   initAuthenticationUI({
     authentication,
     onLogin: ({ user }) => onLogin({ user, database }),
     onLogout: () => onLogout({ database }),
   })
+
+  const { addAwakening, setUser } = await startAwakeningsSystem({
+    database,
+    onChange: updateAwakeningsCounter,
+    onShowQuestion,
+  })
+  // await setUser(user)
+  await drawSpider({ params, onInterruptedSleep: addAwakening })
 }
 
 export {

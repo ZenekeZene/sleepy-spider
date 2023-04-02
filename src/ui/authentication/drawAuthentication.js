@@ -10,6 +10,7 @@ const logout = ({ authentication }) => {
 }
 
 const drawLogin = ({ authentication }) => {
+  if (!loginIcon) return
   loginIcon.classList.add('visible')
   loginIcon.addEventListener('click', async () => {
     await signIn({ authentication })
@@ -18,6 +19,7 @@ const drawLogin = ({ authentication }) => {
 }
 
 const drawLogout = ({ authentication }) => {
+  if (!logoutIcon) return
   logoutIcon.classList.add('visible')
   logoutIcon.addEventListener('click', () => {
     logout({ authentication })
@@ -26,10 +28,12 @@ const drawLogout = ({ authentication }) => {
 }
 
 const hideLogin = () => {
+  if (!loginIcon) return
   loginIcon.classList.remove('visible')
 }
 
 const hideLogout = () => {
+  if (!logoutIcon) return
   logoutIcon.classList.remove('visible')
 }
 

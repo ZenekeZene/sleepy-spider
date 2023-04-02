@@ -1,22 +1,21 @@
-class Singleton {
-  constructor (value) {
-    this.value = value
+const Singleton = (function() {
+  let instance
 
-    if (typeof Singleton.instance === 'object') {
-      return Singleton.instance
+  function Singleton() {
+    if (instance) {
+      return instance
     }
-
-    Singleton.instance = this
-    return this
+    instance = this
+    this.value = 0
+    this.increment = function() {
+      this.value++
+    }
+    this.update = function(newValue) {
+      this.value = newValue
+    }
   }
 
-  increment (value = 1) {
-    this.value += value
-  }
-
-  update (value) {
-    this.value = value
-  }
-}
+  return Singleton
+})()
 
 export { Singleton }

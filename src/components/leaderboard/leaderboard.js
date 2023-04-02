@@ -45,7 +45,7 @@ function createUser ({ listElement, user, isCurrent = false }) {
 
 async function drawUsers ({ database, currentUser }) {
   const listElement = document.getElementById(LEADERBOARD_ID)
-
+  if (!listElement) return
   const users = await getUsersByLimit({ database, limitSize: USERS_LENGTH })
   listElement.innerHTML = ''
   users.forEach((user => {

@@ -5,7 +5,7 @@ import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { untilShowQuestionCounter } from '@/infra/awakening/untilShowQuestionCounter'
 
 let clicksSinceTheLastUpdate = 0
-let cachedCounter
+const cachedCounter = new CachedCounter(0)
 const INTERVAL_TO_UPDATE_IN_MS = 10000
 const DOCUMENT = 'awakenings'
 
@@ -14,7 +14,7 @@ async function getTotalAwakenings ({ userUid, database }) {
   return data?.value || 0
 }
 
-async function addAwakening (value = 1, onChange, onShowQuestion) {
+async function addAwakening (value, onChange, onShowQuestion) {
   clicksSinceTheLastUpdate += value
   cachedCounter.increment(value)
   onChange(value)
@@ -74,11 +74,10 @@ async function setUser ({ user, database, onChange }) {
 async function startAwakeningsSystem (props) {
   if (!props?.database) throw new Error('Error with unknown database.')
   if (!props?.onChange) throw new Error('Error with unknown callback onChange.')
-  cachedCounter = new CachedCounter(0)
-  const onShowQuestion = props?.onShowQuestion || (() => {})
+  if (!props?.onShowQuestion) throw new Error('Error with unknown callback onShowQuestion.')
 
   return {
-    addAwakening: (value = 1) => addAwakening(value, props.onChange, onShowQuestion),
+    addAwakening: (value = 1) => addAwakening(value, props.onChange, props.onShowQuestion),
     setUser: (user) => setUser({ user, ...props }),
   }
 }

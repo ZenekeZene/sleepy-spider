@@ -6,7 +6,7 @@ import { createQuestion } from "./question.factory"
 import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
 import './question.css'
 
-const DELAY_TO_HIDE_IN_MS = 2000
+const DELAY_TO_HIDE_IN_MS = 1000
 
 async function closeQuestion ({ target }) {
   await delay(DELAY_TO_HIDE_IN_MS)
