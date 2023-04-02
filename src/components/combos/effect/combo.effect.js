@@ -1,4 +1,4 @@
-const DELAY_MEGACOMBO_EFFECT_IN_MS = 3000
+const DELAY_MEGACOMBO_EFFECT_IN_MS = 1000
 const MEGACOMBO_EFFECT_CLASSNAME = 'big-surprise'
 
 function applyMegaComboEffect () {

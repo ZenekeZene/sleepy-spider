@@ -1,6 +1,6 @@
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
 import { launchComboSystem } from '../combos/Combo'
-import { createCombo } from '../combos/factory/comboFactory'
+import { showComboMessage } from '../combos/factory/comboFactory'
 import { initDreamController, drawDream, stopDream } from './dream/dreamController'
 
 const CHECK_SLEEP_INTERVAL_IN_MS = 100
@@ -41,7 +41,7 @@ const handleSleep = ({ onInterruptedSleep, ...spider }) => {
   if (spiderIsClicked) return
   spiderIsClicked = true
   onInterruptedSleep?.(1)
-  isLogged && createCombo(1)
+  isLogged && showComboMessage(1)
   stopDream()
 
   setTimeout(() => {
@@ -86,7 +86,7 @@ const listenTheSleepCycle = (spiderWithInterruptedSleep) => {
   checkIsSleeping(spider)
   checkClicksOnColliders(spiderWithInterruptedSleep)
   checkClickOnEyes(spiderWithInterruptedSleep)
-  const { incrementClick } = launchComboSystem({ onCombo: onInterruptedSleep })
+  const incrementClick = launchComboSystem({ onCombo: onInterruptedSleep })
   incrementClickForCombo = incrementClick
 }
 

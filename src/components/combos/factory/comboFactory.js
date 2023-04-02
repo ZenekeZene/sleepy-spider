@@ -1,4 +1,4 @@
-import { calculateCombo, isMegaCombo } from "./combo.types"
+import { calculateCombo, isMegaComboById } from "./combo.types"
 import { applyMegaComboEffect } from '../effect/combo.effect'
 
 const COMBO_CLASSNAME = 'combo'
@@ -14,20 +14,20 @@ function appendComboElement ({ text, classname }) {
   return comboElement
 }
 
-function removeComboElement ({ comboElement }) {
+function removeComboElement (comboElement) {
   setTimeout(() => {
     wrapperCombos.removeChild(comboElement)
   }, DELAY_TO_BE_REMOVED_IN_MS)
 }
 
-function createCombo (value) {
-  const { id: comboId, classname, getText } = calculateCombo({ value })
+function showComboMessage (value) {
+  const { id: comboId, classname, getText } = calculateCombo(value)
   const text = getText(value)
   const comboElement = appendComboElement({ text, classname })
-  if (isMegaCombo({ comboId })) { applyMegaComboEffect() }
-  removeComboElement({ comboElement })
+  if (isMegaComboById(comboId)) { applyMegaComboEffect() }
+  removeComboElement(comboElement)
 }
 
 export {
-  createCombo,
+  showComboMessage,
 }
