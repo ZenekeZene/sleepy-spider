@@ -1,5 +1,5 @@
 import { calculateCombo, isMegaComboById } from "./combo.types"
-import { applyMegaComboEffect } from '../effect/combo.effect'
+import { applyMegaComboEffect } from './combo.effect'
 
 const COMBO_CLASSNAME = 'combo'
 const DELAY_TO_BE_REMOVED_IN_MS = 3000

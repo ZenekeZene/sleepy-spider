@@ -1,13 +1,12 @@
+import { createClicksPerSecCounter } from '../clicksPerSecond/clicksPerSecond'
 import {
   SINGLE_COMBO_VALUE,
 } from './combo.constants'
-
-import { showComboMessage } from './factory/comboFactory'
+import { showComboMessage } from './combo.message'
 import {
   isMegaComboByValue,
   scaleComboToMegaCombo
-} from './factory/combo.types'
-import { createClicksPerSecCounter } from '../clicksPerSecond/clicksPerSecond'
+} from './combo.types'
 import './combos.css'
 
 function handleCombo (value, onCombo) {

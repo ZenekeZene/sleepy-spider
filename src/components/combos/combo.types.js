@@ -4,7 +4,7 @@ import {
   TRIPLE_COMBO_VALUE,
   MEGACOMBO_VALUE,
   MEGACOMBO_BONUS,
-} from "../combo.constants"
+} from "./combo.constants"
 
 const COMBO_TEXT = 'Combo X'
 const MEGACOMBO_TEXT = 'MEGACOMBO!'
