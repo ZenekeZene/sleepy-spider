@@ -10,7 +10,7 @@ function generateSelector() {
   selector += htmlTags[Math.floor(Math.random() * htmlTags.length)]
 
   getGenerators().forEach(({ name, generator }) => {
-    if (!Math.random() < seed[name]) return
+    if (Math.random() < seed[name]) return
     selector += generator()
   })
 

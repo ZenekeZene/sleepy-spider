@@ -8,7 +8,6 @@ import {
 } from './selectorsCSS.constants'
 
 const generatePseudoElement = () => `::${pseudoElements[Math.floor(Math.random() * pseudoElements.length)]}`
-const generatePseudoclass = () => `:${pseudoClasses[Math.floor(Math.random() * pseudoClasses.length)]}`
 const generateAttribute = () => `[${attributes[Math.floor(Math.random() * attributes.length)]}]`
 const generateClassname = () => `.${classes[Math.floor(Math.random() * classes.length)]}`
 
@@ -29,7 +28,6 @@ function getGenerators () {
   return [
     { name: 'classname', generator: generateClassname },
     { name: 'attribute', generator: generateAttribute },
-    { name: 'pseudoclass', generator: generatePseudoclass },
     { name: 'pseudoElement', generator: generatePseudoElement },
   ]
 }

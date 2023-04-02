@@ -1,7 +1,9 @@
 const maxSelectorLength = 27
+
 const pseudoElements = ['before', 'after', 'first-letter', 'first-line']
 const attributes = ['active', 'disabled', 'hidden', 'checked', 'empty']
 const classes = ['header', 'button', 'form', 'my-element', 'app-class']
+
 const combinators = [' > ', ' + ', ' '];
 const htmlTags = ['h1', 'h2', 'p', 'a', 'button', 'form', 'input', 'div', 'span', 'img', 'nav', 'section', 'header', 'footer'];
 
