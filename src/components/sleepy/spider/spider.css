@@ -35,6 +35,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .eyes {
@@ -86,6 +87,7 @@
   height: 12rem;
   border-radius: 2rem;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media screen and (max-width: 30rem) {

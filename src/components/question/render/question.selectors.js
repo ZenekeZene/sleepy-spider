@@ -31,6 +31,7 @@ const questionSelectors = {
   inner: findById('question-modal__inner'),
   title: findById('question-title'),
   value: findById('question-value'),
+  code: findById('question-pre'),
   options: findById('question-options'),
   getPossibleAnswers: () => questionSelectors.options.querySelectorAll('li'),
   eachAnswer: (callback) => {

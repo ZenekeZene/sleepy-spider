@@ -1,43 +1,15 @@
-import * as $class from "@/lib/dom/class.helper"
-import { getHighlightedCode } from "@/lib/prism"
-import { delay } from "@/lib/time"
 import { toggleElement } from "@/lib/dom/dom"
-import { createQuestion } from "./question.factory"
-import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
-import './question.css'
+import { QUESTION_TYPES } from "@/domain/question/question.types"
+import { SPECIFICITY_PROBABILITY } from "@/domain/question/question.constants"
+import { parseSpecificityQuestion } from "@/infra/questions/question.mapper"
+import { createSpecificityQuestion } from "./question.factory"
+import { questionSelectors as $el } from "./render/question.selectors"
+import { renderQuestion, closeQuestion } from "./render/question.render"
 
-const DELAY_TO_HIDE_IN_MS = 1000
-
-async function closeQuestion ({ target }) {
-  await delay(DELAY_TO_HIDE_IN_MS)
-  $class.removeAll([target, $el.inner], CLASSNAMES.all)
-  $class.forEach($el.examScore, CLASSNAMES.VISIBLE, $class.remove)
-  toggleElement($el.modal)
-}
-
-const render = {
-  answers: (options) => {
-    const answers = options.map((value) => `<li>${value}</li>`)
-    return answers.join('')
-  },
-  question: ({ title, value, options }) => {
-    $el.setContent('title', title)
-    $el.setContent('value', getHighlightedCode(value))
-    $el.setContent('options', render.answers(options))
-  },
-  result: (isCorrect, event) => {
-    const className = CLASSNAMES.get(isCorrect)
-    $class.forEach($el.examScore, CLASSNAMES.all, $class.remove)
-    $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
-    $class.addAll([event.target, $el.examScore[className]], [CLASSNAMES.VISIBLE, className])
-    $class.toggle($el.inner, className)
-  }
-}
-
-function onAnswered(question, event) {
+function onAnswered({ question }, event) {
   const value = event.target.innerHTML
   const isCorrect = question.answer === value
-  render.result(isCorrect, event)
+  renderQuestion.result(isCorrect, event)
 }
 
 function checkAnswer(question) {
@@ -62,16 +34,34 @@ function checkAnswer(question) {
   listen()
 }
 
-function initQuestion() {
-  const question = createQuestion()
-  render.question(question)
+function decideQuestionType (question) {
+  const isSpecificity = Math.random() > SPECIFICITY_PROBABILITY
+  if (isSpecificity) {
+    const specifictyQuestion = createSpecificityQuestion()
+    return parseSpecificityQuestion(specifictyQuestion)
+  }
+  return question
+}
+
+function renderQuestionByType (question) {
+  const { type } = question
+  if (type === QUESTION_TYPES.SPECIFICITY) {
+    renderQuestion.specificityQuestion(question)
+  } else if (type === QUESTION_TYPES.MULTICHOICE) {
+    renderQuestion.multiChoiceQuestion(question)
+  }
+}
+
+function drawQuestion(rawQuestion) {
+  const question = decideQuestionType(rawQuestion)
+  renderQuestionByType(question)
   checkAnswer(question)
 }
 
-function launchQuestion() {
+function launchQuestion(rawQuestion) {
   if (!$el.modal) return
   toggleElement($el.modal)
-  initQuestion()
+  drawQuestion(rawQuestion)
 }
 
 export {

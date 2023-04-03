@@ -55,6 +55,10 @@
   width: 5rem;
 }
 
+.question-modal.--vertical .modal__inner {
+  min-height: 90%;
+}
+
 .answers {
   display: flex;
   align-items: center;
@@ -63,11 +67,16 @@
   margin-top: 2rem;
 }
 
+.question-modal.--vertical .answers {
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .answers li {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
+  width: 4rem;
   height: 3rem;
   padding: 1rem;
   background-color: pink;
@@ -75,6 +84,12 @@
   border-bottom: 8px solid #ee9fad;
   box-shadow: 0px 3px 3px rgb(0 0 0 / 16%);
   transition: all 0.2s ease-in-out;
+}
+
+.question-modal.--vertical .answers li {
+  width: 100%;
+  height: auto;
+  text-align: center;
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -89,7 +104,6 @@
   color: #4caf50;
   background-color: #c8e6c9;
   border-bottom-color: #4caf50;
-  transform: scale(2);
 }
 
 .answers li.incorrect {

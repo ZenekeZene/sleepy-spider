@@ -2,7 +2,7 @@ import generateQuestion from "@/domain/question/question"
 
 const title =  'Calculate the CSS specificity!'
 
-function createQuestion () {
+function createSpecificityQuestion () {
   const question = generateQuestion()
   const finalQuestion = {
     title,
@@ -12,5 +12,5 @@ function createQuestion () {
 }
 
 export {
-  createQuestion,
+  createSpecificityQuestion,
 }

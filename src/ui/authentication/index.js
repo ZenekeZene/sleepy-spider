@@ -7,6 +7,7 @@ import {
   renderLeaderboardWithLoggedUser,
 } from '@/components/leaderboard/leaderboard'
 import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
+import { getQuestions } from '@/infra/questions/questions.repository'
 import { updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'
 
 async function onLogin ({ user, database }) {
@@ -20,6 +21,8 @@ async function onLogout ({ database }) {
 }
 
 async function startSpider ({ authentication, database }, onShowQuestion) {
+  const questions = await getQuestions({ database, size: 20 })
+
   initAuthenticationUI({
     authentication,
     onLogin: ({ user }) => onLogin({ user, database }),
@@ -29,7 +32,9 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
   const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
     onChange: updateAwakeningsCounter,
-    onShowQuestion,
+    onShowQuestion: () => {
+      onShowQuestion(questions)
+    },
   })
   // await setUser(user)
   await drawSpider({ params, onInterruptedSleep: addAwakening })

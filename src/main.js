@@ -5,8 +5,9 @@ import { startSpider } from '@/ui/authentication'
 import { onRefreshReferences } from '@/components/sleepy/spider/drawSpider'
 import { launchQuestion } from '@/components/question/question'
 
-function onShowQuestion () {
-  launchQuestion()
+function onShowQuestion (questions) {
+  const question = questions.pop()
+  launchQuestion(question)
 }
 
 const start = async () => {
