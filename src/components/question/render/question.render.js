@@ -20,6 +20,7 @@ const renderQuestion = {
     const { title, value, options } = question
     $el.modal.classList.remove('--vertical')
     $el.setContent('title', title)
+    $el.code.style.display = 'block'
     $el.setContent('value', getHighlightedCode(value))
     $el.setContent('options', renderQuestion.answersSpecificity(options))
   },
