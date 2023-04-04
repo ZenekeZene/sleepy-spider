@@ -7,13 +7,16 @@ import './question.css'
 
 const DELAY_TO_HIDE_IN_MS = 1000
 
+const renderWithCommas = (text) => text.split('').join(',')
+const removeCommas = (text) => text.split(',').join('')
+
 const renderQuestion = {
   answers: (options) => {
     const answers = options.map((value) => `<li>${value}</li>`)
     return answers.join('')
   },
   answersSpecificity: (options) => {
-    const answers = options.map((value) => `<li>${value.split('').join(',')}</li>`)
+    const answers = options.map((value) => `<li>${renderWithCommas(value)}</li>`)
     return answers.join('')
   },
   specificityQuestion: ({ question }) => {
@@ -49,5 +52,6 @@ async function closeQuestion ({ target }) {
 
 export {
   renderQuestion,
-  closeQuestion
+  closeQuestion,
+  removeCommas,
 }

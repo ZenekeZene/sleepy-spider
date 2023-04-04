@@ -1,16 +1,19 @@
 import { toggleElement } from "@/lib/dom/dom"
 import { QUESTION_TYPES } from "@/domain/question/question.types"
-import { SPECIFICITY_PROBABILITY } from "@/domain/question/question.constants"
-import { parseSpecificityQuestion } from "@/infra/questions/question.mapper"
-import { createSpecificityQuestion } from "./question.factory"
 import { questionSelectors as $el } from "./render/question.selectors"
-import { renderQuestion, closeQuestion } from "./render/question.render"
+import { renderQuestion, closeQuestion, removeCommas } from "./render/question.render"
+import { createQuestion } from "./question.factory"
 
 const DELAY_TO_ENABLE_ANSWER_IN_MS = 2000
 
-function onAnswered({ question }, event) {
-  const value = event.target.innerHTML
-  const isCorrect = question.answer === value
+function onAnswered(questionWithType, event) {
+  const { type } = questionWithType
+  const { answer } = questionWithType.question
+  let value = event.target.textContent
+  if (type === QUESTION_TYPES.SPECIFICITY) {
+    value = removeCommas(value)
+  }
+  const isCorrect = answer === value
   renderQuestion.result(isCorrect, event)
 }
 
@@ -38,27 +41,8 @@ function checkAnswer(question) {
   }, DELAY_TO_ENABLE_ANSWER_IN_MS)
 }
 
-function decideQuestionType (question) {
-  const isSpecificity = Math.random() > SPECIFICITY_PROBABILITY
-  if (isSpecificity) {
-    const specifictyQuestion = createSpecificityQuestion()
-    return parseSpecificityQuestion(specifictyQuestion)
-  }
-  return question
-}
-
-function renderQuestionByType (question) {
-  const { type } = question
-  if (type === QUESTION_TYPES.SPECIFICITY) {
-    renderQuestion.specificityQuestion(question)
-  } else if (type === QUESTION_TYPES.MULTICHOICE) {
-    renderQuestion.multiChoiceQuestion(question)
-  }
-}
-
 function drawQuestion(rawQuestion) {
-  const question = decideQuestionType(rawQuestion)
-  renderQuestionByType(question)
+  const question = createQuestion(rawQuestion)
   checkAnswer(question)
 }
 
