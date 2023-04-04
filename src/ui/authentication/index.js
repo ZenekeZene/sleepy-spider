@@ -22,7 +22,19 @@ async function onLogout ({ database }) {
 
 async function startSpider ({ authentication, database }, onShowQuestion) {
   let spider = null
-  const questions = await getQuestions({ database, size: 20 })
+  let questions
+  let hasError = false
+  try {
+    questions = await getQuestions({ database, size: 20 })
+  } catch (error) {
+    alert('Sorry, Sleepy is sleeping deeply. Please try again later.')
+    hasError = true
+  }
+
+  if (hasError) {
+    document.getElementById('spider-wrapper').innerHTML = ''
+    return
+  }
 
   initAuthenticationUI({
     authentication,

@@ -22,9 +22,14 @@ async function getQuestionDocs (database) {
 }
 
 async function getQuestions ({ database, size = 40 }) {
-  const querySnapshot = await getQuestionDocs(database, size)
-  const questions = retrieveQuestions(querySnapshot)
-  return sortQuestionsRandomly(questions).splice(0, size)
+  try {
+    const querySnapshot = await getQuestionDocs(database, size)
+    const questions = retrieveQuestions(querySnapshot)
+    return sortQuestionsRandomly(questions).splice(0, size)
+  } catch (error) {
+    console.error("Error getting documents: ", error)
+    throw error
+  }
 }
 
 export {

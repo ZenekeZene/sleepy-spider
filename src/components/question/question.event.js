@@ -7,7 +7,7 @@ const payload = {
 }
 
 function dispatchAnsweredCorrect () {
-  const event = new CustomEvent(EVENT_NAME, { detail: { payload } })
+  const event = new CustomEvent(EVENT_NAME, { detail: { ...payload } })
   document.dispatchEvent(event)
 }
 
