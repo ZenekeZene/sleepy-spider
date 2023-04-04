@@ -32,16 +32,15 @@ const checkIsSleeping = ({ ...spider }) => {
 }
 
 const handleSleep = ({ onInterruptedSleep, ...spider }) => {
-  const isLogged = onInterruptedSleep !== null
   const { eyes, body } = spider
   body.relax(eyes)
-  isLogged && incrementClickForCombo()
+  incrementClickForCombo()
 
   body.toBeSurprised(eyes)
   if (spiderIsClicked) return
   spiderIsClicked = true
   onInterruptedSleep?.(1)
-  isLogged && showComboMessage(1)
+  showComboMessage(1)
   stopDream()
 
   setTimeout(() => {

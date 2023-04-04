@@ -2,7 +2,6 @@ const INTERVAL_PER_SECONDS_IN_MS = 1000
 const INTERVAL_PER_CALCULATION_IN_MS = 100
 
 let numClicks = 0
-let previousNumClicks = 0
 let secondsSpent = 0
 let lastCPS = 0
 
@@ -10,18 +9,14 @@ let secondsIntervalID = null
 
 function incrementClick() {
   numClicks += 1
-  previousNumClicks = numClicks
 }
 
 function resetClicks() {
   secondsSpent = 0
   numClicks = 0
-  previousNumClicks = 0
 }
 
 function checkLastClicks(minToAction) {
-  // console.log('checkLastClicks', numClicks, previousNumClicks, lastCPS)
-  if (previousNumClicks !== numClicks) return false
   if (lastCPS > minToAction) { return true }
   return false
 }

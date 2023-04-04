@@ -7,8 +7,8 @@ const Singleton = (function() {
     }
     instance = this
     this.value = 0
-    this.increment = function() {
-      this.value++
+    this.increment = function(newValue = 1) {
+      this.value += newValue
     }
     this.update = function(newValue) {
       this.value = newValue

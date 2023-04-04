@@ -6,20 +6,21 @@ import {
 } from '@/domain/combo/combo'
 import './combos.css'
 
+const minComboToAction = 1
+
 function handleCombo (value, onCombo) {
   let finalComboValue = value
   showComboMessage(value)
   if (isMegaComboByValue(value)) {
     finalComboValue = scaleComboToMegaCombo(value)
   }
-  console.log('combo value', finalComboValue)
   onCombo(finalComboValue)
 }
 
 function launchComboSystem ({ onCombo = () => null }) {
   const incrementClick = createClicksPerSecCounter({
     onAction: (value) => handleCombo(value, onCombo),
-    minToAction: 1,
+    minToAction: minComboToAction,
   })
   return incrementClick
 }
