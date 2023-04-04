@@ -15,16 +15,16 @@ function retrieveQuestions (querySnapshot) {
   return questions
 }
 
-async function getQuestionDocs (database, size) {
+async function getQuestionDocs (database) {
   const questionsRef = collection(database, collectionName)
-  const q = query(questionsRef, limit(size))
+  const q = query(questionsRef)
   return await getDocs(q)
 }
 
 async function getQuestions ({ database, size = 40 }) {
   const querySnapshot = await getQuestionDocs(database, size)
   const questions = retrieveQuestions(querySnapshot)
-  return sortQuestionsRandomly(questions)
+  return sortQuestionsRandomly(questions).splice(0, size)
 }
 
 export {

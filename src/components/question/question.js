@@ -6,6 +6,8 @@ import { createSpecificityQuestion } from "./question.factory"
 import { questionSelectors as $el } from "./render/question.selectors"
 import { renderQuestion, closeQuestion } from "./render/question.render"
 
+const DELAY_TO_ENABLE_ANSWER_IN_MS = 2000
+
 function onAnswered({ question }, event) {
   const value = event.target.innerHTML
   const isCorrect = question.answer === value
@@ -31,7 +33,9 @@ function checkAnswer(question) {
     unlisten()
     closeQuestion(event)
   }
-  listen()
+  setTimeout(() => {
+    listen()
+  }, DELAY_TO_ENABLE_ANSWER_IN_MS)
 }
 
 function decideQuestionType (question) {
