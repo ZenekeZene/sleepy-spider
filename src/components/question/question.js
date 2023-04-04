@@ -1,4 +1,5 @@
 import { toggleElement } from "@/lib/dom/dom"
+import { delay } from "@/lib/time"
 import { QUESTION_TYPES } from "@/domain/question/question.types"
 import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 import { questionSelectors as $el } from "./render/question.selectors"
@@ -12,6 +13,15 @@ function dispatchAnsweredCorrect () {
   document.dispatchEvent(event)
 }
 
+async function showCorrectAnswerBonus () {
+  const bonusWrapper = document.getElementById('question-bonus')
+  if (!bonusWrapper) return
+  bonusWrapper.textContent = `+${CORRECT_QUESTION_VALUE}`
+  bonusWrapper.classList.add('visible')
+  await delay(2000)
+  bonusWrapper.classList.remove('visible')
+}
+
 function onAnswered(questionWithType, event) {
   const { type } = questionWithType
   const { answer } = questionWithType.question
@@ -23,6 +33,7 @@ function onAnswered(questionWithType, event) {
   renderQuestion.result(isCorrect, event)
 
   if (isCorrect) {
+    showCorrectAnswerBonus()
     dispatchAnsweredCorrect()
   }
 }

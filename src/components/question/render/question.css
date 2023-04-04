@@ -114,3 +114,27 @@
 .answers li.disabled:not(.correct):not(.incorrect) {
   opacity: 0.3;
 }
+
+.question-bonus {
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 11;
+  width: 10rem;
+  padding: 0rem 0.7rem;
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  transition: opacity 500ms ease-in-out;
+}
+
+.question-bonus.visible {
+  opacity: 1;
+  animation: slideOutUp var(--combo-duration);
+}
