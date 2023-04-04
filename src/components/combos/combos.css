@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+  font-family: var(--font-secondary);
 }
 
 .combo {
@@ -16,6 +17,7 @@
   font-size: 2rem;
   text-shadow: 0 0 10px red;
   animation: slideOutUp var(--combo-duration);
+  font-family: var(--font-secondary);
 }
 
 .--combo-mini {

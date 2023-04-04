@@ -7,7 +7,14 @@
   padding: 2rem 2rem 0;
   color: white;
   text-shadow: 3px 2px 6px var(--primary-color);
-  font-size: 3rem;;
+  font-size: 3rem;
+  font-family: var(--font-secondary);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.title-hidden {
+  opacity: 0;
 }
 
 .subtitle {
