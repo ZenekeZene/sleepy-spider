@@ -1,4 +1,4 @@
-const LIMIT_TO_SHOW_QUESTION =  20
+import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
 
 class UntilShowQuestionCounter {
   constructor () {

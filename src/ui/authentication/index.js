@@ -21,6 +21,7 @@ async function onLogout ({ database }) {
 }
 
 async function startSpider ({ authentication, database }, onShowQuestion) {
+  let spider = null
   const questions = await getQuestions({ database, size: 20 })
 
   initAuthenticationUI({
@@ -31,13 +32,17 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
 
   const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
-    onChange: updateAwakeningsCounter,
+    onChange: (value) => {
+      updateAwakeningsCounter(value)
+      spider.body.incrementHateLevel()
+    },
     onShowQuestion: () => {
+      spider.body.resetHateLevel()
       onShowQuestion(questions)
     },
   })
   // await setUser(user)
-  await drawSpider({ params, onInterruptedSleep: addAwakening })
+  spider = await drawSpider({ params, onInterruptedSleep: addAwakening })
 }
 
 export {

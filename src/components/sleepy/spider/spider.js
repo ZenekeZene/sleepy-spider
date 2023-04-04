@@ -1,6 +1,9 @@
+import canvasTintImage from "canvas-tint-image"
+import getCanvasContext from "get-canvas-context"
 import Frame from '@/lib/animation/frame'
 import Position from '@/lib/animation/position'
 import STATES from '@/lib/animation/spritesheet/states'
+import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
 import './spider.css'
 
 const INTERVAL_ANIMATION_IN_MS = 250
@@ -17,6 +20,8 @@ class Spider {
     this.direction = 1
     this.state = STATES.IDDLE
     this.wrapper = document.getElementById('spider-wrapper')
+    this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
+    this.hateLevel = 0
   }
 
   draw (column, row) {
@@ -29,7 +34,8 @@ class Spider {
     const sy = row * height
     const widthScaled = width * 2
     const heightScaled = height * 2
-    this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
+    const tintedImage = canvasTintImage(image, 'red', this.hateLevel / LIMIT_TO_SHOW_QUESTION)
+    this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
   }
 
   doStep () {
@@ -91,6 +97,14 @@ class Spider {
     this.addSurpriseClassname()
     this.openEyes(eyes)
     this.stopIddleAnimation()
+  }
+
+  incrementHateLevel () {
+    this.hateLevel += 1
+  }
+
+  resetHateLevel () {
+    this.hateLevel = 0
   }
 
   relax (eyes) {
