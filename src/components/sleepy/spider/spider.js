@@ -22,6 +22,7 @@ class Spider {
     this.wrapper = document.getElementById('spider-wrapper')
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
     this.hateLevel = 0
+    this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)
   }
 
   draw (column, row) {
@@ -34,7 +35,8 @@ class Spider {
     const sy = row * height
     const widthScaled = width * 2
     const heightScaled = height * 2
-    const tintedImage = canvasTintImage(image, 'red', this.hateLevel / LIMIT_TO_SHOW_QUESTION)
+    const opacity = this.hateLevel / LIMIT_TO_SHOW_QUESTION
+    const tintedImage = canvasTintImage(image, 'red', opacity)
     this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
   }
 
@@ -100,6 +102,7 @@ class Spider {
   }
 
   incrementHateLevel (value = 1) {
+    if (this.hateLevel >= (LIMIT_TO_SHOW_QUESTION - this.opacityOffset)) return
     this.hateLevel += value
   }
 

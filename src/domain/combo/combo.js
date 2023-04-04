@@ -38,7 +38,7 @@ const COMBO_TYPES = {
   },
   HUGE: {
     classname: 'huge',
-    getText: (value) => `${COMBO_TEXT} ${value}`,
+    getText: (value) => `${COMBO_TEXT}${value}`,
     condition: (value) => value > TRIPLE_COMBO_VALUE && value < MEGACOMBO_VALUE,
   },
   [MONSTER_ID]: {
