@@ -131,10 +131,8 @@
   color: white;
   background-color: var(--primary-color);
   border-radius: 4px;
-  transition: opacity 500ms ease-in-out;
 }
 
 .question-bonus.visible {
-  opacity: 1;
-  animation: slideOutUp var(--combo-duration);
+  animation: slideOutUpLight var(--combo-duration);
 }

@@ -9,11 +9,11 @@ const combinators = [' > ', ' + ', ' '];
 const htmlTags = ['h1', 'h2', 'p', 'a', 'button', 'form', 'input', 'div', 'span', 'img', 'nav', 'section', 'header', 'footer'];
 
 const seed = {
-  id: 0.1,
-  classname: 0.5,
-  attribute: 0.3,
+  id: 0.9,
+  classname: 0.2,
+  attribute: 0.6,
   pseudoclass: 0.4,
-  pseudoElement: 0.2,
+  pseudoElement: 0.7,
 }
 
 export {
