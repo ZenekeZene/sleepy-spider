@@ -99,8 +99,8 @@ class Spider {
     this.stopIddleAnimation()
   }
 
-  incrementHateLevel () {
-    this.hateLevel += 1
+  incrementHateLevel (value = 1) {
+    this.hateLevel += value
   }
 
   resetHateLevel () {

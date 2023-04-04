@@ -34,7 +34,7 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
     database,
     onChange: (value) => {
       updateAwakeningsCounter(value)
-      spider.body.incrementHateLevel()
+      spider.body.incrementHateLevel(value)
     },
     onShowQuestion: () => {
       spider.body.resetHateLevel()
