@@ -8,7 +8,7 @@ import {
 } from '@/components/leaderboard/leaderboard'
 import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
 import { getQuestions } from '@/infra/questions/questions.repository'
-import { updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'
+import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'
 
 async function onLogin ({ user, database }) {
   renderLeaderboardWithLoggedUser({ currentUser: user, database })
@@ -30,6 +30,7 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
     onLogout: () => onLogout({ database }),
   })
 
+
   const { addAwakening, setUser } = await startAwakeningsSystem({
     database,
     onChange: (value) => {
@@ -41,6 +42,7 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
       onShowQuestion(questions)
     },
   })
+  listenAnsweredCorrect()
   // await setUser(user)
   spider = await drawSpider({ params, onInterruptedSleep: addAwakening })
 }

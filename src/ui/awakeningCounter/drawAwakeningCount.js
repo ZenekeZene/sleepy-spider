@@ -20,9 +20,18 @@ const updateCounters = () => {
     setTimeout(() => {
       counter.classList.remove(COUNTER_EFFECT_CLASSNAME)
     }, 250)
-    counter.textContent = value
+    counter.textContent = Number(value).toLocaleString()
   })
   return counters
+}
+
+const listenAnsweredCorrect = () => {
+  document.addEventListener('answeredCorrect', (event) => {
+    const { value } = event.detail
+    cachedCounter.increment(value)
+    updateCounters()
+    updateDescription()
+  })
 }
 
 const updateAwakeningsCounter = () => {
@@ -31,5 +40,6 @@ const updateAwakeningsCounter = () => {
 }
 
 export {
+  listenAnsweredCorrect,
   updateAwakeningsCounter,
 }

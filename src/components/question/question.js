@@ -6,6 +6,11 @@ import { createQuestion } from "./question.factory"
 
 const DELAY_TO_ENABLE_ANSWER_IN_MS = 2000
 
+function dispatchAnsweredCorrect () {
+  const event = new CustomEvent('answeredCorrect', { detail: { value: 1000 } })
+  document.dispatchEvent(event)
+}
+
 function onAnswered(questionWithType, event) {
   const { type } = questionWithType
   const { answer } = questionWithType.question
@@ -15,6 +20,10 @@ function onAnswered(questionWithType, event) {
   }
   const isCorrect = answer === value
   renderQuestion.result(isCorrect, event)
+
+  if (isCorrect) {
+    dispatchAnsweredCorrect()
+  }
 }
 
 function checkAnswer(question) {
