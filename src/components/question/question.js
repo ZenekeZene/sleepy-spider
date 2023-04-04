@@ -1,5 +1,6 @@
 import { toggleElement } from "@/lib/dom/dom"
 import { QUESTION_TYPES } from "@/domain/question/question.types"
+import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 import { questionSelectors as $el } from "./render/question.selectors"
 import { renderQuestion, closeQuestion, removeCommas } from "./render/question.render"
 import { createQuestion } from "./question.factory"
@@ -7,7 +8,7 @@ import { createQuestion } from "./question.factory"
 const DELAY_TO_ENABLE_ANSWER_IN_MS = 2000
 
 function dispatchAnsweredCorrect () {
-  const event = new CustomEvent('answeredCorrect', { detail: { value: 1000 } })
+  const event = new CustomEvent('answeredCorrect', { detail: { value: CORRECT_QUESTION_VALUE } })
   document.dispatchEvent(event)
 }
 
