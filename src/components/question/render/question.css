@@ -4,14 +4,6 @@
   border-radius: 4px;
 }
 
-.question-modal .modal__title {
-  width: 15ch;
-}
-
-.question-modal .code-toolbar {
-  margin-bottom: 3rem;
-}
-
 [class*="question-modal__exam-score"] {
   position: absolute;
   top: 2rem;
@@ -48,7 +40,7 @@
 }
 
 .question-modal .modal__header {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .question-icon {
@@ -56,7 +48,7 @@
 }
 
 .question-modal.--vertical .modal__inner {
-  min-height: 90%;
+  max-height: 90%;
 }
 
 .answers {
