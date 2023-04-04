@@ -5,22 +5,26 @@
 }
 
 [class*="question-modal__exam-score"] {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  display: flex;
-  gap: 0.25rem;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   opacity: 0;
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
   transition: all 0.2s ease-in-out;
-  transform: scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  background-color: white;
+  border-radius: 50%;
 }
 
 [class*="question-modal__exam-score"].visible {
   opacity: 1;
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .question-modal .modal__inner.correct {
@@ -44,7 +48,8 @@
 }
 
 .question-icon {
-  width: 5rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .question-modal.--vertical .modal__inner {
@@ -57,6 +62,8 @@
   justify-content: space-between;
   list-style: none;
   margin-top: 2rem;
+  font-size: 1rem;
+  font-family: Helvetica;
 }
 
 .question-modal.--vertical .answers {
