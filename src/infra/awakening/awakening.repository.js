@@ -36,14 +36,14 @@ function handleAwakeningUpdatesWithInterval (props) {
   return timerToUpdate
 }
 
-async function listenAwakenings ({ userUid, database, callback }) {
-  const { documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
-  const unsubcribe = onSnapshot(documentRef, (document) => {
-    const data = document.data() || { value: 0 }
-    callback(data)
-  })
-  return unsubcribe
-}
+// async function listenAwakenings ({ userUid, database, callback }) {
+  // const { documentRef } = await getSnapshot({ database, documentId: DOCUMENT, userUid })
+  // const unsubcribe = onSnapshot(documentRef, (document) => {
+    // const data = document.data() || { value: 0 }
+    // callback(data)
+  // })
+  // return unsubcribe
+// }
 
 async function setInitialAwakenings ({ userUid, database, onChange }) {
   const initialAwakeningsValue = await getTotalAwakenings({ userUid, database })
@@ -62,13 +62,13 @@ async function setUser ({ user, database, onChange }) {
   let userUid = user.uid
 
   // listenUnload({ user, userUid, database })
-  setInitialAwakenings({ userUid, database, onChange })
-  handleAwakeningUpdatesWithInterval({ userUid, user, database })
+  // setInitialAwakenings({ userUid, database, onChange })
+  // handleAwakeningUpdatesWithInterval({ userUid, user, database })
 
-  listenAwakenings({ userUid, database, callback: ({ value }) => {
-    cachedCounter.update(value)
-    onChange(value)
-  }})
+  // listenAwakenings({ userUid, database, callback: ({ value }) => {
+    // cachedCounter.update(value)
+    // onChange(value)
+  // }})
 }
 
 async function startAwakeningsSystem (props) {

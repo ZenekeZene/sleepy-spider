@@ -34,7 +34,7 @@
   <body class="noselect">
 
     <!-- INFO -->
-    <header class="info invisible surprise">
+    <header class="info invisible surprise hide-on-final-screen">
       <h1 class="title" id="title">WAKE UP<span class="hide-in-mobile">, SLEEPY</span>!</h1>
       <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
       <p class="subtitle" id="user-counter"><span class="hide-auto">You wake</span> <span class="counter">0</span><span class="hide-auto">times.</span></p>
@@ -79,7 +79,7 @@
     <!-- MODALS -->
 
     <!-- A.- SHARE MODAL -->
-    <article class="modal share-modal invisible" id="modal">
+    <article class="modal share-modal invisible hide-on-final-screen" id="modal">
       <div class="modal__backdrop modal-trigger"></div>
       <section class="modal__inner">
         <header class="modal__header">
@@ -144,7 +144,7 @@
     </article>
 
     <!-- B.- INFO MODAL -->
-    <article class="modal info-modal invisible" id="info-modal">
+    <article class="modal info-modal invisible hide-on-final-screen" id="info-modal">
       <div class="modal__backdrop info-modal-trigger"></div>
       <section class="modal__inner">
         <header class="modal__header">
@@ -167,7 +167,7 @@
 
     <div id="question-bonus" class="question-bonus"></div>
     <!-- C.- QUESTION MODAL -->
-    <article class="modal question-modal invisible" id="question-modal">
+    <article class="modal question-modal invisible hide-on-final-screen" id="question-modal">
       <div class="modal__backdrop"></div>
       <section id="question-modal__inner" class="modal__inner">
         <div>
@@ -188,12 +188,24 @@
       </section>
     </article>
 
-    <aside class="clock">
+    <aside class="clock hide-on-final-screen">
         <div class="clock__face">
           <p id="lazy" class="clock__timer">60</p>
         </div>
       </div>
     </aside>
+
+    <!-- FINAL SCREEN -->
+    <article id="final-screen" class="final-screen hidden">
+        <h2>Sleepy woke up!</h2>
+        <section class="final-screen__avatar">
+          <img src="/sleepy.jpg" alt="Sleepy" />
+        </section>
+        <h2>Final score:</h2>
+        <h3 id="final-score" class="final-screen__score">0</h3>
+        <p id="record-message" class="final-screen__record">Record: <span id="record"></span></p>
+        <button id="play-again" class="final-screen__play">Play again!</button>
+    </article>
 
     <img src="src/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />
 

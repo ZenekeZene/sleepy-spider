@@ -1,10 +1,16 @@
 import './clock.css'
 
+const END_TIMER_EVENT = 'endTimer'
 const SECOND_IN_MS = 1000
-const MAX_SECONDS_IN_MS = 10 * SECOND_IN_MS
+const MAX_SECONDS_IN_MS = 61 * SECOND_IN_MS
 
 const face = document.getElementById('lazy')
 face.textContent = '60'
+
+function dispatchEndTimerEvent () {
+  const event = new CustomEvent(END_TIMER_EVENT)
+  document.dispatchEvent(event)
+}
 
 function startClock() {
   const startTime = new Date().getTime()
@@ -17,6 +23,7 @@ function startClock() {
       face.innerText = secondsRemaining
     } else {
       clearInterval(intervalId)
+      dispatchEndTimerEvent()
     }
   }, SECOND_IN_MS)
 }
