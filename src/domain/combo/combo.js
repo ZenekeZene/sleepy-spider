@@ -7,7 +7,7 @@ import {
 } from "./combo.constants"
 
 const COMBO_TEXT = 'Combo X'
-const MEGACOMBO_TEXT = 'MEGACOMBO!'
+const MEGACOMBO_TEXT = 'SUPERCOMBO!'
 const MONSTER_ID = 'MONSTER'
 
 function calculateCombo (value) {

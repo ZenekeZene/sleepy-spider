@@ -20,7 +20,7 @@ async function onLogout ({ database }) {
   renderLogout()
 }
 
-async function startSpider ({ authentication, database }, onShowQuestion) {
+async function startSpider (spiderImage, { authentication, database }, onShowQuestion) {
   let spider = null
   let questions
   let hasError = false
@@ -56,7 +56,7 @@ async function startSpider ({ authentication, database }, onShowQuestion) {
   })
   listenAnsweredCorrect()
   // await setUser(user)
-  spider = await drawSpider({ params, onInterruptedSleep: addAwakening })
+  spider = await drawSpider({ spiderImage, params, onInterruptedSleep: addAwakening })
 }
 
 export {
