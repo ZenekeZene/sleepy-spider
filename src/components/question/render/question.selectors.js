@@ -3,6 +3,8 @@ import { findById } from '@/lib/dom/dom'
 const CLASSNAMES = {
   CORRECT: 'correct',
   INCORRECT: 'incorrect',
+  SHAKE_CORRECT: 'shakeY',
+  SHAKE_INCORRECT: 'shakeX',
   VISIBLE: 'visible',
   DISABLED: 'disabled',
   get all () {
@@ -14,6 +16,9 @@ const CLASSNAMES = {
   },
   get (value) {
     return value ? this.CORRECT : this.INCORRECT
+  },
+  getShake (value) {
+    return value ? this.SHAKE_CORRECT : this.SHAKE_INCORRECT
   }
 }
 
@@ -29,6 +34,7 @@ function setContent (key, content) {
 const questionSelectors = {
   modal: findById('question-modal'),
   inner: findById('question-modal__inner'),
+  shake: findById('question-modal__shake'),
   title: findById('question-title'),
   value: findById('question-value'),
   code: findById('question-pre'),

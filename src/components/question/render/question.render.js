@@ -34,12 +34,19 @@ const renderQuestion = {
     $el.code.style.display = 'none'
     $el.setContent('options', renderQuestion.answers(options))
   },
-  result: (isCorrect, event) => {
+  result: async (isCorrect, event) => {
     const className = CLASSNAMES.get(isCorrect)
     $class.forEach($el.examScore, CLASSNAMES.all, $class.remove)
     $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
     $class.addAll([event.target, $el.examScore[className]], [CLASSNAMES.VISIBLE, className])
     $class.toggle($el.inner, className)
+    await renderQuestion.shake(isCorrect)
+  },
+  shake: async (isCorrect) => {
+    const shake = CLASSNAMES.getShake(isCorrect)
+    $class.add($el.shake, shake)
+    await delay (DELAY_TO_HIDE_IN_MS)
+    $class.remove($el.shake, shake)
   }
 }
 

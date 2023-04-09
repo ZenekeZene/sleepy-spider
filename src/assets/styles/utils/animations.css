@@ -180,6 +180,39 @@
   }
 }
 
+@keyframes shakeY {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(0, 10px, 0);
+  }
+}
+
 .shakeX {
-  animation: shakeX 1000ms;
+  animation-name: shakeX;
+}
+
+.shakeY {
+  animation-name: shakeY;
+}
+
+.shakeX,
+.shakeY {
+  animation-duration: 2s;
+  animation-play-state: running;
+  animation-iteration-count: 1;
 }
