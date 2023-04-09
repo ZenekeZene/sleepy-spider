@@ -21,7 +21,20 @@
   font-size: 1.5rem;
 }
 
-@media screen and (min-width: 24rem) {
+.clock.--alert {
+  width: 7rem;
+}
+
+.clock.--alert .clock__face {
+  width: 7rem;
+  height: 7rem;
+}
+
+.clock.--alert .clock__timer {
+  font-size: 6rem;
+}
+
+@media screen and (min-width: 48rem) {
   .clock {
     position: absolute;
     top: 5.5rem;

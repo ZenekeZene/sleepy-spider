@@ -72,6 +72,10 @@ function initDreamController () {
   canvas = document.getElementById("sleep")
   if (!canvas) throw new Error('Dream canvas is not found.')
   context = canvas.getContext("2d")
+
+  document.addEventListener('endTimer', () => {
+    stopDream()
+  })
 }
 
 export {

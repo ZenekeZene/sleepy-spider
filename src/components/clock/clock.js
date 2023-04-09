@@ -2,10 +2,12 @@ import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'
 const SECOND_IN_MS = 1000
-const MAX_SECONDS_IN_MS = 61 * SECOND_IN_MS
+const MAX_SECONDS = 20
+const MAX_SECONDS_IN_MS = MAX_SECONDS * SECOND_IN_MS + (SECOND_IN_MS)
 
+const clock = document.getElementById('clock')
 const face = document.getElementById('lazy')
-face.textContent = '60'
+face.textContent = MAX_SECONDS
 
 function dispatchEndTimerEvent () {
   const event = new CustomEvent(END_TIMER_EVENT)
@@ -19,6 +21,11 @@ function startClock() {
     const timeElapsed = currentTime - startTime
     const timeRemaining = MAX_SECONDS_IN_MS - timeElapsed
     const secondsRemaining = Math.floor(timeRemaining / SECOND_IN_MS)
+
+    if (secondsRemaining < 10) {
+      clock.classList.add('--alert')
+    }
+
     if (timeRemaining > 0) {
       face.innerText = secondsRemaining
     } else {

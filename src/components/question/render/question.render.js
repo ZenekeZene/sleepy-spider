@@ -40,7 +40,7 @@ const renderQuestion = {
     $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
     $class.addAll([event.target, $el.examScore[className]], [CLASSNAMES.VISIBLE, className])
     $class.toggle($el.inner, className)
-    await renderQuestion.shake(isCorrect)
+    // await renderQuestion.shake(isCorrect)
   },
   shake: async (isCorrect) => {
     const shake = CLASSNAMES.getShake(isCorrect)

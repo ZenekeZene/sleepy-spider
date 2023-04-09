@@ -6,7 +6,7 @@ import { showCorrectAnswerBonus } from "./render/question.bonus"
 import { renderQuestion, closeQuestion, removeCommas } from "./render/question.render"
 import { createQuestion } from "./question.factory"
 
-const DELAY_TO_ENABLE_ANSWER_IN_MS = 2000
+const DELAY_TO_ENABLE_ANSWER_IN_MS = 1000
 
 function onAnswered(questionWithType, event) {
   const { type } = questionWithType

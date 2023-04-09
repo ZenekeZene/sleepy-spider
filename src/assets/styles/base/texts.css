@@ -39,7 +39,7 @@
   border-radius: 4px;
 }
 
-@media screen and (max-width: 30rem) {
+@media screen and (max-width: 48rem) {
   .info {
     position: absolute;
     z-index: 1;

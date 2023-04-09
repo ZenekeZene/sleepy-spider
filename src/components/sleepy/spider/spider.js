@@ -20,6 +20,7 @@ class Spider {
     this.direction = 1
     this.state = STATES.IDDLE
     this.wrapper = document.getElementById('spider-wrapper')
+    this.shakeWrapper = document.body
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
     this.hateLevel = 0
     this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)
@@ -103,11 +104,16 @@ class Spider {
 
   incrementHateLevel (value = 1) {
     if (this.hateLevel >= (LIMIT_TO_SHOW_QUESTION - this.opacityOffset)) return
+    if (this.hateLevel > (LIMIT_TO_SHOW_QUESTION / 1.5)) {
+      this.shakeWrapper.classList.add('headShakeHard')
+    }
     this.hateLevel += value
+
   }
 
   resetHateLevel () {
     this.hateLevel = 0
+    this.shakeWrapper.classList.remove('headShake', 'headShakeHard')
   }
 
   relax (eyes) {
