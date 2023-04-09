@@ -2,7 +2,7 @@ import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'
 const SECOND_IN_MS = 1000
-const MAX_SECONDS = 20
+const MAX_SECONDS = 60
 const MAX_SECONDS_IN_MS = MAX_SECONDS * SECOND_IN_MS + (SECOND_IN_MS)
 
 const clock = document.getElementById('clock')
