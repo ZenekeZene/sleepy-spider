@@ -1,4 +1,3 @@
-const TOGGLE_DELAY_IN_MS = 1000
 const INVISIBLE_CLASSNAME = 'invisible'
 const TRANSPARENT_CLASSNAME = 'transparent'
 const ENTRANCE_CLASSNAME = 'bounceInDown'
@@ -27,7 +26,7 @@ const toggleInvisibleElements = () => {
     loaderElement.classList.add(INVISIBLE_CLASSNAME)
   }
 
-  setTimeout(toggle, TOGGLE_DELAY_IN_MS)
+  toggle()
 }
 
 export {
