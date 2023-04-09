@@ -27,8 +27,8 @@
     <link rel="stylesheet" href="/src/assets/styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap&family=Nunito:wght@1000&display=swap" rel="stylesheet">
-    <link href="/vendor/prism.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap&family=Nunito:wght@1000&display=swap" rel="stylesheet" rel="preload">
+    <link href="/vendor/prism.css" rel="stylesheet" rel="preload" />
   </head>
 
   <body class="noselect">
@@ -208,7 +208,7 @@
 
     <img src="src/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />
 
-    <script type="module" src="/src/main.js"></script>
-    <script src="/vendor/prism.js" data-manual></script>
+    <script type="module" src="/src/main.js" async></script>
+    <script src="/vendor/prism.js" data-manual defer></script>
   </body>
 </html>
