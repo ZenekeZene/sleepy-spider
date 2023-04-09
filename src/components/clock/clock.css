@@ -3,6 +3,7 @@
   top: 1rem;
   right: 1rem;
   z-index: 5;
+  width: 3rem;
 }
 
 .clock__face {
@@ -18,4 +19,12 @@
 
 .clock__timer {
   font-size: 1.5rem;
+}
+
+@media screen and (min-width: 24rem) {
+  .clock {
+    position: absolute;
+    top: 5.5rem;
+    left: 60%;
+  }
 }
