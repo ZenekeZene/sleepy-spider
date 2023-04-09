@@ -9,7 +9,7 @@ import { showFinalScreen } from '@/ui/finalScreen/finalScreen'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 (() => {
-  const url = new URL('/sprites/spider/spider-spritesheet.png', import.meta.url).href
+  const url = new URL('/sprites/spider/spider-spritesheet.webp', import.meta.url).href
   const spiderImage = new Image()
   spiderImage.src = url
   spiderImage.onload = () => {
