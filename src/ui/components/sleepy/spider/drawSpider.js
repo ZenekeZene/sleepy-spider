@@ -1,6 +1,6 @@
 import { findById } from 'sleepy-spider-lib'
-import { listenTheSleepCycle } from '@/components/sleep/sleepControl'
-import { updateListenEyes } from '@/components/sleep/sleepControl'
+import { listenTheSleepCycle } from '@/ui/components/sleep/sleepControl'
+import { updateListenEyes } from '@/ui/components/sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
 import eyeWithMouse from '../eye/eyeWithMouse'
 import { createSpiderBody } from './factory/spiderBodyFactory'

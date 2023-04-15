@@ -1,7 +1,7 @@
 import { findById, createElement } from "sleepy-spider-lib"
-import { COUNTER_CLASSNAME } from "@/ui/awakeningCounter/drawAwakeningCount"
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { getUsersByLimit } from "@/infra/user/user.repository"
+import { COUNTER_CLASSNAME } from "@/ui/components/awakeningCounter/drawAwakeningCount"
 import './leaderboard.css'
 
 const INTERVAL_REFRESH_IN_MS = 4000

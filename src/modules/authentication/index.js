@@ -1,15 +1,15 @@
 import { findById } from 'sleepy-spider-lib'
-import { initAuthenticationUI } from '@/ui/authentication/drawAuthentication'
-import { renderLogin, renderLogout } from '@/ui/authentication/authenticationHandlers'
-import { drawSpider } from '@/components/sleepy/spider/drawSpider'
+import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
+import { getQuestions } from '@/infra/questions/questions.repository'
+import { initAuthenticationUI } from '@/modules/authentication/drawAuthentication'
+import { renderLogin, renderLogout } from '@/modules/authentication/authenticationHandlers'
 import params from '@/modules/settings/settings'
 import {
   renderLeaderboardWithoutLoggedUser,
   renderLeaderboardWithLoggedUser,
 } from '@/modules/leaderboard/leaderboard'
-import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
-import { getQuestions } from '@/infra/questions/questions.repository'
-import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'
+import { drawSpider } from '@/ui/components/sleepy/spider/drawSpider'
+import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/components/awakeningCounter/drawAwakeningCount'
 
 async function onLogin ({ user, database }) {
   renderLeaderboardWithLoggedUser({ currentUser: user, database })

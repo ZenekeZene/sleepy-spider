@@ -60,7 +60,13 @@ function launchQuestion(rawQuestion) {
   drawQuestion(rawQuestion)
 }
 
+function onShowQuestion (questions) {
+  if (!questions || questions.length === 0) return
+  const question = questions.pop()
+  launchQuestion(question)
+}
+
 export {
-  launchQuestion,
+  onShowQuestion,
 }
 

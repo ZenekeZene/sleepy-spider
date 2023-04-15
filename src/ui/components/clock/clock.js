@@ -1,4 +1,5 @@
-import { findById, dispatchEvent } from 'sleepy-spider-lib'
+import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter'
 import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'
@@ -31,6 +32,12 @@ function startClock() {
   }, SECOND_IN_MS)
 }
 
+function prepareClock () {
+  listenEvent(EVENTS.FIRST_CLICK, () => {
+    startClock()
+  })
+}
+
 export {
-  startClock
+  prepareClock,
 }

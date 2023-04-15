@@ -1,3 +1,6 @@
+import { listenEvent, getBody } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter'
+import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/modules/share/share'
 import { handlePersonalLocalRecord } from '@/modules/record/record'
 import { finalSelectors as $el } from './finalScreen.selectors'
@@ -24,6 +27,15 @@ function showFinalScreen(finalScore) {
   })
 }
 
+function prepareFinalScreen () {
+  listenEvent(EVENTS.END_TIMER, () => {
+  const cachedCounter = new CachedCounter()
+  const finalValue = cachedCounter.value
+  showFinalScreen(finalValue)
+  getBody().classList.remove('headShakeHard')
+})
+}
+
 export {
-  showFinalScreen
+  prepareFinalScreen
 }
