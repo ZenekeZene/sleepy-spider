@@ -1,9 +1,6 @@
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
-import { findById, getBody } from '@/lib'
-import Frame from '@/lib/animation/frame'
-import Position from '@/lib/animation/position'
-import STATES from '@/lib/animation/spritesheet/states'
+import { findById, getBody, Frame, Position, spriteStates } from '@/lib'
 import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
 import './spider.css'
 
@@ -19,7 +16,7 @@ class Spider {
     this.frame = new Frame(this, frame, sprite)
     this.sprite = sprite
     this.direction = 1
-    this.state = STATES.IDDLE
+    this.state = spriteStates.IDDLE
     this.wrapper = findById('spider-wrapper')
     this.shakeWrapper = getBody()
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
@@ -46,12 +43,12 @@ class Spider {
     if (this.isPaused) return
     this.frame.value += this.direction
     if (!this.frame.isLimitPingPong({ direction: this.state })) return
-    this.direction = this.state === STATES.FORWARD ? -1 : 1
-    this.state = (this.state === STATES.FORWARD) ? STATES.BACKWARD : STATES.FORWARD
+    this.direction = this.state === spriteStates.FORWARD ? -1 : 1
+    this.state = (this.state === spriteStates.FORWARD) ? spriteStates.BACKWARD : spriteStates.FORWARD
   }
 
   play () {
-    this.state = STATES.FORWARD
+    this.state = spriteStates.FORWARD
     this.timer = setInterval(() => {
       this.doStep()
       const { column, row } = this.sprite.getSlide(this.frame.value)

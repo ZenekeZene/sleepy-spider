@@ -1,7 +1,9 @@
-const STATES = {
+const spriteStates = {
   IDDLE: 'iddle',
   FORWARD: 'forward',
   BACKWARD: 'backward',
 }
 
-export default STATES
+export {
+  spriteStates
+}

@@ -1,4 +1,4 @@
-import Spritesheet from '@/lib/animation/spritesheet/spritesheet'
+import { Spritesheet } from '@/lib'
 import Spider from '@/components/sleepy/spider/spider.js'
 
 const NUM_FRAMES = 5

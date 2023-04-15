@@ -28,4 +28,6 @@ class Spritesheet {
   }
 }
 
-export default Spritesheet
+export {
+  Spritesheet
+}

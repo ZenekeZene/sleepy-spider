@@ -1,4 +1,4 @@
-import STATES from './spritesheet/states'
+import { spriteStates } from '@/lib'
 
 class Frame {
   constructor (target, frame, sprite) {
@@ -39,7 +39,7 @@ class Frame {
   }
 
   isLimitPingPong ({ direction }) {
-    if (direction === STATES.FORWARD) {
+    if (direction === spriteStates.FORWARD) {
       return this.value >= this.sprite.length
     } else {
       return this.value < 1
@@ -47,4 +47,6 @@ class Frame {
   }
 }
 
-export default Frame
+export {
+  Frame
+}

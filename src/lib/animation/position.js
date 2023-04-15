@@ -25,4 +25,6 @@ class Position extends Vector {
   }
 }
 
-export default Position
+export {
+  Position
+}

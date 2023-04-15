@@ -1,7 +1,4 @@
-import { range } from '@/lib'
-import STATES from '@/lib/animation/spritesheet/states'
-import Frame from '@/lib/animation/frame'
-import Position from '@/lib/animation/position'
+import { range, spriteStates, Frame, Position } from '@/lib'
 import Pupil from '../pupil/pupil'
 import settings from './eyeSettings'
 
@@ -17,7 +14,7 @@ class Eye {
     this.params = props.params
     this.isBigEye = isBigEye || false
 
-    this.state = STATES.IDDLE
+    this.state = spriteStates.IDDLE
     this.scale = scale || range(settings.scale.min, settings.scale.max)
     this.pupil = new Pupil(props, this.frame, this.scale, pupilScale)
   }
@@ -58,17 +55,17 @@ class Eye {
     const direction = isReverse ? -1 : 1
     this.frame.value += direction
     if (!this.frame.isLimit({ isReverse, limit })) return
-    const frame = this.state === STATES.BACKWARD ? this.sprite.length : (limit || 0)
+    const frame = this.state === spriteStates.BACKWARD ? this.sprite.length : (limit || 0)
     this.stop(frame)
   }
 
   isIddle () {
-    return this.state === STATES.IDDLE
+    return this.state === spriteStates.IDDLE
   }
 
   play ({ isReverse, limit }) {
     if (!this.isIddle()) return
-    this.state = isReverse ? STATES.FORWARD : STATES.BACKWARD
+    this.state = isReverse ? spriteStates.FORWARD : spriteStates.BACKWARD
     this.timer = setInterval(() => {
       this.doStep({ isReverse, limit })
       const { column, row } = this.sprite.getSlide(this.frame.value)
@@ -79,7 +76,7 @@ class Eye {
 
   stop (frame) {
     this.frame.drawFrame(frame)
-    this.state = STATES.IDDLE
+    this.state = spriteStates.IDDLE
     clearInterval(this.timer)
     return this
   }

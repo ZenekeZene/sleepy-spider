@@ -1,3 +1,4 @@
+export * from './animation'
 export * from './device'
 export * from './dom'
 export * from './math'
