@@ -15,8 +15,8 @@
 }
 
 .final-screen__avatar {
-  width: 11rem;
-  height: 11rem;
+  width: 9rem;
+  height: 9rem;
   margin: 1rem;
   overflow: hidden;
   border-radius: 50%;
@@ -35,10 +35,19 @@
   line-height: 1;
 }
 
-.final-screen__play {
+.final-screen__buttons {
   max-width: 19rem;
   width: 100%;
-  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.final-screen__play,
+.final-screen__share {
+  max-width: 19rem;
+  width: 100%;
   padding: 1rem;
   font-family: var(--font-secondary);
   font-size: 2rem;
@@ -48,13 +57,19 @@
   border: none;
   border-radius: 4px;
   border-bottom: 8px solid #ee9fad;
-  box-shadow: 0px 3px 3px rgb(0 0 0 / 16%);
   transition: all 0.2s ease-in-out;
 }
 
 .final-screen__play:hover {
   color: white;
   background-color: var(--primary-color);
+}
+
+.final-screen__share {
+  border-left: 2px solid #ee9fad;
+  border-right: 2px solid #ee9fad;
+  border-top: 2px solid #ee9fad;
+  background-color: white;
 }
 
 .final-screen__record {}

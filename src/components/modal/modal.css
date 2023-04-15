@@ -114,5 +114,23 @@
 }
 
 .share-modal {
-  z-index: 6;
+  z-index: 12;
+}
+
+.modal__social-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.modal__social-list .modal-link {
+  justify-content: center;
+}
+
+.modal__social-list .modal-link__share {
+  width: unset;
+}
+
+.modal__social-list .modal-link .modal-link__icon {
+  width: 5rem;
 }
