@@ -1,5 +1,6 @@
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
+import { findById, getBody } from '@/lib/dom/dom'
 import Frame from '@/lib/animation/frame'
 import Position from '@/lib/animation/position'
 import STATES from '@/lib/animation/spritesheet/states'
@@ -19,8 +20,8 @@ class Spider {
     this.sprite = sprite
     this.direction = 1
     this.state = STATES.IDDLE
-    this.wrapper = document.getElementById('spider-wrapper')
-    this.shakeWrapper = document.body
+    this.wrapper = findById('spider-wrapper')
+    this.shakeWrapper = getBody()
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
     this.hateLevel = 0
     this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)

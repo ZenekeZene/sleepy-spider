@@ -1,3 +1,4 @@
+import { findById } from '@/lib/dom/dom'
 import { SHAPES } from '@/settings/settings'
 import Spritesheet from '@/lib/animation/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'
@@ -6,7 +7,7 @@ import createEyesInSquareShape from './eyeFactory.square'
 const url = new URL('/sprites/eye/eye-spritesheet.webp', import.meta.url).href
 const NUM_FRAMES = 10
 const SIZE = 3000
-let eyesCanvas = document.getElementById('eyes')
+let eyesCanvas = findById('eyes')
 let eyesContext = eyesCanvas.getContext('2d')
 
 const createEyes = async (props) =>
@@ -35,12 +36,12 @@ const createEyes = async (props) =>
   })
 
 const removeEyesCanvas = () => {
-  document.getElementById('eyes').remove()
+  eyesCanvas.remove()
 }
 
 const createEyesCanvas = () => {
   removeEyesCanvas()
-  const spiderElement = document.getElementById('spider')
+  const spiderElement = findById('spider')
   eyesCanvas = document.createElement('canvas')
   eyesCanvas.width = SIZE
   eyesCanvas.height = SIZE

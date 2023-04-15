@@ -1,3 +1,4 @@
+import { findAllByClassName } from '@/lib/dom/dom'
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
 import { launchComboSystem } from '../combos/combo.js'
 import { showComboMessage } from '../combos/combo.message'
@@ -75,7 +76,7 @@ const checkClicksOnColliders = ({ onInterruptedSleep, ...spider }) => {
   const handClickOnCollider = () => {
     handleSleep({ onInterruptedSleep, ...spider })
   }
-  const colliders = Array.from(document.getElementsByClassName('collider'))
+  const colliders = Array.from(findAllByClassName('collider'))
   colliders.forEach((collider) => collider.addEventListener('click', handClickOnCollider))
 }
 

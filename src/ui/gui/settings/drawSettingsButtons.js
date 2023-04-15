@@ -1,13 +1,15 @@
+import { findById, findBySelector } from "@/lib/dom/dom"
+
 let showSettings = false
 const VENDOR_PANE_CLASSNAME = 'tp-dfwv'
 
 const drawSettingButtons = ({ panel, onClick }) => {
-  const settingsButton = document.getElementById('settings-icon')
-  const settingsCloseButton = document.getElementById('settings-close-icon')
+  const settingsButton = findById('settings-icon')
+  const settingsCloseButton = findById('settings-close-icon')
 
   settingsButton.addEventListener('click', function () {
     showSettings = true
-    document.querySelector(`.${VENDOR_PANE_CLASSNAME}`).style.display = 'block'
+    findBySelector(`.${VENDOR_PANE_CLASSNAME}`).style.display = 'block'
     this.style.display = 'none'
     settingsCloseButton.style.display = 'block'
     onClick({ showSettings, panel })

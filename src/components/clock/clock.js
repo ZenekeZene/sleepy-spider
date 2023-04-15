@@ -1,18 +1,15 @@
+import { findById } from '@/lib/dom/dom'
+import { dispatchEvent } from '@/lib/dom/event'
 import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'
 const SECOND_IN_MS = 1000
-const MAX_SECONDS = 60
+const MAX_SECONDS = 10
 const MAX_SECONDS_IN_MS = MAX_SECONDS * SECOND_IN_MS + (SECOND_IN_MS)
 
-const clock = document.getElementById('clock')
-const face = document.getElementById('lazy')
+const clock = findById('clock')
+const face = findById('lazy')
 face.textContent = MAX_SECONDS
-
-function dispatchEndTimerEvent () {
-  const event = new CustomEvent(END_TIMER_EVENT)
-  document.dispatchEvent(event)
-}
 
 function startClock() {
   const startTime = new Date().getTime()
@@ -30,7 +27,7 @@ function startClock() {
       face.innerText = secondsRemaining
     } else {
       clearInterval(intervalId)
-      dispatchEndTimerEvent()
+      dispatchEvent(END_TIMER_EVENT)
     }
   }, SECOND_IN_MS)
 }

@@ -1,5 +1,7 @@
-const signInSubtitle = document.getElementById('sign-in-subtitle')
-const userCounter = document.getElementById('user-counter')
+import { findById } from '@/lib/dom/dom'
+
+const signInSubtitle = findById('sign-in-subtitle')
+const userCounter = findById('user-counter')
 
 async function renderLogin () {
   //signInSubtitle.style.display = 'none'

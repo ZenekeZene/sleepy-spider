@@ -1,3 +1,5 @@
+import { findAllByClassName, findById } from '@/lib/dom/dom'
+import { listenEvent } from '@/lib/dom/event'
 import { delay } from '@/lib/time'
 import isMobile from '@/lib/device/isMobile'
 
@@ -7,10 +9,10 @@ const HIDE_CLASSNAME = 'hide-auto'
 const HIDE_TITLE_DELAY_IN_MS = 3000
 
 const hideTitleOnFirstClick = () => {
-  const title = document.getElementById(TITLE_ID)
-  const hidesAuto = document.getElementsByClassName(HIDE_CLASSNAME)
+  const title = findById(TITLE_ID)
+  const hidesAuto = findAllByClassName(HIDE_CLASSNAME)
 
-  document.addEventListener('firstClick', async () => {
+  listenEvent('firstClick', async () => {
     if (!isMobile()) return
 
     await delay(HIDE_TITLE_DELAY_IN_MS)
@@ -23,8 +25,8 @@ const hideTitleOnFirstClick = () => {
 }
 
 const showTitle = () => {
-  const title = document.getElementById(TITLE_ID)
-  const hidesAuto = document.getElementsByClassName(HIDE_CLASSNAME)
+  const title = findById(TITLE_ID)
+  const hidesAuto = findAllByClassName(HIDE_CLASSNAME)
 
   title.classList.remove(HIDE_TITLE_CLASSNAME)
 

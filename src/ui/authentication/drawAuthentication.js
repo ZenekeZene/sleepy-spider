@@ -1,7 +1,8 @@
+import { findById } from '@/lib/dom/dom'
 import { signInWithRedirect, onAuthenticationStateChanged } from '@/infra/services/authentication/authentication'
 
-const loginIcon = document.getElementById('login-icon')
-const logoutIcon = document.getElementById('logout-icon')
+const loginIcon = findById('login-icon')
+const logoutIcon = findById('logout-icon')
 
 const signIn = ({ authentication }) => signInWithRedirect({ authentication })
 const logout = ({ authentication }) => {

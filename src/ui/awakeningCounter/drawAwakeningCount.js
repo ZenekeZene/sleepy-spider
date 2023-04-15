@@ -1,3 +1,5 @@
+import { listenEvent } from '@/lib/dom/event'
+import { findBySelector, findAllByClassName } from '@/lib/dom/dom'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const cachedCounter = new CachedCounter()
@@ -9,12 +11,12 @@ const COUNTER_EFFECT_CLASSNAME = 'counter-effect'
 const updateDescription = () => {
   const value = cachedCounter.value
   const description = `${TOTAL_TEXT} ${value} times.`
-  document.querySelector('meta[name="description"]').setAttribute("content", description)
+  findBySelector('meta[name="description"]').setAttribute("content", description)
 }
 
 const updateCounters = () => {
   const value = cachedCounter.value
-  const counters = document.getElementsByClassName(COUNTER_CLASSNAME)
+  const counters = findAllByClassName(COUNTER_CLASSNAME)
   Array.from(counters).forEach((counter) => {
     counter.classList.add(COUNTER_EFFECT_CLASSNAME)
     setTimeout(() => {
@@ -26,7 +28,7 @@ const updateCounters = () => {
 }
 
 const listenAnsweredCorrect = () => {
-  document.addEventListener('answeredCorrect', (event) => {
+  listenEvent('answeredCorrect', (event) => {
     const { value } = event.detail
     cachedCounter.increment(value)
     updateCounters()

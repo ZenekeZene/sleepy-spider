@@ -1,17 +1,14 @@
-const EVENT_NAME = 'firstClick'
+import { dispatchEvent, listenEvent } from "@/lib/dom/event"
 
-function dispatchFirstClickEvent() {
-  const event = new Event(EVENT_NAME)
-  document.dispatchEvent(event)
-}
+const EVENT_NAME = 'firstClick'
 
 let isFirstClick = false
 
 function listenFirstClick() {
-  document.addEventListener('click', async () => {
+  listenEvent('click', async () => {
     if (isFirstClick) return
     isFirstClick = true
-    dispatchFirstClickEvent()
+    dispatchEvent(EVENT_NAME)
   })
 }
 

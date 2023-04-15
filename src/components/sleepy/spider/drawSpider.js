@@ -1,3 +1,4 @@
+import { findById } from '@/lib/dom/dom'
 import { listenTheSleepCycle } from '@/components/sleep/sleepControl'
 import { updateListenEyes } from '@/components/sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'
@@ -24,13 +25,13 @@ const onRefreshReferences = async ({ params, onInterruptedSleep = () => null }) 
 }
 
 const drawSpiderBody = async ({ spiderImage, params }) => {
-  const canvas = document.getElementById('body')
+  const canvas = findById('body')
   const context = canvas.getContext('2d')
   body = await createSpiderBody({ spiderImage, context, canvas, eyes, params })
 }
 
 const drawSpider = async ({ spiderImage, params, onInterruptedSleep }) => {
-  eyesCanvas = document.getElementById('eyes')
+  eyesCanvas = findById('eyes')
   eyesContext = eyesCanvas.getContext('2d')
   await drawSpiderEyes({ params })
   await drawSpiderBody({ spiderImage, params })

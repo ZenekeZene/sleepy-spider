@@ -1,4 +1,11 @@
 const findById = id => document.getElementById(id)
+const findAllBySelector = selector => document.querySelectorAll(selector)
+const findBySelector = selector => document.querySelector(selector)
+const findAllByClassName = className => document.getElementsByClassName(className)
+const findByClassName = className => document.getElementByClassName(className)
+
+const getRoot = () => document.documentElement
+const getBody = () => document.body
 
 const createElement = ({ tag = 'p', classNames = [], target, text = '' }) => {
   if (!target) throw new Error('You have to specify a target')
@@ -25,5 +32,11 @@ function toggleElement (element) {
 export {
   createElement,
   toggleElement,
+  findBySelector,
   findById,
+  findAllBySelector,
+  findAllByClassName,
+  findByClassName,
+  getRoot,
+  getBody,
 }

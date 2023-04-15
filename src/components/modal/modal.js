@@ -1,4 +1,4 @@
-import { toggleElement } from '@/lib/dom/dom'
+import { findById, findAllBySelector, toggleElement } from '@/lib/dom/dom'
 import { launchQuestion } from '../question/question'
 import './modal.css'
 
@@ -8,6 +8,7 @@ const QUESTION_TRIGGERS_CLASSNAME = 'question-modal-trigger'
 
 function listenTriggers (target, triggers) {
   triggers.forEach(trigger => {
+    console.log(typeof trigger)
     trigger.addEventListener('click', (event) => {
       event.stopPropagation()
       toggleElement(target)
@@ -26,14 +27,14 @@ function listenQuestionTriggers (target, triggers) {
 }
 
 function handleModal () {
-  const modal = document.getElementById('modal')
-  const triggers = document.querySelectorAll(`.${TRIGGERS_CLASSNAME}`)
+  const modal = findById('modal')
+  const triggers = findAllBySelector(`.${TRIGGERS_CLASSNAME}`)
 
-  const infoModal = document.getElementById('info-modal')
-  const infoTriggers = document.querySelectorAll(`.${INFO_TRIGGERS_CLASSNAME}`)
+  const infoModal = findById('info-modal')
+  const infoTriggers = findAllBySelector(`.${INFO_TRIGGERS_CLASSNAME}`)
 
-  const questionModal = document.getElementById('question-modal')
-  const questionTriggers = document.querySelectorAll(`.${QUESTION_TRIGGERS_CLASSNAME}`)
+  const questionModal = findById('question-modal')
+  const questionTriggers = findAllBySelector(`.${QUESTION_TRIGGERS_CLASSNAME}`)
 
   listenTriggers(modal, triggers)
   listenTriggers(infoModal, infoTriggers)

@@ -1,3 +1,5 @@
+import { listenEvent } from '@/lib/dom/event'
+
 const FRAME_LIMIT = 4
 
 class Pupil {
@@ -9,7 +11,7 @@ class Pupil {
     this.frame = frame
     this.setCoordinates(x, y, frame, scale)
     this.calculateCanvasOffset(params)
-    document.addEventListener("mousemove", (event) => { this.onMouseMove(event) })
+    listenEvent("mousemove", (event) => { this.onMouseMove(event) })
     this.params = params
     this.enabled = true
   }

@@ -1,3 +1,5 @@
+import { findById } from '@/lib/dom/dom'
+import { listenEvent } from '@/lib/dom/event'
 import { DreamEmitter } from './DreamEmitter'
 
 const CANVAS_SIZE = 300
@@ -69,11 +71,11 @@ function stopDream () {
 }
 
 function initDreamController () {
-  canvas = document.getElementById("sleep")
+  canvas = findById("sleep")
   if (!canvas) throw new Error('Dream canvas is not found.')
   context = canvas.getContext("2d")
 
-  document.addEventListener('endTimer', () => {
+  listenEvent('endTimer', () => {
     stopDream()
   })
 }

@@ -1,3 +1,4 @@
+import { dispatchEvent } from "@/lib/dom/event"
 import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 
 const EVENT_NAME = 'answeredCorrect'
@@ -7,8 +8,7 @@ const payload = {
 }
 
 function dispatchAnsweredCorrect () {
-  const event = new CustomEvent(EVENT_NAME, { detail: { ...payload } })
-  document.dispatchEvent(event)
+  dispatchEvent(EVENT_NAME, { ...payload })
 }
 
 export {

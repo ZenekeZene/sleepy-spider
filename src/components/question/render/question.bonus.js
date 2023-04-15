@@ -1,3 +1,4 @@
+import { findById } from '@/lib/dom/dom'
 import { delay } from "@/lib/time"
 import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 
@@ -14,7 +15,7 @@ function toggleVisibility (element) {
 }
 
 async function showCorrectAnswerBonus () {
-  const bonusWrapper = document.getElementById(BONUS_WRAPPER_ID)
+  const bonusWrapper = findById(BONUS_WRAPPER_ID)
   if (!bonusWrapper) return
   setMessage(bonusWrapper)
   toggleVisibility(bonusWrapper)

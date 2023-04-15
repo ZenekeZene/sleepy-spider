@@ -1,34 +1,25 @@
+import { changeAllShareLinks } from '@/components/share/share'
+import { handlePersonalLocalRecord } from '@/components/record/record'
+import { finalSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 
+const HIDE_CLASS = 'hidden'
+
 function hideElements () {
-  const elements = document.querySelectorAll('.hide-on-final-screen')
-  if (!elements) return
-  elements.forEach(element => {
-    element.classList.add('hidden')
+  $el.elementsToHide.forEach(element => {
+    element.classList.add(HIDE_CLASS)
   })
 }
 
 function showFinalScreen(finalScore) {
-  const finalScreen = document.getElementById('final-screen')
-  finalScreen.classList.remove('hidden')
+  $el.finalScreen.classList.remove(HIDE_CLASS)
   hideElements()
-  const finalScoreElement = document.getElementById('final-score')
-  finalScoreElement.textContent = finalScore
+  $el.score.textContent = finalScore
 
-  const record = localStorage.getItem('record')
-  const recordElement = document.getElementById('record')
-  if (record) {
-    // document.getElementById('record-message').classList.add('visible')
-    recordElement.textContent = record
-  }
+  changeAllShareLinks(finalScore)
+  handlePersonalLocalRecord(finalScore)
 
-  if (finalScore > record) {
-    localStorage.setItem('record', finalScore)
-    recordElement.textContent = finalScore
-  }
-
-  const playAgainButton = document.getElementById('play-again')
-  playAgainButton.addEventListener('click', () => {
+  $el.playAgainButton.addEventListener('click', () => {
     window.location.reload()
   })
 }

@@ -1,3 +1,5 @@
+import { listenEvent } from '@/lib/dom/event'
+import { getBody } from '@/lib/dom/dom'
 import { drawGUI } from '@/ui/gui'
 import { getInfraServices } from '@/infra/infra'
 import params from '@/settings/settings'
@@ -23,14 +25,15 @@ function onShowQuestion (questions) {
   launchQuestion(question)
 }
 
-document.addEventListener('firstClick', () => {
+listenEvent('firstClick', () => {
   startClock()
 })
 
-document.addEventListener('endTimer', () => {
+listenEvent('endTimer', () => {
   const cachedCounter = new CachedCounter()
   const finalValue = cachedCounter.value
   showFinalScreen(finalValue)
+  getBody().classList.remove('headShakeHard')
 })
 
 const start = async (spiderImage) => {

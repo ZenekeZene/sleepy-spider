@@ -1,12 +1,13 @@
 import { calculateCombo, isMegaComboById } from "@/domain/combo/combo"
 import { range } from "@/lib/math/random"
+import { findById } from "@/lib/dom/dom"
 import { applyMegaComboEffect } from './combo.effect'
 
 const TAG_NAME = 'span'
 const COMBO_CLASSNAME = 'combo'
 const DELAY_TO_BE_REMOVED_IN_MS = 2000
 
-const wrapperCombos = document.getElementById('combos')
+const wrapperCombos = findById('combos')
 
 const $el = (element) => ({
   setRandomPosition() {

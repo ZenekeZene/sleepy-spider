@@ -1,6 +1,6 @@
 import { COUNTER_CLASSNAME } from "@/ui/awakeningCounter/drawAwakeningCount"
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-import { createElement } from "@/lib/dom/dom"
+import { findById, createElement } from "@/lib/dom/dom"
 import { getUsersByLimit } from "@/infra/user/user.repository"
 import './leaderboard.css'
 
@@ -44,7 +44,7 @@ function createUser ({ listElement, user, isCurrent = false }) {
 }
 
 async function drawUsers ({ database, currentUser }) {
-  const listElement = document.getElementById(LEADERBOARD_ID)
+  const listElement = findById(LEADERBOARD_ID)
   if (!listElement) return
   const users = await getUsersByLimit({ database, limitSize: USERS_LENGTH })
   listElement.innerHTML = ''

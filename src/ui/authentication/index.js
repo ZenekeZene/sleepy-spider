@@ -1,3 +1,4 @@
+import { findById } from '@/lib/dom/dom'
 import { initAuthenticationUI } from '@/ui/authentication/drawAuthentication'
 import { renderLogin, renderLogout } from '@/ui/authentication/authenticationHandlers'
 import { drawSpider } from '@/components/sleepy/spider/drawSpider'
@@ -32,7 +33,7 @@ async function startSpider (spiderImage, { authentication, database }, onShowQue
   }
 
   if (hasError) {
-    document.getElementById('spider-wrapper').innerHTML = ''
+    findById('spider-wrapper').innerHTML = ''
     return
   }
 
