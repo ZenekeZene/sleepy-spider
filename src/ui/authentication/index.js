@@ -2,11 +2,11 @@ import { findById } from 'sleepy-spider-lib'
 import { initAuthenticationUI } from '@/ui/authentication/drawAuthentication'
 import { renderLogin, renderLogout } from '@/ui/authentication/authenticationHandlers'
 import { drawSpider } from '@/components/sleepy/spider/drawSpider'
-import params from '@/settings/settings'
+import params from '@/modules/settings/settings'
 import {
   renderLeaderboardWithoutLoggedUser,
   renderLeaderboardWithLoggedUser,
-} from '@/components/leaderboard/leaderboard'
+} from '@/modules/leaderboard/leaderboard'
 import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
 import { getQuestions } from '@/infra/questions/questions.repository'
 import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/awakeningCounter/drawAwakeningCount'

@@ -8,7 +8,6 @@ const QUESTION_TRIGGERS_CLASSNAME = 'question-modal-trigger'
 
 function listenTriggers (target, triggers) {
   triggers.forEach(trigger => {
-    console.log(typeof trigger)
     trigger.addEventListener('click', (event) => {
       event.stopPropagation()
       toggleElement(target)

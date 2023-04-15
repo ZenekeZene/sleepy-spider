@@ -1,8 +1,9 @@
 import { listenEvent, getBody } from 'sleepy-spider-lib'
 import { drawGUI } from '@/ui/gui'
+import { EVENTS } from '@/adapter'
 import { getInfraServices } from '@/infra/infra'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-import params from '@/settings/settings'
+import params from '@/modules/settings/settings'
 import { startSpider } from '@/ui/authentication'
 import { showFinalScreen } from '@/ui/finalScreen/finalScreen'
 import { onRefreshReferences } from '@/components/sleepy/spider/drawSpider'
@@ -24,11 +25,11 @@ function onShowQuestion (questions) {
   launchQuestion(question)
 }
 
-listenEvent('firstClick', () => {
+listenEvent(EVENTS.FIRST_CLICK, () => {
   startClock()
 })
 
-listenEvent('endTimer', () => {
+listenEvent(EVENTS.END_TIMER, () => {
   const cachedCounter = new CachedCounter()
   const finalValue = cachedCounter.value
   showFinalScreen(finalValue)

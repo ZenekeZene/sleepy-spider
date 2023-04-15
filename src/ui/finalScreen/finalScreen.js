@@ -1,5 +1,5 @@
-import { changeAllShareLinks } from '@/components/share/share'
-import { handlePersonalLocalRecord } from '@/components/record/record'
+import { changeAllShareLinks } from '@/modules/share/share'
+import { handlePersonalLocalRecord } from '@/modules/record/record'
 import { finalSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 

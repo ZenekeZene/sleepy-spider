@@ -1,4 +1,5 @@
 import { findById, listenEvent } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter'
 import { DreamEmitter } from './DreamEmitter'
 
 const CANVAS_SIZE = 300
@@ -74,7 +75,7 @@ function initDreamController () {
   if (!canvas) throw new Error('Dream canvas is not found.')
   context = canvas.getContext("2d")
 
-  listenEvent('endTimer', () => {
+  listenEvent(EVENTS.END_TIMER, () => {
     stopDream()
   })
 }

@@ -1,4 +1,5 @@
 import { findAllByClassName, findById, listenEvent, delay, isMobile } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter'
 
 const TITLE_ID = 'title'
 const HIDE_TITLE_CLASSNAME = 'title-hidden'
@@ -9,7 +10,7 @@ const hideTitleOnFirstClick = () => {
   const title = findById(TITLE_ID)
   const hidesAuto = findAllByClassName(HIDE_CLASSNAME)
 
-  listenEvent('firstClick', async () => {
+  listenEvent(EVENTS.FIRST_CLICK, async () => {
     if (!isMobile()) return
 
     await delay(HIDE_TITLE_DELAY_IN_MS)

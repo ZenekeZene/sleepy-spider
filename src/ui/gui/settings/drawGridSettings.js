@@ -1,5 +1,5 @@
 import { Pane } from 'tweakpane'
-import { SHAPES } from '@/settings/settings'
+import { SHAPES } from '@/modules/settings/settings'
 
 const toggleParametersByShape = ({ shape, inputs }) => {
   const { columns, rows, totalEyesInCircle } = inputs

@@ -1,4 +1,5 @@
 import { listenEvent, findBySelector, findAllByClassName } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const cachedCounter = new CachedCounter()
@@ -27,7 +28,7 @@ const updateCounters = () => {
 }
 
 const listenAnsweredCorrect = () => {
-  listenEvent('answeredCorrect', (event) => {
+  listenEvent(EVENTS.ANSWERED_CORRECT, (event) => {
     const { value } = event.detail
     cachedCounter.increment(value)
     updateCounters()

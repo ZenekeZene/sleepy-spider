@@ -1,4 +1,4 @@
-import { createClicksPerSecCounter } from '../clicksPerSecond/clicksPerSecond'
+import { createClicksPerSecCounter } from '@/modules/clicksPerSecond/clicksPerSecond'
 import { showComboMessage } from './combo.message'
 import {
   isMegaComboByValue,
