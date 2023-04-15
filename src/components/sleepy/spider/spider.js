@@ -1,6 +1,6 @@
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
-import { findById, getBody } from '@/lib/dom/dom'
+import { findById, getBody } from '@/lib'
 import Frame from '@/lib/animation/frame'
 import Position from '@/lib/animation/position'
 import STATES from '@/lib/animation/spritesheet/states'

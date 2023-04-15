@@ -1,14 +1,13 @@
-import { listenEvent } from '@/lib/dom/event'
-import { getBody } from '@/lib/dom/dom'
+import { listenEvent, getBody } from '@/lib'
 import { drawGUI } from '@/ui/gui'
 import { getInfraServices } from '@/infra/infra'
+import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import params from '@/settings/settings'
 import { startSpider } from '@/ui/authentication'
+import { showFinalScreen } from '@/ui/finalScreen/finalScreen'
 import { onRefreshReferences } from '@/components/sleepy/spider/drawSpider'
 import { launchQuestion } from '@/components/question/question'
 import { startClock } from '@/components/clock/clock'
-import { showFinalScreen } from '@/ui/finalScreen/finalScreen'
-import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 (() => {
   const url = new URL('/sprites/spider/spider-spritesheet.webp', import.meta.url).href

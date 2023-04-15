@@ -1,4 +1,4 @@
-import { findById, findBySelector } from '@/lib/dom/dom'
+import { findById, findBySelector } from '@/lib'
 
 function changeTwitterShareLink (finalScore) {
   const twitterShareLink = findById('twitter-share-link')

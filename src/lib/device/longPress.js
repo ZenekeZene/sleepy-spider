@@ -21,9 +21,13 @@ const touchend = () => {
   timer = null
 }
 
-export default function handleLongTouch (onLongPress) {
+function handleLongTouch (onLongPress) {
   window.addEventListener("touchstart", (event) => {
     touchstart(event, onLongPress)
   }, false)
   window.addEventListener("touchend", touchend, false)
+}
+
+export {
+  handleLongTouch,
 }

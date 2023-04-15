@@ -1,4 +1,4 @@
-import { findAllByClassName } from '@/lib/dom/dom'
+import { findAllByClassName } from '@/lib'
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
 import { launchComboSystem } from '../combos/combo.js'
 import { showComboMessage } from '../combos/combo.message'

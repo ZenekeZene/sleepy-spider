@@ -1,7 +1,4 @@
-import { findAllByClassName, findById } from '@/lib/dom/dom'
-import { listenEvent } from '@/lib/dom/event'
-import { delay } from '@/lib/time'
-import isMobile from '@/lib/device/isMobile'
+import { findAllByClassName, findById, listenEvent, delay, isMobile } from '@/lib'
 
 const TITLE_ID = 'title'
 const HIDE_TITLE_CLASSNAME = 'title-hidden'

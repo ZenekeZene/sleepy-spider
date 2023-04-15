@@ -1,4 +1,4 @@
-import { findById } from '@/lib/dom/dom'
+import { findById } from '@/lib'
 import { listenTheSleepCycle } from '@/components/sleep/sleepControl'
 import { updateListenEyes } from '@/components/sleep/sleepControl'
 import { createEyesCanvas, createEyes } from '../eye/factory/eyeFactory'

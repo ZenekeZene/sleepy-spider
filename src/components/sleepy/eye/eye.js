@@ -1,4 +1,4 @@
-import { range } from '@/lib/math/random'
+import { range } from '@/lib'
 import STATES from '@/lib/animation/spritesheet/states'
 import Frame from '@/lib/animation/frame'
 import Position from '@/lib/animation/position'

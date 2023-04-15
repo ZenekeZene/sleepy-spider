@@ -1,5 +1,4 @@
-import { findById } from '@/lib/dom/dom'
-import { listenEvent } from '@/lib/dom/event'
+import { findById, listenEvent } from '@/lib'
 import { DreamEmitter } from './DreamEmitter'
 
 const CANVAS_SIZE = 300

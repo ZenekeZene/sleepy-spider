@@ -1,7 +1,5 @@
-import { toggleElement } from "@/lib/dom/dom"
+import { toggleElement, delay, getHighlightedCode } from "@/lib"
 import * as $class from "@/lib/dom/class.helper"
-import { delay } from "@/lib/time"
-import { getHighlightedCode } from "@/lib/prism"
 import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
 import './question.css'
 

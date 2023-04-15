@@ -1,4 +1,4 @@
-import { findById, findAllBySelector } from '@/lib/dom/dom'
+import { findById, findAllBySelector } from '@/lib'
 
 const finalSelectors = {
   finalScreen: findById('final-screen'),

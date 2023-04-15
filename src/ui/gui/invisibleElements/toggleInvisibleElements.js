@@ -1,4 +1,4 @@
-import { findById, findAllByClassName } from '@/lib/dom/dom'
+import { findById, findAllByClassName } from '@/lib'
 
 const INVISIBLE_CLASSNAME = 'invisible'
 const TRANSPARENT_CLASSNAME = 'transparent'

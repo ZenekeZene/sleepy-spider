@@ -1,4 +1,4 @@
-import { dispatchEvent, listenEvent } from "@/lib/dom/event"
+import { dispatchEvent, listenEvent } from "@/lib"
 
 const EVENT_NAME = 'firstClick'
 

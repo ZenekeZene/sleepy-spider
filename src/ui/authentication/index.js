@@ -1,4 +1,4 @@
-import { findById } from '@/lib/dom/dom'
+import { findById } from '@/lib'
 import { initAuthenticationUI } from '@/ui/authentication/drawAuthentication'
 import { renderLogin, renderLogout } from '@/ui/authentication/authenticationHandlers'
 import { drawSpider } from '@/components/sleepy/spider/drawSpider'

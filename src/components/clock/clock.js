@@ -1,5 +1,4 @@
-import { findById } from '@/lib/dom/dom'
-import { dispatchEvent } from '@/lib/dom/event'
+import { findById, dispatchEvent } from '@/lib'
 import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'

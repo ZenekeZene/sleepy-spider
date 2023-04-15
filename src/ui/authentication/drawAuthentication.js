@@ -1,4 +1,4 @@
-import { findById } from '@/lib/dom/dom'
+import { findById } from '@/lib'
 import { signInWithRedirect, onAuthenticationStateChanged } from '@/infra/services/authentication/authentication'
 
 const loginIcon = findById('login-icon')

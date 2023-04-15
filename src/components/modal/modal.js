@@ -1,4 +1,4 @@
-import { findById, findAllBySelector, toggleElement } from '@/lib/dom/dom'
+import { findById, findAllBySelector, toggleElement } from '@/lib'
 import { launchQuestion } from '../question/question'
 import './modal.css'
 

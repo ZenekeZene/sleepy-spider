@@ -1,5 +1,4 @@
-import { listenEvent } from '@/lib/dom/event'
-import { findBySelector, findAllByClassName } from '@/lib/dom/dom'
+import { listenEvent, findBySelector, findAllByClassName } from '@/lib'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const cachedCounter = new CachedCounter()

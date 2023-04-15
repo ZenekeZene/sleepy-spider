@@ -1,4 +1,4 @@
-import { toggleElement } from "@/lib/dom/dom"
+import { toggleElement } from "@/lib"
 import { QUESTION_TYPES } from "@/domain/question/question.types"
 import { dispatchAnsweredCorrect } from "./question.event"
 import { questionSelectors as $el } from "./render/question.selectors"

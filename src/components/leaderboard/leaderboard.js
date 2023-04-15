@@ -1,6 +1,6 @@
+import { findById, createElement } from "@/lib"
 import { COUNTER_CLASSNAME } from "@/ui/awakeningCounter/drawAwakeningCount"
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-import { findById, createElement } from "@/lib/dom/dom"
 import { getUsersByLimit } from "@/infra/user/user.repository"
 import './leaderboard.css'
 

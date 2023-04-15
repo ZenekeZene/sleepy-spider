@@ -1,6 +1,5 @@
+import { range, findById } from "@/lib"
 import { calculateCombo, isMegaComboById } from "@/domain/combo/combo"
-import { range } from "@/lib/math/random"
-import { findById } from "@/lib/dom/dom"
 import { applyMegaComboEffect } from './combo.effect'
 
 const TAG_NAME = 'span'

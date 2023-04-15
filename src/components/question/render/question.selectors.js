@@ -1,4 +1,4 @@
-import { findById } from '@/lib/dom/dom'
+import { findById } from '@/lib'
 
 const CLASSNAMES = {
   CORRECT: 'correct',

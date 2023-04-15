@@ -1,4 +1,4 @@
-import { listenEvent } from '@/lib/dom/event'
+import { listenEvent } from '@/lib'
 
 const FRAME_LIMIT = 4
 

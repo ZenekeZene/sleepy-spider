@@ -1,4 +1,4 @@
-import { findById } from '@/lib/dom/dom'
+import { findById } from '@/lib'
 import { SHAPES } from '@/settings/settings'
 import Spritesheet from '@/lib/animation/spritesheet/spritesheet'
 import createEyesInCircleShape from './eyeFactory.circle'

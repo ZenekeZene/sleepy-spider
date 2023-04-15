@@ -1,4 +1,4 @@
-import { findById, findBySelector } from "@/lib/dom/dom"
+import { findById, findBySelector } from "@/lib"
 
 let showSettings = false
 const VENDOR_PANE_CLASSNAME = 'tp-dfwv'
