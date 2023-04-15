@@ -1,5 +1,4 @@
-import { toggleElement, delay, getHighlightedCode } from "@/lib"
-import * as $class from "@/lib/dom/class.helper"
+import { toggleElement, delay, getHighlightedCode, classHelper as $class } from "@/lib"
 import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
 import './question.css'
 
