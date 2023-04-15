@@ -1,0 +1,27 @@
+{
+  "name": "sleepy-spider-lib",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "author": "zenekezene",
+  "keywords": [
+    "sleepy",
+    "spider",
+    "library",
+    "js"
+  ],
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/sleepy-spider-lib.js",
+  "exports": {
+    ".": {
+      "import": "./dist/sleepy-spider-lib.js",
+      "require": "./dist/sleepy-spider-lib.umd.cjs"
+    }
+  },
+  "dependencies": {
+    "vite": "^4.2.1"
+  }
+}
