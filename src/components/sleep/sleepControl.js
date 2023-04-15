@@ -1,4 +1,4 @@
-import { findAllByClassName } from '@/lib'
+import { findAllByClassName } from 'sleepy-spider-lib'
 import { calculateCoordinates } from '../sleepy/eye/eyeWithMouse'
 import { launchComboSystem } from '../combos/combo.js'
 import { showComboMessage } from '../combos/combo.message'

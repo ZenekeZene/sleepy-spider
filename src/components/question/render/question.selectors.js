@@ -1,4 +1,4 @@
-import { findById } from '@/lib'
+import { findById } from 'sleepy-spider-lib'
 
 const CLASSNAMES = {
   CORRECT: 'correct',

@@ -1,4 +1,4 @@
-import { findById } from '@/lib'
+import { findById } from 'sleepy-spider-lib'
 import { initAuthenticationUI } from '@/ui/authentication/drawAuthentication'
 import { renderLogin, renderLogout } from '@/ui/authentication/authenticationHandlers'
 import { drawSpider } from '@/components/sleepy/spider/drawSpider'

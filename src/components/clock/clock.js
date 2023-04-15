@@ -1,4 +1,4 @@
-import { findById, dispatchEvent } from '@/lib'
+import { findById, dispatchEvent } from 'sleepy-spider-lib'
 import './clock.css'
 
 const END_TIMER_EVENT = 'endTimer'

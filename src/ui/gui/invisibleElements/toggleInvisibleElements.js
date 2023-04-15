@@ -1,4 +1,4 @@
-import { findById, findAllByClassName } from '@/lib'
+import { findById, findAllByClassName } from 'sleepy-spider-lib'
 
 const INVISIBLE_CLASSNAME = 'invisible'
 const TRANSPARENT_CLASSNAME = 'transparent'

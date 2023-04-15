@@ -1,4 +1,4 @@
-import { listenEvent } from '@/lib'
+import { listenEvent } from 'sleepy-spider-lib'
 
 const FRAME_LIMIT = 4
 

@@ -1,4 +1,4 @@
-import { degToRad } from '@/lib'
+import { degToRad } from 'sleepy-spider-lib'
 import Eye from '../eye'
 
 const createCentralEye = (props, cx, cy) => {

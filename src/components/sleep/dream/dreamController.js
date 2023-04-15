@@ -1,4 +1,4 @@
-import { findById, listenEvent } from '@/lib'
+import { findById, listenEvent } from 'sleepy-spider-lib'
 import { DreamEmitter } from './DreamEmitter'
 
 const CANVAS_SIZE = 300

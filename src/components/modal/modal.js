@@ -1,4 +1,4 @@
-import { findById, findAllBySelector, toggleElement } from '@/lib'
+import { findById, findAllBySelector, toggleElement } from 'sleepy-spider-lib'
 import { launchQuestion } from '../question/question'
 import './modal.css'
 

@@ -1,4 +1,4 @@
-import { dispatchEvent, listenEvent } from "@/lib"
+import { dispatchEvent, listenEvent } from "sleepy-spider-lib"
 
 const EVENT_NAME = 'firstClick'
 

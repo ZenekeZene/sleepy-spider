@@ -1,4 +1,4 @@
-import { findById } from "@/lib"
+import { findById } from "sleepy-spider-lib"
 
 const DELAY_MEGACOMBO_EFFECT_IN_MS = 1000
 const MEGACOMBO_EFFECT_CLASSNAME = 'big-surprise'

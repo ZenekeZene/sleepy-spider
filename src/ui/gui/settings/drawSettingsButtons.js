@@ -1,4 +1,4 @@
-import { findById, findBySelector } from "@/lib"
+import { findById, findBySelector } from "sleepy-spider-lib"
 
 let showSettings = false
 const VENDOR_PANE_CLASSNAME = 'tp-dfwv'

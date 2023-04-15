@@ -1,4 +1,4 @@
-import { findById, findAllBySelector } from '@/lib'
+import { findById, findAllBySelector } from 'sleepy-spider-lib'
 
 const finalSelectors = {
   finalScreen: findById('final-screen'),

@@ -1,4 +1,4 @@
-import { findById, findBySelector } from '@/lib'
+import { findById, findBySelector } from 'sleepy-spider-lib'
 
 function changeTwitterShareLink (finalScore) {
   const twitterShareLink = findById('twitter-share-link')

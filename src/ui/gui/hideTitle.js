@@ -1,4 +1,4 @@
-import { findAllByClassName, findById, listenEvent, delay, isMobile } from '@/lib'
+import { findAllByClassName, findById, listenEvent, delay, isMobile } from 'sleepy-spider-lib'
 
 const TITLE_ID = 'title'
 const HIDE_TITLE_CLASSNAME = 'title-hidden'

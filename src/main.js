@@ -1,4 +1,4 @@
-import { listenEvent, getBody } from '@/lib'
+import { listenEvent, getBody } from 'sleepy-spider-lib'
 import { drawGUI } from '@/ui/gui'
 import { getInfraServices } from '@/infra/infra'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'

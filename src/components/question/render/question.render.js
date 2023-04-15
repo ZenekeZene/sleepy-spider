@@ -1,4 +1,4 @@
-import { toggleElement, delay, getHighlightedCode, classHelper as $class } from "@/lib"
+import { toggleElement, delay, getHighlightedCode, classHelper as $class } from "sleepy-spider-lib"
 import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
 import './question.css'
 

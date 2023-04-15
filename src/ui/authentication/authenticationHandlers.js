@@ -1,4 +1,4 @@
-import { findById } from '@/lib'
+import { findById } from 'sleepy-spider-lib'
 
 const signInSubtitle = findById('sign-in-subtitle')
 const userCounter = findById('user-counter')

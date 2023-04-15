@@ -1,4 +1,4 @@
-import { dispatchEvent } from "@/lib"
+import { dispatchEvent } from "sleepy-spider-lib"
 import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 
 const EVENT_NAME = 'answeredCorrect'

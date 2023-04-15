@@ -1,4 +1,4 @@
-import { range, spriteStates, Frame, Position } from '@/lib'
+import { range, spriteStates, Frame, Position } from 'sleepy-spider-lib'
 import Pupil from '../pupil/pupil'
 import settings from './eyeSettings'
 

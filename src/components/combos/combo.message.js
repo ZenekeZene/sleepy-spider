@@ -1,4 +1,4 @@
-import { range, findById } from "@/lib"
+import { range, findById } from "sleepy-spider-lib"
 import { calculateCombo, isMegaComboById } from "@/domain/combo/combo"
 import { applyMegaComboEffect } from './combo.effect'
 

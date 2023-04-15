@@ -1,6 +1,6 @@
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
-import { findById, getBody, Frame, Position, spriteStates } from '@/lib'
+import { findById, getBody, Frame, Position, spriteStates } from 'sleepy-spider-lib'
 import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
 import './spider.css'
 

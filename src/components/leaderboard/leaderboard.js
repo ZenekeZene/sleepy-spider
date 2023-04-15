@@ -1,4 +1,4 @@
-import { findById, createElement } from "@/lib"
+import { findById, createElement } from "sleepy-spider-lib"
 import { COUNTER_CLASSNAME } from "@/ui/awakeningCounter/drawAwakeningCount"
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { getUsersByLimit } from "@/infra/user/user.repository"

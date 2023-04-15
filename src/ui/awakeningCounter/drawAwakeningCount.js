@@ -1,4 +1,4 @@
-import { listenEvent, findBySelector, findAllByClassName } from '@/lib'
+import { listenEvent, findBySelector, findAllByClassName } from 'sleepy-spider-lib'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const cachedCounter = new CachedCounter()

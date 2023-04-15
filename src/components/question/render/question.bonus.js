@@ -1,4 +1,4 @@
-import { findById, delay } from '@/lib'
+import { findById, delay } from 'sleepy-spider-lib'
 import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
 
 const BONUS_WRAPPER_ID = 'question-bonus'

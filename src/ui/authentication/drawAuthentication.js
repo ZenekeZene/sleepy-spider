@@ -1,4 +1,4 @@
-import { findById } from '@/lib'
+import { findById } from 'sleepy-spider-lib'
 import { signInWithRedirect, onAuthenticationStateChanged } from '@/infra/services/authentication/authentication'
 
 const loginIcon = findById('login-icon')
