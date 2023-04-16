@@ -1,4 +1,4 @@
-import { QUESTION_TYPES } from '@/domain/question/question.types'
+import { QUESTION_TYPES } from '@/domain/question'
 
 const sortOptions = (options) => options.sort(() => Math.random() - 0.5)
 
@@ -28,6 +28,9 @@ function parseMultiChoiceQuestion (question) {
 }
 
 function parseSpecificityQuestion (question) {
+  if (!question) {
+    return null
+  }
   return {
     type: QUESTION_TYPES.SPECIFICITY,
     question,

@@ -23,7 +23,3 @@ const start = async (spiderImage) => {
 }
 
 loadSpiderSprite(start)
-
-// document.addEventListener("DOMContentLoaded", () => {
-  // start()
-// })

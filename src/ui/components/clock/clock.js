@@ -1,35 +1,33 @@
 import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
+import * as constants from '@/domain/clock'
 import './clock.css'
 
-const END_TIMER_EVENT = 'endTimer'
-const SECOND_IN_MS = 1000
-const MAX_SECONDS = 10
-const MAX_SECONDS_IN_MS = MAX_SECONDS * SECOND_IN_MS + (SECOND_IN_MS)
-
+const ALERT_CLASS = '--alert'
 const clock = findById('clock')
 const face = findById('lazy')
-face.textContent = MAX_SECONDS
+face.textContent = constants.MAX_SECONDS
 
 function startClock() {
   const startTime = new Date().getTime()
   const intervalId = setInterval(() => {
     const currentTime = new Date().getTime()
     const timeElapsed = currentTime - startTime
-    const timeRemaining = MAX_SECONDS_IN_MS - timeElapsed
-    const secondsRemaining = Math.floor(timeRemaining / SECOND_IN_MS)
+    const timeRemaining = constants.MAX_SECONDS_IN_MS - timeElapsed
+    const secondsRemaining = Math.floor(timeRemaining / constants.SECOND_IN_MS)
 
-    if (secondsRemaining < 10) {
-      clock.classList.add('--alert')
+    if (secondsRemaining < constants.ALERT_CLOCK_SECONDS) {
+      clock.classList.add(ALERT_CLASS)
     }
 
-    if (timeRemaining > 0) {
+    if (secondsRemaining > 0) {
       face.innerText = secondsRemaining
     } else {
       clearInterval(intervalId)
-      dispatchEvent(END_TIMER_EVENT)
+      dispatchEvent(EVENTS.END_TIMER)
+      clock.classList.remove(ALERT_CLASS)
     }
-  }, SECOND_IN_MS)
+  }, constants.SECOND_IN_MS)
 }
 
 function prepareClock () {

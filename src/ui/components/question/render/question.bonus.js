@@ -1,5 +1,5 @@
 import { findById, delay } from 'sleepy-spider-lib'
-import { CORRECT_QUESTION_VALUE } from "@/domain/question/question.constants"
+import { CORRECT_QUESTION_VALUE } from "@/domain/question"
 
 const BONUS_WRAPPER_ID = 'question-bonus'
 const BONUS_TOGGLE_CLASS = 'visible'

@@ -1,8 +1,6 @@
 import { renderQuestion } from "./render/question.render"
 import { parseSpecificityQuestion } from "@/infra/questions/question.mapper"
-import { QUESTION_TYPES } from "@/domain/question/question.types"
-import { SPECIFICITY_PROBABILITY } from "@/domain/question/question.constants"
-import generateQuestion from "@/domain/question/question"
+import { QUESTION_TYPES, SPECIFICITY_PROBABILITY, generateQuestion } from "@/domain/question"
 
 const title =  'Calculate the CSS specificity!'
 

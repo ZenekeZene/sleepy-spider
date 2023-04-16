@@ -1,5 +1,5 @@
 import { range, findById } from "sleepy-spider-lib"
-import { calculateCombo, isMegaComboById } from "@/domain/combo/combo"
+import { calculateCombo, isMegaComboById } from "@/domain/combo"
 import { applyMegaComboEffect } from './combo.effect'
 
 const TAG_NAME = 'span'

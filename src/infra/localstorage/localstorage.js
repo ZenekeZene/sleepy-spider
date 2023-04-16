@@ -5,10 +5,12 @@ function get (key) {
 }
 
 function set (key, value) {
-  localStorage.setTime(key, JSON.stringify(value))
+  if (!key) throw new Error('key is required')
+  if (!value) throw new Error('value is required')
+  localStorage.setItem(key, JSON.stringify(value))
 }
 
-export default {
+export {
   get,
   set,
 }

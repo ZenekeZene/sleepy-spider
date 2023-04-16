@@ -1,7 +1,7 @@
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
 import { findById, getBody, Frame, Position, spriteStates } from 'sleepy-spider-lib'
-import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
+import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
 import './spider.css'
 
 const INTERVAL_ANIMATION_IN_MS = 250

@@ -1,5 +1,5 @@
 import { toggleElement } from "sleepy-spider-lib"
-import { QUESTION_TYPES } from "@/domain/question/question.types"
+import { QUESTION_TYPES } from "@/domain/question"
 import { dispatchAnsweredCorrect } from "./question.event"
 import { questionSelectors as $el } from "./render/question.selectors"
 import { showCorrectAnswerBonus } from "./render/question.bonus"

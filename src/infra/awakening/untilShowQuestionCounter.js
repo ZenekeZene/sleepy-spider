@@ -1,4 +1,4 @@
-import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question/question.constants'
+import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
 
 class UntilShowQuestionCounter {
   constructor () {
@@ -24,7 +24,7 @@ class UntilShowQuestionCounter {
   isLimitReachedByValue = (value) => {
     this.increment(value)
     const isLimitReached = this.isLimitReached()
-    if (isLimitReached) {
+    if (this.isLimitReached()) {
       this.reset()
     }
     return isLimitReached

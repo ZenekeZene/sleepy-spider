@@ -3,7 +3,7 @@ import { showComboMessage } from './combo.message'
 import {
   isMegaComboByValue,
   scaleComboToMegaCombo
-} from '@/domain/combo/combo'
+} from '@/domain/combo'
 import './combos.css'
 
 const minComboToAction = 1

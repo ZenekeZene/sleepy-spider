@@ -160,12 +160,12 @@ function generateSimilarSpecificities(specificity) {
 
     usedDigits.add(randomDigit);
     digits.push(randomDigit);
-  }
+	}
 
   return [
     `0${digits[0]}${digits[1]}${digits[2]}`,
     `0${digits[3]}${digits[0]}${digits[2]}`,
-    `0${digits[4]}${digits[1]}${digits[0]}`
+    `0${digits[2]}${digits[1]}${digits[0]}`
   ].sort(() => Math.random() - 0.5);
 }
 

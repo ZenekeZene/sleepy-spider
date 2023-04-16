@@ -1,5 +1,5 @@
 import { findById } from "sleepy-spider-lib"
-import localstorage from '@/infra/localstorage/localstorage'
+import * as localstorage from '@/infra/localstorage/localstorage'
 
 const RECORD_KEY = 'record'
 
