@@ -3,7 +3,7 @@ import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
 import { getQuestions } from '@/infra/questions/questions.repository'
 import { initAuthenticationUI } from '@/modules/authentication/drawAuthentication'
 import { renderLogin, renderLogout } from '@/modules/authentication/authenticationHandlers'
-import params from '@/modules/settings/settings'
+import { params } from '@/domain/settings'
 import {
   renderLeaderboardWithoutLoggedUser,
   renderLeaderboardWithLoggedUser,

@@ -1,5 +1,5 @@
 import { getInfraServices } from '@/infra/infra'
-import params from '@/modules/settings/settings'
+import { params } from '@/domain/settings'
 import { startSpider } from '@/modules/authentication'
 import { drawGUI } from '@/ui/gui'
 import { loadSpiderSprite } from '@/ui'

@@ -1,5 +1,5 @@
 import { findById, Spritesheet } from 'sleepy-spider-lib'
-import { SHAPES } from '@/modules/settings/settings'
+import { SHAPES } from '@/domain/settings'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 

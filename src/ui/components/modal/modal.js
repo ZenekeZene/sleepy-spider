@@ -1,5 +1,5 @@
 import { toggleElement } from 'sleepy-spider-lib'
-import { modalSelectors as $el } from './modal.selectors'
+import { getSelectors } from './modal.selectors'
 import './modal.css'
 
 function listenTriggers (target, triggers) {
@@ -11,13 +11,10 @@ function listenTriggers (target, triggers) {
   })
 }
 
-function handleModal () {
+function initModal () {
+  const $el = getSelectors()
   listenTriggers($el.modal, $el.triggers)
   listenTriggers($el.infoModal, $el.infoTriggers)
-}
-
-function initModal () {
-  handleModal()
 }
 
 export {

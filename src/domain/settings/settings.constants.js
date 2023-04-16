@@ -20,8 +20,7 @@ const params = {
   sound: false,
 }
 
-export default params
-
 export {
+  params,
   SHAPES
 }
