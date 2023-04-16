@@ -10,6 +10,9 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
   },
+  server: {
+    port: 8000,
+  },
   plugins: [
     alias({
       entries: [
