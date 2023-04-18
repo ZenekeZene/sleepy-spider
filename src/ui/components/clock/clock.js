@@ -1,36 +1,44 @@
+import { startCountdown } from 'sleepy-spider-lib'
 import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import * as constants from '@/domain/clock'
 import './clock.css'
 
 const ALERT_CLASS = '--alert'
-const clock = findById('clock')
-const face = findById('lazy')
-face.textContent = constants.MAX_SECONDS
 
 function startClock() {
-  const startTime = new Date().getTime()
-  const intervalId = setInterval(() => {
-    const currentTime = new Date().getTime()
-    const timeElapsed = currentTime - startTime
-    const timeRemaining = constants.MAX_SECONDS_IN_MS - timeElapsed
-    const secondsRemaining = Math.floor(timeRemaining / constants.SECOND_IN_MS)
+  const clock = findById('clock')
+  const face = findById('lazy')
+  face.textContent = constants.MAX_SECONDS
 
-    if (secondsRemaining < constants.ALERT_CLOCK_SECONDS) {
+  const onInterval = (time) => {
+    if (time < constants.ALERT_CLOCK_SECONDS) {
       clock.classList.add(ALERT_CLASS)
     }
 
-    if (secondsRemaining > 0) {
-      face.innerText = secondsRemaining
+    if (time > 0) {
+      face.textContent = time
     } else {
-      clearInterval(intervalId)
+      face.textContent = 0
       dispatchEvent(EVENTS.END_TIMER)
       clock.classList.remove(ALERT_CLASS)
     }
-  }, constants.SECOND_IN_MS)
+  }
+
+  const config = {
+    duration: constants.MAX_SECONDS_IN_MS,
+    callback: onInterval,
+    countdownToZero: true,
+    interval: constants.SECOND_IN_MS,
+  }
+
+  startCountdown(config)
 }
 
 function prepareClock () {
+  const face = findById('lazy')
+  face.textContent = constants.MAX_SECONDS
+
   listenEvent(EVENTS.FIRST_CLICK, () => {
     startClock()
   })
