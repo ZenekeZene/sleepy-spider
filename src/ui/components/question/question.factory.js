@@ -24,10 +24,11 @@ function decideQuestionType (question) {
 
 function renderQuestionByType (question) {
   const { type } = question
+  const { specificityQuestion, multiChoiceQuestion } = renderQuestion()
   if (type === QUESTION_TYPES.SPECIFICITY) {
-    renderQuestion.specificityQuestion(question)
+    specificityQuestion(question)
   } else if (type === QUESTION_TYPES.MULTICHOICE) {
-    renderQuestion.multiChoiceQuestion(question)
+    multiChoiceQuestion(question)
   }
 }
 

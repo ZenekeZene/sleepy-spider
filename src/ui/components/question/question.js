@@ -1,7 +1,7 @@
 import { toggleElement } from "sleepy-spider-lib"
 import { QUESTION_TYPES } from "@/domain/question"
 import { dispatchAnsweredCorrect } from "./question.event"
-import { questionSelectors as $el } from "./render/question.selectors"
+import { getQuestionSelectors as $el } from "./render/question.selectors"
 import { showCorrectAnswerBonus } from "./render/question.bonus"
 import { renderQuestion, closeQuestion, removeCommas } from "./render/question.render"
 import { createQuestion } from "./question.factory"
@@ -18,7 +18,7 @@ function onAnswered(questionWithType, event) {
   }
 
   const isCorrect = answer === value
-  renderQuestion.result(isCorrect, event)
+  renderQuestion().result(isCorrect, event)
 
   if (!isCorrect) return
   showCorrectAnswerBonus()
@@ -30,7 +30,7 @@ function checkAnswer(question) {
 
   const listen = (isAdd = true) => {
     const listenerAction = isAdd ? 'addEventListener': 'removeEventListener'
-    $el.eachAnswer(answer => {
+    $el().eachAnswer(answer => {
       answer[listenerAction]('click', handleAnswer)
     })
   }
@@ -55,13 +55,14 @@ function drawQuestion(rawQuestion) {
 }
 
 function launchQuestion(rawQuestion) {
-  if (!$el.modal) return
-  toggleElement($el.modal)
+  const { modal } = $el()
+  if (!modal) return
+  toggleElement(modal)
   drawQuestion(rawQuestion)
 }
 
 function onShowQuestion (questions) {
-  if (!questions || questions.length === 0) return
+  if (!questions || questions.length === 0) throw new Error('No questions to show')
   const question = questions.pop()
   launchQuestion(question)
 }

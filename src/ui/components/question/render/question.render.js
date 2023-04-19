@@ -1,57 +1,73 @@
-import { toggleElement, delay, getHighlightedCode, classHelper as $class } from "sleepy-spider-lib"
-import { questionSelectors as $el, CLASSNAMES } from "./question.selectors"
+import {
+  toggleElement,
+  delay,
+  getHighlightedCode,
+  classHelper as $class,
+  addCommas, removeCommas,
+ } from "sleepy-spider-lib"
+import { getQuestionSelectors, setContent } from "./question.selectors"
+import { CLASSNAMES } from "./question.classnames"
 import './question.css'
 
 const DELAY_TO_HIDE_IN_MS = 1000
 
-const renderWithCommas = (text) => text.split('').join(',')
-const removeCommas = (text) => text.split(',').join('')
+const answersSpecificity = (options) => {
+  const answers = options.map((value) => `<li>${addCommas(value)}</li>`)
+  return answers.join('')
+}
 
-const renderQuestion = {
-  answers: (options) => {
-    const answers = options.map((value) => `<li>${value}</li>`)
-    return answers.join('')
-  },
-  answersSpecificity: (options) => {
-    const answers = options.map((value) => `<li>${renderWithCommas(value)}</li>`)
-    return answers.join('')
-  },
-  specificityQuestion: ({ question }) => {
-    const { title, value, options } = question
-    $el.modal.classList.remove('--vertical')
-    $el.setContent('title', title)
-    $el.code.style.display = 'block'
-    $el.setContent('value', getHighlightedCode(value))
-    $el.setContent('options', renderQuestion.answersSpecificity(options))
-  },
-  multiChoiceQuestion: ({ question }) => {
-    const { title, options } = question
-    $el.modal.classList.add('--vertical')
-    $el.setContent('title', title)
-    $el.code.style.display = 'none'
-    $el.setContent('options', renderQuestion.answers(options))
-  },
-  result: async (isCorrect, event) => {
-    const className = CLASSNAMES.get(isCorrect)
-    $class.forEach($el.examScore, CLASSNAMES.all, $class.remove)
-    $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
-    $class.addAll([event.target, $el.examScore[className]], [CLASSNAMES.VISIBLE, className])
-    $class.toggle($el.inner, className)
-    // await renderQuestion.shake(isCorrect)
-  },
-  shake: async (isCorrect) => {
-    const shake = CLASSNAMES.getShake(isCorrect)
-    $class.add($el.shake, shake)
-    await delay (DELAY_TO_HIDE_IN_MS)
-    $class.remove($el.shake, shake)
+const answers = (options) => {
+  const answers = options.map((value) => `<li>${value}</li>`)
+  return answers.join('')
+}
+
+const shake = async (isCorrect) => {
+  const shake = CLASSNAMES.getShake(isCorrect)
+  $class.add($el.shake, shake)
+  await delay (DELAY_TO_HIDE_IN_MS)
+  $class.remove($el.shake, shake)
+}
+
+const renderQuestion = () => {
+  const $el =  getQuestionSelectors()
+  const { code, modal, examScore, inner } = $el
+
+  return {
+    answersSpecificity,
+    answers,
+    shake,
+    specificityQuestion: ({ question }) => {
+      const { title, value, options } = question
+      modal.classList.remove('--vertical')
+      setContent('title', title)
+      code.style.display = 'block'
+      setContent('value', getHighlightedCode(value))
+      setContent('options', answersSpecificity(options))
+    },
+    multiChoiceQuestion: ({ question }) => {
+      const { title, options } = question
+      modal.classList.add('--vertical')
+      setContent('title', title)
+      code.style.display = 'none'
+      setContent('options', answers(options))
+    },
+    result: async (isCorrect, event) => {
+      const className = CLASSNAMES.get(isCorrect)
+      $class.forEach(examScore, CLASSNAMES.all, $class.remove)
+      $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
+      $class.addAll([event.target, examScore[className]], [CLASSNAMES.VISIBLE, className])
+      $class.toggle(inner, className)
+      // await renderQuestion.shake(isCorrect)
+    },
   }
 }
 
 async function closeQuestion ({ target }) {
+  const { inner, examScore, modal } = getQuestionSelectors()
   await delay(DELAY_TO_HIDE_IN_MS)
-  $class.removeAll([target, $el.inner], CLASSNAMES.all)
-  $class.forEach($el.examScore, CLASSNAMES.VISIBLE, $class.remove)
-  toggleElement($el.modal)
+  $class.removeAll([target, inner], CLASSNAMES.all)
+  $class.forEach(examScore, CLASSNAMES.VISIBLE, $class.remove)
+  toggleElement(modal)
 }
 
 export {
