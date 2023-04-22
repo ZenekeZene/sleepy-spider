@@ -1,4 +1,4 @@
-import { createClicksPerSecCounter } from '@/modules/clicksPerSecond/clicksPerSecond'
+import { createClicksChecker } from 'clicks-checker'
 import { showComboMessage } from './combo.message'
 import {
   isMegaComboByValue,
@@ -18,7 +18,7 @@ function handleCombo (value, onCombo) {
 }
 
 function launchComboSystem ({ onCombo = () => null }) {
-  const incrementClick = createClicksPerSecCounter({
+  const incrementClick = createClicksChecker({
     onAction: (value) => handleCombo(value, onCombo),
     minToAction: minComboToAction,
   })
