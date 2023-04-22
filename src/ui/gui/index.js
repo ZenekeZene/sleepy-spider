@@ -4,10 +4,10 @@ import { toggleInvisibleElements } from './invisibleElements/toggle.invisible.el
 import { drawSettingsPanel } from './settings/drawSettingsPanel'
 import { hideTitleOnFirstClick } from './hideTitle'
 
-const drawGUI = ({ params, onSettingsChanges }) => {
+const drawGUI = (params) => {
   initModal()
   toggleInvisibleElements()
-  drawSettingsPanel({ params, onSettingsChanges })
+  drawSettingsPanel(params)
   hideTitleOnFirstClick()
   listenFirstClick()
 }

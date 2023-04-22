@@ -22,8 +22,8 @@ const drawSettingsFolder = ({ params, panel }) => {
   settingsFolder.addInput(params, 'sound')
 }
 
-const drawSettingsPanel = ({ params, onSettingsChanges }) => {
-  const { panel } = drawGridFolder({ params, onSettingsChanges })
+const drawSettingsPanel = (params) => {
+  const { panel } = drawGridFolder(params)
   drawSettingButtons({ panel, onClick: toggleSettingsPanel })
   drawEyeFolder({ params, panel })
   drawSettingsFolder({ params, panel })

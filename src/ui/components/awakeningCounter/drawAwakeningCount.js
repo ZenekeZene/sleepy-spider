@@ -1,18 +1,11 @@
-import { listenEvent, findBySelector, findAllByClassName } from 'sleepy-spider-lib'
+import { listenEvent, findAllByClassName } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 
 const cachedCounter = new CachedCounter()
 
-const TOTAL_TEXT = `Let’s wake up a million times, and a surprise will happen. We wake `
 export const COUNTER_CLASSNAME = 'counter'
 const COUNTER_EFFECT_CLASSNAME = 'counter-effect'
-
-const updateDescription = () => {
-  const value = cachedCounter.value
-  const description = `${TOTAL_TEXT} ${value} times.`
-  findBySelector('meta[name="description"]').setAttribute("content", description)
-}
 
 const updateCounters = () => {
   const value = cachedCounter.value
@@ -32,7 +25,6 @@ const listenAnsweredCorrect = () => {
     const { value } = event.detail
     cachedCounter.increment(value)
     updateCounters()
-    updateDescription()
   })
 }
 

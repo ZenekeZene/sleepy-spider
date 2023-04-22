@@ -1,5 +1,11 @@
 import { Pane } from 'tweakpane'
+import { dispatchEvent } from 'sleepy-spider-lib'
+import { EVENTS } from '@/adapter/events/events'
 import { SHAPES } from '@/domain/settings'
+
+const onSettingsChanges = () => {
+  dispatchEvent(EVENTS.CHANGES_IN_SETTINGS)
+}
 
 const toggleParametersByShape = ({ shape, inputs }) => {
   const { columns, rows, totalEyesInCircle } = inputs
@@ -16,7 +22,7 @@ const toggleParametersByShape = ({ shape, inputs }) => {
   }
 }
 
-const drawShapeInput = ({ params, folder, inputs, onSettingsChanges }) => {
+const drawShapeInput = ({ params, folder, inputs }) => {
   const shapeInput = folder.addInput(params, 'shape', { options: { ...SHAPES }, index: 0 })
   shapeInput.on('change', () => {
     onSettingsChanges()
@@ -24,7 +30,7 @@ const drawShapeInput = ({ params, folder, inputs, onSettingsChanges }) => {
   })
 }
 
-const drawGridInputs = ({ params, folder, onSettingsChanges }) => {
+const drawGridInputs = ({ params, folder }) => {
   const inputs = {}
   inputs.columns = folder.addInput(params, 'columns', { min: 2, max: 3, step: 1 })
   inputs.rows = folder.addInput(params, 'rows', { min: 1, max: 3, step: 1 })
@@ -38,11 +44,11 @@ const drawGridInputs = ({ params, folder, onSettingsChanges }) => {
   return { inputs }
 }
 
-const drawGridFolder = ({ params, onSettingsChanges }) => {
+const drawGridFolder = (params) => {
   const panel = new Pane()
   const gridFolder = panel.addFolder({ title: 'Grid' })
-  const { inputs } = drawGridInputs({ params, folder: gridFolder, onSettingsChanges })
-  drawShapeInput({ params, folder: gridFolder, inputs, onSettingsChanges })
+  const { inputs } = drawGridInputs({ params, folder: gridFolder })
+  drawShapeInput({ params, folder: gridFolder, inputs, })
   toggleParametersByShape({ shape: params.shape, inputs })
   return { panel }
 }
