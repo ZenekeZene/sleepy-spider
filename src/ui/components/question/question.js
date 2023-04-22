@@ -1,9 +1,9 @@
-import { toggleElement } from "sleepy-spider-lib"
+import { toggleElement, removeCommas } from "sleepy-spider-lib"
 import { QUESTION_TYPES } from "@/domain/question"
 import { dispatchAnsweredCorrect } from "./question.event"
 import { getQuestionSelectors as $el } from "./render/question.selectors"
 import { showCorrectAnswerBonus } from "./render/question.bonus"
-import { renderQuestion, closeQuestion, removeCommas } from "./render/question.render"
+import { renderQuestion, closeQuestion } from "./render/question.render"
 import { createQuestion } from "./question.factory"
 
 const DELAY_TO_ENABLE_ANSWER_IN_MS = 1000

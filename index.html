@@ -169,17 +169,64 @@
 
     <!-- FINAL SCREEN -->
     <article id="final-screen" class="final-screen hidden invisible">
-        <h2>Sleepy woke up!</h2>
-        <section class="final-screen__avatar">
-          <img src="/sleepy.jpg" alt="Sleepy" />
+        <!--<h2 class="final-screen__title">Sleepy woke up!</h2>-->
+        <section class="final-screen__info">
+          <section class="final-screen__avatar">
+            <img src="/sleepy.jpg" alt="Sleepy" />
+          </section>
+          <div class="final-screen__score-wrapper">
+            <p class="final-screen__score-label">Your score:</p>
+            <h3 id="final-score" class="final-screen__score">0</h3>
+            <p id="record-message" class="final-screen__record">Record: <span id="record-message-value" class="final-screen__record-value"></span></p>
+          </div>
         </section>
-        <h2>Final score:</h2>
-        <h3 id="final-score" class="final-screen__score">0</h3>
-        <p id="record-message" class="final-screen__record">Record: <span id="record-message-value"></span></p>
 
-        <section class="final-screen__buttons">
-          <button id="share" class="final-screen__share icon-share modal-trigger">Share!</button>
-          <button id="play-again" class="final-screen__play">Play again!</button>
+        <!-- Leaderboard preview -->
+        <section class="leaderboard-preview">
+          <ul id="leaderboard-preview" class="leaderboard-preview__list">
+            <li class="leaderboard-preview__item">
+              <span class="leaderboard-preview__position">1</span>
+              <span class="leaderboard-preview__name">Zeneke</span>
+              <span class="leaderboard-preview__score">2000</span>
+            </li>
+
+            <li class="leaderboard-preview__item">
+              <span class="leaderboard-preview__position">2</span>
+              <span class="leaderboard-preview__name">FulanitoX23_33</span>
+              <span class="leaderboard-preview__score">1500</span>
+            </li>
+
+            <li class="leaderboard-preview__item">
+              <span class="leaderboard-preview__position">3</span>
+              <span class="leaderboard-preview__name">SoyManolo68</span>
+              <span class="leaderboard-preview__score">754</span>
+            </li>
+
+            <li class="leaderboard-preview__item">
+              <span class="leaderboard-preview__position">44</span>
+              <span class="leaderboard-preview__name">Menganito_XXX</span>
+              <span class="leaderboard-preview__score">451</span>
+            </li>
+
+            <li class="leaderboard-preview__item  --current">
+              <span class="leaderboard-preview__position">45</span>
+              <span class="leaderboard-preview__name">FulanitoX23_33</span>
+              <span class="leaderboard-preview__score">453</span>
+            </li>
+
+            <li class="leaderboard-preview__item">
+              <span class="leaderboard-preview__position">45</span>
+              <span class="leaderboard-preview__name">Random_User-10</span>
+              <span class="leaderboard-preview__score">344</span>
+            </li>
+
+          </ul>
+        </section>
+
+        <section class="final-screen__buttons buttons-wrapper">
+          <button id="share" class="button --secondary icon-share modal-trigger">See leaderboard</button>
+          <button id="share" class="button --secondary icon-share modal-trigger">Share!</button>
+          <button id="play-again" class="button">Play again!</button>
         </section>
     </article>
 

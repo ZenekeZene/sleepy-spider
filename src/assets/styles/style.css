@@ -2,6 +2,7 @@
 @import './utils/utils.css';
 @import './loader/loader.css';
 @import './vendor/vendor.css';
+@import './components/buttons.css';
 
 .bounce-wrapper {
   position: absolute;

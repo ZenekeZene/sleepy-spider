@@ -1,0 +1,42 @@
+.button {
+  max-width: 25rem;
+  width: 100%;
+  padding: 0.5em;
+  font-family: var(--font-secondary);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  background-color: pink;
+  border: none;
+  border-radius: 4px;
+  border-bottom: 8px solid #ee9fad;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.button.--secondary {
+  border-left: 2px solid #ee9fad;
+  border-right: 2px solid #ee9fad;
+  border-top: 2px solid #ee9fad;
+  background-color: white;
+}
+
+.button.--secondary:hover {
+  color: white;
+  background-color: #ee9fad;
+  border-color: var(--primary-color);
+}
+
+.buttons-wrapper {
+  max-width: 25rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}

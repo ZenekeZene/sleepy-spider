@@ -1,12 +1,14 @@
-import { findById, findAllBySelector } from 'sleepy-spider-lib'
+import { findById, getCacheByKey, findAllBySelector } from 'sleepy-spider-lib'
 
-const finalSelectors = {
-  finalScreen: findById('final-screen'),
+const findByIdCached = getCacheByKey(findById, false)
+
+const getFinalSelectors = () => ({
+  finalScreen: findByIdCached('final-screen'),
   elementsToHide: findAllBySelector('.hide-on-final-screen'),
-  score: findById('final-score'),
-  playAgainButton: findById('play-again'),
-}
+  score: findByIdCached('final-score'),
+  playAgainButton: findByIdCached('play-again'),
+})
 
 export {
-  finalSelectors,
+  getFinalSelectors,
 }

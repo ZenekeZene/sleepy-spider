@@ -3,18 +3,20 @@ import { EVENTS } from '@/adapter'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/modules/share/share'
 import { handlePersonalLocalRecord } from '@/modules/record/record'
-import { finalSelectors as $el } from './finalScreen.selectors'
+import { getFinalSelectors } from './finalScreen.selectors'
 import './finalScreen.css'
 
 const HIDE_CLASS = 'hidden'
 
 function hideElements () {
+  const $el = getFinalSelectors()
   $el.elementsToHide.forEach(element => {
     element.classList.add(HIDE_CLASS)
   })
 }
 
 function showFinalScreen(finalScore) {
+  const $el = getFinalSelectors()
   $el.finalScreen.classList.remove(HIDE_CLASS)
   hideElements()
   $el.score.textContent = finalScore

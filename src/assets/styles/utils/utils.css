@@ -4,7 +4,8 @@
   text-decoration: underline;
 }
 
-.invisible {
+.invisible,
+.hidden {
   display: none;
 }
 
