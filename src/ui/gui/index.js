@@ -4,7 +4,7 @@ import { toggleInvisibleElements } from './invisibleElements/toggle.invisible.el
 import { drawSettingsPanel } from './settings/drawSettingsPanel'
 import { hideTitleOnFirstClick } from './hideTitle'
 
-const drawGUI = (params) => {
+const prepareGUI = (params) => {
   initModal()
   toggleInvisibleElements()
   drawSettingsPanel(params)
@@ -13,5 +13,5 @@ const drawGUI = (params) => {
 }
 
 export {
-  drawGUI,
+  prepareGUI,
 }

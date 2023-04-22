@@ -21,10 +21,12 @@ async function onLogout ({ database }) {
   renderLogout()
 }
 
-async function startSpider (spiderImage, { authentication, database }, onShowQuestion) {
+async function startSpider (spiderImage, services, onShowQuestion) {
   let spider = null
   let questions
   let hasError = false
+  const { authentication, database } = services
+
   try {
     questions = await getQuestions({ database, size: 20 })
   } catch (error) {
