@@ -8,7 +8,7 @@ const INTERVAL_REFRESH_IN_MS = 4000
 const LEADERBOARD_ID = 'leaderboard'
 const CLASSNAME__PREFIX = 'leaderboard__'
 const USERS_LENGTH = 2
-const imageFallbackSrc = new URL('/src/assets/images/spider-fallback.svg', import.meta.url).href
+const imageFallbackSrc = new URL('/src/ui/assets/images/spider-fallback.svg', import.meta.url).href
 
 const cachedCounter = new CachedCounter()
 

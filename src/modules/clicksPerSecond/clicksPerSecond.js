@@ -17,8 +17,7 @@ function resetClicks() {
 }
 
 function checkLastClicks(minToAction) {
-  if (lastCPS > minToAction) { return true }
-  return false
+  return lastCPS > minToAction
 }
 
 function startCheckLastClicksInterval(minToAction, onAction) {
