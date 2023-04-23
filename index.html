@@ -177,7 +177,7 @@
           <div class="final-screen__score-wrapper">
             <p class="final-screen__score-label">Your score:</p>
             <h3 id="final-score" class="final-screen__score">0</h3>
-            <p id="record-message" class="final-screen__record">Record: <span id="record-message-value" class="final-screen__record-value"></span></p>
+            <p id="record-message" class="final-screen__record">Best score: <span id="record-message-value" class="final-screen__record-value"></span></p>
           </div>
         </section>
 
@@ -202,29 +202,21 @@
               <span class="leaderboard-preview__score">754</span>
             </li>
 
-            <li class="leaderboard-preview__item">
-              <span class="leaderboard-preview__position">44</span>
-              <span class="leaderboard-preview__name">Menganito_XXX</span>
-              <span class="leaderboard-preview__score">451</span>
-            </li>
+            <li class="leaderboard-preview__item --current" id="leaderboard-preview-signup">
+              <span class="leaderboard-preview__position">?</span>
+              <span class="leaderboard-preview__name">Your current rank</span>
+              <span class="leaderboard-preview__score"><span class="counter">453</span></span>
 
-            <li class="leaderboard-preview__item  --current">
-              <span class="leaderboard-preview__position">45</span>
-              <span class="leaderboard-preview__name">FulanitoX23_33</span>
-              <span class="leaderboard-preview__score">453</span>
-            </li>
-
-            <li class="leaderboard-preview__item">
-              <span class="leaderboard-preview__position">45</span>
-              <span class="leaderboard-preview__name">Random_User-10</span>
-              <span class="leaderboard-preview__score">344</span>
+              <section class="leaderboard-preview__signup">
+                <p class="leaderboard-preview__signup-text">Sign up to save your best score and see your position in the leaderboard!</p>
+                <button class="button --secondary">Sign up with Twitter</button>
+              </section>
             </li>
 
           </ul>
         </section>
 
         <section class="final-screen__buttons buttons-wrapper">
-          <button id="share" class="button --secondary icon-share modal-trigger">See leaderboard</button>
           <button id="share" class="button --secondary icon-share modal-trigger">Share!</button>
           <button id="play-again" class="button">Play again!</button>
         </section>

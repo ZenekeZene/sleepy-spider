@@ -1,4 +1,5 @@
 .leaderboard-preview {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,12 +34,20 @@
 }
 
 .leaderboard-preview__item.--current {
+  position: relative;
   background-color: var(--primary-color);
   color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .leaderboard-preview__item.--current .leaderboard-preview__score {
   color: #fff;
+}
+
+.leaderboard-preview__item.--current .leaderboard-preview__position {
+  width: 3ch;
+  font-size: 1rem;
 }
 
 .leaderboard-preview__position {
@@ -56,4 +65,35 @@
 
 .leaderboard-preview__score {
   color: var(--primary-color);
+}
+
+.leaderboard-preview__signup {
+  position: absolute;
+  top: 1.8rem;
+  z-index: 1;
+  color: var(--primary-color);
+  background-color: rgb(255 255 255);
+  border: 1px dashed #b95377;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: none;
+}
+
+.leaderboard-preview__signup-text {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  color: black;
+}
+
+.leaderboard-preview__item.--current .counter {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.leaderboard-preview__signup .button {
+  width: calc(100% + 2px);
+  margin-left: -1px;
+  margin-bottom: -1px;
 }
