@@ -7,7 +7,7 @@ import { params } from '@/domain/settings'
 import {
   renderLeaderboardWithoutLoggedUser,
   renderLeaderboardWithLoggedUser,
-} from '@/modules/leaderboard/leaderboard'
+} from '@/ui/screens/leaderboard/leaderboard'
 import { drawSpider } from '@/ui/components/sleepy/spider/drawSpider'
 import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/components/awakeningCounter/drawAwakeningCount'
 

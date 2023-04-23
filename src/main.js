@@ -6,7 +6,7 @@ import { startSpider } from '@/modules/authentication'
 import { loadSpiderSprite, prepare } from '@/ui'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
 import { onShowQuestion } from '@/ui/components/question/question'
-import '@/modules/leaderboard/preview/leaderboard-preview.css'
+import '@/ui/screens/leaderboard/preview/leaderboard-preview.css'
 
 const listenChangesInSettings = () => {
   listenEvent(EVENTS.CHANGES_IN_SETTINGS, () => {

@@ -1,8 +1,8 @@
 import { listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
-import { changeAllShareLinks } from '@/modules/share/share'
-import { handlePersonalLocalRecord } from '@/modules/record/record'
+import { changeAllShareLinks } from '@/ui/components/share/share'
+import { handlePersonalLocalRecord } from './record/record'
 import { getFinalSelectors } from './finalScreen.selectors'
 import './finalScreen.css'
 
