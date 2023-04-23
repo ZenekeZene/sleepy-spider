@@ -1,7 +1,7 @@
-const SHAPES = {
+const SHAPES = Object.freeze({
   CIRCLE: 'circle',
   SQUARE: 'square',
-}
+})
 
 const params = {
   columns: 3,
