@@ -1,7 +1,9 @@
-import { findById } from "sleepy-spider-lib"
+import { findById, findAllByClassName } from "sleepy-spider-lib"
 import * as localstorage from '@/infra/localstorage/localstorage'
 
 const RECORD_KEY = 'record'
+const RECORD_MESSAGE_ID = 'record-message'
+const RECORD_COUNTER_CLASSNAME = 'record-counter'
 
 function updateRecord ({ finalScore, record }) {
   if (finalScore < record) return
@@ -9,11 +11,13 @@ function updateRecord ({ finalScore, record }) {
 }
 
 function showRecord(record) {
-  const recordMessageElement = findById('record-message')
-  const recordMessageValue = findById('record-message-value')
-  if (!recordMessageElement || !recordMessageValue) return
+  const recordMessageElement = findById(RECORD_MESSAGE_ID)
+  const recordCounters = findAllByClassName(RECORD_COUNTER_CLASSNAME)
+  if (!recordMessageElement || !recordCounters.length || !recordMessageElement) return
   recordMessageElement.classList.add('visible')
-  recordMessageValue.textContent = record
+  Array.from(recordCounters).forEach(async (counter) => {
+    counter.textContent = Number(record).toLocaleString()
+  })
 }
 
 function handlePersonalLocalRecord (finalScore) {

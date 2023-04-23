@@ -177,7 +177,7 @@
           <div class="final-screen__score-wrapper">
             <p class="final-screen__score-label">Your score:</p>
             <h3 id="final-score" class="final-screen__score">0</h3>
-            <p id="record-message" class="final-screen__record">Best score: <span id="record-message-value" class="final-screen__record-value"></span></p>
+            <p id="record-message" class="final-screen__record">Best score: <span class="final-screen__record-value record-counter"></span></p>
           </div>
         </section>
 
@@ -205,11 +205,11 @@
             <li class="leaderboard-preview__item --current" id="leaderboard-preview-signup">
               <span class="leaderboard-preview__position">?</span>
               <span class="leaderboard-preview__name">Your current rank</span>
-              <span class="leaderboard-preview__score"><span class="counter">453</span></span>
+              <span class="leaderboard-preview__score"><span class="record-counter">453</span></span>
 
               <section class="leaderboard-preview__signup">
-                <p class="leaderboard-preview__signup-text">Sign up to save your best score and see your position in the leaderboard!</p>
-                <button class="button --secondary">Sign up with Twitter</button>
+                <p class="leaderboard-preview__signup-text">Sign up with Twitter and save your best score on the leaderboard!</p>
+                <button class="button --secondary">Save my best score</button>
               </section>
             </li>
 
@@ -220,6 +220,11 @@
           <button id="share" class="button --secondary icon-share modal-trigger">Share!</button>
           <button id="play-again" class="button">Play again!</button>
         </section>
+    </article>
+
+    <!-- LEADERBOARD SCREEN -->
+    <article id="leaderboard-screen" class="leaderboard-screen hidden invisible">
+      <h2>LEADERBOARD</h2>
     </article>
 
     <img src="src/ui/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />

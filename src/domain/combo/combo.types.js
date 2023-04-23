@@ -6,7 +6,7 @@ import {
 } from "./combo.constants"
 
 const COMBO_TEXT = 'Combo X'
-const MEGACOMBO_TEXT = 'SUPERCOMBO!'
+const MEGACOMBO_TEXT = 'SUPER!'
 const MONSTER_ID = 'MONSTER'
 
 const COMBO_TYPES = {
