@@ -10,6 +10,8 @@ import { CLASSNAMES } from "./question.classnames"
 import './question.css'
 
 const DELAY_TO_HIDE_IN_MS = 1000
+const VERTICAL_CLASSNAME = '--vertical'
+const SPECIFICITY_CLASSNAME = '--specificity'
 
 const answersSpecificity = (options) => {
   const answers = options.map((value) => `<li>${addCommas(value)}</li>`)
@@ -30,7 +32,7 @@ const shake = async (isCorrect) => {
 
 const renderQuestion = () => {
   const $el =  getQuestionSelectors()
-  const { code, modal, examScore, inner } = $el
+  const { code, modal, examScore, inner, options: answersList } = $el
 
   return {
     answersSpecificity,
@@ -38,7 +40,8 @@ const renderQuestion = () => {
     shake,
     specificityQuestion: ({ question }) => {
       const { title, value, options } = question
-      modal.classList.remove('--vertical')
+      modal.classList.remove(VERTICAL_CLASSNAME)
+      answersList.classList.add(SPECIFICITY_CLASSNAME)
       setContent('title', title)
       code.style.display = 'block'
       setContent('value', getHighlightedCode(value))
@@ -46,7 +49,8 @@ const renderQuestion = () => {
     },
     multiChoiceQuestion: ({ question }) => {
       const { title, options } = question
-      modal.classList.add('--vertical')
+      modal.classList.add(VERTICAL_CLASSNAME)
+      answersList.classList.remove(SPECIFICITY_CLASSNAME)
       setContent('title', title)
       code.style.display = 'none'
       setContent('options', answers(options))
