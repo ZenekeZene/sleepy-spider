@@ -1,4 +1,4 @@
-import { findById, delay } from 'sleepy-spider-lib'
+import { classHelper as $class, findById, delay } from 'sleepy-spider-lib'
 import { CORRECT_QUESTION_VALUE } from "@/domain/question"
 
 const BONUS_WRAPPER_ID = 'question-bonus'
@@ -10,7 +10,7 @@ function setMessage (element) {
 }
 
 function toggleVisibility (element) {
-  element.classList.toggle(BONUS_TOGGLE_CLASS)
+  $class.toggle(element, BONUS_TOGGLE_CLASS)
 }
 
 async function showCorrectAnswerBonus () {

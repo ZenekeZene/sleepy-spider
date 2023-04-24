@@ -1,4 +1,4 @@
-import { findById, createElement } from "sleepy-spider-lib"
+import { classHelper as $class, findById, createElement } from "sleepy-spider-lib"
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { getUsersByLimit } from "@/infra/user/user.repository"
 import { COUNTER_CLASSNAME } from "@/ui/components/awakeningCounter/drawAwakeningCount"
@@ -19,7 +19,7 @@ function createUser ({ listElement, user, isCurrent = false }) {
     classNames: `${CLASSNAME__PREFIX}item`,
     target: listElement
   })
-  isCurrent && wrapper.classList.add('current')
+  isCurrent && $class.add(wrapper, 'current')
   const image = createElement({
     tag: 'img',
     classNames: `${CLASSNAME__PREFIX}image`,
@@ -40,7 +40,7 @@ function createUser ({ listElement, user, isCurrent = false }) {
     target: wrapper,
     text: cachedCounter.value > user.value ? cachedCounter.value : user.value,
   })
-  isCurrent && counter.classList.add(COUNTER_CLASSNAME)
+  isCurrent && $class.add(counter, COUNTER_CLASSNAME)
 }
 
 async function drawUsers ({ database, currentUser }) {

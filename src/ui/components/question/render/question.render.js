@@ -40,8 +40,8 @@ const renderQuestion = () => {
     shake,
     specificityQuestion: ({ question }) => {
       const { title, value, options } = question
-      modal.classList.remove(VERTICAL_CLASSNAME)
-      answersList.classList.add(SPECIFICITY_CLASSNAME)
+      $class.remove(modal, VERTICAL_CLASSNAME)
+      $class.add(answersList, SPECIFICITY_CLASSNAME)
       setContent('title', title)
       code.style.display = 'block'
       setContent('value', getHighlightedCode(value))
@@ -49,8 +49,8 @@ const renderQuestion = () => {
     },
     multiChoiceQuestion: ({ question }) => {
       const { title, options } = question
-      modal.classList.add(VERTICAL_CLASSNAME)
-      answersList.classList.remove(SPECIFICITY_CLASSNAME)
+      $class.add(modal, VERTICAL_CLASSNAME)
+      $class.remove(answersList, SPECIFICITY_CLASSNAME)
       setContent('title', title)
       code.style.display = 'none'
       setContent('options', answers(options))

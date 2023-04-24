@@ -1,4 +1,4 @@
-import { findById, findAllByClassName } from "sleepy-spider-lib"
+import { classHelper as $class, findById, findAllByClassName } from "sleepy-spider-lib"
 import * as localstorage from '@/infra/localstorage/localstorage'
 
 const RECORD_KEY = 'record'
@@ -14,7 +14,7 @@ function showRecord(record) {
   const recordMessageElement = findById(RECORD_MESSAGE_ID)
   const recordCounters = findAllByClassName(RECORD_COUNTER_CLASSNAME)
   if (!recordMessageElement || !recordCounters.length || !recordMessageElement) return
-  recordMessageElement.classList.add('visible')
+  $class.add(recordMessageElement, 'visible')
   Array.from(recordCounters).forEach(async (counter) => {
     counter.textContent = Number(record).toLocaleString()
   })

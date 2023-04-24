@@ -1,15 +1,14 @@
-import { findById } from "sleepy-spider-lib"
+import { classHelper as $class, findById } from "sleepy-spider-lib"
 
 const DELAY_MEGACOMBO_EFFECT_IN_MS = 1000
 const MEGACOMBO_EFFECT_CLASSNAME = 'big-surprise'
 
-const element = findById('spider-wrapper')
-
 function applyMegaComboEffect () {
-  element.classList.add(MEGACOMBO_EFFECT_CLASSNAME)
+  const element = findById('spider-wrapper')
+  $class.add(element, MEGACOMBO_EFFECT_CLASSNAME)
 
   setTimeout(() => {
-    element.classList.remove(MEGACOMBO_EFFECT_CLASSNAME)
+    $class.remove(element, MEGACOMBO_EFFECT_CLASSNAME)
   }, DELAY_MEGACOMBO_EFFECT_IN_MS)
 }
 
