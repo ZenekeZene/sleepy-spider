@@ -1,23 +1,22 @@
-import { listenEvent, getBody } from 'sleepy-spider-lib'
+import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/ui/components/share/share'
+import { HIDDEN_CLASS } from '@/ui/constants'
 import { handlePersonalLocalRecord } from './record/record'
 import { getFinalSelectors } from './finalScreen.selectors'
 import './finalScreen.css'
 
-const HIDE_CLASS = 'hidden'
-
 function hideElements () {
   const $el = getFinalSelectors()
   $el.elementsToHide.forEach(element => {
-    element.classList.add(HIDE_CLASS)
+    $class.add(element, HIDDEN_CLASS)
   })
 }
 
 function showFinalScreen(finalScore) {
   const $el = getFinalSelectors()
-  $el.finalScreen.classList.remove(HIDE_CLASS)
+  $class.remove($el.finalScreen, HIDDEN_CLASS)
   hideElements()
   $el.score.textContent = finalScore
 
@@ -29,13 +28,15 @@ function showFinalScreen(finalScore) {
   })
 }
 
-function prepareFinalScreen () {
-  listenEvent(EVENTS.END_TIMER, () => {
+const handleEndTimer = () => {
   const cachedCounter = new CachedCounter()
   const finalValue = cachedCounter.value
   showFinalScreen(finalValue)
-  getBody().classList.remove('headShakeHard')
-})
+  $class.remove(getBody(), 'headShakeHard')
+}
+
+function prepareFinalScreen () {
+  listenEvent(EVENTS.END_TIMER, handleEndTimer)
 }
 
 export {

@@ -5,7 +5,8 @@
   margin: 0 auto;
 }
 
-.title {
+.title,
+.user-title {
   padding: 2rem 0 0 0;
   color: white;
   text-shadow: 3px 2px 6px var(--primary-color);
@@ -13,6 +14,13 @@
   font-family: var(--font-secondary);
   opacity: 1;
   transition: opacity 0.5s;
+}
+
+.user-title {
+  font-size: 1.7rem;
+  padding: 1rem;
+  line-height: 1;
+  text-align: center;
 }
 
 .title-hidden {

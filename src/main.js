@@ -6,7 +6,7 @@ import { startSpider } from '@/modules/authentication'
 import { loadSpiderSprite, prepare } from '@/ui'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
 import { onShowQuestion } from '@/ui/components/question/question'
-import '@/ui/screens/leaderboard/preview/leaderboard-preview.css'
+import '@/ui/screens/leaderboard/preview/leaderboardPreview.css'
 
 const listenChangesInSettings = () => {
   listenEvent(EVENTS.CHANGES_IN_SETTINGS, () => {
@@ -18,9 +18,12 @@ const start = async (spiderImage) => {
   const services = getInfraServices()
   startSpider(spiderImage, services, onShowQuestion)
 
+  const { authentication } = services
+
   prepare.finalScreen()
   prepare.clock()
   prepare.gui(params)
+  prepare.signIn({ authentication })
 
   listenChangesInSettings()
 }

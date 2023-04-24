@@ -24,7 +24,7 @@
 
     <title>Sleepy spider has fallen into a deep sleep!</title>
 
-    <link rel="stylesheet" href="/src/ui/assets/styles/style.css" />
+    <link rel="stylesheet" href="/src/ui/assets/styles/style.css" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap&family=Nunito:wght@1000&display=swap" rel="stylesheet">
@@ -36,6 +36,7 @@
     <!-- INFO -->
     <header class="info invisible surprise hide-on-final-screen">
       <h1 class="title" id="title">WAKE UP<span class="hide-in-mobile">, SLEEPY</span>!</h1>
+      <h2 class="user-title hidden" id="user-title"></h2>
       <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
       <p class="subtitle" id="user-counter"><span class="hide-auto">You wake</span> <span class="counter">0</span><span class="hide-auto">times.</span></p>
     </header>
@@ -202,12 +203,12 @@
               <span class="leaderboard-preview__score">754</span>
             </li>
 
-            <li class="leaderboard-preview__item --current" id="leaderboard-preview-signup">
+            <li class="leaderboard-preview__item --current">
               <span class="leaderboard-preview__position">?</span>
               <span class="leaderboard-preview__name">Your current rank</span>
               <span class="leaderboard-preview__score"><span class="record-counter">453</span></span>
 
-              <section class="leaderboard-preview__signup">
+              <section class="leaderboard-preview__signup" id="leaderboard-preview-signup">
                 <p class="leaderboard-preview__signup-text">Sign up with Twitter and save your best score on the leaderboard!</p>
                 <button class="button --secondary">Save my best score</button>
               </section>
