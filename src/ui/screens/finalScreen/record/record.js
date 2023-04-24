@@ -1,4 +1,5 @@
 import { classHelper as $class, findById, findAllByClassName } from "sleepy-spider-lib"
+import { VISIBLE_CLASS } from '@/ui/constants'
 import * as localstorage from '@/infra/localstorage/localstorage'
 
 const RECORD_KEY = 'record'
@@ -14,7 +15,7 @@ function showRecord(record) {
   const recordMessageElement = findById(RECORD_MESSAGE_ID)
   const recordCounters = findAllByClassName(RECORD_COUNTER_CLASSNAME)
   if (!recordMessageElement || !recordCounters.length || !recordMessageElement) return
-  $class.add(recordMessageElement, 'visible')
+  $class.add(recordMessageElement, VISIBLE_CLASS)
   Array.from(recordCounters).forEach(async (counter) => {
     counter.textContent = Number(record).toLocaleString()
   })

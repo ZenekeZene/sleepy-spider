@@ -1,5 +1,6 @@
 import { findById } from 'sleepy-spider-lib'
 import { signInWithRedirect, onAuthenticationStateChanged } from '@/infra/services/authentication/authentication'
+import { VISIBLE_CLASS } from '@/ui/constants'
 
 const loginIcon = findById('login-icon')
 const logoutIcon = findById('logout-icon')
@@ -12,7 +13,7 @@ const logout = ({ authentication }) => {
 
 const drawLogin = ({ authentication }) => {
   if (!loginIcon) return
-  loginIcon.classList.add('visible')
+  loginIcon.classList.add(VISIBLE_CLASS)
   loginIcon.addEventListener('click', async () => {
     await signIn({ authentication })
     hideLogin()
@@ -21,7 +22,7 @@ const drawLogin = ({ authentication }) => {
 
 const drawLogout = ({ authentication }) => {
   if (!logoutIcon) return
-  logoutIcon.classList.add('visible')
+  logoutIcon.classList.add(VISIBLE_CLASS)
   logoutIcon.addEventListener('click', () => {
     logout({ authentication })
     hideLogout()
@@ -30,12 +31,12 @@ const drawLogout = ({ authentication }) => {
 
 const hideLogin = () => {
   if (!loginIcon) return
-  loginIcon.classList.remove('visible')
+  loginIcon.classList.remove(VISIBLE_CLASS)
 }
 
 const hideLogout = () => {
   if (!logoutIcon) return
-  logoutIcon.classList.remove('visible')
+  logoutIcon.classList.remove(VISIBLE_CLASS)
 }
 
 const initAuthenticationUI = ({ authentication, onLogin, onLogout }) => {
