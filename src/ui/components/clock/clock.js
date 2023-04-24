@@ -1,4 +1,4 @@
-import { startCountdown } from 'sleepy-spider-lib'
+import { classHelper as $class, startCountdown } from 'sleepy-spider-lib'
 import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import * as constants from '@/domain/clock'
@@ -13,7 +13,7 @@ function startClock() {
 
   const onInterval = (time) => {
     if (time < constants.ALERT_CLOCK_SECONDS) {
-      clock.classList.add(ALERT_CLASS)
+      $class.add(clock, ALERT_CLASS)
     }
 
     if (time > 0) {
@@ -21,7 +21,7 @@ function startClock() {
     } else {
       face.textContent = 0
       dispatchEvent(EVENTS.END_TIMER)
-      clock.classList.remove(ALERT_CLASS)
+      $class.remove(clock, ALERT_CLASS)
     }
   }
 

@@ -3,35 +3,46 @@
   top: 1rem;
   right: 1rem;
   z-index: 5;
-  width: 3rem;
 }
 
 .clock__face {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
   color: white;
+  padding: 1em;
+  font-size: calc(var(--clock-size) * 0.2em);
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-}
-
-.clock__timer {
-  font-size: 1.5rem;
+  transform-origin: center center;
+  transition: all 10s ease-in;
 }
 
 .clock.--alert {
-  width: 7rem;
+  --clock-size: 14;
 }
 
 .clock.--alert .clock__face {
-  width: 7rem;
-  height: 7rem;
+  background-color: var(--primary-color);
 }
 
-.clock.--alert .clock__timer {
-  font-size: 6rem;
+.clock.--alert .clock__face {
+  animation: blinker 1s linear infinite;
+}
+
+.clock__face:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.clock__timer {
+  position: absolute;
+  font-size: inherit;
+}
+
+@keyframes blinker {
+  50% { background-color: transparent; }
 }
 
 @media screen and (min-width: 48rem) {
