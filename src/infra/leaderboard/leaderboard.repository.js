@@ -13,7 +13,7 @@ const fakeRankingWithScore = [
   createRaw({ name: 'Corge', score: 1 }),
 ]
 
-const getLeaderboardPreview = async ({ user }) => {
+const getLeaderboardPreview = async (user) => {
   const rankingSorted = fakeRankingWithScore.sort((a, b) => b.score - a.score)
   const rankingWithPosition = rankingSorted.map((item, index) => ({ ...item, position: index + 1 }))
   const rankingWithUser = rankingWithPosition.map((item) => {

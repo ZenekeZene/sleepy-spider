@@ -1,30 +1,29 @@
-import { getAuth, signInWithRedirect as signInWithRedirectFirebase, GoogleAuthProvider } from "firebase/auth"
+import {
+  getAuth,
+  signInWithPopup as signInWithPopupFirebase,
+  TwitterAuthProvider,
+} from "firebase/auth"
+import { Ok, Fail } from '@nidstang/result'
 
 const initializeAuth = ({ app }) => getAuth(app)
 
-const signInWithRedirect = ({ authentication }) => {
-  const provider = new GoogleAuthProvider()
+const parseResponse = (result) => {
+  const { user, _tokenResponse } = result
+  const isNewUser = _tokenResponse?.isNewUser || false
+  const { displayName, photoURL, uid } = user
+  return { displayName, photoURL, uid, isNewUser }
+}
+
+const signInWithPopup = (auth) => {
   return new Promise((resolve, reject) => {
-    signInWithRedirectFirebase(authentication, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential.accessToken
-        const user = result.user
-        // console.log(result)
-        // console.log(user, token)
-        resolve({ user, token })
-      }).catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.error(error)
-        const email = error.customData.email
-        const credential = GoogleAuthProvider.credentialFromError(error)
-        if (errorCode === 'auth/popup-blocked') {
-          alert('Error: Please allow popups for this website')
-        }
-        console.error(errorCode, errorMessage, email, credential)
-        reject(error)
-      })
+    const provider = new TwitterAuthProvider()
+    signInWithPopupFirebase(auth, provider)
+    .then((result) => {
+      const response = parseResponse(result)
+      resolve(Ok(response))
+    }).catch((error) => {
+      reject(Fail(error))
+    });
   })
 }
 
@@ -36,7 +35,7 @@ const onAuthenticationStateChanged = ({ authentication, onChange }) => {
 
 export {
   initializeAuth,
-  signInWithRedirect,
+  signInWithPopup,
   onAuthenticationStateChanged,
 }
 

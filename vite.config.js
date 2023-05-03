@@ -10,6 +10,9 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
   },
+  optimizeDeps: {
+    exclude: ['sleepy-spider-lib']
+  },
   server: {
     port: 8000,
   },

@@ -2,7 +2,7 @@ import { listenEvent } from 'sleepy-spider-lib'
 import { params } from '@/domain/settings'
 import { getInfraServices } from '@/infra/infra'
 import { EVENTS } from '@/adapter/events/events'
-import { startSpider } from '@/modules/authentication'
+import { startQuiz } from '@/adapter/startQuiz'
 import { loadSpiderSprite, prepare } from '@/ui'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
 import { onShowQuestion } from '@/ui/components/question/question'
@@ -16,11 +16,12 @@ const listenChangesInSettings = () => {
 
 const start = async (spiderImage) => {
   const services = getInfraServices()
-  startSpider(spiderImage, services, onShowQuestion)
+  startQuiz(spiderImage, services, onShowQuestion)
 
   const { authentication } = services
 
   prepare.finalScreen()
+  prepare.leaderboard()
   prepare.clock()
   prepare.gui(params)
   prepare.signIn({ authentication })

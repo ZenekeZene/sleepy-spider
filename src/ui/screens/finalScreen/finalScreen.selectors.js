@@ -7,6 +7,7 @@ const getFinalSelectors = () => ({
   elementsToHide: findAllBySelector('.hide-on-final-screen'),
   score: findByIdCached('final-score'),
   playAgainButton: findByIdCached('play-again'),
+  goToLeaderboardButton: findByIdCached('go-leaderboard'),
 })
 
 export {
