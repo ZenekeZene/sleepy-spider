@@ -1,8 +1,8 @@
 @import './base/base.css';
-@import './utils/utils.css';
 @import './loader/loader.css';
 @import './vendor/vendor.css';
-@import './components/buttons.css';
+@import './components/components.css';
+@import './utils/utils.css';
 
 .bounce-wrapper {
   position: absolute;

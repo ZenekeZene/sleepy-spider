@@ -1,5 +1,4 @@
 import { classHelper as $class, createElement } from "sleepy-spider-lib"
-import { getLeaderboardPreviewSelectors as $el } from "./leaderboardPreview.selectors"
 
 const CLASSNAME_PREFIX = 'leaderboard-preview'
 const CLASSNAME_CURRENT_USER = '--current'
@@ -33,17 +32,11 @@ const createRankingItem = ({ name, score, position, isUser, wrapper }) => {
   }
 }
 
-const cleanLeaderboardPreview = () => {
-  const { leaderboardPreview } = $el()
-  leaderboardPreview.innerHTML = ''
-}
-
-const showPreviewRanking = ({ rankingWithUser }) => {
-  cleanLeaderboardPreview()
-  const { leaderboardPreview } = $el()
-  rankingWithUser.map((player) => createRankingItem({ ...player, wrapper: leaderboardPreview }))
+const showRanking = ({ rankingWithUser, wrapper }) => {
+  wrapper.innerHTML = ''
+  rankingWithUser.map((player) => createRankingItem({ ...player, wrapper }))
 }
 
 export {
-  showPreviewRanking
+  showRanking
 }

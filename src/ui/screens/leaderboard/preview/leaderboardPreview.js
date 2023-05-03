@@ -4,14 +4,15 @@ import {
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { getLeaderboardPreview } from '@/infra/leaderboard/leaderboard.repository'
-import { showPreviewRanking } from './render/leaderboardPreview.render'
-import { getLeaderboardPreviewSelectors as $el } from "./render/leaderboardPreview.selectors"
+import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
+import { showRanking } from '@/ui/screens/leaderboard/ranking.render'
+import { getLeaderboardPreviewSelectors as $el } from "./leaderboardPreview.selectors"
 import * as events from './leaderboardPreview.events'
 
 const createPreviewRanking = async (user) => {
-  const rankingWithUser = await getLeaderboardPreview(user)
-  showPreviewRanking({ rankingWithUser })
+  const { leaderboardPreview } = $el()
+  const rankingWithUser = await getLeaderboard({ user, limit: 5 })
+  showRanking({ rankingWithUser, wrapper: leaderboardPreview })
 }
 
 const handleSignIn = (authentication) => {
@@ -41,7 +42,7 @@ const isFinalScreen = () => {
 
 const prepareScreensToReturningUser = (user) => {
   if (isFinalScreen()) {
-    events.dispatchGoToLeaderboard()
+    events.dispatchGoToLeaderboard(user)
   } else {
     createPreviewRanking(user)
   }

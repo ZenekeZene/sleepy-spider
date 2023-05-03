@@ -11,18 +11,31 @@ const fakeRankingWithScore = [
   createRaw({ name: 'Zeneke Zene', score: 9 }),
   createRaw({ name: 'Michale', score: 5 }),
   createRaw({ name: 'Corge', score: 1 }),
+  createRaw({ name: 'Michale', score: 5 }),
+  createRaw({ name: 'Corge', score: 1 }),
+  createRaw({ name: 'Michale', score: 5 }),
+  createRaw({ name: 'Corge', score: 1 }),
+  createRaw({ name: 'Michale', score: 5 }),
+  createRaw({ name: 'Corge', score: 1 }),
+  createRaw({ name: 'Michale', score: 5 }),
+  createRaw({ name: 'Corge', score: 1 }),
 ]
 
-const getLeaderboardPreview = async (user) => {
-  const rankingSorted = fakeRankingWithScore.sort((a, b) => b.score - a.score)
+const isOfUser = (user, item) => user.displayName === item.name
+
+const createUserItem = (user, item) => create({
+  ...item,
+  isUser: true,
+  score: user.score
+})
+
+const getLeaderboard = async ({ user, limit = 5 }) => {
+  const rankingSliced = fakeRankingWithScore.slice(0, limit)
+  const rankingSorted = rankingSliced.sort((a, b) => b.score - a.score)
   const rankingWithPosition = rankingSorted.map((item, index) => ({ ...item, position: index + 1 }))
   const rankingWithUser = rankingWithPosition.map((item) => {
-    if (item.name === user.displayName) {
-      return create({
-        ...item,
-        isUser: true,
-        score: user.score
-      })
+    if (isOfUser(user, item)) {
+      return createUserItem(user, item)
     }
     return item
   })
@@ -30,5 +43,5 @@ const getLeaderboardPreview = async (user) => {
 }
 
 export {
-  getLeaderboardPreview,
+  getLeaderboard,
 }

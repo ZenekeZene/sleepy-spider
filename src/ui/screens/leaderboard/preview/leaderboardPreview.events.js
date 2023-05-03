@@ -9,8 +9,8 @@ const dispatchUserNotLogged = () => {
   dispatchEvent(EVENTS.USER_NOT_LOGGED)
 }
 
-const dispatchGoToLeaderboard = () => {
-  dispatchEvent(EVENTS.GO_TO_LEADERBOARD)
+const dispatchGoToLeaderboard = (user) => {
+  dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
 }
 
 export {
