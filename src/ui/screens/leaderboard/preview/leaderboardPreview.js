@@ -5,7 +5,7 @@ import {
 } from '@/infra/services/authentication/authentication'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
-import { showRanking } from '@/ui/screens/leaderboard/ranking.render'
+import { showRanking } from '@/ui/components/ranking/ranking'
 import { getLeaderboardPreviewSelectors as $el } from "./leaderboardPreview.selectors"
 import * as events from './leaderboardPreview.events'
 
@@ -63,6 +63,13 @@ const handleUserNotLogged = (authentication) => {
 const handleChangeOnAuthentication = (authentication) => async (result) => {
   const { user } = result
   !user ? handleUserNotLogged(authentication) : handleUserLogged(user)
+
+  const { goToLeaderboardButton, leaderboardScreen } = $el()
+  goToLeaderboardButton.addEventListener('click', () => {
+    if (!user) { return }
+    $class.remove(leaderboardScreen, HIDDEN_CLASS)
+    events.dispatchGoToLeaderboard(user)
+  })
 }
 
 function launchSignIn ({ authentication }) {

@@ -30,16 +30,20 @@ const createUserItem = (user, item) => create({
 })
 
 const getLeaderboard = async ({ user, limit = 5 }) => {
-  const rankingSliced = fakeRankingWithScore.slice(0, limit)
-  const rankingSorted = rankingSliced.sort((a, b) => b.score - a.score)
-  const rankingWithPosition = rankingSorted.map((item, index) => ({ ...item, position: index + 1 }))
-  const rankingWithUser = rankingWithPosition.map((item) => {
-    if (isOfUser(user, item)) {
-      return createUserItem(user, item)
-    }
-    return item
+  return fetch('./leaderboard.fake.json')
+  .then(response => response.json())
+  .then(data => {
+    const sliced = data.slice(0, limit)
+    const sorted = sliced.sort((a, b) => b.score - a.score)
+    const withPosition = sorted.map((item, index) => ({ ...item, position: index + 1 }))
+    const withUser = withPosition.map((item) => {
+      if (isOfUser(user, item)) {
+        return createUserItem(user, item)
+      }
+      return item
+    })
+    return withUser
   })
-  return rankingWithUser
 }
 
 export {

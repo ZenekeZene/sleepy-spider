@@ -1,6 +1,7 @@
 import { classHelper as $class, createElement } from "sleepy-spider-lib"
+import './ranking.css'
 
-const CLASSNAME_PREFIX = 'leaderboard-preview'
+const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
 
 const createRankingItem = ({ name, score, position, isUser, wrapper }) => {
