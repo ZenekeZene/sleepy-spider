@@ -1,27 +1,8 @@
 import {
-  createLeaderboardItemRaw as createRaw,
   createLeaderboardItem as create,
 } from '@/domain/leaderboard'
 
-const fakeRankingWithScore = [
-  createRaw({ name: 'Foo', score: 100 }),
-  createRaw({ name: 'Bar', score: 50 }),
-  createRaw({ name: 'Baz', score: 25 }),
-  createRaw({ name: 'Qux', score: 10 }),
-  createRaw({ name: 'Zeneke Zene', score: 9 }),
-  createRaw({ name: 'Michale', score: 5 }),
-  createRaw({ name: 'Corge', score: 1 }),
-  createRaw({ name: 'Michale', score: 5 }),
-  createRaw({ name: 'Corge', score: 1 }),
-  createRaw({ name: 'Michale', score: 5 }),
-  createRaw({ name: 'Corge', score: 1 }),
-  createRaw({ name: 'Michale', score: 5 }),
-  createRaw({ name: 'Corge', score: 1 }),
-  createRaw({ name: 'Michale', score: 5 }),
-  createRaw({ name: 'Corge', score: 1 }),
-]
-
-const isOfUser = (user, item) => user.displayName === item.name
+const isOfUser = (user, item) => user?.displayName === item.name
 
 const createUserItem = (user, item) => create({
   ...item,
@@ -40,7 +21,7 @@ const getLeaderboard = async ({ user, limit = 5 }) => {
       if (isOfUser(user, item)) {
         return createUserItem(user, item)
       }
-      return item
+      return create(item)
     })
     return withUser
   })

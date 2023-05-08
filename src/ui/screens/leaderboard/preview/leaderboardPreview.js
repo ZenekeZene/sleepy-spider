@@ -4,16 +4,9 @@ import {
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
-import { showRanking } from '@/ui/components/ranking/ranking'
+import { createSignUpRanking, createPreviewRanking } from '@/ui/screens/leaderboard/preview-signup/leaderboardPreview.signup'
 import { getLeaderboardPreviewSelectors as $el } from "./leaderboardPreview.selectors"
 import * as events from './leaderboardPreview.events'
-
-const createPreviewRanking = async (user) => {
-  const { leaderboardPreview } = $el()
-  const rankingWithUser = await getLeaderboard({ user, limit: 5 })
-  showRanking({ rankingWithUser, wrapper: leaderboardPreview })
-}
 
 const handleSignIn = (authentication) => {
   signInWithPopup(authentication)
@@ -65,6 +58,7 @@ const handleChangeOnAuthentication = (authentication) => async (result) => {
   !user ? handleUserNotLogged(authentication) : handleUserLogged(user)
 
   const { goToLeaderboardButton, leaderboardScreen } = $el()
+
   goToLeaderboardButton.addEventListener('click', () => {
     if (!user) { return }
     $class.remove(leaderboardScreen, HIDDEN_CLASS)
@@ -73,6 +67,7 @@ const handleChangeOnAuthentication = (authentication) => async (result) => {
 }
 
 function launchSignIn ({ authentication }) {
+  createSignUpRanking()
   onAuthenticationStateChanged({
     authentication,
     onChange: handleChangeOnAuthentication(authentication),

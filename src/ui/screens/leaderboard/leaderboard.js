@@ -8,8 +8,8 @@ import './leaderboard.css'
 
 const createRanking = async (user) => {
   const { ranking } = $el()
-  const rankingWithUser = await getLeaderboard({ user, limit: 20 })
-  showRanking({ rankingWithUser, wrapper: ranking })
+  const players = await getLeaderboard({ user, limit: 20 })
+  showRanking({ players, wrapper: ranking })
 }
 
 const handleCloseScreen = () => {

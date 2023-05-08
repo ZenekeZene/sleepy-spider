@@ -4,40 +4,46 @@ import './ranking.css'
 const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
 
-const createRankingItem = ({ name, score, position, isUser, wrapper }) => {
+const createRankingItem = ({ name, score, position, isUser, wrapper, insertMode }) => {
   const listItem = createElement({
     tag: 'li',
     classNames: `${CLASSNAME_PREFIX}__item`,
-    target: wrapper
+    target: wrapper,
+    insertMode,
   })
   createElement({
     tag: 'span',
     classNames: `${CLASSNAME_PREFIX}__position`,
     target: listItem,
-    text: position
+    text: position,
   })
   createElement({
     tag: 'span',
     classNames: `${CLASSNAME_PREFIX}__name`,
     target: listItem,
-    text: name
+    text: name,
   })
   createElement({
     tag: 'span',
     classNames: `${CLASSNAME_PREFIX}__score`,
     target: listItem,
-    text: score
+    text: score,
   })
   if (isUser) {
     $class.add(listItem, CLASSNAME_CURRENT_USER)
   }
 }
 
-const showRanking = ({ rankingWithUser, wrapper }) => {
+const showRanking = ({ players, wrapper }) => {
   wrapper.innerHTML = ''
-  rankingWithUser.map((player) => createRankingItem({ ...player, wrapper }))
+  players.map((player) => createRankingItem({ ...player, wrapper }))
+}
+
+const prependRanking = ({ players, wrapper }) => {
+  players.map((player) => createRankingItem({ ...player, wrapper, insertMode: 'prepend' }))
 }
 
 export {
-  showRanking
+  showRanking,
+  prependRanking,
 }
