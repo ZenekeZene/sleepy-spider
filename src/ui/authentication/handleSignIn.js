@@ -7,6 +7,7 @@ import { HIDDEN_CLASS } from '@/ui/constants'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
 import { getSelectors as $el } from "./signIn.selectors"
+import { show, hide } from './signIn.titles'
 import * as events from './signIn.events'
 
 const handleSignIn = (authentication) => {
@@ -18,14 +19,9 @@ const handleSignIn = (authentication) => {
   })
 }
 
-const hideSignInButton = () => {
+const listenSignInButton = (authentication) => {
   const { signInButton } = $el()
-  $class.add(signInButton, HIDDEN_CLASS)
-}
-
-const showSignInButton = (authentication) => {
-  const { signInButton } = $el()
-  $class.remove(signInButton, HIDDEN_CLASS)
+  show.signInButton()
   signInButton.addEventListener('click', () => handleSignIn(authentication))
 }
 
@@ -36,21 +32,21 @@ const isFinalScreen = () => {
 
 const prepareScreensToReturningUser = (user) => {
   if (isFinalScreen()) {
+    show.leaderboardButton()
     events.dispatchGoToLeaderboard(user)
-  } else {
-    createPreviewRanking(user)
   }
+  createPreviewRanking(user)
 }
 
+// (1)
 const handleUserLogged = async (user) => {
-  // This can be a new user or a returning user.
-  hideSignInButton()
+  hide.signInButton()
   events.dispatchUserLogged(user)
   prepareScreensToReturningUser(user)
 }
 
 const handleUserNotLogged = (authentication) => {
-  showSignInButton(authentication)
+  listenSignInButton(authentication)
   events.dispatchUserNotLogged()
 }
 
@@ -78,3 +74,5 @@ function launchSignIn ({ authentication }) {
 export {
   launchSignIn,
 }
+
+// (1) This can be a new user or a returning user.

@@ -14,7 +14,7 @@ const hideLeaderboardButton = () => {
 
 const showUserTitle = ({ displayName }) => {
   $class.remove($el().userTitle, HIDDEN_CLASS)
-  userTitle.textContent = `${GREETING}${displayName}`
+  $el().userTitle.textContent = `${GREETING}${displayName}`
 }
 
 const removeUserTitle = () => {
@@ -29,16 +29,26 @@ const hideTitle = () => {
   $class.add($el().title, HIDDEN_CLASS)
 }
 
+const showSignInButton = () => {
+  $class.remove($el().signInButton, HIDDEN_CLASS)
+}
+
+const hideSignInButton = () => {
+  $class.add($el().signInButton, HIDDEN_CLASS)
+}
+
 const show = {
-  title: () => showTitle,
-  userTitle: () => showUserTitle,
-  leaderboardButton: () => showLeaderboardButton,
+  title: showTitle,
+  userTitle: showUserTitle,
+  leaderboardButton: showLeaderboardButton,
+  signInButton: showSignInButton,
 }
 
 const hide = {
-  title: () => hideTitle,
-  userTitle: () => removeUserTitle,
-  leaderboardButton: () => hideLeaderboardButton,
+  title: hideTitle,
+  userTitle: removeUserTitle,
+  leaderboardButton: hideLeaderboardButton,
+  signInButton: hideSignInButton,
 }
 
 export {
