@@ -4,9 +4,10 @@ import {
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { createSignUpRanking, createPreviewRanking } from '@/ui/screens/leaderboard/preview-signup/leaderboardPreview.signup'
-import { getLeaderboardPreviewSelectors as $el } from "./leaderboardPreview.selectors"
-import * as events from './leaderboardPreview.events'
+import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
+import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
+import { getSelectors as $el } from "./signIn.selectors"
+import * as events from './signIn.events'
 
 const handleSignIn = (authentication) => {
   signInWithPopup(authentication)

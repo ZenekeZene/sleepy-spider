@@ -1,15 +1,15 @@
 import { classHelper as $class } from 'sleepy-spider-lib'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { getSignInSelectors as $el } from './signIn.selectors'
+import { getSelectors as $el } from './signIn.selectors'
 
 const GREETING = 'Welcome, '
 
 const showLeaderboardButton = () => {
-  $class.remove($el().leaderboardButton, HIDDEN_CLASS)
+  $class.remove($el().goToLeaderboardButton, HIDDEN_CLASS)
 }
 
 const hideLeaderboardButton = () => {
-  $class.add($el().leaderboardButton, HIDDEN_CLASS)
+  $class.add($el().goToLeaderboardButton, HIDDEN_CLASS)
 }
 
 const showUserTitle = ({ displayName }) => {

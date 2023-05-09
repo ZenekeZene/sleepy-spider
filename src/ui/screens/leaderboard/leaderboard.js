@@ -2,7 +2,7 @@ import { listenEvent, classHelper as $class } from "sleepy-spider-lib"
 import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
 import { EVENTS } from "@/adapter/events/events"
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { showRanking } from '@/ui/components/ranking/ranking'
+import { showRanking } from '@/ui/leaderboard/ranking/ranking'
 import { getLeaderboardSelectors as $el } from "./leaderboard.selectors"
 import './leaderboard.css'
 

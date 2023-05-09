@@ -4,7 +4,7 @@ import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { handlePersonalLocalRecord } from './record/record'
-import { getFinalSelectors } from './finalScreen.selectors'
+import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 
 // TODO: This is a workaround. We need to find a better way to handle this.
@@ -12,28 +12,28 @@ import './finalScreen.css'
 let isUserLogged = false
 
 function hideElements () {
-  const $el = getFinalSelectors()
-  $el.elementsToHide.forEach(element => {
+  const { elementsToHide } = $el()
+  elementsToHide.forEach(element => {
     $class.add(element, HIDDEN_CLASS)
   })
 }
 
 function showFinalScreen(finalScore) {
-  const $el = getFinalSelectors()
-  $class.remove($el.finalScreen, HIDDEN_CLASS)
+  const { finalScreen, score, goToLeaderboardButton, playAgainButton } = $el()
+  $class.remove(finalScreen, HIDDEN_CLASS)
   hideElements()
-  $el.score.textContent = finalScore
+  score.textContent = finalScore
 
   changeAllShareLinks(finalScore)
   handlePersonalLocalRecord(finalScore)
 
   if (isUserLogged) {
-    $class.remove($el.goToLeaderboardButton, HIDDEN_CLASS)
+    $class.remove(goToLeaderboardButton, HIDDEN_CLASS)
   } else {
-    $class.add($el.goToLeaderboardButton, HIDDEN_CLASS)
+    $class.add(goToLeaderboardButton, HIDDEN_CLASS)
   }
 
-  $el.playAgainButton.addEventListener('click', () => {
+  playAgainButton.addEventListener('click', () => {
     window.location.reload()
   })
 }

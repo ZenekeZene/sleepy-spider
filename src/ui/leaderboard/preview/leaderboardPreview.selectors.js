@@ -2,7 +2,7 @@ import { findById, getCacheByKey } from 'sleepy-spider-lib'
 
 const findByIdCached = getCacheByKey(findById)
 
-const getLeaderboardPreviewSelectors = () => ({
+const getSelectors = () => ({
   finalScreen: findByIdCached('final-screen'),
   leaderboardPreview: findByIdCached('leaderboard-preview'),
   signInButton: findByIdCached('leaderboard-preview-signup'),
@@ -11,5 +11,5 @@ const getLeaderboardPreviewSelectors = () => ({
 })
 
 export {
-  getLeaderboardPreviewSelectors,
+  getSelectors,
 }

@@ -2,7 +2,7 @@ import { findById, getCacheByKey, findAllBySelector } from 'sleepy-spider-lib'
 
 const findByIdCached = getCacheByKey(findById, false)
 
-const getFinalSelectors = () => ({
+const getSelectors = () => ({
   finalScreen: findByIdCached('final-screen'),
   elementsToHide: findAllBySelector('.hide-on-final-screen'),
   score: findByIdCached('final-score'),
@@ -11,5 +11,5 @@ const getFinalSelectors = () => ({
 })
 
 export {
-  getFinalSelectors,
+  getSelectors,
 }

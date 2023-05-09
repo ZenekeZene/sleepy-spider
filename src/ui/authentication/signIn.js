@@ -1,10 +1,10 @@
 import { listenEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter/events/events'
-import { launchSignIn } from '@/ui/screens/leaderboard/preview/leaderboardPreview'
+import { launchSignIn } from './handleSignIn'
 import { show, hide } from './signIn.titles'
 
 const handleUserLogged = async ({ detail }) => {
-  const { user, token } = detail
+  const { user } = detail
 
   hide.title()
   show.userTitle(user)
