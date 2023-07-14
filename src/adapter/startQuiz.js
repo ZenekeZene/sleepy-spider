@@ -2,7 +2,8 @@ import { findById } from 'sleepy-spider-lib'
 import { params } from '@/domain/settings'
 import { QUESTIONS_MAX_PER_QUIZ } from '@/domain/question'
 import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
-import { getQuestions } from '@/infra/questions/questions.repository'
+// import { getQuestions } from '@/infra/questions/questions.repository'
+import { getQuestions } from '@/infra/questions/questions.local.repository'
 import { drawSpider } from '@/ui/components/sleepy/spider/drawSpider'
 import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/components/awakeningCounter/drawAwakeningCount'
 
@@ -12,7 +13,7 @@ async function startQuiz (spiderImage, services, onShowQuestion) {
   let hasError = false
   const { database } = services
 
-  getQuestions({ database, size: QUESTIONS_MAX_PER_QUIZ })
+  getQuestions({ size: QUESTIONS_MAX_PER_QUIZ })
   .then((data) => questions = data)
   .catch((error) => {
     console.error(error)

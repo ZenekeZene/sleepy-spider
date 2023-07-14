@@ -1,11 +1,8 @@
+import { sortRandomly } from "@/share"
 import { query, collection, getDocs, limit } from "firebase/firestore"
 import { parseMultiChoiceQuestion } from "./question.mapper"
 
 const collectionName = "questionsCSS"
-
-function sortQuestionsRandomly (questions) {
-  return questions.sort(() => Math.random() - 0.5)
-}
 
 function retrieveQuestions (querySnapshot) {
   const questions = []
@@ -25,7 +22,7 @@ async function getQuestions ({ database, size = 40 }) {
   try {
     const querySnapshot = await getQuestionDocs(database, size)
     const questions = retrieveQuestions(querySnapshot)
-    return sortQuestionsRandomly(questions).splice(0, size)
+    return sortRandomly(questions).splice(0, size)
   } catch (error) {
     console.error("Error getting documents: ", error)
     throw error
