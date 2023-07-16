@@ -1,4 +1,4 @@
-import { sortRandomly } from "@/share"
+import { shuffle } from "sleepy-spider-lib"
 import { parseMultiChoiceQuestion } from "./question.mapper"
 
 const QUESTIONS_SIZE_BY_DEFAULT = 40
@@ -16,7 +16,7 @@ async function getQuestions ({ size = QUESTIONS_SIZE_BY_DEFAULT } = questionsSiz
   try {
     const questions = await import('@/questions.json')
     const parseQuestions = retrieveQuestions(questions.default)
-    return sortRandomly(parseQuestions).splice(0, size)
+    return shuffle(parseQuestions).splice(0, size)
   } catch (error) {
     console.error('Error recovering the questions', error)
     throw error
