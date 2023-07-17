@@ -1,6 +1,6 @@
 import { shuffle } from "sleepy-spider-lib"
-import { decodeQuestions } from "./questions.decode"
-import { parseQuestions } from "./questions.mapper"
+import { decodeQuestions } from "./question.decode"
+import { parseQuestions } from "./question.mapper"
 
 const QUESTIONS_SIZE_BY_DEFAULT = 40
 const ERROR_MESSAGE = 'Error recovering the questions'
