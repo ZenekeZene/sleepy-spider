@@ -37,7 +37,17 @@ function parseSpecificityQuestion (question) {
   }
 }
 
+function parseQuestions (questionsCollection) {
+  const questions = []
+  questionsCollection.forEach((question) => {
+    questions.push(parseMultiChoiceQuestion(question))
+  })
+  return questions
+}
+
+
 export {
+  parseQuestions,
   parseMultiChoiceQuestion,
   parseSpecificityQuestion,
 }

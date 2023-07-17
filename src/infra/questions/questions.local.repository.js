@@ -1,37 +1,28 @@
-import { decode, shuffle } from "sleepy-spider-lib"
-import { parseMultiChoiceQuestion } from "./question.mapper"
+import { shuffle } from "sleepy-spider-lib"
+import { decodeQuestions } from "./questions.decode"
+import { parseQuestions } from "./questions.mapper"
 
 const QUESTIONS_SIZE_BY_DEFAULT = 40
-const questionsSizeByDefault = { size: QUESTIONS_SIZE_BY_DEFAULT }
+const ERROR_MESSAGE = 'Error recovering the questions'
+
 const API_URL = import.meta.env.VITE_API_URL
+const SLUG = '/questions'
 
-const decodeQuestion = (question) => {
-  const obj = {}
-  for (const key in question) {
-    obj[decode(key)] = decode(question[key])
-  }
-  return obj
-}
+const splice = (questions, size) => questions.splice(0, size)
 
-const decodeQuestions = (questions) => questions.map(decodeQuestion)
+function getQuestions (props) {
+  const { size } = props || { size: QUESTIONS_SIZE_BY_DEFAULT }
+  const endpoint = `${API_URL}${SLUG}`
 
-function parseQuestions (questionsCollection) {
-  const questions = []
-  questionsCollection.forEach((question) => {
-    questions.push(parseMultiChoiceQuestion(question))
-  })
-  return questions
-}
-
-function getQuestions ({ size = QUESTIONS_SIZE_BY_DEFAULT } = questionsSizeByDefault) {
-  return fetch(`${API_URL}/questions`)
+  return fetch(endpoint)
     .then(response => response.json())
     .then(decodeQuestions)
     .then(parseQuestions)
-    .then(data => shuffle(data).splice(0, size))
+    .then(shuffle)
+    .then(questions => splice(questions, size))
     .catch(error => {
-      console.error('Error recovering the questions', error)
-      Promise.reject(new Error('Error recovering the questions'))
+      console.error(ERROR_MESSAGE, error)
+      Promise.reject(new Error(ERROR_MESSAGE))
     }
   )
 }
