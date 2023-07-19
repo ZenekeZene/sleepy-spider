@@ -6,16 +6,6 @@ import { getQuestions } from '@/infra/questions/questions.local.repository'
 import { drawSpider } from '@/ui/components/sleepy/spider/drawSpider'
 import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/components/awakeningCounter/drawAwakeningCount'
 
-const onChange = (value, spider) => {
-  updateAwakeningsCounter(value)
-  spider.body.incrementHateLevel(value)
-}
-
-const onShowQuestion = (questions, spider) => {
-  spider.body.resetHateLevel()
-  onShowQuestion(questions)
-}
-
 async function startQuiz (image, onShowQuestion) {
   let spider = null
 
@@ -23,8 +13,14 @@ async function startQuiz (image, onShowQuestion) {
     const questions = await getQuestions({ size: QUESTIONS_MAX_PER_QUIZ })
 
     const handlers = {
-      onChange: (value) => onChange(value, spider),
-      onShowQuestion: () => onShowQuestion(questions, spider),
+      onChange: (value) => {
+        updateAwakeningsCounter(value)
+        spider.body.incrementHateLevel(value)
+      },
+      onShowQuestion: () => {
+        spider.body.resetHateLevel()
+        onShowQuestion(questions)
+      }
     }
 
     const addAwakening = startAwakeningsSystem(handlers)
