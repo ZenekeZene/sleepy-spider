@@ -2,7 +2,7 @@ import { query, limit, orderBy, getDocs, collection } from 'firebase/firestore'
 
 const DOCUMENT = 'awakenings'
 
-async function getUsersByLimit ({ database, limitSize = 3 }) {
+async function getUsersByLimit ({ database, limitSize = 10 }) {
   const users = []
   const awakeningsRef = collection(database, DOCUMENT)
   const q = query(awakeningsRef, orderBy('value', 'desc'), limit(limitSize))
