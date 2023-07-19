@@ -1,13 +1,13 @@
 import { listenEvent } from 'sleepy-spider-lib'
-import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { untilShowQuestionCounter } from '@/infra/awakening/untilShowQuestionCounter'
 import { EVENTS } from '@/adapter'
 import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { setFieldOnDocument } from '@/infra/services/database/incrementField'
 import { getInfraServices } from "@/infra/infra"
+import { AwakeningStore } from '@/adapter/awakening.store'
 import { AuthStore } from '@/adapter/authentication.store'
 
-const awakeningStore = new CachedCounter(0)
+const awakeningStore = new AwakeningStore(0)
 const { auth } = new AuthStore()
 
 async function addAwakening (value, onChange, onShowQuestion) {

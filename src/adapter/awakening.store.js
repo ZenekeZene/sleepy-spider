@@ -1,7 +1,7 @@
-const Singleton = (function() {
+const AwakeningStore = (function() {
   let instance
 
-  function Singleton() {
+  function AwakeningStore() {
     if (instance) {
       return instance
     }
@@ -15,7 +15,7 @@ const Singleton = (function() {
     }
   }
 
-  return Singleton
+  return AwakeningStore
 })()
 
-export { Singleton }
+export { AwakeningStore }

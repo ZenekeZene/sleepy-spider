@@ -1,17 +1,17 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
-import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record/record'
 import { getSelectors as $el } from './finalScreen.selectors'
+import { AwakeningStore } from '@/adapter/awakening.store'
 import { AuthStore } from '@/adapter/authentication.store'
 import './finalScreen.css'
 
 const { auth } = new AuthStore()
-const awakeningStore = new CachedCounter(0)
+const awakeningStore = new AwakeningStore(0)
 
 function hideElements () {
   const { elementsToHide } = $el()

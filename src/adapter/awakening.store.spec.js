@@ -1,8 +1,8 @@
-import { Singleton } from './Singleton'
+import { AwakeningStore } from './awakening.store'
 
-describe('Singleton', () => {
-  const instance1 = new Singleton()
-  const instance2 = new Singleton()
+describe('AwakeningStore', () => {
+  const instance1 = new AwakeningStore()
+  const instance2 = new AwakeningStore()
 
   it(`returns the same instance`, () => {
     expect(instance1).toBe(instance2)

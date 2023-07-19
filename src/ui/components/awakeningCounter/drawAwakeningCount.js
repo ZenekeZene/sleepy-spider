@@ -1,12 +1,12 @@
 import { listenEvent, findAllByClassName, classHelper as $class, delay } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
-import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
+import { AwakeningStore } from '@/adapter/awakening.store'
 
 export const COUNTER_CLASSNAME = 'counter'
 const COUNTER_EFFECT_CLASSNAME = 'counter-effect'
 
 const updateAwakeningsCounter = () => {
-  const { value } = new CachedCounter()
+  const { value } = new AwakeningStore()
   const counters = findAllByClassName(COUNTER_CLASSNAME)
   Array.from(counters).forEach(async (counter) => {
     $class.toggle(counter, COUNTER_EFFECT_CLASSNAME)
@@ -17,7 +17,7 @@ const updateAwakeningsCounter = () => {
 }
 
 const listenAnsweredCorrect = () => {
-  const awakeningStore = new CachedCounter(0)
+  const awakeningStore = new AwakeningStore(0)
   listenEvent(EVENTS.ANSWERED_CORRECT, (event) => {
     const { value } = event.detail
     awakeningStore.increment(value)
