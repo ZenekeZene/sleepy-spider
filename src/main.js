@@ -15,7 +15,7 @@ const listenChangesInSettings = () => {
 
 const start = async (spiderImage) => {
   const services = getInfraServices()
-  startQuiz(spiderImage, services, onShowQuestion)
+  startQuiz(spiderImage, onShowQuestion)
 
   const { authentication } = services
 
