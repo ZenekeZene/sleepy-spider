@@ -1,6 +1,7 @@
 const createLeaderboardItemRaw = (player) => ({
   name: player.displayName,
   score: player.value,
+  photoURL: player.photoURL,
 })
 
 const createLeaderboardItem = (player) => ({

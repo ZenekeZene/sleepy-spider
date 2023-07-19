@@ -1,10 +1,10 @@
-import { classHelper as $class, createElement } from "sleepy-spider-lib"
+import { classHelper as $class, createElement, createImage } from "sleepy-spider-lib"
 import './ranking.css'
 
 const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
 
-const createRankingItem = ({ name, score, position, isUser, wrapper, insertMode }) => {
+const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, insertMode }) => {
   const listItem = createElement({
     tag: 'li',
     classNames: `${CLASSNAME_PREFIX}__item`,
@@ -16,6 +16,12 @@ const createRankingItem = ({ name, score, position, isUser, wrapper, insertMode 
     classNames: `${CLASSNAME_PREFIX}__position`,
     target: listItem,
     text: position,
+  })
+  createImage({
+    src: photoURL,
+    alt: name,
+    classNames: `${CLASSNAME_PREFIX}__image`,
+    target: listItem,
   })
   createElement({
     tag: 'span',
