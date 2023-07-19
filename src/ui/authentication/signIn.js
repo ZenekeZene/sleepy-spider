@@ -3,7 +3,6 @@ import { EVENTS, stores } from '@/adapter'
 import { launchSignIn } from './handleSignIn'
 import { show, hide } from './signIn.titles'
 
-
 const handleUserLogged = async () => {
   const { user } = stores.auth
   hide.title()
