@@ -1,15 +1,17 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
+import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
 import { Singleton as CachedCounter } from '@/infra/awakening/Singleton'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { handlePersonalLocalRecord } from './record/record'
+import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
+import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record/record'
 import { getSelectors as $el } from './finalScreen.selectors'
+import { AuthStore } from '@/adapter/authentication.store'
 import './finalScreen.css'
 
-// TODO: This is a workaround. We need to find a better way to handle this.
-// Vanilla Store.
-let isUserLogged = false
+const { auth } = new AuthStore()
+const awakeningStore = new CachedCounter(0)
 
 function hideElements () {
   const { elementsToHide } = $el()
@@ -18,36 +20,69 @@ function hideElements () {
   })
 }
 
-function showFinalScreen(finalScore) {
-  const { finalScreen, score, goToLeaderboardButton, playAgainButton } = $el()
-  $class.remove(finalScreen, HIDDEN_CLASS)
-  hideElements()
-  score.textContent = finalScore
+function updateRecordAndPreviewRanking (record) {
+  handlePersonalLocalRecord(record)
+  updatePreviewRanking(record)
+}
 
-  changeAllShareLinks(finalScore)
-  handlePersonalLocalRecord(finalScore)
+function updateRecordWithMaxScore () {
+  getAwakeningsOfUser()
+  .then(({ awakenings }) => {
+    const record = Math.max(awakenings, awakeningStore.value)
+    updateRecordAndPreviewRanking(record)
+  })
+}
 
-  if (isUserLogged) {
-    $class.remove(goToLeaderboardButton, HIDDEN_CLASS)
+function updateRecord () {
+  if (auth.isLogged) {
+    updateRecordWithMaxScore()
   } else {
-    $class.add(goToLeaderboardButton, HIDDEN_CLASS)
+    updateRecordAndPreviewRanking(awakeningStore.value)
   }
+}
 
+function toggleLeaderboardButton () {
+  const { goToLeaderboardButton} = $el()
+  const toggle = auth.isLogged ? $class.remove : $class.add
+  toggle(goToLeaderboardButton, HIDDEN_CLASS)
+}
+
+function listenPlayAgainButton () {
+  const { playAgainButton } = $el()
   playAgainButton.addEventListener('click', () => {
     window.location.reload()
   })
 }
 
+function showFinalScreen() {
+  const { finalScreen, score } = $el()
+  $class.remove(finalScreen, HIDDEN_CLASS)
+  hideElements()
+  score.textContent = awakeningStore.value
+
+  changeAllShareLinks(awakeningStore.value)
+  toggleLeaderboardButton()
+  updateRecord()
+  listenPlayAgainButton()
+}
+
 const handleEndTimer = () => {
-  const cachedCounter = new CachedCounter()
-  const finalValue = cachedCounter.value
-  showFinalScreen(finalValue)
+  showFinalScreen()
   $class.remove(getBody(), 'headShakeHard')
 }
 
+function handleUserLogged () {
+  removePersonalLocalRecord()
+  getAwakeningsOfUser()
+  .then(({ existsDocument, awakenings }) => {
+    if (!existsDocument) return
+    if (awakeningStore.value > awakenings) return
+    updateRecordAndPreviewRanking(awakenings)
+  })
+}
+
 function prepareFinalScreen () {
-  listenEvent(EVENTS.USER_LOGGED, () => { isUserLogged = true })
-  listenEvent(EVENTS.USER_NOT_LOGGED, () => { isUserLogged = false })
+  listenEvent(EVENTS.USER_LOGGED, handleUserLogged)
   listenEvent(EVENTS.END_TIMER, handleEndTimer)
 }
 
