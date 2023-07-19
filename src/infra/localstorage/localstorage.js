@@ -10,7 +10,13 @@ function set (key, value) {
   localStorage.setItem(key, JSON.stringify(value))
 }
 
+function remove (key) {
+  if (!key) throw new Error('key is required')
+  localStorage.removeItem(key)
+}
+
 export {
   get,
   set,
+  remove,
 }

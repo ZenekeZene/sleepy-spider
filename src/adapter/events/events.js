@@ -9,7 +9,7 @@ const EVENTS = Object.freeze({
 })
 
 const handler = {
-  get(target, prop, receiver) {
+  get(target, prop) {
     if (!EVENTS.hasOwnProperty(prop)) {
       throw new Error(`Event ${prop} does not exist.`)
     }

@@ -14,7 +14,7 @@ const handleSignIn = (authentication) => {
   signInWithPopup(authentication)
   .catch((error) => {
     error.mapErr((error) => {
-      console.log(error)
+      console.error(error)
     })
   })
 }
