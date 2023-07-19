@@ -2,7 +2,7 @@ import { listenEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter/events/events'
 import { launchSignIn } from './handleSignIn'
 import { show, hide } from './signIn.titles'
-import { AuthStore } from '@/adapter/authentication.store'
+import { AuthStore } from '@/adapter/stores/authentication.store'
 
 const { auth } = new AuthStore()
 

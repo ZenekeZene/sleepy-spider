@@ -6,8 +6,8 @@ import { HIDDEN_CLASS } from '@/ui/constants'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record/record'
 import { getSelectors as $el } from './finalScreen.selectors'
-import { AwakeningStore } from '@/adapter/awakening.store'
-import { AuthStore } from '@/adapter/authentication.store'
+import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
+import { AuthStore } from '@/adapter/stores/authentication.store'
 import './finalScreen.css'
 
 const { auth } = new AuthStore()

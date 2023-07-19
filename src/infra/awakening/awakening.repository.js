@@ -4,8 +4,8 @@ import { EVENTS } from '@/adapter'
 import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { setFieldOnDocument } from '@/infra/services/database/incrementField'
 import { getInfraServices } from "@/infra/infra"
-import { AwakeningStore } from '@/adapter/awakening.store'
-import { AuthStore } from '@/adapter/authentication.store'
+import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
+import { AuthStore } from '@/adapter/stores/authentication.store'
 
 const awakeningStore = new AwakeningStore(0)
 const { auth } = new AuthStore()

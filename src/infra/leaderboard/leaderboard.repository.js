@@ -2,7 +2,7 @@ import { query, collection, getDocs, orderBy, limit } from "firebase/firestore"
 import {
   createLeaderboardItem as create,
 } from '@/domain/leaderboard'
-import { AwakeningStore } from '@/adapter/awakening.store'
+import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
 import { getInfraServices } from "@/infra/infra"
 
 const isOfUser = (user, item) => {

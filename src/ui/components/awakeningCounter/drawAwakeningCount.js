@@ -1,6 +1,6 @@
 import { listenEvent, findAllByClassName, classHelper as $class, delay } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
-import { AwakeningStore } from '@/adapter/awakening.store'
+import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
 
 export const COUNTER_CLASSNAME = 'counter'
 const COUNTER_EFFECT_CLASSNAME = 'counter-effect'
