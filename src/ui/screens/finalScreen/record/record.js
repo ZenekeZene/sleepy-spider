@@ -14,9 +14,9 @@ function updateRecord (lastScore, localScore) {
 function showRecord(record) {
   const recordMessageElement = findById(RECORD_MESSAGE_ID)
   const recordCounters = findAllByClassName(RECORD_COUNTER_CLASSNAME)
-  if (!recordMessageElement || !recordCounters.length || !recordMessageElement) return
+  if (!recordMessageElement || !recordCounters.length) return
   $class.add(recordMessageElement, VISIBLE_CLASS)
-  Array.from(recordCounters).forEach(async (counter) => {
+  Array.from(recordCounters).forEach((counter) => {
     counter.textContent = Number(record).toLocaleString()
   })
 }
