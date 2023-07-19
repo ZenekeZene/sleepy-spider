@@ -1,12 +1,12 @@
 const createLeaderboardItemRaw = (player) => ({
-  name: player.name,
-  score: player.score,
+  name: player.displayName,
+  score: player.value,
 })
 
 const createLeaderboardItem = (player) => ({
   ...createLeaderboardItemRaw(player),
   position: player.position,
-  isUser: player.isUser,
+  isUser: player.isUser || false,
 })
 
 export {
