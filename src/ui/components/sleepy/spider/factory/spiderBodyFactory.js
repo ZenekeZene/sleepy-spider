@@ -6,7 +6,7 @@ const NUM_FRAMES = 5
 const createSpiderBody = async (props) =>
   new Promise((resolve, reject) => {
     const { context, canvas } = props
-    const image = props.spiderImage
+    const { image } = props
 
     try {
       const sprite = new Spritesheet(NUM_FRAMES, 1, image)

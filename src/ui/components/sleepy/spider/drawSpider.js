@@ -24,17 +24,17 @@ const onRefreshReferences = async (params) => {
   updateListenEyes({ eyesCanvas, eyes, body, onInterruptedSleep: () => {} })
 }
 
-const drawSpiderBody = async ({ spiderImage, params }) => {
+const drawSpiderBody = async ({ image, params }) => {
   const canvas = findById('body')
   const context = canvas.getContext('2d')
-  body = await createSpiderBody({ spiderImage, context, canvas, eyes, params })
+  body = await createSpiderBody({ image, context, canvas, eyes, params })
 }
 
-const drawSpider = async ({ spiderImage, params, onInterruptedSleep }) => {
+const drawSpider = async ({ image, params, onInterruptedSleep }) => {
   eyesCanvas = findById('eyes')
   eyesContext = eyesCanvas.getContext('2d')
   await drawSpiderEyes(params)
-  await drawSpiderBody({ spiderImage, params })
+  await drawSpiderBody({ image, params })
   const spider = { eyes, eyesCanvas, body, onInterruptedSleep }
   listenTheSleepCycle(spider)
   return spider
