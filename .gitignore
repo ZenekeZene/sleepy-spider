@@ -25,6 +25,6 @@ dist-ssr
 
 coverage
 # src/questions/questions.database.json
-questions.database.json
+# questions.database.json
 
 .env
