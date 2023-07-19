@@ -1,6 +1,6 @@
 import { Pane } from 'tweakpane'
 import { dispatchEvent } from 'sleepy-spider-lib'
-import { EVENTS } from '@/adapter/events/events'
+import { EVENTS } from '@/adapter'
 import { SHAPES } from '@/domain/settings'
 
 const onSettingsChanges = () => {

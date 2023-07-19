@@ -2,7 +2,7 @@ import { query, collection, getDocs, orderBy, limit } from "firebase/firestore"
 import {
   createLeaderboardItem as create,
 } from '@/domain/leaderboard'
-import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
+import { stores } from '@/adapter'
 import { getInfraServices } from "@/infra/infra"
 
 const isOfUser = (user, item) => {
@@ -36,7 +36,7 @@ const position = (data) => data.map((item, index) => ({ ...item, position: index
 
 const getLeaderboard = ({ user, limit = 5 }) => {
   const { database } = getInfraServices()
-  const awakeningStore = new AwakeningStore(0)
+  const awakeningStore = stores.awakening
 
   return getLeaderboardDocs(database, limit)
   .then(retrieveLeaderboard)

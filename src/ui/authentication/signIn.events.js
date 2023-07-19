@@ -1,5 +1,5 @@
 import { dispatchEvent } from "sleepy-spider-lib"
-import { EVENTS } from "@/adapter/events/events"
+import { EVENTS } from "@/adapter"
 
 const dispatchUserLogged = (user) => {
   dispatchEvent(EVENTS.USER_LOGGED, { user })

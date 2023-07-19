@@ -1,14 +1,13 @@
 import { listenEvent } from 'sleepy-spider-lib'
-import { EVENTS } from '@/adapter/events/events'
+import { EVENTS, stores } from '@/adapter'
 import { launchSignIn } from './handleSignIn'
 import { show, hide } from './signIn.titles'
-import { AuthStore } from '@/adapter/stores/authentication.store'
 
-const { auth } = new AuthStore()
 
 const handleUserLogged = async () => {
+  const { user } = stores.auth
   hide.title()
-  show.userTitle(auth.user)
+  show.userTitle(user)
 }
 
 const handleUserNotLogged = () => {

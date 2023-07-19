@@ -1,17 +1,15 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
-import { EVENTS } from '@/adapter'
+import { EVENTS, stores } from '@/adapter'
 import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record/record'
 import { getSelectors as $el } from './finalScreen.selectors'
-import { AwakeningStore } from '@/adapter/stores/awakening/awakening.store'
-import { AuthStore } from '@/adapter/stores/authentication.store'
 import './finalScreen.css'
 
-const { auth } = new AuthStore()
-const awakeningStore = new AwakeningStore(0)
+const { isLogged } = stores.auth
+const awakeningStore = stores.awakening
 
 function hideElements () {
   const { elementsToHide } = $el()
@@ -34,7 +32,7 @@ function updateRecordWithMaxScore () {
 }
 
 function updateRecord () {
-  if (auth.isLogged) {
+  if (isLogged) {
     updateRecordWithMaxScore()
   } else {
     updateRecordAndPreviewRanking(awakeningStore.value)
@@ -43,7 +41,7 @@ function updateRecord () {
 
 function toggleLeaderboardButton () {
   const { goToLeaderboardButton} = $el()
-  const toggle = auth.isLogged ? $class.remove : $class.add
+  const toggle = isLogged ? $class.remove : $class.add
   toggle(goToLeaderboardButton, HIDDEN_CLASS)
 }
 

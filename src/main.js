@@ -1,7 +1,7 @@
 import { listenEvent } from 'sleepy-spider-lib'
 import { params } from '@/domain/settings'
 import { getInfraServices } from '@/infra/infra'
-import { EVENTS } from '@/adapter/events/events'
+import { EVENTS } from '@/adapter'
 import { startQuiz } from '@/adapter/startQuiz'
 import { loadSpiderSprite, prepare } from '@/ui'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'

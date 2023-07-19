@@ -9,14 +9,12 @@ const AuthStore = (function() {
       return instance
     }
     instance = this
-    this.auth = {
-      isLogged: false,
-      user: null,
-    }
+    this.isLogged = false
+    this.user = null
 
     this.setUser = function(user) {
-      this.auth.user = user
-      this.auth.isLogged = Boolean(user)
+      this.user = user
+      this.isLogged = Boolean(user)
     }
 
     listenEvent(EVENTS.USER_LOGGED, ({ detail }) => {
