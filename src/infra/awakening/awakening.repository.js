@@ -27,16 +27,13 @@ function updateAwakeningsOfUser (props) {
 
 async function handleEndTimer () {
   const { isLogged, user } = stores.auth
-  if (isLogged) {
-    const { existsDocument, documentRef, awakenings } = await getAwakeningsOfUser()
-    if (existsDocument && awakenings >= awakeningStore.value) return
-    updateAwakeningsOfUser({ user, existsDocument, documentRef })
-  } else {
-    // Si no esta logeado...
-  }
+  if (!isLogged) return
+  const { existsDocument, documentRef, awakenings } = await getAwakeningsOfUser()
+  if (existsDocument && awakenings >= awakeningStore.value) return
+  updateAwakeningsOfUser({ user, existsDocument, documentRef })
 }
 
-async function startAwakeningsSystem (props) {
+function startAwakeningsSystem (props) {
   if (!props?.onChange) throw new Error('Error with unknown callback onChange.')
   if (!props?.onShowQuestion) throw new Error('Error with unknown callback onShowQuestion.')
   listenEvent(EVENTS.END_TIMER, handleEndTimer)

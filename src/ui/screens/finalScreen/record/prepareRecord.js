@@ -1,6 +1,7 @@
 import { listenEvent } from 'sleepy-spider-lib'
 import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
 import { EVENTS, stores } from '@/adapter'
+import { changeAllShareLinks } from '@/ui/components/share/share'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record'
 
@@ -15,6 +16,7 @@ function updateRecordWithMaxScore () {
   .then(({ awakenings }) => {
     const record = Math.max(awakenings, awakeningStore.value)
     updateRecordAndPreviewRanking(record)
+    changeAllShareLinks(record)
   })
 }
 
@@ -25,6 +27,7 @@ function updateRecord () {
     updateRecordWithMaxScore()
   } else {
     updateRecordAndPreviewRanking(awakeningStore.value)
+    changeAllShareLinks(awakeningStore.value)
   }
 }
 

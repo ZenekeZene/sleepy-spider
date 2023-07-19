@@ -1,6 +1,5 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
-import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
@@ -32,8 +31,6 @@ function showFinalScreen() {
   $class.remove(finalScreen, HIDDEN_CLASS)
   hideElements()
   score.textContent = awakeningStore.value
-
-  changeAllShareLinks(awakeningStore.value)
   toggleLeaderboardButton()
   listenPlayAgainButton()
 }
