@@ -6,9 +6,9 @@ const RECORD_KEY = 'record'
 const RECORD_MESSAGE_ID = 'record-message'
 const RECORD_COUNTER_CLASSNAME = 'record-counter'
 
-function updateRecord ({ finalScore, record }) {
-  if (finalScore < record) return
-  localstorage.set(RECORD_KEY, finalScore)
+function updateRecord (lastScore, localScore) {
+  if (lastScore < localScore) return
+  localstorage.set(RECORD_KEY, lastScore)
 }
 
 function showRecord(record) {
@@ -21,12 +21,17 @@ function showRecord(record) {
   })
 }
 
-function handlePersonalLocalRecord (finalScore) {
-  const record = localstorage.get(RECORD_KEY)
-  showRecord(Math.max(finalScore, record))
-  updateRecord({ finalScore, record })
+function handlePersonalLocalRecord (lastScore) {
+  const localRecord = localstorage.get(RECORD_KEY)
+  showRecord(Math.max(lastScore, localRecord))
+  updateRecord(lastScore, localRecord)
+}
+
+function removePersonalLocalRecord () {
+  localstorage.remove(RECORD_KEY)
 }
 
 export {
   handlePersonalLocalRecord,
+  removePersonalLocalRecord,
 }

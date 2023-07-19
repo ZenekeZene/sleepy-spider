@@ -8,6 +8,7 @@ const getSelectors = () => ({
   score: findByIdCached('final-score'),
   playAgainButton: findByIdCached('play-again'),
   goToLeaderboardButton: findByIdCached('go-leaderboard'),
+  previewRanking: findByIdCached('leaderboard-preview'),
 })
 
 export {

@@ -7,7 +7,6 @@
   display: flex;
   align-items: baseline;
   padding: 0.2rem 0.5rem 0.2rem 0;
-  border-radius: 5px;
 }
 
 .ranking__item:nth-child(odd) {
