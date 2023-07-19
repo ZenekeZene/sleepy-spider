@@ -14,16 +14,15 @@ const listenChangesInSettings = () => {
 }
 
 const start = async (spiderImage) => {
-  const services = getInfraServices()
+  const { authentication } = getInfraServices()
   startQuiz(spiderImage, onShowQuestion)
 
-  const { authentication } = services
-
   prepare.finalScreen()
+  prepare.record()
   prepare.leaderboard()
   prepare.clock()
   prepare.gui(params)
-  prepare.signIn({ authentication })
+  prepare.signIn(authentication)
 
   listenChangesInSettings()
 }

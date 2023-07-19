@@ -1,15 +1,9 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
-import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
-import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record/record'
 import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
-
-const { isLogged } = stores.auth
-const awakeningStore = stores.awakening
 
 function hideElements () {
   const { elementsToHide } = $el()
@@ -18,28 +12,8 @@ function hideElements () {
   })
 }
 
-function updateRecordAndPreviewRanking (record) {
-  handlePersonalLocalRecord(record)
-  updatePreviewRanking(record)
-}
-
-function updateRecordWithMaxScore () {
-  getAwakeningsOfUser()
-  .then(({ awakenings }) => {
-    const record = Math.max(awakenings, awakeningStore.value)
-    updateRecordAndPreviewRanking(record)
-  })
-}
-
-function updateRecord () {
-  if (isLogged) {
-    updateRecordWithMaxScore()
-  } else {
-    updateRecordAndPreviewRanking(awakeningStore.value)
-  }
-}
-
 function toggleLeaderboardButton () {
+  const { isLogged } = stores.auth
   const { goToLeaderboardButton} = $el()
   const toggle = isLogged ? $class.remove : $class.add
   toggle(goToLeaderboardButton, HIDDEN_CLASS)
@@ -53,6 +27,7 @@ function listenPlayAgainButton () {
 }
 
 function showFinalScreen() {
+  const awakeningStore = stores.awakening
   const { finalScreen, score } = $el()
   $class.remove(finalScreen, HIDDEN_CLASS)
   hideElements()
@@ -60,7 +35,6 @@ function showFinalScreen() {
 
   changeAllShareLinks(awakeningStore.value)
   toggleLeaderboardButton()
-  updateRecord()
   listenPlayAgainButton()
 }
 
@@ -69,21 +43,8 @@ const handleEndTimer = () => {
   $class.remove(getBody(), 'headShakeHard')
 }
 
-function handleUserLogged () {
-  removePersonalLocalRecord()
-  getAwakeningsOfUser()
-  .then(({ existsDocument, awakenings }) => {
-    if (!existsDocument) return
-    if (awakeningStore.value > awakenings) return
-    updateRecordAndPreviewRanking(awakenings)
-  })
-}
-
 function prepareFinalScreen () {
-  listenEvent(EVENTS.USER_LOGGED, handleUserLogged)
   listenEvent(EVENTS.END_TIMER, handleEndTimer)
 }
 
-export {
-  prepareFinalScreen
-}
+export { prepareFinalScreen }
