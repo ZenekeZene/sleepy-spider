@@ -27,5 +27,5 @@ const JSON_SPACES = environment === 'production' ? 0 : 2
 app.set('json spaces', JSON_SPACES)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Sleepy back running on port ${port}`)
 })
