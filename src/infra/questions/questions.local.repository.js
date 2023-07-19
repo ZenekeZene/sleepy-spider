@@ -8,7 +8,7 @@ const ERROR_MESSAGE = 'Error recovering the questions'
 const API_URL = import.meta.env.VITE_API_URL
 const SLUG = '/questions'
 
-const splice = (questions, size) => questions.splice(0, size)
+const splice = (size) => (questions) => questions.splice(0, size)
 
 function getQuestions (props) {
   const { size } = props || { size: QUESTIONS_SIZE_BY_DEFAULT }
@@ -19,7 +19,7 @@ function getQuestions (props) {
     .then(decodeQuestions)
     .then(parseQuestions)
     .then(shuffle)
-    .then(questions => splice(questions, size))
+    .then(splice(size))
     .catch(error => {
       console.error(ERROR_MESSAGE, error)
       Promise.reject(new Error(ERROR_MESSAGE))
