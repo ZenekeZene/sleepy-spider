@@ -1,5 +1,6 @@
 import { sortRandomly } from "@/share"
 import { query, collection, getDocs, limit } from "firebase/firestore"
+import { getInfraServices } from "@/infra/infra"
 import { parseMultiChoiceQuestion } from "./question.mapper"
 
 const collectionName = "questionsCSS"
@@ -12,15 +13,16 @@ function retrieveQuestions (querySnapshot) {
   return questions
 }
 
-async function getQuestionDocs (database) {
+async function getQuestionDocs () {
+  const { database } = getInfraServices()
   const questionsRef = collection(database, collectionName)
   const q = query(questionsRef)
   return await getDocs(q)
 }
 
-async function getQuestions ({ database, size = 40 }) {
+async function getQuestions ({ size = 40 }) {
   try {
-    const querySnapshot = await getQuestionDocs(database, size)
+    const querySnapshot = await getQuestionDocs(size)
     const questions = retrieveQuestions(querySnapshot)
     return sortRandomly(questions).splice(0, size)
   } catch (error) {

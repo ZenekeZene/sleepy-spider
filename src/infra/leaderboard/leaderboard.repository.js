@@ -24,7 +24,8 @@ function retrieveLeaderboard (querySnapshot) {
   return leaderboard
 }
 
-const getLeaderboardDocs = async (database, size) => {
+const getLeaderboardDocs = async (size) => {
+  const { database } = getInfraServices()
   const leaderboardRef = collection(database, "awakenings")
   const q = query(leaderboardRef, orderBy("value", "desc"), limit(size))
   return await getDocs(q)
@@ -35,10 +36,9 @@ const sort = (data) => data.sort((a, b) => b.score - a.score)
 const position = (data) => data.map((item, index) => ({ ...item, position: index + 1 }))
 
 const getLeaderboard = ({ user, limit = 5 }) => {
-  const { database } = getInfraServices()
   const awakeningStore = stores.awakening
 
-  return getLeaderboardDocs(database, limit)
+  return getLeaderboardDocs(limit)
   .then(retrieveLeaderboard)
   .then(slice(limit))
   .then(sort)

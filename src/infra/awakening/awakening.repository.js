@@ -3,7 +3,6 @@ import { untilShowQuestionCounter } from '@/infra/awakening/untilShowQuestionCou
 import { EVENTS, stores } from '@/adapter'
 import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { setFieldOnDocument } from '@/infra/services/database/incrementField'
-import { getInfraServices } from "@/infra/infra"
 
 const awakeningStore = stores.awakening
 
@@ -17,8 +16,7 @@ async function addAwakening (value, onChange, onShowQuestion) {
 async function getAwakeningsOfUser () {
   const { isLogged, user } = stores.auth
   if (!isLogged) return Promise.reject('User not logged')
-  const { database } = getInfraServices()
-  const snapshot = await getSnapshot({ database, documentId: 'awakenings', userUid: user.uid })
+  const snapshot = await getSnapshot({ documentId: 'awakenings', userUid: user.uid })
   const awakenings = snapshot.data?.value || 0
   return { ...snapshot, awakenings }
 }
