@@ -79,12 +79,12 @@
 
 .collider {
   position: absolute;
-  top: 66%;
+  top: 60%;
   left: 48%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: 17rem;
-  height: 12rem;
+  width: 21rem;
+  height: 29rem;
   border-radius: 2rem;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;

@@ -18,7 +18,7 @@ const showUserTitle = ({ displayName }) => {
 }
 
 const removeUserTitle = () => {
-  $class.remove($el().userTitle, HIDDEN_CLASS)
+  $class.add($el().userTitle, HIDDEN_CLASS)
 }
 
 const showTitle = () => {
