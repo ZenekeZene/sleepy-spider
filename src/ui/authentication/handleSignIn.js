@@ -3,6 +3,7 @@ import {
   signInWithPopup,
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
+import { getInfraServices } from '@/infra/infra'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
@@ -10,7 +11,8 @@ import { getSelectors as $el } from "./signIn.selectors"
 import { show, hide } from './signIn.titles'
 import * as events from './signIn.events'
 
-const handleSignIn = (authentication) => {
+const handleSignIn = () => {
+  const { authentication } = getInfraServices()
   signInWithPopup(authentication)
   .catch((error) => {
     error.mapErr((error) => {
@@ -19,10 +21,10 @@ const handleSignIn = (authentication) => {
   })
 }
 
-const listenSignInButton = (authentication) => {
+const listenSignInButton = () => {
   const { signInButton } = $el()
   show.signInButton()
-  signInButton.addEventListener('click', () => handleSignIn(authentication))
+  signInButton.addEventListener('click', handleSignIn)
 }
 
 const isFinalScreen = () => {
@@ -45,14 +47,14 @@ const handleUserLogged = async (user) => {
   prepareScreensToReturningUser(user)
 }
 
-const handleUserNotLogged = (authentication) => {
-  listenSignInButton(authentication)
+const handleUserNotLogged = () => {
+  listenSignInButton()
   events.dispatchUserNotLogged()
 }
 
-const handleChangeOnAuthentication = (authentication) => async (result) => {
+const handleChangeOnAuthentication = async (result) => {
   const { user } = result
-  !user ? handleUserNotLogged(authentication) : handleUserLogged(user)
+  !user ? handleUserNotLogged() : handleUserLogged(user)
 
   const { goToLeaderboardButton, leaderboardScreen } = $el()
 
@@ -63,11 +65,10 @@ const handleChangeOnAuthentication = (authentication) => async (result) => {
   })
 }
 
-function launchSignIn ({ authentication }) {
+function launchSignIn () {
   createSignUpRanking()
   onAuthenticationStateChanged({
-    authentication,
-    onChange: handleChangeOnAuthentication(authentication),
+    onChange: handleChangeOnAuthentication,
   })
 }
 

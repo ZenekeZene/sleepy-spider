@@ -14,7 +14,6 @@ const listenChangesInSettings = () => {
 }
 
 const start = async (spiderImage) => {
-  const { authentication } = getInfraServices()
   startQuiz(spiderImage, onShowQuestion)
 
   prepare.finalScreen()
@@ -22,7 +21,7 @@ const start = async (spiderImage) => {
   prepare.leaderboard()
   prepare.clock()
   prepare.gui(params)
-  prepare.signIn(authentication)
+  prepare.signIn()
 
   listenChangesInSettings()
 }

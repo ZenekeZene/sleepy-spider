@@ -4,6 +4,7 @@ import {
   TwitterAuthProvider,
 } from "firebase/auth"
 import { Ok, Fail } from '@nidstang/result'
+import { getInfraServices } from '@/infra/infra'
 
 const initializeAuth = ({ app }) => getAuth(app)
 
@@ -27,7 +28,8 @@ const signInWithPopup = (auth) => {
   })
 }
 
-const onAuthenticationStateChanged = ({ authentication, onChange }) => {
+const onAuthenticationStateChanged = ({ onChange }) => {
+  const { authentication } = getInfraServices()
   authentication.onAuthStateChanged((user) => {
     onChange({ user })
   })

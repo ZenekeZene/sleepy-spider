@@ -15,8 +15,8 @@ const handleUserNotLogged = () => {
   hide.userTitle()
 }
 
-const prepareSignIn = ({ authentication }) => {
-  launchSignIn({ authentication })
+const prepareSignIn = () => {
+  launchSignIn()
   listenEvent(EVENTS.USER_LOGGED, handleUserLogged)
   listenEvent(EVENTS.USER_NOT_LOGGED, handleUserNotLogged)
 }
