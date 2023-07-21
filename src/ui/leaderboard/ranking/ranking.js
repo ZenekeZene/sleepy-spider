@@ -17,27 +17,38 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, i
     target: listItem,
     text: position,
   })
-  createImage({
+  const image = createImage({
     src: photoURL,
     alt: name,
     classNames: `${CLASSNAME_PREFIX}__image`,
     target: listItem,
   })
+  image.onerror = () => {
+    image.src = 'https://i.pravatar.cc/150'
+  }
   createElement({
     tag: 'span',
     classNames: `${CLASSNAME_PREFIX}__name`,
     target: listItem,
     text: name,
   })
+
+  if (isUser) {
+    $class.add(listItem, CLASSNAME_CURRENT_USER)
+    createElement({
+      tag: 'span',
+      classNames: `${CLASSNAME_PREFIX}__your-best`,
+      target: listItem,
+      text: 'Your best: ',
+    })
+  }
+
   createElement({
     tag: 'span',
     classNames: `${CLASSNAME_PREFIX}__score`,
     target: listItem,
     text: score,
   })
-  if (isUser) {
-    $class.add(listItem, CLASSNAME_CURRENT_USER)
-  }
 }
 
 const showRanking = ({ players, wrapper }) => {

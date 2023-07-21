@@ -5,8 +5,8 @@ import './leaderboardPreview.css'
 
 const createPreviewRanking = async (user) => {
   const { leaderboardPreview } = $el()
-  const rankingWithTopThree = await getLeaderboard({ user, limit: 5 })
-  showRanking({ players: rankingWithTopThree, wrapper: leaderboardPreview })
+  const players = await getLeaderboard({ user, limit: 5 })
+  showRanking({ players, wrapper: leaderboardPreview })
 }
 
 const updatePreviewRanking = (finalScore) => {

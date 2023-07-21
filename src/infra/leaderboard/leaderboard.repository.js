@@ -5,12 +5,13 @@ import {
 import { stores } from '@/adapter'
 import { getInfraServices } from "@/infra/infra"
 
-const isOfUser = (user, item) => {
+const isOfUser = (item) => {
+  const { user } = stores.auth
   if (!user?.displayName) return false
   return user.displayName === item.displayName
 }
 
-const createUserItem = (item, value) => create({
+const createUserPlayer = (item, value) => create({
   ...item,
   isUser: true,
   score: value,
@@ -35,21 +36,20 @@ const slice = (limit) => (data) => data.slice(0, limit)
 const sort = (data) => data.sort((a, b) => b.score - a.score)
 const position = (data) => data.map((item, index) => ({ ...item, position: index + 1 }))
 
-const getLeaderboard = ({ user, limit = 5 }) => {
-  const awakeningStore = stores.awakening
+const parseLeader = (player) => {
+  const { value } = stores.awakening
+  const createLeader = isOfUser(player) ? createUserPlayer : create
+  return createLeader(player, value)
+}
+const parseLeaders = (leaders) => leaders.map(parseLeader)
 
-  return getLeaderboardDocs(limit)
+const getLeaderboard = ({ limit = 5 }) =>
+  getLeaderboardDocs(limit)
   .then(retrieveLeaderboard)
   .then(slice(limit))
-  .then(sort)
   .then(position)
-  .then(data => data.map((item) => {
-    if (isOfUser(user, item)) {
-      return createUserItem(item, awakeningStore.value)
-    }
-    return create(item)
-  }))
-}
+  .then(parseLeaders)
+  .then(sort)
 
 export {
   getLeaderboard,
