@@ -1,5 +1,10 @@
 .leaderboard-screen {
   padding: 1rem;
+  background: linear-gradient(182deg, #b95377 0%, white 33%);
+}
+
+.leaderboard-screen__title {
+  color: white;
 }
 
 .leaderboard-screen__close {

@@ -6,7 +6,8 @@
 .ranking__item {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.5rem 1.75rem 0.5rem 0.75rem;
+  background-color: white;
 }
 
 .ranking__item:nth-child(odd) {

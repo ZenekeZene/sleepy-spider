@@ -4,23 +4,23 @@ import './ranking.css'
 const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
 
-const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, insertMode }) => {
+const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, classname, insertMode }) => {
   const listItem = createElement({
     tag: 'li',
-    classNames: `${CLASSNAME_PREFIX}__item`,
+    classNames: `${classname}__item`,
     target: wrapper,
     insertMode,
   })
   createElement({
     tag: 'span',
-    classNames: `${CLASSNAME_PREFIX}__position`,
+    classNames: `${classname}__position`,
     target: listItem,
     text: position,
   })
   const image = createImage({
     src: photoURL,
     alt: name,
-    classNames: `${CLASSNAME_PREFIX}__image`,
+    classNames: `${classname}__image`,
     target: listItem,
   })
   image.onerror = () => {
@@ -28,7 +28,7 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, i
   }
   createElement({
     tag: 'span',
-    classNames: `${CLASSNAME_PREFIX}__name`,
+    classNames: `${classname}__name`,
     target: listItem,
     text: name,
   })
@@ -37,7 +37,7 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, i
     $class.add(listItem, CLASSNAME_CURRENT_USER)
     createElement({
       tag: 'span',
-      classNames: `${CLASSNAME_PREFIX}__your-best`,
+      classNames: `${classname}__your-best`,
       target: listItem,
       text: 'Your best: ',
     })
@@ -45,7 +45,7 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, i
 
   createElement({
     tag: 'span',
-    classNames: `${CLASSNAME_PREFIX}__score`,
+    classNames: `${classname}__score`,
     target: listItem,
     text: score,
   })
@@ -53,7 +53,7 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, i
 
 const showRanking = ({ players, wrapper }) => {
   wrapper.innerHTML = ''
-  players.map((player) => createRankingItem({ ...player, wrapper }))
+  players.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX }))
 }
 
 const prependRanking = ({ players, wrapper }) => {
@@ -64,4 +64,5 @@ const prependRanking = ({ players, wrapper }) => {
 export {
   showRanking,
   prependRanking,
+  createRankingItem,
 }

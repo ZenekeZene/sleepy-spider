@@ -1,0 +1,114 @@
+.podium {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: 0.5rem;
+  width: 100%;
+  height: 19rem;
+  margin-top: 3rem;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.podium__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(100% / 3);
+  height: 100%;
+  padding: 0.75rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.25rem;
+}
+
+.podium__item.--current {
+  /* border: 2px solid var(--primary-color); */
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.podium__item:first-child {
+  order: 2;
+  height: 100%;
+  /* box-shadow: 0 -23px 2rem 0px #ffd7007d; */
+}
+
+.podium__item:first-child::before,
+.podium__item:first-child::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: linear-gradient(var(--angle),
+    var(--primary-color),  rgb(255 255 255 / 0.5), var(--background-color));
+  animation: rotate 10s linear infinite;
+  border-radius: 0.35rem;
+}
+.podium__item:first-child::after {
+  filter: blur(10px);
+}
+@keyframes rotate {
+  0%     { --angle: 0deg; }
+  100%   { --angle: 360deg;
+  }
+}
+
+.podium__item:first-child svg {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.1));
+}
+
+.podium__item:first-child .podium__position {
+  color: gold;
+}
+
+.podium__item:nth-child(2) {
+  order: 1;
+  height: 85%;
+}
+
+.podium__item:nth-child(3) {
+  order: 3;
+  height: 84%;
+}
+
+.podium__image {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.55rem;
+}
+
+.podium__name {
+  line-height: 1.2;
+  word-wrap: break-word;
+  width: 100%;
+  max-height: 4.5rem;
+  overflow: hidden;
+}
+
+.podium__position {
+  position: absolute;
+  top: -2.5rem;
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+}
+
+.podium__score {
+  margin-top: auto;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}

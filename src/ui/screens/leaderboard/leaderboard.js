@@ -3,13 +3,24 @@ import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
 import { EVENTS } from "@/adapter"
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { showRanking } from '@/ui/leaderboard/ranking/ranking'
+import { showPodium } from '@/ui/leaderboard/podium/podium'
 import { getLeaderboardSelectors as $el } from "./leaderboard.selectors"
 import './leaderboard.css'
 
-const createRanking = async (user) => {
+const createPodium = (players) => {
+  const { podium } = $el()
+  showPodium({ players, wrapper: podium })
+}
+
+const createRanking = (players) => {
   const { ranking } = $el()
-  const players = await getLeaderboard({ user, limit: 20 })
   showRanking({ players, wrapper: ranking })
+}
+
+const showLeaderboard = async ({ user, limit }) => {
+  const players = await getLeaderboard({ user, limit })
+  createPodium(players.slice(0, 3))
+  createRanking(players.slice(3))
 }
 
 const handleCloseScreen = () => {
@@ -17,17 +28,17 @@ const handleCloseScreen = () => {
   $class.add(leaderboardScreen, HIDDEN_CLASS)
 }
 
-const handleOpenScreen = (detail) => {
+const handleOpenScreen = async (detail) => {
   const { leaderboardScreen, closeButton } = $el()
   const { user } = detail
+  await showLeaderboard({ user, limit: 10 })
   $class.remove(leaderboardScreen, HIDDEN_CLASS)
-  createRanking(user)
   closeButton.addEventListener('click', handleCloseScreen)
 }
 
 const listenLeaderboard = () => {
   listenEvent(EVENTS.GO_TO_LEADERBOARD, async ({ detail }) => {
-    handleOpenScreen(detail)
+    await handleOpenScreen(detail)
   })
 }
 
