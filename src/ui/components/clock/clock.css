@@ -48,7 +48,7 @@
 @media screen and (min-width: 48rem) {
   .clock {
     position: absolute;
-    top: 5.5rem;
-    left: 60%;
+    top: 3rem;
+    left: 62%;
   }
 }

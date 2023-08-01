@@ -1,7 +1,7 @@
 .info {
   position: relative;
-  z-index: 1;
-  max-width: 34rem;
+  z-index: 2;
+  max-width: 18rem;
   margin: 0 auto;
 }
 
@@ -29,6 +29,7 @@
 
 .subtitle {
   padding: 0 2rem;
+  text-align: center;
 }
 
 .counter-text {
@@ -47,6 +48,13 @@
   border-radius: 4px;
 }
 
+@media screen and (min-width: 24rem) {
+  .info {
+    max-width: 18rem;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 48rem) {
   .info {
     position: absolute;
@@ -54,6 +62,7 @@
     bottom: 1rem;
     left: 0;
     width: 100%;
+    max-width: unset;
   }
 
   .title,
@@ -62,12 +71,5 @@
     justify-content: center;
     margin: 0 auto;
     text-align: center;
-  }
-}
-
-@media screen and (min-width: 24rem) {
-  .info {
-    max-width: 34rem;
-    margin: 0 auto;
   }
 }
