@@ -23,6 +23,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:debug": "vite --mode debug",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",

@@ -4,6 +4,10 @@
 @import './components/components.css';
 @import './utils/utils.css';
 
+.debug-mode * {
+  border: 1px dashed white !important;
+}
+
 .bounce-wrapper {
   position: absolute;
   top: 50%;

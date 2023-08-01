@@ -25,3 +25,4 @@ dist-ssr
 
 coverage
 src/questions.json
+.env.debug

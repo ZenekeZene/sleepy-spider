@@ -15,6 +15,13 @@ let canvas
 let context
 let isEnabled = true
 
+function debug (x, y, width, height) {
+  context.lineWidth = 2;
+  context.setLineDash([5, 5]);
+  context.strokeStyle = "#fff";
+  context.strokeRect(x, y, width / 2, height / 2);
+}
+
 function drawDreamSymbol ({ part }) {
   part.update()
   const { x, y, size, alpha } = part
@@ -28,6 +35,10 @@ function drawDreamSymbol ({ part }) {
   context.fillStyle = FONT.COLOR
   context.fillText(FONT.SYMBOL, 0, 0)
   context.restore()
+
+  if (window.isDebugMode) {
+    debug(x - offsetX / 1.2, y - offsetY / 3, size, size)
+  }
 }
 
 function drawDream () {

@@ -10,7 +10,7 @@
   background-color: white;
 }
 
-.ranking__item:nth-child(odd) {
+.ranking__item:nth-child(even) {
   background-color: #f5f5f5;
 }
 

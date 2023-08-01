@@ -36,6 +36,13 @@ class Eye {
     return isInHorizontal && isInVertical
   }
 
+  debug (x, y, width, height) {
+    this.context.lineWidth = 4;
+    this.context.setLineDash([5, 5]);
+    this.context.strokeStyle = "#fff";
+    this.context.strokeRect(x, y, width / 2, height / 2);
+  }
+
   draw (column, row) {
     const { x, y } = this.position
     const { width, height } = this.frame
@@ -47,7 +54,14 @@ class Eye {
     const sy = row * height
     const widthScaled = width * this.scale
     const heightScaled = height * this.scale
+
+
     this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
+
+    if (window.isDebugMode) {
+      this.debug(x, y, width, height)
+    }
+
     this.pupil && this.pupil.launchDrawPupil()
   }
 
