@@ -4,32 +4,44 @@ import { HIDDEN_CLASS } from '@/ui/constants'
 import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 
+function hide (element) {
+  $class.add(element, HIDDEN_CLASS)
+}
+
+function show (element) {
+  $class.remove(element, HIDDEN_CLASS)
+}
+
 function hideElements () {
   const { elementsToHide } = $el()
   elementsToHide.forEach(element => {
-    $class.add(element, HIDDEN_CLASS)
+    hide(element)
   })
 }
 
 function toggleLeaderboardButton () {
   const { isLogged } = stores.auth
-  const { goToLeaderboardButton} = $el()
-  const toggle = isLogged ? $class.remove : $class.add
-  toggle(goToLeaderboardButton, HIDDEN_CLASS)
+  const { goToLeaderboardButton, recordMessage } = $el()
+  const toggle = isLogged ? show : hide
+  toggle(goToLeaderboardButton)
+  if (isLogged) return
+  hide(recordMessage)
+}
+
+function reload () {
+  window.location.reload()
 }
 
 function listenPlayAgainButton () {
   const { playAgainButton } = $el()
-  playAgainButton.addEventListener('click', () => {
-    window.location.reload()
-  })
+  playAgainButton.addEventListener('click', reload)
 }
 
 function showFinalScreen() {
   const awakeningStore = stores.awakening
   const { finalScreen, score, backdrop } = $el()
-  $class.remove(finalScreen, HIDDEN_CLASS)
-  $class.remove(backdrop, HIDDEN_CLASS)
+  show(finalScreen)
+  show(backdrop)
   hideElements()
   score.textContent = awakeningStore.value
   toggleLeaderboardButton()

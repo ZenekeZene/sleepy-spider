@@ -3,10 +3,12 @@ import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
 import { EVENTS, stores } from '@/adapter'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
+import { updateSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
 import { handlePersonalLocalRecord, removePersonalLocalRecord } from './record'
 
 function updateRecordAndPreviewRanking (record) {
   handlePersonalLocalRecord(record)
+  updateSignUpRanking(record)
   updatePreviewRanking(record)
 }
 
@@ -26,7 +28,7 @@ function updateRecord () {
   if (isLogged) {
     updateRecordWithMaxScore()
   } else {
-    updateRecordAndPreviewRanking(awakeningStore.value)
+    updateSignUpRanking(awakeningStore.value)
     changeAllShareLinks(awakeningStore.value)
   }
 }

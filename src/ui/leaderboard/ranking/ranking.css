@@ -10,6 +10,10 @@
   background-color: white;
 }
 
+.leaderboard-preview .ranking__item {
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+
 .ranking__item:nth-child(even) {
   background-color: #f5f5f5;
 }
@@ -84,4 +88,10 @@
   width: calc(100% + 2px);
   margin-left: -1px;
   margin-bottom: -1px;
+}
+
+.ranking__your-best {
+  padding-right: 0.5rem;
+  font-size: 0.8rem;
+  color: rgb(255 255 255);
 }

@@ -4,11 +4,12 @@ import './podium.css'
 const crownSVG = `
   <svg viewBox="0 0 140 140">
     <path fill="gold">
-      <animate attributeName="d" dur="1440ms" repeatCount="indefinite" values="M 10,110 L 10,10 L 40,50 L 70,10 L 100,50 L 130,10 L 130,110 z;M 30,110 L 0,0 L 50,50 L 70,0 L 90,50 L 140,0 L 110,110 z;M 10,110 L 10,10 L 40,50 L 70,10 L 100,50 L 130,10 L 130,110 z;"></animate>
+      <animate attributeName="d" dur="1440ms" repeatCount="indefinite"
+        values="M 10,110 L 10,10 L 40,50 L 70,10 L 100,50 L 130,10 L 130,110 z;M 30,110 L 0,0 L 50,50 L 70,0 L 90,50 L 140,0 L 110,110 z;M 10,110 L 10,10 L 40,50 L 70,10 L 100,50 L 130,10 L 130,110 z;"
+      ></animate>
     </path>
   </svg>
 `
-// import { createRankingItem } from '../ranking/ranking.js'
 
 const CLASSNAME_PREFIX = 'podium'
 const CLASSNAME_CURRENT_USER = '--current'

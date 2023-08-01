@@ -1,4 +1,4 @@
-import { findById, getCacheByKey } from 'sleepy-spider-lib'
+import { findById, findBySelector, getCacheByKey } from 'sleepy-spider-lib'
 
 const findByIdCached = getCacheByKey(findById)
 
@@ -6,6 +6,13 @@ const getSelectors = () => ({
   leaderboardPreview: findByIdCached('leaderboard-preview'),
 })
 
+const getUserScoreOnLeaderboard = () => {
+  const userItemOnLeaderboard = findBySelector('.--current')
+  const userScore = userItemOnLeaderboard.querySelector('.ranking__score')
+  return userScore
+}
+
 export {
   getSelectors,
+  getUserScoreOnLeaderboard,
 }
