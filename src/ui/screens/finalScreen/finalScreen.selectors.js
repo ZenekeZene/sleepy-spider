@@ -11,6 +11,7 @@ const getSelectors = () => ({
   goToLeaderboardButton: findByIdCached('go-leaderboard'),
   previewRanking: findByIdCached('leaderboard-preview'),
   recordMessage: findByIdCached('record-message'),
+  newRecordMessage: findByIdCached('new-record-message'),
 })
 
 export {

@@ -1,14 +1,17 @@
-import { classHelper as $class, findById, findAllByClassName } from "sleepy-spider-lib"
-import { VISIBLE_CLASS } from '@/ui/constants'
+import { classHelper as $class, findById, findAllByClassName, dispatchEvent } from "sleepy-spider-lib"
+import { EVENTS } from '@/adapter'
 import * as localstorage from '@/infra/localstorage/localstorage'
+import { VISIBLE_CLASS } from '@/ui/constants'
 
 const RECORD_KEY = 'record'
 const RECORD_MESSAGE_ID = 'record-message'
 const RECORD_COUNTER_CLASSNAME = 'record-counter'
 
 function updateRecord (lastScore, localScore) {
-  if (lastScore < localScore) return
+  if (lastScore <= localScore) return
   localstorage.set(RECORD_KEY, lastScore)
+  if (!localScore) return
+  dispatchEvent(EVENTS.NEW_RECORD)
 }
 
 function showRecord(record) {

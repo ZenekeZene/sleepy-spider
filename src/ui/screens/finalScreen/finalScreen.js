@@ -1,6 +1,7 @@
 import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
+import { launchConfetti } from '@/ui/components/confetti/confetti'
 import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 
@@ -48,6 +49,13 @@ function showFinalScreen() {
   listenPlayAgainButton()
 }
 
+const handleNewRecord = () => {
+  const { newRecordMessage, recordMessage } = $el()
+  show(newRecordMessage)
+  hide(recordMessage)
+  launchConfetti()
+}
+
 const handleEndTimer = () => {
   showFinalScreen()
   $class.remove(getBody(), 'headShakeHard')
@@ -55,6 +63,7 @@ const handleEndTimer = () => {
 
 function prepareFinalScreen () {
   listenEvent(EVENTS.END_TIMER, handleEndTimer)
+  listenEvent(EVENTS.NEW_RECORD, handleNewRecord)
 }
 
 export { prepareFinalScreen }

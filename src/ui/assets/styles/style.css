@@ -60,3 +60,8 @@
     background-position: 0% 50%;
   }
 }
+
+#confetti {
+  position: absolute;
+  z-index: 11;
+}

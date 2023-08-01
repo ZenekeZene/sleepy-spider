@@ -6,6 +6,7 @@ const EVENTS = Object.freeze({
   USER_LOGGED: 'userLogged',
   USER_NOT_LOGGED: 'userNotLogged',
   GO_TO_LEADERBOARD: 'leaderboard',
+  NEW_RECORD: 'newRecord',
 })
 
 const handler = {

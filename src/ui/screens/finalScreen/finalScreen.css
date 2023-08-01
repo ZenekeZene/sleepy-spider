@@ -57,6 +57,13 @@
   color: var(--primary-color);
 }
 
+.final-screen__record.--new {
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
 .final-screen.hidden {
   display: none;
 }
