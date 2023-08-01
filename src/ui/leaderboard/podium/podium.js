@@ -55,7 +55,6 @@ const createPodiumItem = ({ name, score, photoURL, position, wrapper, classname,
 }
 
 const showPodium = ({ players, wrapper }) => {
-  console.log('showPodium', players)
   wrapper.innerHTML = ''
   players.map((player) => createPodiumItem({ ...player, wrapper, classname: CLASSNAME_PREFIX }))
 }

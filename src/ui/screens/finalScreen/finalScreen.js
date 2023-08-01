@@ -27,8 +27,9 @@ function listenPlayAgainButton () {
 
 function showFinalScreen() {
   const awakeningStore = stores.awakening
-  const { finalScreen, score } = $el()
+  const { finalScreen, score, backdrop } = $el()
   $class.remove(finalScreen, HIDDEN_CLASS)
+  $class.remove(backdrop, HIDDEN_CLASS)
   hideElements()
   score.textContent = awakeningStore.value
   toggleLeaderboardButton()
