@@ -1,4 +1,4 @@
-import { createElement, createImage } from "sleepy-spider-lib"
+import { classHelper as $class, createElement, createImage } from "sleepy-spider-lib"
 import './podium.css'
 
 const crownSVG = `
@@ -13,13 +13,22 @@ const crownSVG = `
 const CLASSNAME_PREFIX = 'podium'
 const CLASSNAME_CURRENT_USER = '--current'
 
-const createPodiumItem = ({ name, score, photoURL, position, wrapper, classname, insertMode }) => {
+const createPodiumItem = ({ name, score, photoURL, position, isUser, wrapper, classname, insertMode }) => {
   const listItem = createElement({
     tag: 'li',
     classNames: `${classname}__item`,
     target: wrapper,
     insertMode,
   })
+  if (isUser) {
+    $class.add(listItem, CLASSNAME_CURRENT_USER)
+    createElement({
+      tag: 'span',
+      classNames: `${classname}__you`,
+      target: listItem,
+      text: 'You',
+    })
+  }
   const positionElement = createElement({
     tag: 'span',
     classNames: `${classname}__position`,

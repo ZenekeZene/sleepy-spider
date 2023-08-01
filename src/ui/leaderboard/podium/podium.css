@@ -25,7 +25,11 @@
 }
 
 .podium__item.--current {
-  /* border: 2px solid var(--primary-color); */
+  border-top: 21px solid var(--primary-color);
+}
+
+.podium__item.--current .podium__position {
+  top: -3.7rem;
 }
 
 @property --angle {
@@ -111,4 +115,11 @@
   margin-top: auto;
   font-size: 1.5rem;
   color: var(--primary-color);
+}
+
+.podium__you {
+  position: absolute;
+  top: -1.25rem;
+  color: white;
+  font-size: 0.8rem;
 }
