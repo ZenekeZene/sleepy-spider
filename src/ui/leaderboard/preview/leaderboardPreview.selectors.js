@@ -12,7 +12,8 @@ const getSelectors = () => ({
 
 const getUserScoreOnLeaderboard = () => {
   const userItemOnLeaderboard = findBySelector('.--current')
-  return userItemOnLeaderboard.querySelector('.ranking__score')
+  const userScore = userItemOnLeaderboard.querySelector('.ranking__score')
+  return userScore
 }
 
 export {

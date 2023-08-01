@@ -58,7 +58,7 @@ const showRanking = ({ players, wrapper }) => {
 
 const prependRanking = ({ players, wrapper }) => {
   const playersReversed = [...players].reverse()
-  playersReversed.map((player) => createRankingItem({ ...player, wrapper, insertMode: 'prepend' }))
+  playersReversed.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX, insertMode: 'prepend' }))
 }
 
 export {
