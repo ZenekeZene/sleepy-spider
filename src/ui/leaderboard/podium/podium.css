@@ -82,11 +82,32 @@
   height: 84%;
 }
 
-.podium__image {
+.podium__avatar {
+  position: relative;
   width: 3rem;
   height: 3rem;
+  min-height: 3rem;
+  overflow: hidden;
   border-radius: 0.25rem;
   margin-bottom: 0.55rem;
+}
+
+.podium__image,
+.podium__image-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+}
+
+.podium__image-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  background-color: var(--primary-color);
 }
 
 .podium__name {

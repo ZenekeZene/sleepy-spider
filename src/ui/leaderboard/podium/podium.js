@@ -1,5 +1,6 @@
-import { classHelper as $class, createElement, createImage } from "sleepy-spider-lib"
+import { classHelper as $class, createElement } from "sleepy-spider-lib"
 import './podium.css'
+import { createAvatar } from "./podium.avatar"
 
 const crownSVG = `
   <svg viewBox="0 0 140 140">
@@ -39,16 +40,8 @@ const createPodiumItem = ({ name, score, photoURL, position, isUser, wrapper, cl
   if (position === 1) {
     positionElement.innerHTML = crownSVG
   }
+  createAvatar(photoURL, name, classname, listItem)
 
-  const image = createImage({
-    src: photoURL,
-    alt: name,
-    classNames: `${classname}__image`,
-    target: listItem,
-  })
-  image.onerror = () => {
-    image.src = 'https://i.pravatar.cc/150'
-  }
   createElement({
     tag: 'span',
     classNames: `${classname}__name`,
