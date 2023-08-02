@@ -3,10 +3,12 @@ import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import * as constants from '@/domain/clock'
 import './clock.css'
+import { launchHackTimer } from "@/vendor/HackTimer"
 
 const ALERT_CLASS = '--alert'
 
 function startClock() {
+  launchHackTimer()
   const clock = findById('clock')
   const face = findById('lazy')
   face.textContent = constants.MAX_SECONDS
