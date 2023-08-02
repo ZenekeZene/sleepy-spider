@@ -46,13 +46,9 @@ function prepareClock () {
   const face = findById('lazy')
   face.textContent = constants.MAX_SECONDS
 
-  listenEvent(EVENTS.INACTIVE_TAB, () => {
-    pauseClock()
-  })
-
-  listenEvent(EVENTS.FIRST_CLICK, () => {
-    startClock()
-  })
+  listenEvent(EVENTS.INACTIVE_TAB, pauseClock)
+  listenEvent(EVENTS.NO_INTERNET, pauseClock)
+  listenEvent(EVENTS.FIRST_CLICK, startClock)
 }
 
 export {

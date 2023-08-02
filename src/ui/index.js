@@ -5,6 +5,7 @@ import { prepareLeaderboard } from '@/ui/screens/leaderboard/leaderboard'
 import { prepareClock } from '@/ui/components/clock/clock'
 import { prepareSignIn } from '@/ui/authentication/signIn'
 import { prepareTabControl } from '@/ui/components/tabControl/tabControl'
+import { prepareNoInternet } from '@/ui/components/noInternet/noInternet'
 
 const sections = [
   prepareGUI,
@@ -14,6 +15,7 @@ const sections = [
   prepareSignIn,
   prepareLeaderboard,
   prepareTabControl,
+  prepareNoInternet,
 ]
 
 const prepareSections = () => {

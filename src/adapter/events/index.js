@@ -8,6 +8,7 @@ const EVENTS = Object.freeze({
   USER_NOT_LOGGED: 'userNotLogged',
   GO_TO_LEADERBOARD: 'leaderboard',
   NEW_RECORD: 'newRecord',
+  NO_INTERNET: 'noInternet',
 })
 
 const handler = {
