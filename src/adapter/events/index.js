@@ -2,6 +2,7 @@ const EVENTS = Object.freeze({
   ANSWERED_CORRECT: 'answeredCorrect',
   FIRST_CLICK: 'firstClick',
   END_TIMER: 'endTimer',
+  INACTIVE_TAB: 'inactiveTab',
   CHANGES_IN_SETTINGS: 'changesInSettings',
   USER_LOGGED: 'userLogged',
   USER_NOT_LOGGED: 'userNotLogged',

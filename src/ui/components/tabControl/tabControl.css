@@ -1,0 +1,8 @@
+.inactive-tab-modal .modal__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.inactive-tab-modal .button {
+  margin-top: auto;
+}

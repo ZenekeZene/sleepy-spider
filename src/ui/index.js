@@ -4,6 +4,7 @@ import { prepareRecord } from '@/ui/screens/finalScreen/record/prepareRecord'
 import { prepareLeaderboard } from '@/ui/screens/leaderboard/leaderboard'
 import { prepareClock } from '@/ui/components/clock/clock'
 import { prepareSignIn } from '@/ui/authentication/signIn'
+import { prepareTabControl } from '@/ui/components/tabControl/tabControl'
 
 const sections = [
   prepareGUI,
@@ -12,6 +13,7 @@ const sections = [
   prepareClock,
   prepareSignIn,
   prepareLeaderboard,
+  prepareTabControl,
 ]
 
 const prepareSections = () => {

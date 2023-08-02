@@ -3,12 +3,12 @@ import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import * as constants from '@/domain/clock'
 import './clock.css'
-import { launchHackTimer } from "@/vendor/HackTimer"
 
 const ALERT_CLASS = '--alert'
 
+let countdown = null
+
 function startClock() {
-  launchHackTimer()
   const clock = findById('clock')
   const face = findById('lazy')
   face.textContent = constants.MAX_SECONDS
@@ -34,12 +34,21 @@ function startClock() {
     interval: constants.SECOND_IN_MS,
   }
 
-  startCountdown(config)
+  countdown = startCountdown(config)
+}
+
+function pauseClock () {
+  if (!countdown) throw new Error('Countdown not initialized')
+  countdown.pause()
 }
 
 function prepareClock () {
   const face = findById('lazy')
   face.textContent = constants.MAX_SECONDS
+
+  listenEvent(EVENTS.INACTIVE_TAB, () => {
+    pauseClock()
+  })
 
   listenEvent(EVENTS.FIRST_CLICK, () => {
     startClock()
