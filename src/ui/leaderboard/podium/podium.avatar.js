@@ -6,6 +6,11 @@ function createAvatar (photoURL, name, classname, listItem) {
     classNames: `${classname}__avatar`,
     target: listItem,
   })
+  createElement({
+    tag: 'div',
+    classNames: `${classname}__avatar-skeleton`,
+    target: avatar,
+  })
   const image = createImage({
     src: photoURL,
     alt: name,

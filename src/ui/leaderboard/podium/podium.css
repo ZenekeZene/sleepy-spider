@@ -92,8 +92,16 @@
   margin-bottom: 0.55rem;
 }
 
+.podium__avatar-skeleton {
+  width: 100%;
+  height: 100%;
+  background-color: #f6f2f3;
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
 .podium__image,
-.podium__image-fallback {
+.podium__image-fallback,
+.podium__avatar-skeleton {
   position: absolute;
   top: 0;
   left: 0;

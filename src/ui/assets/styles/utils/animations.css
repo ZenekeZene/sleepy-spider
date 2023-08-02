@@ -281,3 +281,15 @@
   animation-name: rubberBand;
   animation-duration: 1s;
 }
+
+@keyframes skeleton {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
