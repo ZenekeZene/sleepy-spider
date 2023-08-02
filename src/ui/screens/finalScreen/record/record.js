@@ -26,7 +26,7 @@ function showRecord(record) {
 
 function handlePersonalLocalRecord (lastScore) {
   const localRecord = localstorage.get(RECORD_KEY)
-  showRecord(Math.max(lastScore, localRecord))
+  showRecord(lastScore)
   updateRecord(lastScore, localRecord)
 }
 
