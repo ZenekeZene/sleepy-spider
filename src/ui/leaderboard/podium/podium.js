@@ -1,6 +1,6 @@
 import { classHelper as $class, createElement } from "sleepy-spider-lib"
-import './podium.css'
 import { createAvatar } from "./podium.avatar"
+import './podium.css'
 
 const crownSVG = `
   <svg viewBox="0 0 140 140">
