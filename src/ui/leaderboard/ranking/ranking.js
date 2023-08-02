@@ -1,4 +1,5 @@
 import { classHelper as $class, createElement, createImage } from "sleepy-spider-lib"
+import { createAvatar } from "../podium/podium.avatar"
 import './ranking.css'
 
 const CLASSNAME_PREFIX = 'ranking'
@@ -17,15 +18,7 @@ const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, c
     target: listItem,
     text: position,
   })
-  const image = createImage({
-    src: photoURL,
-    alt: name,
-    classNames: `${classname}__image`,
-    target: listItem,
-  })
-  image.onerror = () => {
-    image.src = 'https://i.pravatar.cc/150'
-  }
+  createAvatar(photoURL, name, classname, listItem)
   createElement({
     tag: 'span',
     classNames: `${classname}__name`,
