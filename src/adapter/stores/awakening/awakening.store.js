@@ -1,3 +1,5 @@
+const round = (value) => Number(Math.round(value))
+
 const AwakeningStore = (function() {
   let instance
 
@@ -9,11 +11,11 @@ const AwakeningStore = (function() {
     this.value = 0
 
     this.increment = function(newValue = 1) {
-      this.value += Number(newValue)
+      this.value += round(newValue)
     }
 
     this.update = function(newValue) {
-      this.value = Number(newValue)
+      this.value = round(newValue)
     }
   }
 
