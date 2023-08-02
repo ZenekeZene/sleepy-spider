@@ -7,8 +7,8 @@ import { getInfraServices } from "@/infra/infra"
 
 const isOfUser = (item) => {
   const { user } = stores.auth
-  if (!user?.displayName) return false
-  return user.displayName === item.displayName
+  if (!user?.uid) return false
+  return user.uid === item.userUid
 }
 
 const createUserPlayer = (item, value) => create({

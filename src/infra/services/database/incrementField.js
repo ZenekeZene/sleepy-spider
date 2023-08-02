@@ -5,6 +5,7 @@ async function setFieldOnDocument ({ existsDocument, documentRef, field = 'value
   const action = existsDocument ? updateDoc : setDoc
 
   await action(documentRef, {
+    userUid: user.uid,
     [field]: value,
     displayName,
     photoURL,
