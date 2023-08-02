@@ -10,7 +10,7 @@
     "clicks-checker": "^0.1.0",
     "firebase": "^9.13.0",
     "get-canvas-context": "^1.0.2",
-    "sleepy-spider-lib": "^1.9.0",
+    "sleepy-spider-lib": "1.9.0",
     "tweakpane": "^3.1.0"
   },
   "devDependencies": {
