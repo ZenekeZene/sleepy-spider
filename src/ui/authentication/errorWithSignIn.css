@@ -1,0 +1,9 @@
+.error-with-sign-in-modal .modal__inner {
+  display: flex;
+  flex-direction: column;
+  z-index: 11;
+}
+
+.error-with-sign-in-modal .button {
+  margin-top: auto;
+}

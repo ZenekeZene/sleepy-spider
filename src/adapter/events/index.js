@@ -9,6 +9,7 @@ const EVENTS = Object.freeze({
   GO_TO_LEADERBOARD: 'leaderboard',
   NEW_RECORD: 'newRecord',
   NO_INTERNET: 'noInternet',
+  ERROR_WITH_SIGN_IN: 'errorWithSignIn',
 })
 
 const handler = {

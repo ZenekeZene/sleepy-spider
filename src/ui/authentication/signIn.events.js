@@ -13,8 +13,13 @@ const dispatchGoToLeaderboard = (user) => {
   dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
 }
 
+const dispatchErrorWithSignIn = (error) => {
+  dispatchEvent(EVENTS.ERROR_WITH_SIGN_IN, { error })
+}
+
 export {
   dispatchUserLogged,
   dispatchUserNotLogged,
   dispatchGoToLeaderboard,
+  dispatchErrorWithSignIn,
 }

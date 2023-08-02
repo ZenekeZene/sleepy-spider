@@ -16,7 +16,7 @@ const handleSignIn = () => {
   signInWithPopup(authentication)
   .catch((error) => {
     error.mapErr((error) => {
-      console.error(error)
+      events.dispatchErrorWithSignIn(error)
     })
   })
 }

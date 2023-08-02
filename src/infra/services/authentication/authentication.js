@@ -23,6 +23,7 @@ const signInWithPopup = (auth) => {
       const response = parseResponse(result)
       resolve(Ok(response))
     }).catch((error) => {
+      console.error(error)
       reject(Fail(error))
     });
   })
