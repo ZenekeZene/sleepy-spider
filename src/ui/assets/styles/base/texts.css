@@ -2,15 +2,16 @@
   position: relative;
   z-index: 2;
   max-width: 18rem;
-  margin: 0 auto;
+  margin: 1rem auto;
+  padding: 1rem;
 }
 
 .title,
 .user-title {
-  padding: 2rem 0 0 0;
   color: white;
   text-shadow: 3px 2px 6px var(--primary-color);
-  font-size: 3rem;
+  font-size: clamp(1rem, 8vw, 3rem);
+  line-height: 1;
   font-family: var(--font-secondary);
   opacity: 1;
   transition: opacity 0.5s;
@@ -51,7 +52,6 @@
 @media screen and (min-width: 24rem) {
   .info {
     max-width: 18rem;
-    margin: 0 auto;
   }
 }
 

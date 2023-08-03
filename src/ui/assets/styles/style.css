@@ -17,14 +17,14 @@
   height: 100%;
 }
 
-@media screen and (max-width: 30rem) {
+@media screen and (max-width: 40rem) {
   .hide-in-mobile {
     display: none;
   }
 
   .icons {
-    bottom: 1rem;
-    left: 1rem;
+    bottom: 0.75rem;
+    right: 1rem;
   }
 
   .leaderboard {

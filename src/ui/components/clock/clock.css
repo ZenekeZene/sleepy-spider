@@ -1,5 +1,5 @@
 .clock {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
   z-index: 5;
@@ -48,7 +48,7 @@
 @media screen and (min-width: 48rem) {
   .clock {
     position: absolute;
-    top: 3rem;
-    left: 62%;
+    top: 4rem;
+    right: -1rem;
   }
 }
