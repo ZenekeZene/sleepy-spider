@@ -19,9 +19,17 @@
 
 .user-title {
   font-size: 1.7rem;
-  padding: 1rem;
   line-height: 1;
   text-align: center;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  padding: 0 1rem;
+  line-height: 1;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .title-hidden {
@@ -71,5 +79,9 @@
     justify-content: center;
     margin: 0 auto;
     text-align: center;
+  }
+
+  .user-title {
+    padding: 0 4rem;
   }
 }

@@ -50,6 +50,11 @@
   width: 19rem;
   font-size: 1.2rem;
   text-align: left;
+
+  font-family: var(--font-secondary);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  padding-right: 3rem;
 }
 
 .modal__close {
@@ -150,6 +155,26 @@
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
+}
+
+@media screen and (max-height: 45rem) {
+  .info-modal .modal__header {
+    margin-bottom: 2rem;
+  }
+
+  #buy-me-coffe-info-modal {
+    display: none;
+  }
+
+  .modal__inner {
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+}
+
+@media screen and (max-height: 40rem) {
+  .info-modal .credits {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 30rem) {

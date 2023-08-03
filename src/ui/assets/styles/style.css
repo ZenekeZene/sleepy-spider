@@ -32,13 +32,6 @@
   }
 }
 
-@media screen and (max-height: 640px) {
-  .credits {
-    background: rgb(0 0 0 / 14%);
-    border-radius: 10px;
-  }
-}
-
 .gradient-background {
   background: linear-gradient(300deg, var(--background-color),var(--primary-color), black);
   background-size: 180% 180%;
