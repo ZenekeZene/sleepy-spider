@@ -54,8 +54,6 @@
   font-family: var(--font-secondary);
   font-size: 1.3rem;
   text-transform: uppercase;
-  padding-right: 3rem;
-  padding-top: 1rem;
 }
 
 .modal__close {
@@ -97,6 +95,10 @@
 
 .modal-link:hover {
   color: currentColor;
+}
+
+.info-modal .modal__title {
+  padding-right: 3rem;
 }
 
 .info-modal__list {
