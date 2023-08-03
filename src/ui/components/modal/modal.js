@@ -13,7 +13,7 @@ function listenTriggers (target, triggers) {
 
 function initModal () {
   const $el = getSelectors()
-  listenTriggers($el.modal, $el.triggers)
+  listenTriggers($el.shareModal, $el.triggers)
   listenTriggers($el.infoModal, $el.infoTriggers)
 }
 
