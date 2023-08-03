@@ -44,3 +44,15 @@
   gap: 1rem;
   margin-top: auto;
 }
+
+a.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  gap: 1rem;
+}
+
+a.button img {
+  width: 1.6rem;
+}

@@ -140,7 +140,16 @@
 }
 
 .credits {
-  padding-left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.zeneke {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 30rem) {
