@@ -29,7 +29,6 @@
   padding: 0 1rem;
   line-height: 1;
   overflow: hidden;
-  word-break: break-all;
 }
 
 .title-hidden {
@@ -83,5 +82,6 @@
 
   .user-title {
     padding: 0 4rem;
+    font-size: 1.7rem;
   }
 }
