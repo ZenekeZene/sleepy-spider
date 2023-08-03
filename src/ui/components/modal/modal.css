@@ -106,7 +106,7 @@
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 3rem;
-  padding-left: 2rem;
+  padding-left: 3rem;
   list-style: none;
 }
 
@@ -118,22 +118,22 @@
   content: '';
   position: absolute;
   left: -2rem;
-  top: 0.3rem;
+  top: 0rem;
   display: inline-block;
   font-size: 1.3rem;
   border-radius: 50%;
 }
 
 .info-modal__list li:first-child::before {
-  content: '☝️';
+  content: '1';
 }
 
 .info-modal__list li:nth-child(2)::before {
-  content: '✅';
+  content: '2';
 }
 
 .info-modal__list li:nth-child(3)::before {
-  content: '🏆';
+  content: '3';
 }
 
 .info-modal__actions {
@@ -150,14 +150,18 @@
 .credits {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  padding: 0 2rem;
 }
 
 .zeneke {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
+}
+
+.credits p {
+  max-width: 15ch;
 }
 
 @media screen and (max-height: 45rem) {

@@ -54,5 +54,29 @@ a.button {
 }
 
 a.button img {
-  width: 1.6rem;
+  width: 1.2rem;
+}
+
+.button.--logout:not(.hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button.--logout .user {
+  display: flex;
+  font-size: 0.7rem;
+  font-family: Roboto, Helvetica;
+  font-weight: 500;
+}
+
+.button.--logout .user span {
+  max-width: 20ch;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 }

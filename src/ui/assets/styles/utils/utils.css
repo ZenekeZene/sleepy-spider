@@ -4,6 +4,10 @@
   text-decoration: underline;
 }
 
+.strong {
+  font-weight: 700;
+}
+
 .invisible,
 .hidden {
   display: none;

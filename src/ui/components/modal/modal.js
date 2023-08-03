@@ -1,7 +1,6 @@
 import { toggleElement, dispatchEvent, listenEvent, classHelper as $class } from 'sleepy-spider-lib'
-import { EVENTS } from '@/adapter/events'
+import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { stores } from '@/adapter'
 import { logout } from '@/infra/services/authentication/authentication'
 import { getSelectors as $el} from './modal.selectors'
 import './modal.css'
@@ -37,6 +36,8 @@ function listenLogoutButton () {
 const showLogoutButton = () => {
   const { logoutInfoModal } = $el()
   $class.remove(logoutInfoModal, HIDDEN_CLASS)
+  const { user } = stores.auth
+  logoutInfoModal.innerHTML = `LOGOUT <span class='user'>(<span>${user.displayName}</span>)</span>`
   listenLogoutButton()
 }
 
