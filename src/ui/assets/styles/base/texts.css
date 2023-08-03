@@ -17,6 +17,10 @@
   transition: opacity 0.5s;
 }
 
+.title:hover {
+  animation: shakeX 1s ease-in-out;
+}
+
 .user-title {
   font-size: 1.7rem;
   line-height: 1;

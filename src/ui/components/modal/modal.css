@@ -136,6 +136,13 @@
   content: '3';
 }
 
+.info-modal__logout-success {
+  margin: 0;
+  padding: 1.65rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
 .info-modal__actions {
   display: flex;
   flex-direction: column;

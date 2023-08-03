@@ -6,9 +6,9 @@ function getSelectors () {
     triggers: findAllBySelector(`.modal-trigger`),
     infoModal: findById('info-modal'),
     infoTriggers: findAllBySelector(`.info-modal-trigger`),
-    buyMeCoffeInfoModal: findById('buy-me-coffe-info-modal'),
     shareInfoModal: findById('share-info-modal'),
     logoutInfoModal: findById('logout-info-modal'),
+    logoutSuccessInfoModal: findById('logout-success-info-modal'),
   }
   return modalSelectors
 }
