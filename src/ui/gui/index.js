@@ -5,7 +5,7 @@ import { listenFirstClick } from '@/adapter/events/listenFirstClick'
 import { initModal } from '@/ui/components/modal/modal'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
 import { toggleInvisibleElements } from './invisibleElements/toggle.invisible.elements'
-import { drawSettingsPanel } from './settings/drawSettingsPanel'
+// import { drawSettingsPanel } from './settings/drawSettingsPanel'
 import { hideTitleOnFirstClick } from './hideTitle'
 
 const listenChangesInSettings = () => {
@@ -17,7 +17,7 @@ const listenChangesInSettings = () => {
 const prepareGUI = () => {
   initModal()
   toggleInvisibleElements()
-  drawSettingsPanel(params)
+  // drawSettingsPanel(params)
   hideTitleOnFirstClick()
   listenFirstClick()
   listenChangesInSettings()

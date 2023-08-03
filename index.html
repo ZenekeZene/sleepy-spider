@@ -83,6 +83,7 @@
 
     <!-- A.- SHARE MODAL -->
     <article  id="share-modal" class="modal share-modal invisible hide-on-final-screen">
+      <div class="modal__backdrop modal-trigger"></div>
       <section class="modal__inner">
         <header class="modal__header">
           <h1 class="modal__title">Share Sleepy, maybe we can wake her up!</h1>
@@ -116,7 +117,7 @@
     </article>
 
     <!-- B.- INFO MODAL -->
-    <article id="info-modal" class="modal info-modal invisible hide-on-final-screen">
+    <article id="info-modal" class="modal info-modal invisible hide-on-final-screen select">
       <div class="modal__backdrop info-modal-trigger"></div>
       <section class="modal__inner">
         <header class="modal__header">
@@ -127,13 +128,24 @@
             style=" fill:#000000;"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
         </header>
 
-        <p>Let’s wake up a <span class="text-underline">million times</span>, and a surprise will happen. We wake <span class="counter">153</span> times. If we get it, she'll finally wake up and weave a gift for us.</p>
+        <ul class="info-modal__list">
+          <li>Tap as many times as possible in a minute to help Sleepy wake up.</li>
+          <li>Answer Sleepy's dream questions correctly to get bonus points.</li>
+          <li>Challenge your friends and try to be Sleepy's ultimate alarm clock!</li>
+        </ul>
 
-        <p class="credits">Sleepy was created by <a href="https://twitter.com/zenekezene">@zenekezene</a> as an experiment with <a href="https://developer.mozilla.org/es/docs/Web/API/Canvas_API">canvas</a>.</p>
 
-        <nav class="info-icons bounceInLeft">
+        <section class="info-modal__actions">
+          <button id="share-info-modal" class="button --secondary icon-share modal-trigger">Share!</button>
+          <button id="buy-me-coffe-info-modal" class="button --secondary icon-share">Buy me a coffe!</button>
+          <button id="logout-info-modal" class="button hidden">Logout</button>
+        </section>
+
+        <p class="credits">Created with 🍺 by <a href="https://twitter.com/zenekezene">@zenekezene</a>.</p>
+
+        <!--<nav class="info-icons bounceInLeft">
           <img src="src/ui/assets/images/icons/settings-icon.svg" id="settings-icon" class="icon" />
-        </nav>
+        </nav>-->
     </article>
 
     <!-- C.- QUESTION MODAL -->
@@ -257,7 +269,7 @@
         width="24" height="24"
         viewBox="0 0 24 24"
         style=" fill:#fff;"><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
-      <h2 class="leaderboard-screen__title">LEADERBOARD</h2>
+      <h2 class="leaderboard-screen__title">Ranking</h2>
       <ul id="leaderboard-podium" class="leaderboard-screen__podium podium"></ul>
       <ul id="leaderboard-ranking" class="leaderboard-screen__list ranking__list"></ul>
     </article>

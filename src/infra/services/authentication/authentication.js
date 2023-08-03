@@ -15,10 +15,11 @@ const parseResponse = (result) => {
   return { displayName, photoURL, uid, isNewUser }
 }
 
-const signInWithPopup = (auth) => {
+const signInWithPopup = () => {
+  const { authentication } = getInfraServices()
   return new Promise((resolve, reject) => {
     const provider = new TwitterAuthProvider()
-    signInWithPopupFirebase(auth, provider)
+    signInWithPopupFirebase(authentication, provider)
     .then((result) => {
       const response = parseResponse(result)
       resolve(Ok(response))
@@ -26,6 +27,19 @@ const signInWithPopup = (auth) => {
       console.error(error)
       reject(Fail(error))
     });
+  })
+}
+
+const logout = () => {
+  const { authentication } = getInfraServices()
+  return new Promise((resolve, reject) => {
+    authentication.signOut()
+    .then(() => {
+      resolve(Ok())
+    }).catch((error) => {
+      console.error(error)
+      reject(Fail(error))
+    })
   })
 }
 
@@ -39,6 +53,7 @@ const onAuthenticationStateChanged = ({ onChange }) => {
 export {
   initializeAuth,
   signInWithPopup,
+  logout,
   onAuthenticationStateChanged,
 }
 

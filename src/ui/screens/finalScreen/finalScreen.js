@@ -2,6 +2,8 @@ import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { launchConfetti } from '@/ui/components/confetti/confetti'
+import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
+import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
 import { getSelectors as $el } from './finalScreen.selectors'
 import './finalScreen.css'
 
@@ -58,6 +60,12 @@ const handleNewRecord = () => {
 
 const handleEndTimer = () => {
   showFinalScreen()
+  if (!stores.auth.isLogged) {
+    createSignUpRanking()
+    return
+  } else {
+    createPreviewRanking(stores.auth.user)
+  }
   $class.remove(getBody(), 'headShakeHard')
 }
 

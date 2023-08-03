@@ -3,17 +3,14 @@ import {
   signInWithPopup,
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
-import { getInfraServices } from '@/infra/infra'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
-import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
 import { getSelectors as $el } from "./signIn.selectors"
 import { show, hide } from './signIn.titles'
 import * as events from './signIn.events'
 
 const handleSignIn = () => {
-  const { authentication } = getInfraServices()
-  signInWithPopup(authentication)
+  signInWithPopup()
   .catch((error) => {
     error.mapErr((error) => {
       events.dispatchErrorWithSignIn(error)
@@ -36,8 +33,8 @@ const prepareScreensToReturningUser = (user) => {
   if (isFinalScreen()) {
     show.leaderboardButton()
     events.dispatchGoToLeaderboard(user)
+    createPreviewRanking(user)
   }
-  createPreviewRanking(user)
 }
 
 // (1)
@@ -59,14 +56,13 @@ const handleChangeOnAuthentication = async (result) => {
   const { goToLeaderboardButton, leaderboardScreen } = $el()
 
   goToLeaderboardButton.addEventListener('click', () => {
-    if (!user) { return }
+    if (!user) return
     $class.remove(leaderboardScreen, HIDDEN_CLASS)
     events.dispatchGoToLeaderboard(user)
   })
 }
 
 function launchSignIn () {
-  createSignUpRanking()
   onAuthenticationStateChanged({
     onChange: handleChangeOnAuthentication,
   })
