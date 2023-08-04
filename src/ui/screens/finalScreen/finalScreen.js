@@ -1,4 +1,4 @@
-import { classHelper as $class, listenEvent, getBody } from 'sleepy-spider-lib'
+import { classHelper as $class, listenEvent, getBody, delay } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { launchConfetti } from '@/ui/components/confetti/confetti'
@@ -40,15 +40,30 @@ function listenPlayAgainButton () {
   playAgainButton.addEventListener('click', reload)
 }
 
+function disablePointerEvents () {
+  $class.add(getBody(), 'no-pointer')
+}
+
+function enablePointerEvents () {
+  $class.remove(getBody(), 'no-pointer')
+}
+
 function showFinalScreen() {
   const awakeningStore = stores.awakening
   const { finalScreen, score, backdrop } = $el()
   show(finalScreen)
+
+  disablePointerEvents()
+
   show(backdrop)
   hideElements()
   score.textContent = awakeningStore.value
   toggleLeaderboardButton()
   listenPlayAgainButton()
+
+  delay(2000).then(() => {
+    enablePointerEvents()
+  })
 }
 
 const handleNewRecord = () => {
