@@ -1,5 +1,6 @@
-import { toggleElement, removeCommas } from "sleepy-spider-lib"
+import { toggleElement, removeCommas, dispatchEvent } from "sleepy-spider-lib"
 import { QUESTION_TYPES } from "@/domain/question"
+import { EVENTS } from "@/adapter"
 import { dispatchAnsweredCorrect } from "./question.event"
 import { getQuestionSelectors as $el } from "./render/question.selectors"
 import { showCorrectAnswerBonus } from "./render/question.bonus"
@@ -42,7 +43,9 @@ function checkAnswer(question) {
     onAnswered(question, event)
     isAnswered = true
     unlisten()
-    closeQuestion(event)
+    closeQuestion(event).then(() => {
+      dispatchEvent(EVENTS.MODAL_CLOSE)
+    })
   }
   setTimeout(() => {
     listen()
@@ -58,6 +61,7 @@ function launchQuestion(rawQuestion) {
   const { modal } = $el()
   if (!modal) return
   toggleElement(modal)
+  dispatchEvent(EVENTS.MODAL_OPEN)
   drawQuestion(rawQuestion)
 }
 

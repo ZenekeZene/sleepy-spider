@@ -22,6 +22,7 @@ function handleVisibilityChange () {
 
   if (document.visibilityState === "visible") return
   dispatchEvent(EVENTS.INACTIVE_TAB)
+  dispatchEvent(EVENTS.MODAL_OPEN)
   show(inactiveTabModal)
 }
 

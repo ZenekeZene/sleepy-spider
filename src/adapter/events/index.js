@@ -10,6 +10,8 @@ const EVENTS = Object.freeze({
   NEW_RECORD: 'newRecord',
   NO_INTERNET: 'noInternet',
   ERROR_WITH_SIGN_IN: 'errorWithSignIn',
+  MODAL_OPEN: 'modalOpen',
+  MODAL_CLOSE: 'modalClose',
 })
 
 const handler = {

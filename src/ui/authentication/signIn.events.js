@@ -14,6 +14,7 @@ const dispatchGoToLeaderboard = (user) => {
 }
 
 const dispatchErrorWithSignIn = (error) => {
+  dispatchEvent(EVENTS.MODAL_OPEN)
   dispatchEvent(EVENTS.ERROR_WITH_SIGN_IN, { error })
 }
 

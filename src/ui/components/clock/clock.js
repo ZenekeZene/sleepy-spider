@@ -23,6 +23,7 @@ function startClock() {
     } else {
       face.textContent = 0
       dispatchEvent(EVENTS.END_TIMER)
+      dispatchEvent(EVENTS.MODAL_OPEN)
       $class.remove(clock, ALERT_CLASS)
     }
   }

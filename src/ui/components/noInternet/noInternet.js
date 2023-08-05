@@ -17,6 +17,7 @@ function handleNoInternet () {
   triggers.forEach((trigger) => trigger.addEventListener('click', reload))
 
   dispatchEvent(EVENTS.NO_INTERNET)
+  dispatchEvent(EVENTS.MODAL_OPEN)
   show(noInternetModal)
 }
 

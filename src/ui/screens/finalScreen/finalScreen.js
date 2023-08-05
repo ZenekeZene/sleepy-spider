@@ -55,7 +55,6 @@ function showFinalScreen() {
 
   disablePointerEvents()
 
-  show(backdrop)
   hideElements()
   score.textContent = awakeningStore.value
   toggleLeaderboardButton()
@@ -75,13 +74,13 @@ const handleNewRecord = () => {
 
 const handleEndTimer = () => {
   showFinalScreen()
+  $class.remove(getBody(), 'headShakeHard')
   if (!stores.auth.isLogged) {
     createSignUpRanking()
     return
   } else {
     createPreviewRanking(stores.auth.user)
   }
-  $class.remove(getBody(), 'headShakeHard')
 }
 
 function prepareFinalScreen () {

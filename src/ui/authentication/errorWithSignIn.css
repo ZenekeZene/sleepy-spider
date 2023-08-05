@@ -1,3 +1,7 @@
+.error-with-sign-in-modal {
+  z-index: 10;
+}
+
 .error-with-sign-in-modal .modal__inner {
   display: flex;
   flex-direction: column;
