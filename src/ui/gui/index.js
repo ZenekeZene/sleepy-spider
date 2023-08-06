@@ -5,6 +5,7 @@ import { listenFirstClick } from '@/adapter/events/listenFirstClick'
 import { initModal as initInfoModal } from '@/ui/components/modal/modal'
 import { initModal as initShareModal } from '@/ui/components/share/modal/share.modal'
 import { initLogoutButton } from '@/ui/components/logout/logout'
+import { initCallToTap } from '@/ui/gui/callToTap'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
 import { toggleInvisibleElements } from './invisibleElements/toggle.invisible.elements'
 // import { drawSettingsPanel } from './settings/drawSettingsPanel'
@@ -20,6 +21,7 @@ const prepareGUI = () => {
   initInfoModal()
   initLogoutButton()
   initShareModal()
+  initCallToTap()
 
   toggleInvisibleElements()
   // drawSettingsPanel(params)
