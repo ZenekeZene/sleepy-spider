@@ -8,6 +8,10 @@
   display: block;
 }
 
+.spider-wrapper.hidden {
+  display: none;
+}
+
 .spider {
   position: absolute;
   top: 50%;

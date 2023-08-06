@@ -127,9 +127,10 @@
 
 .podium__name {
   width: 100%;
-  height: 4.5rem;
+  height: 3rem;
   word-wrap: break-word;
   overflow: hidden;
+  line-height: 1;
 
    display: -webkit-box;
   -webkit-line-clamp: 3;

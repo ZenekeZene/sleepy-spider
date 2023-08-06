@@ -4,6 +4,7 @@ const findByIdCached = getCacheByKey(findById, false)
 
 const getSelectors = () => ({
   finalScreen: findByIdCached('final-screen'),
+  spider: findByIdCached('spider-wrapper'),
   elementsToHide: findAllBySelector('.hide-on-final-screen'),
   score: findByIdCached('final-score'),
   playAgainButton: findByIdCached('play-again'),
