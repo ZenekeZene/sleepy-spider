@@ -5,10 +5,7 @@ const CALL_TO_TAP_CLASSNAME = 'heartbeat'
 
 function initCallToTap () {
   const spider = findById('spider-wrapper')
-
-  delay(1000).then(() => {
-    $class.add(spider, CALL_TO_TAP_CLASSNAME)
-  })
+  $class.add(spider, CALL_TO_TAP_CLASSNAME)
 
   listenEvent(EVENTS.FIRST_CLICK, () => {
     $class.remove(spider, CALL_TO_TAP_CLASSNAME)

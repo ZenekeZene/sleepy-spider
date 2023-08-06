@@ -21,13 +21,13 @@ const prepareGUI = () => {
   initInfoModal()
   initLogoutButton()
   initShareModal()
-  initCallToTap()
 
   toggleInvisibleElements()
   // drawSettingsPanel(params)
   hideTitleOnFirstClick()
   listenFirstClick()
   listenChangesInSettings()
+  initCallToTap()
 }
 
 export {

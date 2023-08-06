@@ -3,7 +3,7 @@
   z-index: 2;
   max-width: 18rem;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .title,
@@ -40,6 +40,7 @@
 }
 
 .subtitle {
+  margin-top: 0.5rem;
   padding: 0 2rem;
   text-align: center;
 }
