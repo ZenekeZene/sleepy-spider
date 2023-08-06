@@ -129,3 +129,35 @@
     top: -2vh;
   }
 }
+
+.new-pupils {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) skew(-10.5deg);
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5rem;
+
+  width: 10.4%;
+  height: auto;
+  margin-left: -2.85%;
+  margin-top: -3.5%;
+
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.pupil-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.pupil-wrapper canvas {
+  width: 100%;
+}

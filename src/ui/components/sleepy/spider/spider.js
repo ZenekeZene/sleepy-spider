@@ -1,6 +1,6 @@
+import { findById, getBody, Frame, delay, Position, spriteStates } from 'sleepy-spider-lib'
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
-import { findById, getBody, Frame, Position, spriteStates } from 'sleepy-spider-lib'
 import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
 import './spider.css'
 
@@ -22,6 +22,16 @@ class Spider {
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
     this.hateLevel = 0
     this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)
+
+    const pupilWrapper = findById("new-pupils")
+    // Readjust:
+    delay(1000).then(() => {
+      findById('spider').appendChild(pupilWrapper);
+    })
+
+    delay(1500).then(() => {
+      pupilWrapper.style.visibility = 'visible'
+    })
   }
 
   draw (column, row) {
