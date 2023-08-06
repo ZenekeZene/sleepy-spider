@@ -1,4 +1,4 @@
-import { range, findById, spriteStates, Frame, Position, delay } from 'sleepy-spider-lib'
+import { isMobile, range, findById, spriteStates, Frame, Position, delay } from 'sleepy-spider-lib'
 import Pupil from '../pupil/pupil'
 import settings from './eyeSettings'
 import { drawPupil } from './pupil'
@@ -19,7 +19,11 @@ class Eye {
     this.state = spriteStates.IDDLE
     this.scale = scale || range(settings.scale.min, settings.scale.max)
 
-    this.createPupil()
+    if (isMobile()) {
+      this.pupil = new Pupil(props, this.frame, this.scale, pupilScale)
+    } else {
+      this.createPupil()
+    }
   }
 
   createPupil () {
@@ -66,6 +70,7 @@ class Eye {
     const heightScaled = height * this.scale
 
     this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
+    isMobile() && this.pupil.launchDrawPupil()
 
     if (window.isDebugMode) {
       this.debug(x, y, width, height)
@@ -103,7 +108,9 @@ class Eye {
   }
 
   open () {
-    this.pupil.style.opacity = 1
+    if (!isMobile()) {
+      this.pupil.style.opacity = 1
+    }
     this.play({ isReverse: true })
     return this
   }
@@ -115,7 +122,9 @@ class Eye {
 
   close () {
     this.play({ isReverse: false })
-    this.pupil.style.opacity = 0
+    if (!isMobile()) {
+      this.pupil.style.opacity = 0
+    }
     return this
   }
 
