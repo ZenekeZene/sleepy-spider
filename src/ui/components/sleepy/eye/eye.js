@@ -1,12 +1,13 @@
-import { range, findById, spriteStates, Frame, Position } from 'sleepy-spider-lib'
+import { range, spriteStates, Frame, Position } from 'sleepy-spider-lib'
+import canvasTintImage from "canvas-tint-image"
+import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
 import settings from './eyeSettings'
 import { drawPupil } from './pupil'
 
 const FRAME_WITHOUT_PUPIL_INDEX = 8
-const PUPIL_SIZE = 80
 
 class Eye {
-  constructor ({ sprite, context, x, y, scale, pupilScale, isBigEye, ...rest }) {
+  constructor ({ sprite, context, x, y, scale, hateLevel, pupilScale, isBigEye, ...rest }) {
     this.position = new Position(x, y, sprite)
     const props = { ...this.position, ...rest, context }
 
@@ -15,16 +16,16 @@ class Eye {
     this.frame = new Frame(this, 0, this.sprite)
     this.params = props.params
     this.isBigEye = isBigEye || false
+    this.hateLevel = hateLevel || 0
 
     this.state = spriteStates.IDDLE
     this.scale = scale || range(settings.scale.min, settings.scale.max)
 
-    this.pupil = this.createPupil()
+    this.pupil = drawPupil()
   }
 
-  createPupil () {
-    const pupilWrapper = findById("new-pupils")
-    return drawPupil(pupilWrapper, PUPIL_SIZE)
+  setHateLevel (hateLevel) {
+    this.hateLevel = hateLevel
   }
 
   isAroundToTheMouse (mouseX, mouseY, extraOffset = 0) {
@@ -51,6 +52,12 @@ class Eye {
     this.context.strokeRect(x, y, width / 2, height / 2);
   }
 
+  tintImage (image) {
+    const opacity = this.hateLevel / LIMIT_TO_SHOW_QUESTION
+    const tintedImage = canvasTintImage(image, 'red', opacity)
+    return tintedImage
+  }
+
   draw (column, row) {
     const { x, y } = this.position
     const { width, height } = this.frame
@@ -62,8 +69,8 @@ class Eye {
     const sy = row * height
     const widthScaled = width * this.scale
     const heightScaled = height * this.scale
-
-    this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
+    const tintedImage = this.tintImage(image)
+    this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
 
     if (window.isDebugMode) {
       this.debug(x, y, width, height)

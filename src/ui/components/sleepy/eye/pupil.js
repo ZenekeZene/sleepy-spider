@@ -1,15 +1,20 @@
-function drawPupil (target, size = 20) {
-  const wrapper = document.createElement("div")
-  wrapper.className = "pupil-wrapper"
-  const canvas = document.createElement("canvas")
-  const context = canvas.getContext("2d")
-  wrapper.appendChild(canvas)
-  target.appendChild(wrapper)
+import { findById, createElement } from 'sleepy-spider-lib'
 
-  const rect = canvas.getBoundingClientRect()
+const size = 80
+
+function createCanvas () {
+  const target = findById("new-pupils")
+  const wrapper = createElement({ tag: "div", classNames: ["pupil-wrapper"], target })
+  const canvas = createElement({ tag: "canvas", target: wrapper })
   canvas.width = 80
   canvas.height = 80
+  const context = canvas.getContext("2d")
+  const rect = canvas.getBoundingClientRect()
+  return { context, rect, canvas }
+}
 
+function drawPupil () {
+  const { context, rect, canvas } = createCanvas()
   document.addEventListener("mousemove", onMouseMove)
 
   function onMouseMove(event) {

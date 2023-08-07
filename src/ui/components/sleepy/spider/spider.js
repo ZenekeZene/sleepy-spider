@@ -9,7 +9,7 @@ const SURPRISE_CLASSNAME = 'surprise'
 export const INTERVAL_TO_CLOSE_EYES_IN_MS = 2000
 
 class Spider {
-  constructor ({ sprite, context, canvas, frame, x, y }) {
+  constructor ({ sprite, context, canvas, eyes, frame, x, y }) {
     this.position = new Position(x, y, sprite)
     this.context = context
     this.canvas = canvas
@@ -22,13 +22,17 @@ class Spider {
     this.contextTint = getCanvasContext("2d", { width: sprite.width, height: sprite.height })
     this.hateLevel = 0
     this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)
+    this.eyes = eyes
+    this.readjustPupils()
+  }
 
+  // Readjust. It's a hack to fix the position of the pupils:
+  readjustPupils () {
     const pupilWrapper = findById("new-pupils")
     const spider = findById('spider')
 
-    // Readjust. It's a hack to fix the position of the pupils:
     delay(1000).then(() => {
-      spider.appendChild(pupilWrapper);
+      spider.appendChild(pupilWrapper)
       pupilWrapper.style.visibility = 'visible'
     })
   }
@@ -51,6 +55,13 @@ class Spider {
     const heightScaled = height * 2
     const tintedImage = this.tintImage(image)
     this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
+    this.updateHateLevelOnEyes()
+  }
+
+  updateHateLevelOnEyes () {
+    this.eyes.forEach(eye => {
+      eye.setHateLevel(this.hateLevel)
+    })
   }
 
   doStep () {
