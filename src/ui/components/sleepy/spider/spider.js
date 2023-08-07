@@ -1,4 +1,4 @@
-import { isMobile, findById, getBody, Frame, delay, Position, spriteStates } from 'sleepy-spider-lib'
+import { findById, getBody, Frame, delay, Position, spriteStates } from 'sleepy-spider-lib'
 import canvasTintImage from "canvas-tint-image"
 import getCanvasContext from "get-canvas-context"
 import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
@@ -23,17 +23,20 @@ class Spider {
     this.hateLevel = 0
     this.opacityOffset = (LIMIT_TO_SHOW_QUESTION / 4)
 
-    if (isMobile()) return
-
     const pupilWrapper = findById("new-pupils")
-    // Readjust:
-    delay(1000).then(() => {
-      findById('spider').appendChild(pupilWrapper);
-    })
+    const spider = findById('spider')
 
-    delay(1500).then(() => {
+    // Readjust. It's a hack to fix the position of the pupils:
+    delay(1000).then(() => {
+      spider.appendChild(pupilWrapper);
       pupilWrapper.style.visibility = 'visible'
     })
+  }
+
+  tintImage (image) {
+    const opacity = this.hateLevel / LIMIT_TO_SHOW_QUESTION
+    const tintedImage = canvasTintImage(image, 'red', opacity)
+    return tintedImage
   }
 
   draw (column, row) {
@@ -46,8 +49,7 @@ class Spider {
     const sy = row * height
     const widthScaled = width * 2
     const heightScaled = height * 2
-    const opacity = this.hateLevel / LIMIT_TO_SHOW_QUESTION
-    const tintedImage = canvasTintImage(image, 'red', opacity)
+    const tintedImage = this.tintImage(image)
     this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
   }
 

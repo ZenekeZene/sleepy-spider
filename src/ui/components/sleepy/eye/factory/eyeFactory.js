@@ -3,7 +3,7 @@ import { SHAPES } from '@/domain/settings'
 import createEyesInCircleShape from './eyeFactory.circle'
 import createEyesInSquareShape from './eyeFactory.square'
 
-const url = new URL('/sprites/eye/eye-spritesheet.webp', import.meta.url).href
+const url = new URL('/sprites/eye/eye-spritesheet2.webp', import.meta.url).href
 const NUM_FRAMES = 10
 const SIZE = 3000
 let eyesCanvas = findById('eyes')

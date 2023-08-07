@@ -1,9 +1,9 @@
-import { isMobile, range, findById, spriteStates, Frame, Position, delay } from 'sleepy-spider-lib'
-import Pupil from '../pupil/pupil'
+import { range, findById, spriteStates, Frame, Position } from 'sleepy-spider-lib'
 import settings from './eyeSettings'
 import { drawPupil } from './pupil'
 
 const FRAME_WITHOUT_PUPIL_INDEX = 8
+const PUPIL_SIZE = 80
 
 class Eye {
   constructor ({ sprite, context, x, y, scale, pupilScale, isBigEye, ...rest }) {
@@ -19,18 +19,12 @@ class Eye {
     this.state = spriteStates.IDDLE
     this.scale = scale || range(settings.scale.min, settings.scale.max)
 
-    if (isMobile()) {
-      this.pupil = new Pupil(props, this.frame, this.scale, pupilScale)
-    } else {
-      this.createPupil()
-    }
+    this.pupil = this.createPupil()
   }
 
   createPupil () {
     const pupilWrapper = findById("new-pupils")
-    const pupilSize = 80
-
-    this.pupil = drawPupil(pupilWrapper, pupilSize)
+    return drawPupil(pupilWrapper, PUPIL_SIZE)
   }
 
   isAroundToTheMouse (mouseX, mouseY, extraOffset = 0) {
@@ -70,7 +64,6 @@ class Eye {
     const heightScaled = height * this.scale
 
     this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
-    isMobile() && this.pupil.launchDrawPupil()
 
     if (window.isDebugMode) {
       this.debug(x, y, width, height)
@@ -108,9 +101,6 @@ class Eye {
   }
 
   open () {
-    if (!isMobile()) {
-      this.pupil.style.opacity = 1
-    }
     this.play({ isReverse: true })
     return this
   }
@@ -122,9 +112,6 @@ class Eye {
 
   close () {
     this.play({ isReverse: false })
-    if (!isMobile()) {
-      this.pupil.style.opacity = 0
-    }
     return this
   }
 

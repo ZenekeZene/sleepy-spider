@@ -45,6 +45,7 @@
 .eyes {
   transform: translate(-50%, -50%) skewX(-10.5deg);
   cursor: pointer;
+  z-index: 1;
 }
 
 .body {
@@ -58,6 +59,7 @@
   top: 14%;
   transform: translate(-58%, -14%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .texture {
@@ -148,6 +150,7 @@
 
   cursor: pointer;
   pointer-events: none;
+  z-index: 0;
 }
 
 .pupil-wrapper {
