@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node -r dotenv/config index.js dotenv_config_path=./.env.dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ZenekeZene",

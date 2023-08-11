@@ -1,5 +1,5 @@
 {
-  "name": "sleepy-spider",
+  "name": "sleepy-spider-front",
   "description": "A creative experiment",
   "version": "1.0.0",
   "private": true,
@@ -22,7 +22,7 @@
     "vitest": "^0.33.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode dev",
     "dev:debug": "vite --mode debug",
     "build": "vite build",
     "preview": "vite preview",

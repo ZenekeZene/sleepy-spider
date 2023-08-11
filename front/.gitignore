@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 coverage
-src/questions.json
-.env.debug
+.env

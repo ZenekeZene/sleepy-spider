@@ -43,8 +43,33 @@ else
     export DEBUG=false
 fi
 
+# Instalar dependencias:
 # Carpeta sleepy-spider-front
-cd sleepy-spider-front
+cd front
+
+# Instalar dependencias si no están instaladas
+if [ ! -d "node_modules" ]; then
+    echo "🚀 Instalando frontend."
+    npm install
+    echo "Dependencias de /front instaladas."
+else
+    echo "Dependencias de /front ya están instaladas."
+fi
+
+# Carpeta sleepy-spider-back
+cd ../back
+
+# Instalar dependencias si no están instaladas
+if [ ! -d "node_modules" ]; then
+    echo "🚀 Instalando backend."
+    npm install
+    echo "Dependencias de /back instaladas."
+else
+    echo "Dependencias de /back ya están instaladas."
+fi
+
+# Carpeta sleepy-spider-front
+cd ../front
 nvm use $REQUIRED_VERSION
 # Comprobar si el puerto 8000 está ocupado
 if lsof -i :8000; then
@@ -67,7 +92,7 @@ fi
 echo "🚀 Frontend iniciado."
 
 # Carpeta sleepy-spider-back
-cd ../sleepy-spider-back
+cd ../back
 nvm use $REQUIRED_VERSION
 # Comprobar si el puerto 3000 está ocupado
 if lsof -i :3000; then
@@ -83,5 +108,5 @@ if lsof -i :3000; then
 fi
 
 # Ejecutar el servidor Node.js
-node index.js &
+npm run start &
 echo "🚀 Backend iniciado."
