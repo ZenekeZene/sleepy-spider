@@ -1,0 +1,9 @@
+:root {
+  --primary-color: #b95377;
+  --background-color: #cd879f;
+  --combo-duration: 3s;
+  --font-family: 'Secular One', Helvetica, sans-serif;
+  --font-secondary: 'Nunito', Helvetica, sans-serif;
+  --font-tertiary: 'Roboto', Helvetica, sans-serif;
+  --clock-size: 8;
+}

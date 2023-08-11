@@ -1,0 +1,82 @@
+.button {
+  max-width: 25rem;
+  width: 100%;
+  padding: 0.5em;
+  font-family: var(--font-secondary);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  background-color: pink;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  border-bottom: 8px solid #ee9fad;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--primary-color);
+  border-left: 2px solid #5e1523;
+  border-right: 2px solid #5e1523;
+  border-top: 2px solid #5e1523;
+  border-bottom: 8px solid #5e1523;
+}
+
+.button.--secondary {
+  border-left: 2px solid #ee9fad;
+  border-right: 2px solid #ee9fad;
+  border-top: 2px solid #ee9fad;
+  background-color: white;
+}
+
+.button.--secondary:hover {
+  color: white;
+  background-color: #ee9fad;
+  border-color: var(--primary-color);
+}
+
+.buttons-wrapper {
+  max-width: 25rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+a.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  gap: 1rem;
+}
+
+a.button img {
+  width: 1.2rem;
+}
+
+.button.--logout:not(.hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button.--logout .user {
+  display: flex;
+  font-size: 0.7rem;
+  font-family: Roboto, Helvetica;
+  font-weight: 500;
+}
+
+.button.--logout .user span {
+  max-width: 20ch;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}

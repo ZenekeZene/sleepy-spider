@@ -1,0 +1,249 @@
+.modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  color: black;
+  pointer-events: auto;
+}
+
+.modal.visible {
+  display: block;
+}
+
+.modal__backdrop,
+.share-modal__backdrop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 67%);
+}
+
+.modal__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 29rem;
+  min-height: 24rem;
+  height: auto;
+  padding: 2rem;
+  font-family: var(--font-tertiary);
+  background-color: rgb(255 255 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 3px solid transparent;
+}
+
+.modal__header {
+  margin-bottom: 4rem;
+}
+
+.modal__title {
+  width: 19rem;
+  font-size: 1.2rem;
+  text-align: left;
+
+  font-family: var(--font-secondary);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.modal__close {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  cursor: pointer;
+}
+
+.modal-link {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-link:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.modal-link__icon {
+  width: 2rem;
+}
+
+.modal-link__title {
+  text-align: left;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-link__share {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.modal-link:hover {
+  color: currentColor;
+}
+
+.info-modal .modal__title {
+  padding-right: 3rem;
+}
+
+.info-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-left: 3rem;
+  list-style: none;
+}
+
+.info-modal__list li {
+  position: relative;
+}
+
+.info-modal__list li::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0rem;
+  display: inline-block;
+  font-size: 1.3rem;
+  border-radius: 50%;
+}
+
+.info-modal__list li:first-child::before {
+  content: '1';
+}
+
+.info-modal__list li:nth-child(2)::before {
+  content: '2';
+}
+
+.info-modal__list li:nth-child(3)::before {
+  content: '3';
+}
+
+.info-modal__logout-success {
+  margin: 0;
+  padding: 1.65rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.info-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.info-modal p {
+  margin-bottom: 1rem;
+}
+
+.credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.zeneke {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
+
+.credits p {
+  max-width: 15ch;
+}
+
+@media screen and (max-height: 45rem) {
+  .info-modal .modal__header {
+    margin-bottom: 2rem;
+  }
+
+  #buy-me-coffe-info-modal {
+    display: none;
+  }
+
+  .modal__inner {
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+}
+
+@media screen and (max-height: 40rem) {
+  .info-modal .credits {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  .modal__inner {
+    top: unset;
+    left: unset;
+    bottom: 0;
+    transform: translate(0, 0);
+    max-width: unset;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.share-modal {
+  z-index: 12;
+}
+
+.modal__social-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.modal__social-list .modal-link {
+  justify-content: center;
+}
+
+.modal__social-list .modal-link__share {
+  width: unset;
+}
+
+.modal__social-list .modal-link .modal-link__icon {
+  width: 5rem;
+}
+
+#share-modal .modal__inner {
+  max-height: 40.7rem;
+  z-index: 2;
+  max-width: 29rem;
+  height: 100%;
+}
+
+#share-modal.--info-modal .modal__inner {
+  max-height: 46.2rem;
+}
+
+#share-modal.--final-screen .modal__inner {
+  max-height: 42rem;
+}
+
+@media screen and (max-width: 30rem) {
+  #share-modal.modal .modal__inner {
+    max-height: unset;
+  }
+}

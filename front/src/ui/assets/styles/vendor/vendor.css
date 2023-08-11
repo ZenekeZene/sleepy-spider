@@ -1,0 +1,16 @@
+.tp-dfwv.tp-dfwv {
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
+}
+
+.tp-dfwv .tp-rotv {
+  pointer-events: auto;
+  height: 100%;
+}

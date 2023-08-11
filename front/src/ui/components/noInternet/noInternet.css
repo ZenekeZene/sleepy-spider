@@ -1,0 +1,8 @@
+.no-internet-modal .modal__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-internet-modal .button {
+  margin-top: auto;
+}

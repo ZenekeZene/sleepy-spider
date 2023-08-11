@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 528 528" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<g id="SVGRepo_iconCarrier" vectornator:layerName="SVGRepo_iconCarrier">
+<path d="M264 526.977C216.664 526.977 172.835 515.143 132.512 491.475C92.1885 467.807 60.193 435.812 36.5251 395.488C12.8572 355.165 1.0232 311.336 1.0232 264C1.0232 216.664 12.8572 172.835 36.5251 132.512C60.193 92.1885 92.1885 60.193 132.512 36.5251C172.835 12.8572 216.664 1.0232 264 1.0232C311.336 1.0232 355.165 12.8572 395.488 36.5251C435.812 60.193 467.807 92.1885 491.475 132.512C515.143 172.835 526.977 216.664 526.977 264C526.977 311.336 515.143 355.165 491.475 395.488C467.807 435.812 435.812 467.807 395.488 491.475C355.165 515.143 311.336 526.977 264 526.977ZM264 306.076L348.153 390.229L390.229 348.153L306.076 264L390.229 179.847L348.153 137.771L264 221.924L179.847 137.771L137.771 179.847L221.924 264L137.771 348.153L179.847 390.229L264 306.076Z" fill="#d84f4f" fill-rule="nonzero" opacity="1" stroke="#d84f4f" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.00528" vectornator:layerName="path"/>
+</g>
+</svg>

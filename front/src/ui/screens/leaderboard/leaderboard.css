@@ -1,0 +1,28 @@
+.leaderboard-screen {
+  padding: 1rem;
+  background: linear-gradient(182deg, #b95377 0%, white 33%);
+}
+
+.leaderboard-screen__title {
+  color: white;
+}
+
+.leaderboard-screen__close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+}
+
+.leaderboard-screen__close:hover {
+  transform: scale(1.1);
+}
+
+.leaderboard-screen__list {
+  list-style: none;
+  width: 100%;
+  max-height: 87vh;
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+}

@@ -1,0 +1,166 @@
+.spider-wrapper {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block;
+}
+
+.spider-wrapper.hidden {
+  display: none;
+}
+
+.spider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  max-width: 45rem;
+  animation: iddle 2s ease-in-out infinite;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translate(-32%, -50%);
+  opacity: 0.5;
+  animation: shadow-iddle 2s ease-in-out infinite;
+}
+
+.eyes,
+.body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.eyes {
+  transform: translate(-50%, -50%) skewX(-10.5deg);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.body {
+  transform: translate(-51.55%, -36.70%);
+  pointer-events: none;
+}
+
+.sleep {
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  transform: translate(-58%, -14%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100vw;
+  min-height: 100vh;
+  opacity: 0.4;
+  filter: opacity(0.5);
+  pointer-events: none;
+}
+
+.rope {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 12px);
+  transform: translate(-50%, -50%);
+  border: 2px dotted white;
+  height: 100vh;
+}
+
+.collider {
+  position: absolute;
+  top: 60%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 21rem;
+  height: 29rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media screen and (max-width: 30rem) {
+  .spider-wrapper {
+    width: 150%;
+    left: -25%;
+  }
+
+  .shadow {
+    width: 54%;
+    bottom: 8rem;
+  }
+
+  .rope {
+    left: calc(50% - 7px);
+  }
+}
+
+@media screen and (max-height: 784px) {
+  .sleep {
+    top: 7vh;
+  }
+}
+
+@media screen and (max-height: 640px) {
+  .shadow {
+    display: none;
+  }
+
+  .spider-wrapper {
+    top: -7rem;
+  }
+
+  .sleep {
+    top: -2vh;
+  }
+}
+
+.new-pupils {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) skew(-10.5deg);
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5rem;
+
+  width: 10.4%;
+  height: auto;
+  margin-left: -2.85%;
+  margin-top: -3.5%;
+
+  cursor: pointer;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pupil-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.pupil-wrapper canvas {
+  width: 100%;
+}

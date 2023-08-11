@@ -1,0 +1,225 @@
+{
+	"frames": [
+		{
+			"filename": "eye-00.png",
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-01.png",
+			"frame": {
+				"x": 186,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-02.png",
+			"frame": {
+				"x": 372,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-03.png",
+			"frame": {
+				"x": 0,
+				"y": 186,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-04.png",
+			"frame": {
+				"x": 186,
+				"y": 186,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-05.png",
+			"frame": {
+				"x": 372,
+				"y": 186,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-06.png",
+			"frame": {
+				"x": 0,
+				"y": 372,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-07.png",
+			"frame": {
+				"x": 186,
+				"y": 372,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-08.png",
+			"frame": {
+				"x": 372,
+				"y": 372,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		},
+		{
+			"filename": "eye-09.png",
+			"frame": {
+				"x": 558,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 186,
+				"h": 186
+			},
+			"sourceSize": {
+				"w": 186,
+				"h": 186
+			}
+		}
+	],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 744,
+			"h": 558
+		},
+		"scale": "1"
+	}
+}

@@ -1,0 +1,48 @@
+.icons {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation-duration: 1s;
+}
+
+.icon {
+  width: 2rem;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.1, 1.1)
+}
+
+.icon-info {
+  width: 2.5rem;
+}
+
+#settings-close-icon {
+  display: none;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 7;
+}
+
+.icon-user,
+.icon-logout {
+  display: none;
+}
+
+.icon-user.visible,
+.icon-logout.visible {
+  display: block;
+}
+
+.info-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

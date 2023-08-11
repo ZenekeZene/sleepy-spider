@@ -1,0 +1,8 @@
+const QUESTION_TYPES = Object.freeze({
+  SPECIFICITY: 'SPECIFICITY',
+  MULTICHOICE: 'MULTICHOICE',
+})
+
+export {
+  QUESTION_TYPES
+}

@@ -1,0 +1,116 @@
+.final-screen__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.final-screen__title {
+  font-size: 1rem;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.final-screen__avatar {
+  position: relative;
+  max-width: 10rem;
+  max-height: 10rem;
+  min-width: 10rem;
+  min-height: 10rem;
+  display: inherit;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: inset -32px -26px 122px rgb(185 83 119 / 63%);
+  cursor: pointer;
+}
+
+.final-screen__avatar-label {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0.1rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: white;
+  padding: 0.5rem;
+  text-shadow: 1px 1px 5px var(--primary-color);
+  max-width: 10ch;
+}
+
+.final-screen__avatar:hover {
+  background: linear-gradient(165deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgb(185 83 119) 96%);
+}
+
+.final-screen__avatar:hover .final-screen__avatar-label {
+  display: block;
+  animation: headShake 1s;
+}
+
+.final-screen__avatar:hover img {
+  transform: translate(7%, 5%) scale(0.88) rotate(6deg);
+}
+
+.final-screen__avatar img {
+  /* Old image
+  width: 100%;
+  border-radius: 50%;
+  transform: translate(3%,27%) scale(2);
+  */
+
+  position: absolute;
+  top: -1.5rem;
+  left: 0.9rem;
+  width: 100%;
+  height: auto;
+  transition: transform 150ms ease-in-out;
+  pointer-events: none;
+}
+
+.final-screen__score-label {
+  text-align: center;
+}
+
+.final-screen__score-wrapper {
+  flex: 1 1 auto;
+}
+
+.final-screen__score {
+  color: var(--primary-color);
+  font-size: 7rem;
+  line-height: 0.9;
+  font-size: clamp(4rem, 22vw, 6rem);
+  text-align: center;
+}
+
+.final-screen__buttons {
+  margin-top: auto;
+}
+
+.final-screen__record {
+  text-align: center;
+}
+
+.final-screen__record-value {
+  color: var(--primary-color);
+}
+
+.final-screen__record.--new {
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.final-screen.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 30rem) {
+  .final-screen__avatar {
+    max-width: 8rem;
+    max-height: 8rem;
+    min-width: 8rem;
+    min-height: 8rem;
+  }
+}

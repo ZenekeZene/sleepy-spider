@@ -1,0 +1,60 @@
+@import './base/base.css';
+@import './loader/loader.css';
+@import './vendor/vendor.css';
+@import './components/components.css';
+@import './utils/utils.css';
+
+.debug-mode * {
+  border: 1px dashed white !important;
+}
+
+.bounce-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 40rem) {
+  .hide-in-mobile {
+    display: none;
+  }
+
+  .icons {
+    bottom: 0.75rem;
+    right: 1rem;
+  }
+
+  .leaderboard {
+    left: 1rem;
+  }
+}
+
+.gradient-background {
+  background: linear-gradient(300deg, var(--background-color),var(--primary-color), black);
+  background-size: 180% 180%;
+  animation: gradient-animation 4s ease infinite;
+}
+
+.sky-gradient-background {
+  background: linear-gradient(1deg, var(--background-color),var(--primary-color) 20%, #391735 73%);
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#confetti {
+  position: absolute;
+  z-index: 11;
+}

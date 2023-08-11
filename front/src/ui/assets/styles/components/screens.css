@@ -1,0 +1,22 @@
+.screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 11;
+  max-width: 29rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: white;
+}
+
+@media screen and (min-width: 30rem) {
+  .screen {
+    max-height: 42rem;
+    border-radius: 10px;
+  }
+}
