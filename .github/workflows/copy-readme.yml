@@ -16,7 +16,8 @@ jobs:
     - name: Copiar Archivo a Submódulo
       run: |
         # Copiar el archivo a la carpeta del submódulo
-        cp README.md organization/profile/
+
+        cp README.md ./organization/profile/
 
         # Realizar los cambios y confirmarlos en el submódulo
         cd ./organization/profile
