@@ -2,7 +2,7 @@
 
 # 🕸️ Introduction
 
-### Oh, no!!! Sleepy has fallen into a deep sleep!
+### Sleepy has fallen into a deep sleep!
 It's a game half clicker, half quiz. You have to achieve the highest possible score within a one-minute time limit.
 
 <img src="https://transfer.sh/MLsyzutqST/coffee.gif" width="200">
