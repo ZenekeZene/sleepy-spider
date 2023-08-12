@@ -16,11 +16,13 @@ jobs:
     - name: Copiar Archivo a Submódulo
       run: |
         # Copiar el archivo a la carpeta del submódulo
+        cp README.md /tmp/
 
-        cp README.md ./organization/profile/
-
-        # Realizar los cambios y confirmarlos en el submódulo
-        cd ./organization/profile
+        # Clonar el repositorio RepoB
+        git clone https://github.com/sleepy-spider/.github.git organization
+        mv /tmp/README.md organization/profile
+        cd organization/profile
+        
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
         git add .
