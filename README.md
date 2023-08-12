@@ -54,14 +54,14 @@ The ***all-in-one*** script to install and launch in development mode is defined
 
 ### Development mode
 #### All-in-one script (included installation)
-To launch the dev mode, you can launch the all-in-one script called 'launch-dev.sh'.
+To launch the dev mode, you can launch the all-in-one script called 'wakeup.sh'.
 This script launches the front and back projects together.
 ```
-$ ./launch-dev.sh
+$ ./wakeup.sh
 ```
 ***Note:*** Maybe you dont have permissions to launch this script as a program. In these case, you have to give permissions:
 ```
-chmod +x ./launch-dev.sh
+chmod +x ./wakeup.sh
 ```
 
 #### Separately
