@@ -1,4 +1,6 @@
 name: Copiar Archivo a Submódulo
+env:
+    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 on:
   push:
@@ -19,7 +21,7 @@ jobs:
         cp README.md /tmp/
 
         # Clonar el repositorio RepoB
-        git clone https://github.com/sleepy-spider/.github.git organization
+        git clone https://${ACCESS_TOKEN}@github.com/sleepy-spider/.github.git organization
         mv /tmp/README.md organization/profile
         cd organization/profile
         
