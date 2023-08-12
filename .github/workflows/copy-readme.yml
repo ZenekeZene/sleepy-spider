@@ -18,8 +18,10 @@ jobs:
     - name: Verificar Cambios en README
       id: check_changes
       run: |
-        CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-        echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
+        CHANGED_README=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'README.md' || true)
+        if [[ -n "${CHANGED_README}" ]]; then
+          echo "README_CHANGED=true" >> $GITHUB_ENV
+        fi
 
     - name: Copiar Archivo a Submódulo
       if: contains(env.CHANGED_FILES, 'archivo-a-copiar.txt')
