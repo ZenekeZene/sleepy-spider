@@ -15,7 +15,13 @@ jobs:
     - name: Checkout Repositorio
       uses: actions/checkout@v2
 
+    - name: Verificar Cambios en README
+      id: check_changes
+      run: |
+        git diff --quiet HEAD^ HEAD README.txt || echo "CHANGES=true" >> $GITHUB_ENV
+
     - name: Copiar Archivo a Submódulo
+      if: env.CHANGES == 'true'
       run: |
         # Copiar el archivo a la carpeta del submódulo
         cp README.md /tmp/
