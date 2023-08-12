@@ -13,19 +13,18 @@ jobs:
 
     steps:
     - name: Checkout Repositorio
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
 
-    - name: Verificar Cambios en README
-      id: check_changes
-      run: |
-        CHANGED_README=$(git diff --name-only ${{ github.event.before }}..${{ github.sha }} | grep 'README.md' || true)
-        if [[ -n "${CHANGED_README}" ]]; then
-          echo "README_CHANGED=true" >> $GITHUB_ENV
-        fi
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v37
 
     - name: Copiar Archivo a Submódulo
-      if: contains(env.CHANGED_FILES, 'archivo-a-copiar.txt')
+      if: contains(steps.changed-files.outputs.modified_files, 'README.md')
       run: |
+        echo "README.md file has been modified."
         # Copiar el archivo a la carpeta del submódulo
         cp README.md /tmp/
 
