@@ -1,0 +1,30 @@
+name: Copiar Archivo a Submódulo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repositorio
+      uses: actions/checkout@v2
+
+    - name: Copiar Archivo a Submódulo
+      run: |
+        # Copiar el archivo a la carpeta del submódulo
+        cp README.md organization/profile/
+
+        # Realizar los cambios y confirmarlos en el submódulo
+        cd ./organization/profile
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add .
+        git commit -m "Copiar archivo a submódulo"
+        git push
+
+        # Volver al directorio raíz
+        cd ..
