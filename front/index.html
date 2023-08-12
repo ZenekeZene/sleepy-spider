@@ -45,7 +45,7 @@
       </nav>
 
       <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
-      <p id="user-counter" class="subtitle hidden"><span class="hide-auto">You wake</span> <span class="counter">0</span><span class="hide-auto">times.</span></p>
+      <p id="user-counter" class="subtitle hidden"><span class="hide-auto">You wake</span> <span class="counter" data-testid="user-counter">0</span><span class="hide-auto">times.</span></p>
 
 
       <!-- CLOCK -->
@@ -64,7 +64,7 @@
     <main class="spider-wrapper" id="spider-wrapper">
       <div id="new-pupils" class="new-pupils" style="visibility: hidden;"></div>
       <section class="bounce-wrapper transparent">
-        <article class="spider" id="spider">
+        <article class="spider" id="spider" data-testid="spider">
           <span class="rope"></span>
           <canvas id="body" class="body" width="3000" height="3000"></canvas>
           <canvas id="eyes" class="eyes" width="3000" height="3000"></canvas>

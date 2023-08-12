@@ -8,6 +8,10 @@
   border: 1px dashed white !important;
 }
 
+.test-mode * {
+  animation: none !important;
+}
+
 .bounce-wrapper {
   position: absolute;
   top: 50%;
