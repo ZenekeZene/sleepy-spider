@@ -61,7 +61,7 @@ cd ../back
 
 # Instalar dependencias si no están instaladas
 if [ ! -d "node_modules" ]; then
-    echo "🚀 Instalando backend."
+    echo "🚀 Instalando Backend."
     npm install
     echo "Dependencias de /back instaladas."
 else
