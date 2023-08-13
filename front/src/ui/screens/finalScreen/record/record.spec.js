@@ -13,7 +13,7 @@ const stubDocumentBody = () => {
 const getById = (id) => document.getElementById(id)
 const findAllByClassName = (selector) => document.getElementsByClassName(selector)
 
-describe.only("handlePersonalLocalRecord", () => {
+describe("handlePersonalLocalRecord", () => {
   afterEach(() => {
     localStorage.clear()
   })
@@ -54,9 +54,9 @@ describe.only("handlePersonalLocalRecord", () => {
     expect(findAllByClassName('record-counter')[0].textContent).toBe('20')
   })
 
-  it.only(`given a last score not greater than personal record,
+  it(`given a last score not greater than personal record,
     when handlePersonalLocalRecord is called,
-    then it should not show the record`, async () => {
+    then it should show the last score`, async () => {
     stubDocumentBody()
 
     localStorage.setItem('record', 20)
@@ -65,6 +65,6 @@ describe.only("handlePersonalLocalRecord", () => {
     handlePersonalLocalRecord(lastScore)
 
     expect(getById('record-message').classList.contains('visible')).toBe(true)
-    expect(findAllByClassName('record-counter')[0].textContent).toBe('20')
+    expect(findAllByClassName('record-counter')[0].textContent).toBe('10')
   })
 })
