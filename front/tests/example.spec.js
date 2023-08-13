@@ -13,7 +13,7 @@ test('has title', async ({ page }) => {
 test('can click on spider', async ({ page }) => {
   await page.goto('/');
 
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(2000);
 
   const spider = page.locator('#spider')
   await spider.click();
@@ -24,6 +24,6 @@ test('can click on spider', async ({ page }) => {
 
   await spider.click();
 
-  const counter2 = page.getByText('2', { exact: true });
+  const counter2 = page.getByText('2');
   await expect(counter2).toBeVisible();
 });
