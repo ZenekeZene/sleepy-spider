@@ -51,7 +51,6 @@ describe('Modal', () => {
 
     doClickOnTriggerByText('info icon')
 
-    console.log(body.innerHTML)
     expect(infoModal.classList).toContain(['visible'])
   })
 
