@@ -2,13 +2,16 @@ name: Pasar tests unitarios
 
 on:
   push:
-    - master
+    branches:
+      - master
 
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repositorio
+        uses: actions/checkout@v3
+
       - name: Instalar dependencias
         run: |
           cd front
