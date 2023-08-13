@@ -1,4 +1,4 @@
-name: Copiar Archivo a Submódulo
+name: Copy README.md to organization profile
 env:
     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 
   push:
-    branches:
-      - main
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   copy-file:
@@ -23,7 +24,7 @@ jobs:
       id: changed-files
       uses: tj-actions/changed-files@v37
 
-    - name: Copiar Archivo a Submódulo
+    - name: Copy README.md
       if: contains(steps.changed-files.outputs.modified_files, 'README.md')
       run: |
         echo "README.md file has been modified."
@@ -44,5 +45,5 @@ jobs:
         # Volver al directorio raíz
         cd ..
 
-    - name: Mostrar Resultado
+    - name: Show result
       run: echo "README_CHANGED=${{ env.README_CHANGED }}"

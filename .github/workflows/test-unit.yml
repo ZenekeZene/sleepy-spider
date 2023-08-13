@@ -1,11 +1,12 @@
-name: Pasar tests unitarios
+name: Unit tests
 
 on:
   workflow_dispatch:
 
   push:
-    branches:
-      - maingi
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   unit-tests:
@@ -14,12 +15,12 @@ jobs:
       - name: Checkout Repositorio
         uses: actions/checkout@v3
 
-      - name: Instalar dependencias
+      - name: Install dependencies
         run: |
           cd front
           npm install
 
-      - name: Ejecutar tests unitarios
+      - name: Run unit tests
         run: |
           cd front
           npm run test

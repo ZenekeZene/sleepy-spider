@@ -1,4 +1,5 @@
-name: Playwright Tests
+name: E2E Tests
+
 on:
   workflow_dispatch:
 
