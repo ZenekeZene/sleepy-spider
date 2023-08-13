@@ -5,7 +5,7 @@ on:
 
   push:
     branches:
-      - main
+      - maingi
 
 jobs:
   unit-tests:
@@ -20,4 +20,6 @@ jobs:
           npm install
 
       - name: Ejecutar tests unitarios
-        run: npm run test
+        run: |
+          cd front
+          npm run test
