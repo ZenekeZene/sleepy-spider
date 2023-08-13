@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bb333221-55ae-4260-bbe8-5ae3b1980d7a/deploy-status)](https://app.netlify.com/sites/sleepy-spider/deploys)
+[![Unit tests](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/test-unit.yml/badge.svg?branch=main&event=push)](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/test-unit.yml)
+[![E2E Tests](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/playwright.yml/badge.svg?branch=main&event=push)](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/playwright.yml)
+
 # SLEEPY SPIDER
 
 # 🕸️ Introduction
