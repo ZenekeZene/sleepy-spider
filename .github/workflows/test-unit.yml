@@ -1,6 +1,8 @@
 name: Pasar tests unitarios
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - master
