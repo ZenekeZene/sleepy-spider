@@ -10,11 +10,13 @@ test.beforeEach(async ({ page }) => {
 
 const getClock = async (page) => await page.locator('#clock')
 
-const doClickOnSpider = async (page, delay = 250) => {
+const doClickOnSpider = async (page) => {
   const spider = page.locator('#spider')
-  await page.waitForTimeout(delay);
+  await page.waitForTimeout(1000);
   await spider.click()
 }
+
+test.describe.configure({ mode: 'parallel' })
 
 test.describe('Playing [desktop]:', () => {
   test(`The user can click on spider and
