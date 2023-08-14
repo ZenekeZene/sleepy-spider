@@ -12,9 +12,10 @@ test.beforeEach(async ({ page }) => {
 test.describe('Before to play [desktop]:', () => {
   test(`The page has title and a info icon`, async ({ page }) => {
     const spider = page.locator('#spider')
-    expect(page.getByRole('heading', { name: 'Wake up, Sleepy!' })).toBeVisible()
-    expect(spider).toBeVisible()
-    expect(page.locator('#info-icon')).toBeVisible()
+
+    await expect(page.getByRole('heading', { name: 'Wake up, Sleepy!' })).toBeVisible()
+    await expect(spider).toBeVisible()
+    await expect(page.locator('#info-icon')).toBeVisible()
   })
 
   test(`We can tap on the info button,
@@ -24,10 +25,10 @@ test.describe('Before to play [desktop]:', () => {
     const infoIcon = page.locator('#info-icon')
     await infoIcon.click()
 
-    expect (page.locator('#info-modal')).toBeVisible()
-    expect(page.getByRole('button', { name: 'Share!' })).toBeVisible()
-    expect(page.getByRole('link', { name: 'Buy me a coffee! Buy me a coffee!' })).toBeVisible()
-    expect(page.locator('ul[aria-label="Instructions"] > li')).toHaveCount(3)
+    await expect(page.locator('#info-modal')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Share!' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Buy me a coffee! Buy me a coffee!' })).toBeVisible()
+    await expect(page.locator('ul[aria-label="Instructions"] > li')).toHaveCount(3)
   })
 
   test(`The user can click on the Share button,
