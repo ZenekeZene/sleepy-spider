@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
 
-const getClock = async (page) => page.locator('#clock')
+const getClock = async (page) => await page.locator('#clock')
 
 const doClickOnSpider = async (page, delay = 250) => {
   const spider = page.locator('#spider')
