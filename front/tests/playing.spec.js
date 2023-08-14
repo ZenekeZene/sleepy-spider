@@ -10,10 +10,21 @@ test.beforeEach(async ({ page }) => {
 
 const getClock = async (page) => await page.locator('#clock')
 
-const doClickOnSpider = async (page) => {
+const doClickOnSpider = async (page, delay = 1000) => {
   const spider = page.locator('#spider')
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(delay)
   await spider.click()
+}
+
+const doComboOnSpider = async ({ times, value, message, page }) => {
+  for (let i = 0; i < times; i++) {
+    await doClickOnSpider(page, 100)
+  }
+
+  const counter = page.getByTestId('user-counter')
+  await expect(counter).toHaveText(value.toString())
+
+  expect(page.getByText(message)).toBeVisible()
 }
 
 test.describe.configure({ mode: 'parallel' })
@@ -53,5 +64,48 @@ test.describe('Playing [desktop]:', () => {
 
     const counter = page.getByTestId('user-counter')
     await expect(counter).toHaveText('5')
+  })
+
+  test.describe('Combos: The user can click quicly on the spider', () => {
+
+    test(`2 times, the combo message 'DOUBLE!' is shown,
+      and the counter is multiplied to 4`, async ({ page }) => {
+      await doComboOnSpider({
+        times: 2,
+        value: 4,
+        message: 'DOUBLE!',
+        page
+      })
+    })
+
+    test(`3 times, the combo message 'TRIPLE!' is shown,
+      and the counter is multiplied to 6`, async ({ page }) => {
+      await doComboOnSpider({
+        times: 3,
+        value: 6,
+        message: 'TRIPLE!',
+        page
+      })
+    })
+
+    test(`4 times, the combo message 'Combo 4!' is shown,
+      and the counter is multiplied to 6`, async ({ page }) => {
+      await doComboOnSpider({
+        times: 4,
+        value: 8,
+        message: 'COMBO X4',
+        page
+      })
+    })
+
+    test(`7 times, the combo message 'SUPER!' is shown,
+      and the counter is increment by 100`, async ({ page }) => {
+      await doComboOnSpider({
+        times: 7,
+        value: 107,
+        message: 'SUPER!',
+        page
+      })
+    })
   })
 })
