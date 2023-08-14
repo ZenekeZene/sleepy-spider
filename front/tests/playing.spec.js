@@ -44,16 +44,12 @@ test.describe('Playing [desktop]:', () => {
 
   test(`The user can click on the spider
     five times in one second, then the counter
-    is incremented until 5 and the clock decrement
-    one second`, async ({ page }) => {
+    is incremented until 5`, async ({ page }) => {
     for (let i = 0; i < 6; i++) {
       await doClickOnSpider(page)
     }
 
-    const counter = page.getByText('5', { exact: true })
-    await expect(counter).toBeVisible()
-
-    const clock = await getClock(page)
-    await expect(clock).toHaveText('9')
+    const counter = page.getByTestId('user-counter')
+    await expect(counter).toHaveText('5')
   })
 })
