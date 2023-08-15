@@ -29,7 +29,6 @@ const doClickUntilShowQuestion = async (page) => {
 
 const doClickUntilCombo = async ({ times, message, page }) => {
   await doClickOnSpiderNtimes({ times, page })
-  await expect(page.getByText(message)).toBeVisible()
 }
 
 test.describe.configure({ mode: 'parallel' })
@@ -77,48 +76,36 @@ test.describe('Playing [desktop]:', () => {
 
     test(`2 times, the combo message 'DOUBLE!' is shown,
       and the counter is multiplied to 4`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 2,
-        message: 'DOUBLE!',
-        page
-      })
+      await doClickUntilCombo({ times: 2, page })
 
+      await expect(page.getByText('DOUBLE!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
       await expect(counter).toHaveText('4')
     })
 
     test(`3 times, the combo message 'TRIPLE!' is shown,
       and the counter is multiplied to 6`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 3,
-        message: 'TRIPLE!',
-        page
-      })
+      await doClickUntilCombo({ times: 3, page })
 
+      await expect(page.getByText('TRIPLE!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
       await expect(counter).toHaveText('6')
     })
 
     test(`4 times, the combo message 'Combo 4!' is shown,
       and the counter is multiplied to 6`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 4,
-        message: 'COMBO X4',
-        page
-      })
+      await doClickUntilCombo({ times: 4, page })
 
+      await expect(page.getByText('COMBO X4')).toBeVisible()
       const counter = page.getByTestId('user-counter')
       await expect(counter).toHaveText('8')
     })
 
     test(`7 times, the combo message 'SUPER!' is shown,
       and the counter is increment by 100`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 7,
-        message: 'SUPER!',
-        page
-      })
+      await doClickUntilCombo({ times: 7, page })
 
+      await expect(page.getByText('SUPER!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
       await expect(counter).toHaveText('107')
     })
@@ -126,11 +113,7 @@ test.describe('Playing [desktop]:', () => {
 
   test.describe('C) Question: The user can click quickly on the spider', () => {
     test(`7 times quickly, the question title and four options are shown`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 7,
-        message: 'SUPER!',
-        page
-      })
+      await doClickUntilCombo({ times: 7, page })
 
       const questionTitle = page.locator('#question-title')
       await expect(questionTitle).toBeVisible()
@@ -143,11 +126,7 @@ test.describe('Playing [desktop]:', () => {
     test(`7 times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
-      await doClickUntilCombo({
-        times: 7,
-        message: 'SUPER!',
-        page
-      })
+      await doClickUntilCombo({ times: 7, page })
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
