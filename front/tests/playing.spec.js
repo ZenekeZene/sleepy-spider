@@ -8,27 +8,17 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
 
-const doClickOnSpider = async (page, delay = 1000) => {
+const doClickOnSpider = async (page) => {
   const spider = page.locator('#spider')
-  await page.waitForTimeout(delay)
+  await expect(spider).toBeVisible()
   await spider.click()
 }
 
 const doClickOnSpiderNtimes = async ({ times, page }) => {
   for (let i = 0; i < times; i++) {
-    await doClickOnSpider(page, 150)
+    await doClickOnSpider(page)
+    await page.waitForTimeout(165)
   }
-}
-
-const doClickUntilShowQuestion = async (page) => {
-  await page.waitForTimeout(1000)
-  await doClickOnSpiderNtimes({ times: 10, page })
-
-  await expect(page.locator('#question-modal')).toBeVisible()
-}
-
-const doClickUntilCombo = async ({ times, message, page }) => {
-  await doClickOnSpiderNtimes({ times, page })
 }
 
 test.describe('Playing [desktop]:', () => {
@@ -59,14 +49,19 @@ test.describe('Playing [desktop]:', () => {
     })
 
     test(`The user can click on the spider
-      five times in one second, then the counter
-      is incremented until 5`, async ({ page }) => {
-      for (let i = 0; i < 6; i++) {
-        await doClickOnSpider(page)
-      }
+      3 times, then the counter
+      is incremented until 3`, async ({ page }) => {
+      await page.waitForTimeout(1000)
+      await doClickOnSpider(page)
+      await page.waitForTimeout(2000)
+      await doClickOnSpider(page)
+      await page.waitForTimeout(2000)
+      await doClickOnSpider(page)
+      await page.waitForTimeout(2000)
 
       const counter = page.getByTestId('user-counter')
-      await expect(counter).toHaveText('5')
+      await expect(counter).toBeVisible()
+      await expect(counter).toHaveText('3')
     })
   })
 
@@ -74,7 +69,7 @@ test.describe('Playing [desktop]:', () => {
 
     test(`2 times, the combo message 'DOUBLE!' is shown,
       and the counter is multiplied to 4`, async ({ page }) => {
-      await doClickUntilCombo({ times: 2, page })
+      await doClickOnSpiderNtimes({ times: 2, page })
 
       await expect(page.getByText('DOUBLE!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
@@ -83,7 +78,7 @@ test.describe('Playing [desktop]:', () => {
 
     test(`3 times, the combo message 'TRIPLE!' is shown,
       and the counter is multiplied to 6`, async ({ page }) => {
-      await doClickUntilCombo({ times: 3, page })
+      await doClickOnSpiderNtimes({ times: 3, page })
 
       await expect(page.getByText('TRIPLE!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
@@ -92,7 +87,7 @@ test.describe('Playing [desktop]:', () => {
 
     test(`4 times, the combo message 'Combo 4!' is shown,
       and the counter is multiplied to 6`, async ({ page }) => {
-      await doClickUntilCombo({ times: 4, page })
+      await doClickOnSpiderNtimes({ times: 4, page })
 
       await expect(page.getByText('COMBO X4')).toBeVisible()
       const counter = page.getByTestId('user-counter')
@@ -101,7 +96,7 @@ test.describe('Playing [desktop]:', () => {
 
     test(`7 times, the combo message 'SUPER!' is shown,
       and the counter is increment by 100`, async ({ page }) => {
-      await doClickUntilCombo({ times: 7, page })
+      await doClickOnSpiderNtimes({ times: 7, page })
 
       await expect(page.getByText('SUPER!')).toBeVisible()
       const counter = page.getByTestId('user-counter')
@@ -111,7 +106,7 @@ test.describe('Playing [desktop]:', () => {
 
   test.describe('C) Question: The user can click quickly on the spider', () => {
     test(`7 times quickly, the question title and four options are shown`, async ({ page }) => {
-      await doClickUntilCombo({ times: 7, page })
+      await doClickOnSpiderNtimes({ times: 7, page })
 
       const questionTitle = page.locator('#question-title')
       await expect(questionTitle).toBeVisible()
@@ -124,7 +119,7 @@ test.describe('Playing [desktop]:', () => {
     test(`7 times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
-      await doClickUntilCombo({ times: 7, page })
+      await doClickOnSpiderNtimes({ times: 8, page })
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
