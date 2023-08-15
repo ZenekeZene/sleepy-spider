@@ -28,7 +28,7 @@ jobs:
     - name: Install Playwright Browsers
       run: |
         cd front
-        npx playwright install --with-deps
+        yarn playwright install --with-deps
 
     - name: Run Playwright tests
       run: |
