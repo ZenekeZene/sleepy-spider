@@ -21,8 +21,9 @@ const doClickOnSpiderNtimes = async ({ times, page }) => {
 }
 
 const doClickUntilShowQuestion = async (page) => {
-  await doClickOnSpiderNtimes({ times: 8, page })
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
+  await doClickOnSpiderNtimes({ times: 10, page })
+
   await expect(page.locator('#question-modal')).toBeVisible()
 }
 
@@ -126,7 +127,11 @@ test.describe('Playing [desktop]:', () => {
 
   test.describe('C) Question: The user can click quickly on the spider', () => {
     test(`7 times quickly, the question title and four options are shown`, async ({ page }) => {
-      await doClickUntilShowQuestion(page)
+      await doClickUntilCombo({
+        times: 7,
+        message: 'SUPER!',
+        page
+      })
 
       const questionTitle = page.locator('#question-title')
       await expect(questionTitle).toBeVisible()
@@ -139,7 +144,11 @@ test.describe('Playing [desktop]:', () => {
     test(`7 times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
-      await doClickUntilShowQuestion(page)
+      await doClickUntilCombo({
+        times: 7,
+        message: 'SUPER!',
+        page
+      })
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
