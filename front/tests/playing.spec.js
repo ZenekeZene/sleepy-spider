@@ -29,7 +29,6 @@ const doClickUntilShowQuestion = async (page) => {
 
 const doClickUntilCombo = async ({ times, message, page }) => {
   await doClickOnSpiderNtimes({ times, page })
-  await page.waitForTimeout(500)
   await expect(page.getByText(message)).toBeVisible()
 }
 
