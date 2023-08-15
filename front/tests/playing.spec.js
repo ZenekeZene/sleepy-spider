@@ -18,13 +18,14 @@ const doClickOnSpider = async (page, delay = 1000) => {
 
 const doComboOnSpider = async ({ times, value, message, page }) => {
   for (let i = 0; i < times; i++) {
-    await doClickOnSpider(page, 100)
+    await doClickOnSpider(page, 150)
   }
 
   const counter = page.getByTestId('user-counter')
   await expect(counter).toHaveText(value.toString())
 
-  expect(page.getByText(message)).toBeVisible()
+  await page.waitForTimeout(500)
+  await expect(page.getByText(message)).toBeVisible()
 }
 
 test.describe.configure({ mode: 'parallel' })
