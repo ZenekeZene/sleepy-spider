@@ -31,8 +31,6 @@ const doClickUntilCombo = async ({ times, message, page }) => {
   await doClickOnSpiderNtimes({ times, page })
 }
 
-test.describe.configure({ mode: 'parallel' })
-
 test.describe('Playing [desktop]:', () => {
   test.describe('A) Basic behaviour:', () => {
     test(`The user can click on spider and
