@@ -20,15 +20,15 @@ jobs:
     - name: Install dependencies
       run: |
         cd front
-        npm install
+        npm ci
 
         cd ../back
-        npm install
+        npm ci
 
     - name: Install Playwright Browsers
       run: |
         cd front
-        yarn playwright install --with-deps
+        npx playwright install --with-deps
 
     - name: Run Playwright tests
       run: |
