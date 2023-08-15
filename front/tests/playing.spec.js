@@ -8,15 +8,11 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
 
-const doClickOnSpider = async (page) => {
-  const spider = page.locator('#spider')
-  await expect(spider).toBeVisible()
-  await spider.click()
-}
-
 const doClickOnSpiderNtimes = async ({ times, page }) => {
+  const spider = page.getByTestId('spider')
+
   for (let i = 0; i < times; i++) {
-    await doClickOnSpider(page)
+    await spider.click()
     await page.waitForTimeout(165)
   }
 }
@@ -25,12 +21,14 @@ test.describe('Playing [desktop]:', () => {
   test.describe('A) Basic behaviour:', () => {
     test(`The user can click on spider and
       the counter is incremented`, async ({ page }) => {
-      await doClickOnSpider(page)
+      await page.waitForTimeout(1000)
+      const spider = page.getByTestId('spider')
+      await spider.click()
 
       const counter = page.getByText('1', { exact: true })
       await expect(counter).toBeVisible()
 
-      await doClickOnSpider(page)
+      await spider.click()
 
       const counter2 = page.getByText('2')
       await expect(counter2).toBeVisible()
@@ -39,7 +37,8 @@ test.describe('Playing [desktop]:', () => {
     test(`The user can click on the spider,
       and the info modal is not visible and
       the clock is visible`, async ({ page }) => {
-      await doClickOnSpider(page)
+      const spider = page.getByTestId('spider')
+      await spider.click()
 
       const infoIcon = page.locator('#info-icon')
       expect(infoIcon).not.toBeVisible()
@@ -52,11 +51,12 @@ test.describe('Playing [desktop]:', () => {
       3 times, then the counter
       is incremented until 3`, async ({ page }) => {
       await page.waitForTimeout(1000)
-      await doClickOnSpider(page)
+      const spider = page.getByTestId('spider')
+      await spider.click()
       await page.waitForTimeout(2000)
-      await doClickOnSpider(page)
+      await spider.click()
       await page.waitForTimeout(2000)
-      await doClickOnSpider(page)
+      await spider.click()
       await page.waitForTimeout(2000)
 
       const counter = page.getByTestId('user-counter')
