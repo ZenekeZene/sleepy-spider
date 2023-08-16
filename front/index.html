@@ -41,7 +41,7 @@
       <nav class="icons invisible bounceInRight">
         <!--<img src="src/ui/assets/images/icons/user-icon.svg" class="icon icon-user" id="login-icon" />-->
         <!--<img src="src/ui/assets/images/icons/close-icon.svg" class="icon icon-logout" id="logout-icon" />-->
-        <img id="info-icon" src="src/ui/assets/images/icons/info-icon.svg" class="icon icon-info" />
+        <img id="info-icon" src="src/ui/assets/images/icons/info-icon.svg" class="icon icon-info" width="40" height="40"/>
       </nav>
 
       <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
@@ -77,8 +77,8 @@
 
     <!-- LOADER -->
     <div class="loader" id="loader">
-      <img src="src/ui/assets/images/loader/loader.gif" class="loader__thread" />
-      <img src="src/ui/assets/images/loader/ball.gif" class="loader__ball" />
+      <img src="src/ui/assets/images/loader/loader.gif" class="loader__thread" width="263" height="336"/>
+      <img src="src/ui/assets/images/loader/ball.gif" class="loader__ball" width="96" height="96"/>
     </div>
 
     <img src="src/ui/assets/images/shadow.png" class="shadow invisible" />
@@ -235,7 +235,10 @@
           <div id="final-screen-avatar" class="final-screen__avatar" href="https://buymeacoffee.com/zeneke"
             aria-label="Buy me a coffe"
           >
-            <img src="/coffee.gif" alt="Buy me a coffee" />
+            <video autoplay loop muted playsinline>
+              <source src="coffee.webm" type="video/webm" />
+              <source src="coffee.mp4" type="video/mp4" />
+            </video>
             <p class="final-screen__avatar-label">Buy me a coffee</p>
           </div>
           <div class="final-screen__score-wrapper">
@@ -279,8 +282,6 @@
       <ul id="leaderboard-podium" class="leaderboard-screen__podium podium"></ul>
       <ul id="leaderboard-ranking" class="leaderboard-screen__list ranking__list"></ul>
     </article>
-
-    <img src="src/ui/assets/images/icons/close-icon.svg" id="settings-close-icon" class="icon" />
 
     <script type="module" src="/src/main.js"></script>
     <script src="/vendor/prism.js" data-manual></script>

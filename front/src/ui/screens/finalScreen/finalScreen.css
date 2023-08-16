@@ -47,11 +47,11 @@
   animation: headShake 1s;
 }
 
-.final-screen__avatar:hover img {
+.final-screen__avatar:hover video {
   transform: translate(7%, 5%) scale(0.88) rotate(6deg);
 }
 
-.final-screen__avatar img {
+.final-screen__avatar video {
   /* Old image
   width: 100%;
   border-radius: 50%;
