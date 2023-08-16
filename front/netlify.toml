@@ -5,4 +5,4 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     # Content-Security-Policy = "default-src 'self'; style-src 'self'; form-action 'self'; script-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'self';"
-    Content-Security-Policy = "default-src 'self' sleepy-back.up.railway.app *.sleepy-back.up.railway.app fonts.googleapis.com *.fonts.googleapis.com cdn.jsdelivr.net/npm/tsparticles-confetti; frame-ancestors 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self' sleepy-back.up.railway.app *.sleepy-back.up.railway.app fonts.googleapis.com *.googleapis.com *.googleapis.com.* cdn.jsdelivr.net/npm/tsparticles-confetti; frame-ancestors 'self'; form-action 'self'"
