@@ -32,6 +32,10 @@
   animation: shadow-iddle 2s ease-in-out infinite;
 }
 
+.shadow svg {
+  width: 100%;
+}
+
 .eyes,
 .body {
   position: absolute;
