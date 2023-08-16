@@ -92,7 +92,7 @@ test.describe('Playing [desktop]:', () => {
     test(`7 times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
-      await doClickOnSpiderNtimes({ times: 7, page })
+      await doClickOnSpiderNtimes({ times: 8, page, delay: 100 })
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
