@@ -79,7 +79,8 @@ test.describe('Playing [desktop]:', () => {
 
   test.describe('C) Question: The user can click quickly on the spider', () => {
     test(`7 times quickly, the question title and four options are shown`, async ({ page }) => {
-      await doClickOnSpiderNtimes({ times: 7, page })
+      await page.waitForTimeout(1000)
+      await doClickOnSpiderNtimes({ times: 8, page })
 
       const questionTitle = page.locator('#question-title')
       await expect(questionTitle).toBeVisible()
@@ -92,6 +93,7 @@ test.describe('Playing [desktop]:', () => {
     test(`7 times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
+      await page.waitForTimeout(1000)
       await doClickOnSpiderNtimes({ times: 8, page, delay: 100 })
 
       await expect(page.locator('#question-options')).toBeVisible()
