@@ -1,6 +1,4 @@
 name: Copy README.md to organization profile
-env:
-    ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 on:
   workflow_dispatch:
@@ -28,19 +26,12 @@ jobs:
       if: contains(steps.changed-files.outputs.modified_files, 'README.md')
       run: |
         echo "README.md file has been modified."
-        # Copiar el archivo a la carpeta del submódulo
+        # Copiar el archivo a los submódulos
         cp README.md /tmp/
 
-        # Clonar el repositorio RepoB
-        git clone https://${ACCESS_TOKEN}@github.com/sleepy-spider/.github.git organization
-        mv /tmp/README.md organization/profile
-        cd organization/profile
-
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git add .
-        git commit -m "Copiar archivo a submódulo"
-        git push
+        mv /tmp/README.md front
+        mv /tmp/README.md back
+        cd ./front
 
         # Volver al directorio raíz
         cd ..

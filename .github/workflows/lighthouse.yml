@@ -1,0 +1,28 @@
+name: Lighthouse CI for Netlify sites
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Wait for the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1.4
+        id: netlify
+        with:
+          site_name: 'gallant-panini-bc8593'
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            ${{ steps.netlify.outputs.url }}
+          budgetPath: ./budget.json
+          uploadArtifacts: true

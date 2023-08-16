@@ -2,6 +2,8 @@
 [![Unit tests](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/test-unit.yml/badge.svg?branch=main&event=push)](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/test-unit.yml)
 [![E2E Tests](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/playwright.yml/badge.svg?branch=main&event=push)](https://github.com/sleepy-spider/sleepy-spider/actions/workflows/playwright.yml)
 
+[![Lighthouse](./front/test_results/lighthouse.svg)]()
+
 # SLEEPY SPIDER
 
 ### Oh, no! Sleepy has fallen into a deep sleep!
