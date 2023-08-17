@@ -24,8 +24,6 @@
     "vitest": "^0.33.0"
   },
   "scripts": {
-    "preinstall": "nvm use config/.nvmrc",
-    "prebuild": "nvm use config/.nvmrc",
     "dev": "vite --mode dev --config ./config/vite.config.js",
     "dev:debug": "vite --mode debug --config ./config/vite.config.js",
     "dev:test:e2e": "vite --mode test --port 8001 --config ./config/vite.config.js",
