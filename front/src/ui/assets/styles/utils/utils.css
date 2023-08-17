@@ -17,6 +17,10 @@
   opacity: 0;
 }
 
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
