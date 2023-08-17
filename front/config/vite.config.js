@@ -17,12 +17,13 @@ export default defineConfig({
   server: {
     port: 8000,
   },
+  envDir: './config',
   plugins: [
     alias({
       entries: [
         {
           find: '@',
-          replacement: resolve(projectRootDir, 'src')
+          replacement: resolve(projectRootDir, '../src')
         }
       ]
     })
