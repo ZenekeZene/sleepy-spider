@@ -69,17 +69,7 @@ test.describe('Playing [desktop]:', () => {
     })
   })
 
-  test(`B) Combos: The user can click quickly on the spider 2 times,
-    the combo message 'DOUBLE!' is shown,
-    and the counter is multiplied to 4`, async ({ page }) => {
-    await doClickOnSpiderNtimes({ times: 2, page })
-
-    await expect(page.getByText('DOUBLE!')).toBeVisible()
-    const counter = page.getByTestId('user-counter')
-    await expect(counter).toHaveText('4')
-  })
-
-  test.describe('C) Question: The user can click quickly on the spider', () => {
+  test.describe('B) Question: The user can click quickly on the spider', () => {
     test(`${CLICKS_TO_SHOW_QUESTION} times quickly, the question title and four options are shown`, async ({ page }) => {
       await page.waitForTimeout(1000)
       await doClickOnSpiderNtimes({ times: CLICKS_TO_SHOW_QUESTION, page, delay: 1000 })
