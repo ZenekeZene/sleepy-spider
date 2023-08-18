@@ -19,6 +19,7 @@ jobs:
         id: netlify
         with:
           site_name: 'sleepy-spider'
+
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         with:
@@ -26,3 +27,11 @@ jobs:
             ${{ steps.netlify.outputs.url }}
           budgetPath: ./budget.json
           uploadArtifacts: true
+
+      - name: Lighthouse CI
+        run: |
+          cd front/
+          npm install -g @lhci/cli@0.3.x
+          lhci autorun --upload.target=temporary-public-storage --collect.url=${{ steps.netlify.outputs.url }} || echo "LHCI failed!"
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
