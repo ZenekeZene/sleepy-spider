@@ -6,6 +6,9 @@ const projectRootDir = resolve(__dirname);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    preserveSymlinks: true,
+  },
   test: {
     globals: true,
     environment: 'happy-dom',
@@ -23,7 +26,7 @@ export default defineConfig({
       entries: [
         {
           find: '@',
-          replacement: resolve(projectRootDir, '../src')
+          replacement: resolve(projectRootDir, './src')
         }
       ]
     })

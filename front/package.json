@@ -24,14 +24,14 @@
     "vitest": "^0.33.0"
   },
   "scripts": {
-    "dev": "vite --mode dev --config ./config/vite.config.js",
-    "dev:debug": "vite --mode debug --config ./config/vite.config.js",
-    "dev:test:e2e": "vite --mode test --port 8001 --config ./config/vite.config.js",
-    "build": "vite build --config ./config/vite.config.js",
-    "preview": "vite preview --config ./config/vite.config.js",
-    "test": "vitest --config ./config/vite.config.js",
-    "coverage": "vitest run --coverage --config ./config/vite.config.js",
-    "test:e2e": "npm run dev:test:e2e & ./launch-server.sh & npx playwright test",
+    "dev": "vite --mode dev",
+    "dev:debug": "vite --mode debug",
+    "dev:test:e2e": "vite --mode test --port 8001 --config ./vite.config.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "test:e2e": "npm run dev:test:e2e & ./launch-server.sh & VITE_LIMIT_TO_SHOW_QUESTION=5 npx playwright test",
     "test:e2e:ui": "npm run test:e2e -- --ui"
   },
   "keywords": [

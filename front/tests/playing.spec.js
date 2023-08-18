@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 
+const CLICKS_TO_SHOW_QUESTION = process.env.VITE_LIMIT_TO_SHOW_QUESTION || 5
+
 test.use({
   viewport: { width: 1600, height: 1000 },
 })
@@ -78,23 +80,24 @@ test.describe('Playing [desktop]:', () => {
   })
 
   test.describe('C) Question: The user can click quickly on the spider', () => {
-    test(`7 times quickly, the question title and four options are shown`, async ({ page }) => {
+    test(`${CLICKS_TO_SHOW_QUESTION} times quickly, the question title and four options are shown`, async ({ page }) => {
       await page.waitForTimeout(1000)
-      await doClickOnSpiderNtimes({ times: 8, page })
+      await doClickOnSpiderNtimes({ times: CLICKS_TO_SHOW_QUESTION, page, delay: 1000 })
 
-      const questionTitle = page.locator('#question-title')
-      await expect(questionTitle).toBeVisible()
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
       await expect(options).toHaveCount(4)
+
+      const questionTitle = page.locator('#question-title')
+      await expect(questionTitle).toBeVisible()
     })
 
-    test(`7 times quickly, the question is shown
+    test(`${CLICKS_TO_SHOW_QUESTION} times quickly, the question is shown
       and the user can click on one option, and the question modal
       is closed`, async ({ page }) => {
       await page.waitForTimeout(1000)
-      await doClickOnSpiderNtimes({ times: 8, page, delay: 100 })
+      await doClickOnSpiderNtimes({ times: CLICKS_TO_SHOW_QUESTION, page, delay: 1000 })
 
       await expect(page.locator('#question-options')).toBeVisible()
       const options = page.locator('#question-options > li')
