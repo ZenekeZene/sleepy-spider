@@ -18,7 +18,7 @@ jobs:
         uses: jakepartusch/wait-for-netlify-action@v1.4
         id: netlify
         with:
-          site_name: 'gallant-panini-bc8593'
+          site_name: 'sleepy-spider'
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v10
         with:
