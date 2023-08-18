@@ -34,7 +34,7 @@ test.describe('Before to play [desktop]:', () => {
   test(`The user can click on the Share button,
     which will bring up a modal with Whatsapp, Twitter
     and Linkedin links to share. Then, the user can
-    close the share modal and the info modal is visible`, async ({ page }) => {
+    close the share modal and the info modal is visible again`, async ({ page }) => {
     const infoIcon = page.locator('#info-icon')
 
     await infoIcon.click()
