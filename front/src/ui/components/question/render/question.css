@@ -2,6 +2,7 @@
   padding: 1rem;
   background-color: black;
   border-radius: 4px;
+  touch-action: manipulation;
 }
 
 [class*="question-modal__exam-score"] {
@@ -45,6 +46,11 @@
 
 .question-modal .modal__header {
   margin-bottom: 1rem;
+  touch-action: manipulation;
+}
+
+.question-modal .modal__title {
+  touch-action: manipulation;
 }
 
 .question-icon {
@@ -96,6 +102,7 @@
   width: 100%;
   height: 4rem;
   font-size: 1.3rem;
+  touch-action: manipulation;
 }
 
 .question-modal.--vertical .answers li {
