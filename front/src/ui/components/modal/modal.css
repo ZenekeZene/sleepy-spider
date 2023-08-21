@@ -14,6 +14,10 @@
   display: block;
 }
 
+.modal p {
+  line-height: 1.5;
+}
+
 .modal__backdrop,
 .share-modal__backdrop {
   position: absolute;
@@ -34,6 +38,7 @@
   max-width: 29rem;
   min-height: 24rem;
   height: auto;
+  overflow: hidden;
   padding: 2rem;
   font-family: var(--font-tertiary);
   background-color: rgb(255 255 255);
@@ -64,6 +69,37 @@
   top: 2rem;
   cursor: pointer;
   fill: black;
+}
+
+@media screen and (max-width: 30rem) {
+  .modal__close {
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+.modal__illustration {
+  position: absolute;
+  bottom: -8rem;
+  left: 50%;
+  width: 18rem;
+  transform: translate(-50%, 0);
+}
+
+.modal__illustration.--back {
+  bottom: 12rem;
+  width: 22rem;
+}
+
+.inactivity-illustration {
+  animation: inactivity infinite 2s;
+}
+
+@media screen and (min-width: 30rem) {
+  .modal__illustration.--back {
+    width: 24rem;
+    bottom: 31rem;
+  }
 }
 
 .modal-link {
@@ -107,7 +143,7 @@
 .info-modal__list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   margin-bottom: 3rem;
   padding-left: 3rem;
   list-style: none;

@@ -1,7 +1,7 @@
 import { classHelper as $class } from 'sleepy-spider-lib'
 import { listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
-import { VISIBLE_CLASS } from '@/ui/constants'
+import { VISIBLE_CLASS, HIDDEN_CLASS } from '@/ui/constants'
 import { getSelectors as $el } from './tabControl.selectors'
 import './tabControl.css'
 
@@ -15,12 +15,12 @@ const show = (element) => $class.add(element, VISIBLE_CLASS)
 
 function handleVisibilityChange () {
   if (!isPLaying) return
-  const { inactiveTabModal, playAgainButton, triggers } = $el()
+  const { spider, inactiveTabModal, playAgainButton, triggers } = $el()
   playAgainButton.addEventListener('click', reload)
   triggers.forEach((trigger) => trigger.addEventListener('click', reload))
 
-
   if (document.visibilityState === "visible") return
+  $class.add(spider, HIDDEN_CLASS)
   dispatchEvent(EVENTS.INACTIVE_TAB)
   dispatchEvent(EVENTS.MODAL_OPEN)
   show(inactiveTabModal)

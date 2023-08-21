@@ -47,17 +47,11 @@
   animation: headShake 1s;
 }
 
-.final-screen__avatar:hover video {
+.final-screen__avatar:hover img {
   transform: translate(7%, 5%) scale(0.88) rotate(6deg);
 }
 
-.final-screen__avatar video {
-  /* Old image
-  width: 100%;
-  border-radius: 50%;
-  transform: translate(3%,27%) scale(2);
-  */
-
+.final-screen__avatar img {
   position: absolute;
   top: -1.5rem;
   left: 0.9rem;

@@ -34,6 +34,20 @@
   }
 }
 
+@keyframes inactivity {
+  0% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -3%) scaleX(1.05);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
 @keyframes shadow-iddle {
   0% {
     transform: translate(-32%, -50%) scaleX(1);
