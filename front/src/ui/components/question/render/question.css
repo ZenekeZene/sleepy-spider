@@ -91,9 +91,9 @@
   width: 4rem;
   height: 3rem;
   padding: 1rem;
-  background-color: pink;
+  background-color: var(--tertiary-color);
   border-radius: 4px;
-  border-bottom: 8px solid #ee9fad;
+  border-bottom: 8px solid var(--secondary-color);
   box-shadow: 0px 3px 3px rgb(0 0 0 / 16%);
   transition: all 0.2s ease-in-out;
 }

@@ -34,6 +34,8 @@
 
 .shadow svg {
   width: 100%;
+  fill: var(--background-color);
+  filter: brightness(65%);
 }
 
 .eyes,

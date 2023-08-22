@@ -97,8 +97,8 @@
 
 @media screen and (min-width: 30rem) {
   .modal__illustration.--back {
-    width: 24rem;
-    bottom: 31rem;
+    width: 22rem;
+    bottom: 24rem;
   }
 }
 

@@ -6,6 +6,7 @@ import { prepareClock } from '@/ui/components/clock/clock'
 import { prepareSignIn } from '@/ui/authentication/signIn'
 import { prepareTabControl } from '@/ui/components/tabControl/tabControl'
 import { prepareNoInternet } from '@/ui/components/noInternet/noInternet'
+import { prepareColors } from '@/ui/colors'
 
 const sections = [
   prepareGUI,
@@ -16,6 +17,7 @@ const sections = [
   prepareLeaderboard,
   prepareTabControl,
   prepareNoInternet,
+  prepareColors,
 ]
 
 const prepareSections = () => {

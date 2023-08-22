@@ -6,10 +6,10 @@
   font-size: 1.3rem;
   text-transform: uppercase;
   color: var(--primary-color);
-  background-color: pink;
+  background-color: var(--tertiary-color);
   border-radius: 4px;
   border: 2px solid transparent;
-  border-bottom: 8px solid #ee9fad;
+  border-bottom: 8px solid var(--secondary-color);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -24,15 +24,15 @@
 }
 
 .button.--secondary {
-  border-left: 2px solid #ee9fad;
-  border-right: 2px solid #ee9fad;
-  border-top: 2px solid #ee9fad;
+  border-left: 2px solid var(--secondary-color);
+  border-right: 2px solid var(--secondary-color);
+  border-top: 2px solid var(--secondary-color);
   background-color: white;
 }
 
 .button.--secondary:hover {
   color: white;
-  background-color: #ee9fad;
+  background-color: var(--secondary-color);
   border-color: var(--primary-color);
 }
 
