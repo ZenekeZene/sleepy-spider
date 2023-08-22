@@ -1,10 +1,10 @@
 import { getRoot } from 'sleepy-spider-lib'
 
 const colors = Object.freeze({
-  primary: import.meta.env.VITE_PRIMARY_COLOR,
-  secondary: import.meta.env.VITE_SECONDARY_COLOR,
-  tertiary: import.meta.env.VITE_TERTIARY_COLOR,
-  background: import.meta.env.VITE_BACKGROUND_COLOR,
+  primary: import.meta.env.VITE_PRIMARY_COLOR || '#b95377',
+  secondary: import.meta.env.VITE_SECONDARY_COLOR || '#ee9fad',
+  tertiary: import.meta.env.VITE_TERTIARY_COLOR || 'pink',
+  background: import.meta.env.VITE_BACKGROUND_COLOR || '#cd87a0',
 })
 
 const updateCSSVariable = ([name, value]) => {
