@@ -71,10 +71,11 @@
   .info {
     position: absolute;
     z-index: 1;
-    bottom: 1rem;
+    bottom: 0;
     left: 0;
     width: 100%;
     max-width: unset;
+    margin: 0;
   }
 
   .title,
