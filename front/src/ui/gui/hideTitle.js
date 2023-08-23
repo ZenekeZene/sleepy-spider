@@ -28,8 +28,9 @@ const hideTitleOnFirstClick = () => {
     $class.add(infoIcon, HIDDEN_CLASS)
     $class.remove(clock, HIDDEN_CLASS)
 
-    if (!isMobile()) return
     await delay(HIDE_TITLE_DELAY_IN_MS)
+
+    if (!isMobile()) return
     $class.add(title, HIDE_TITLE_CLASSNAME)
     $class.add(userTitle, HIDE_TITLE_CLASSNAME)
 

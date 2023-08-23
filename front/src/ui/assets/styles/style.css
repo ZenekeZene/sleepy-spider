@@ -21,6 +21,12 @@
   height: 100%;
 }
 
+@media screen and (min-width: 40rem) {
+  .hide-in-desktop {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 40rem) {
   .hide-in-mobile {
     display: none;
@@ -61,4 +67,26 @@
 #confetti {
   position: absolute;
   z-index: 11;
+}
+
+.aside {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  padding: 2rem;
+}
+
+@media screen and (max-width: 50rem) {
+  .aside {
+    top: 1rem;
+    bottom: unset;
+    padding: 0;
+  }
+}
+
+.version {
+  font-size: 0.5rem;
+  text-align: center;
+  color: grey;
 }

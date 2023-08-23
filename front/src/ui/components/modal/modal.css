@@ -38,7 +38,6 @@
   max-width: 29rem;
   min-height: 24rem;
   height: auto;
-  overflow: hidden;
   padding: 2rem;
   font-family: var(--font-tertiary);
   background-color: rgb(255 255 255);
@@ -49,8 +48,12 @@
   border: 3px solid transparent;
 }
 
+.modal__illustration + .modal__inner {
+  overflow: hidden;
+}
+
 .modal__header {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .modal__title {
@@ -201,13 +204,14 @@
 }
 
 .zeneke {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
 }
 
 .credits p {
-  max-width: 15ch;
+  margin: 0;
+  font-size: 0.8rem;
 }
 
 @media screen and (max-height: 45rem) {

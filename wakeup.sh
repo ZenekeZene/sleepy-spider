@@ -1,6 +1,6 @@
 #!/bin/bash
 # Especificar la versión requerida de Node
-REQUIRED_VERSION="v18.0.0"
+REQUIRED_VERSION="v20.0.0"
 
 # Cargar NVM
 . ~/.nvm/nvm.sh

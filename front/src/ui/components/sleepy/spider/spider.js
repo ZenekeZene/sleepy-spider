@@ -28,7 +28,7 @@ class Spider {
 
   // Readjust. It's a hack to fix the position of the pupils:
   readjustPupils () {
-    const pupilWrapper = findById("new-pupils")
+    const pupilWrapper = findById("pupils")
     const spider = findById('spider')
 
     delay(1000).then(() => {

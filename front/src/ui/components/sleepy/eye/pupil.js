@@ -3,7 +3,7 @@ import { findById, createElement } from 'sleepy-spider-lib'
 const size = 80
 
 function createCanvas () {
-  const target = findById("new-pupils")
+  const target = findById("pupils")
   const wrapper = createElement({ tag: "div", classNames: ["pupil-wrapper"], target })
   const canvas = createElement({ tag: "canvas", target: wrapper })
   canvas.width = 80

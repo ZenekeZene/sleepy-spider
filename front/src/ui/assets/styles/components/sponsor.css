@@ -1,0 +1,18 @@
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  line-height: 1;
+  max-width: 8rem;
+  cursor: pointer;
+  transition: 150ms ease-in all;
+  text-decoration: none;
+}
+
+.sponsor:hover {
+  transform: scale(1.1);
+}
+
+.sponsor .sponsor__image {
+  max-width: 100%;
+}

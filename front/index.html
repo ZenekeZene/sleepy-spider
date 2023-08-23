@@ -10,7 +10,7 @@
     <meta property="og:url" content="http://sleepy.zenekezene.com" />
     <meta property="og:type" content="profile" />
     <meta property="og:title" content="Sleepy has fallen into a deep sleep!" />
-    <meta property="og:description" content="Let’s wake up a million times, and a surprise will happen." />
+    <meta property="og:description" content="Tap as many times in a minute, answers the questions and help Sleepy to wake up" />
     <meta property="og:image" content="https://sleepy.zenekezene.com/sleepy.jpg" />
     <meta property="og:image:height" content="600" />
     <meta property="og:image:type" content="jpg" />
@@ -35,7 +35,8 @@
 
     <!-- HEADER -->
     <header class="info invisible surprise hide-on-final-screen">
-      <h1 class="title" id="title">WAKE UP<span class="hide-in-mobile">, SLEEPY</span>!</h1>
+      <h1 class="title hide-in-mobile" id="title">%VITE_TITLE%</h1>
+      <h1 class="title hide-in-desktop" id="title">%VITE_TITLE_MOBILE%</h1>
       <h2 class="user-title hidden" id="user-title"></h2>
       <!-- ICONS -->
       <nav class="icons invisible bounceInRight">
@@ -44,7 +45,6 @@
 
       <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
       <p id="user-counter" class="subtitle hidden"><span class="hide-auto">You wake</span> <span class="counter" data-testid="user-counter">0</span><span class="hide-auto">times.</span></p>
-
 
       <!-- CLOCK -->
       <aside id="clock" class="clock hide-on-final-screen hidden">
@@ -60,7 +60,7 @@
 
     <!-- SLEEPY -->
     <main class="spider-wrapper" id="spider-wrapper">
-      <div id="new-pupils" class="new-pupils"></div>
+      <div id="pupils" class="pupils"></div>
       <section class="bounce-wrapper transparent">
         <article class="spider" id="spider" data-testid="spider">
           <span class="rope"></span>
@@ -87,7 +87,6 @@
         </g>
         </svg>
     </section>
-
 
     <!-- MODALS -->
 
@@ -124,7 +123,7 @@
           </li>
         </ul>
 
-        <img src="/like.gif" alt="Like" class="modal__illustration" />
+        <img src="/illustrations/like.gif" alt="Like" class="modal__illustration" />
       </section>
     </article>
 
@@ -139,9 +138,14 @@
           ><path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path></svg>
         </header>
 
+        <div class="instructions-edition">
+          <span class="instructions-edition__title">%VITE_EDITION_TITLE% Edition</span>
+          <img class="instructions-edition__image" src="%VITE_EDITION_IMAGE_PATH%" />
+        </div>
+
         <ul class="info-modal__list" aria-role="list" aria-label="Instructions">
           <li><span class="strong">Tap as many times in a minute</span> to help Sleepy wake up.</li>
-          <li><span class="strong">Answer questions correctly</span> to get bonus points.</li>
+          <li><span class="strong">Answer questions <span class="instruction-edition">(about %VITE_EDITION_TITLE%)</span> correctly</span> to get bonus points.</li>
           <li><span class="strong">Challenge your friends</span> and try to be Sleepy's ultimate alarm clock!</li>
         </ul>
 
@@ -158,6 +162,7 @@
           <p>Created with 🍺 by <a href="https://twitter.com/zenekezene">@zenekezene</a>.</p>
           <img src="/zeneke.webp" alt="The creator of this game" class="zeneke" />
         </section>
+        <section class="version">(v1.0.0)</section>
         <!--<nav class="info-icons bounceInLeft">
           <img src="src/ui/assets/images/icons/settings-icon.svg" id="settings-icon" class="icon" />
         </nav>-->
@@ -206,7 +211,7 @@
 
     <!-- Inactive Tab Modal -->
     <article id="inactive-tab-modal" class="modal inactive-tab-modal hidden">
-      <img src="/inactivity.gif" alt="Inactivity" class="modal__illustration inactivity-illustration --back" />
+      <img src="/illustrations/inactivity.gif" alt="Inactivity" class="modal__illustration inactivity-illustration --back" />
       <section class="modal__inner">
         <header class="modal__header">
           <h1 class="modal__title">You're not in the game!</h1>
@@ -244,7 +249,7 @@
           <div id="final-screen-avatar" class="final-screen__avatar" href="https://buymeacoffee.com/zeneke"
             aria-label="Buy me a coffe"
           >
-            <img src="/coffee.gif" alt="Buy me a coffee" />
+            <img src="/illustrations/coffee.gif" alt="Buy me a coffee" />
             <p class="final-screen__avatar-label">Buy me a coffee</p>
           </div>
           <div class="final-screen__score-wrapper">
@@ -288,6 +293,21 @@
       <ul id="leaderboard-podium" class="leaderboard-screen__podium podium"></ul>
       <ul id="leaderboard-ranking" class="leaderboard-screen__list ranking__list"></ul>
     </article>
+
+    <!-- ASIDE -->
+    <aside class="aside">
+      <!-- EDITION -->
+      <div class="edition hide-in-mobile">
+        <span class="edition__title">%VITE_EDITION_TITLE% Edition</span>
+        <img src="%VITE_EDITION_IMAGE_PATH%" class="edition__image" />
+      </div>
+
+      <!-- SPONSOR -->
+      <a id="sponsor" class="sponsor" href="%VITE_SPONSOR_URL%">
+        <p class="sponsor__label">Sponsor by:</p>
+        <img src="%VITE_SPONSOR_IMAGE_PATH%" class="sponsor__image" />
+      </a>
+    </aside>
 
     <script type="module" src="/src/main.js"></script>
     <script src="/vendor/prism.js" data-manual></script>
