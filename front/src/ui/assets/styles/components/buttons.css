@@ -64,9 +64,15 @@ a.button img {
   flex-direction: column;
 }
 
+.button.--logout {
+  position: relative;
+}
+
 .button.--logout .user {
+  position: absolute;
+  top: 2.2rem;
   display: flex;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   font-family: Roboto, Helvetica;
   font-weight: 500;
 }

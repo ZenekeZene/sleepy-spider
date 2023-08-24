@@ -24,10 +24,12 @@ const removeUserTitle = () => {
 
 const showTitle = () => {
   $class.remove($el().title, HIDDEN_CLASS)
+  $class.remove($el().titleMobile, HIDDEN_CLASS)
 }
 
 const hideTitle = () => {
   $class.add($el().title, HIDDEN_CLASS)
+  $class.add($el().titleMobile, HIDDEN_CLASS)
 }
 
 const showSignInButton = () => {
