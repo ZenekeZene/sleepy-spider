@@ -1,11 +1,16 @@
 .clock {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  right: 0;
+  transform: scale(1.7);
   z-index: 5;
 }
 
 .clock__face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -18,9 +23,9 @@
   transition: all 10s ease-in;
 }
 
-.clock.--alert {
+/* .clock.--alert {
   --clock-size: 14;
-}
+} */
 
 .clock.--alert .clock__face {
   background-color: var(--primary-color);
@@ -41,14 +46,50 @@
   font-size: inherit;
 }
 
+.clock__countdown {
+  position: relative;
+  height: var(--clock-circle-size);
+  width: var(--clock-circle-size);
+  text-align: center;
+}
+
+.clock__countdown svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--clock-circle-size);
+  height: var(--clock-circle-size);
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+.clock__countdown svg .clock__circle {
+  stroke-dasharray: 180px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  animation: countdown 0s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 180px;
+  }
+}
+
 @keyframes blinker {
   50% { background-color: transparent; }
 }
 
-@media screen and (min-width: 48rem) {
+@media screen and (max-width: 40rem) {
   .clock {
-    position: absolute;
-    top: 4rem;
-    right: -1rem;
+    top: -2rem;
+    right: -2rem;
+    left: unset;
+    transform: scale(1);
   }
 }

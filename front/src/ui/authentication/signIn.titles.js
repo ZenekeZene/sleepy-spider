@@ -28,7 +28,7 @@ const showTitle = () => {
 }
 
 const hideTitle = () => {
-  $class.add($el().title, HIDDEN_CLASS)
+  // $class.add($el().title, HIDDEN_CLASS)
   $class.add($el().titleMobile, HIDDEN_CLASS)
 }
 

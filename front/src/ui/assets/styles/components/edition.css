@@ -1,6 +1,7 @@
 .edition {
   display: flex;
   align-items: center;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   padding: 0.1rem 0.5rem;
   color: white;
@@ -41,4 +42,16 @@
 
 .instruction-edition {
   color: var(--primary-color);
+}
+
+@media screen and (max-width: 40rem) {
+  .edition {
+    margin: 0 auto;
+    font-size: 0.6rem;
+    background-color: transparent;
+  }
+
+  .edition__title {
+
+  }
 }

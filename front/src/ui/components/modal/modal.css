@@ -152,7 +152,7 @@
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
-  padding-left: 3rem;
+  padding-left: 2.5rem;
   list-style: none;
   font-size: clamp(0.5rem, 2vh, 1rem);
 }
@@ -164,10 +164,10 @@
 .info-modal__list li::before {
   content: '';
   position: absolute;
-  left: -2rem;
+  left: -1.5rem;
   top: 0rem;
   display: inline-block;
-  font-size: 1.3rem;
+  font-size: clamp(0.5rem, 2vh, 1rem);
   border-radius: 50%;
 }
 

@@ -1,9 +1,7 @@
 .info {
   position: relative;
   z-index: 2;
-  max-width: 18rem;
-  margin: 1rem auto;
-  padding: 1rem 0;
+  width: 100%;
 }
 
 .title,
@@ -16,6 +14,10 @@
   transition: opacity 0.5s;
 }
 
+.title {
+  max-width: 18rem;
+}
+
 .title:hover {
   animation: shakeX 1s ease-in-out;
 }
@@ -23,7 +25,7 @@
 .user-title {
   font-size: 1.3rem;
   line-height: 1;
-  text-align: center;
+  text-align: left;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -40,8 +42,7 @@
 
 .subtitle {
   margin-top: 0.5rem;
-  padding: 0 2rem;
-  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .counter-text {
@@ -60,33 +61,23 @@
   border-radius: 4px;
 }
 
-@media screen and (min-width: 24rem) {
+@media screen and (max-width: 40rem) {
   .info {
-    max-width: 18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .user-title {
+    text-align: center;
   }
 }
 
-@media screen and (max-width: 48rem) {
-  .info {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    max-width: unset;
-    margin: 0;
-  }
-
-  .title,
-  .subtitle,
+@media screen and (max-width: 38rem) {
   .counter-text {
     justify-content: center;
     margin: 0 auto;
     text-align: center;
-  }
-
-  .user-title {
-    padding: 0 4rem;
-    font-size: 1.7rem;
   }
 }

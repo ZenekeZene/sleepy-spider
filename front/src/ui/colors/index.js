@@ -5,7 +5,10 @@ const colors = Object.freeze({
   secondary: import.meta.env.VITE_SECONDARY_COLOR || '#ee9fad',
   tertiary: import.meta.env.VITE_TERTIARY_COLOR || 'pink',
   background: import.meta.env.VITE_BACKGROUND_COLOR || '#cd87a0',
+  point: import.meta.env.VITE_POINT_COLOR || '#f7d4e8',
 })
+
+window.colors = colors
 
 const updateCSSVariable = ([name, value]) => {
   getRoot().style.setProperty(`--${name}-color`, value);

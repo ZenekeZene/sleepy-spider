@@ -2,10 +2,12 @@ import { findById, listenEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 import { DreamEmitter } from './DreamEmitter'
 
+const symbolColor = import.meta.env.VITE_SLEEP_COLOR || 'black'
+
 const CANVAS_SIZE = 300
 const FONT = {
   FAMILY: '30px Secular One',
-  COLOR: 'black',
+  COLOR: symbolColor,
   SYMBOL: 'Z',
 }
 

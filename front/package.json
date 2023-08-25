@@ -25,6 +25,7 @@
   },
   "scripts": {
     "dev": "vite --mode dev",
+    "sponsor1": "vite --mode sponsor1",
     "dev:debug": "vite --mode debug",
     "dev:test:e2e": "vite --mode test --port 8001 --config ./vite.config.js",
     "build": "vite build",

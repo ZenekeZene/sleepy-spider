@@ -34,27 +34,6 @@
 
   <body id="root" class="noselect disable-dbl-tap-zoom">
 
-    <!-- HEADER -->
-    <header class="info invisible surprise hide-on-final-screen">
-      <h1 class="title hide-in-mobile" id="title">%VITE_TITLE%</h1>
-      <h1 class="title hide-in-desktop" id="title-mobile">%VITE_TITLE_MOBILE%</h1>
-      <!-- ICONS -->
-      <nav class="icons invisible bounceInRight">
-        <img id="info-icon" src="src/ui/assets/images/icons/info-icon.svg" class="icon icon-info" width="40" height="40" alt="Information button"/>
-      </nav>
-
-      <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
-      <p id="user-counter" class="subtitle hidden"><span class="hide-auto">You wake</span> <span class="counter" data-testid="user-counter">0</span><span class="hide-auto">times.</span></p>
-
-      <!-- CLOCK -->
-      <aside id="clock" class="clock hide-on-final-screen hidden">
-          <div class="clock__face">
-            <p id="lazy" class="clock__timer">60</p>
-          </div>
-        </div>
-      </aside>
-    </header>
-
     <!-- MODAL BACKDROP -->
     <div id="modal-backdrop" class="modal__backdrop hidden"></div>
 
@@ -297,9 +276,36 @@
     <!-- ASIDE -->
     <aside class="aside">
 
-      <h2 class="user-title hidden" id="user-title"></h2>
+      <!-- HEADER -->
+      <header class="info invisible surprise hide-on-final-screen">
+        <p id="user-counter" class="subtitle hidden"><span class="hide-auto">You wake</span> <span class="counter" data-testid="user-counter">0</span><span class="hide-auto">times.</span></p>
+        <h1 class="title hide-in-mobile" id="title">%VITE_TITLE%</h1>
+        <h1 class="title hide-in-desktop" id="title-mobile">%VITE_TITLE_MOBILE%</h1>
+        <h2 class="user-title hidden" id="user-title"></h2>
+        <!-- ICONS -->
+        <nav id="info-icon-wrapper" class="icons invisible bounceInRight">
+          <img id="info-icon" src="src/ui/assets/images/icons/info-icon.svg" class="icon icon-info" width="40" height="40" alt="Information button"/>
+        </nav>
+
+        <!--<p class="subtitle" id="sign-in-subtitle">Sign in and try to wake up Sleepy.</p>-->
+
+        <!-- CLOCK -->
+        <aside id="clock" class="clock hide-on-final-screen hidden">
+
+            <div class="clock__countdown">
+              <div class="clock__face">
+                <p id="lazy" class="clock__timer">60</p>
+              </div>
+              <svg preserveAspectRatio="xMinYMin meet">
+                <circle id="clock-circle" class="clock__circle" r="18%" cx="50%" cy="50%"></circle>
+              </svg>
+            </div>
+          </div>
+        </aside>
+      </header>
+
       <!-- EDITION -->
-      <div class="edition hide-in-mobile">
+      <div id="edition" class="edition">
         <span class="edition__title">%VITE_EDITION_TITLE% Edition</span>
         <img src="%VITE_EDITION_IMAGE_PATH%" class="edition__image" />
       </div>

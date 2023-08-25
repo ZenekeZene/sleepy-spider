@@ -11,7 +11,10 @@ let countdown = null
 function startClock() {
   const clock = findById('clock')
   const face = findById('lazy')
+  const circle = findById('clock-circle')
   face.textContent = constants.MAX_SECONDS
+
+  circle.style.animationDuration = `${constants.MAX_SECONDS_IN_MS}ms`
 
   const onInterval = (time) => {
     if (time < constants.ALERT_CLOCK_SECONDS) {

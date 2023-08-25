@@ -19,7 +19,7 @@ if (isTestMode) {
 
 loadSpiderSprite()
   .then(spiderImage => {
-    startQuiz(spiderImage, onShowQuestion)
     prepareSections()
+    startQuiz(spiderImage, onShowQuestion)
   })
   .catch(error => console.error(error))

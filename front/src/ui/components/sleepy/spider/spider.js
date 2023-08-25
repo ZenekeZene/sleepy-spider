@@ -128,7 +128,7 @@ class Spider {
   incrementHateLevel (value = 1) {
     if (this.hateLevel >= (LIMIT_TO_SHOW_QUESTION - this.opacityOffset)) return
     if (this.hateLevel > (LIMIT_TO_SHOW_QUESTION / 1.5)) {
-      this.shakeWrapper.classList.add('headShakeHard')
+      // this.shakeWrapper.classList.add('headShakeHard')
     }
     this.hateLevel += value
 
@@ -136,7 +136,7 @@ class Spider {
 
   resetHateLevel () {
     this.hateLevel = 0
-    this.shakeWrapper.classList.remove('headShake', 'headShakeHard')
+    // this.shakeWrapper.classList.remove('headShake', 'headShakeHard')
   }
 
   relax (eyes) {

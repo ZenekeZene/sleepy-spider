@@ -3,6 +3,14 @@
   --color: #0d3046;
 }
 
+#root .loader {
+  background-color: var(--color);
+}
+
+#root .credits a {
+  color: black;
+}
+
 #root .instructions-edition__title,
 #root .edition__title,
 #root .counter,
@@ -23,6 +31,7 @@
 #root .ranking__item.--current,
 #root .ranking__item.--current .ranking__score,
 #root .ranking__image-fallback {
+  color: white;
   background-color: var(--color);
 }
 
@@ -49,8 +58,7 @@
 }
 
 #root .instruction-edition {
-  color: var(--tertiary-color);
-  border-bottom: 2px solid var(--primary-color);
+  color: var(--secondary-color);
 }
 
 #root .button.--secondary:hover {
@@ -64,3 +72,22 @@
   background-color: var(--tertiary-color);
   border-color: var(--color);
 }
+
+#root .shadow svg {
+  fill: black;
+}
+
+#root .subtitle {
+  color: white;
+}
+
+#root .sponsor {
+  display: none;
+}
+
+@media screen and (max-width: 40rem) {
+  #root .edition__title {
+    color: white;
+  }
+}
+
