@@ -78,14 +78,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 2rem;
-}
-
-@media screen and (max-width: 50rem) {
-  .aside {
-    top: 1rem;
-    bottom: unset;
-    padding: 0;
-  }
+  pointer-events: none;
 }
 
 .version {

@@ -1,10 +1,12 @@
 .leaderboard-screen {
   padding: 1rem;
-  background: linear-gradient(182deg, #b95377 0%, white 33%);
+  background: linear-gradient(182deg, var(--secondary-color) 0%, white 33%);
 }
 
 .leaderboard-screen__title {
   color: white;
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
 }
 
 .leaderboard-screen__close {

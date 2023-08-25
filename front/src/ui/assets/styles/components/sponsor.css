@@ -16,3 +16,9 @@
 .sponsor .sponsor__image {
   max-width: 100%;
 }
+
+@media screen and (max-width: 50rem) {
+  .sponsor {
+    display: none;
+  }
+}

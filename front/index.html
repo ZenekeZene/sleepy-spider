@@ -25,6 +25,7 @@
     <title>Sleepy spider has fallen into a deep sleep!</title>
 
     <link rel="stylesheet" href="/src/ui/assets/styles/style.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="%VITE_ADDITIONAL_STYLESHEET_PATH%" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap&family=Nunito:wght@1000&display=swap" rel="stylesheet" preload>
@@ -144,7 +145,7 @@
 
         <ul class="info-modal__list" aria-role="list" aria-label="Instructions">
           <li><span class="strong">Tap as many times in a minute</span> to help Sleepy wake up.</li>
-          <li><span class="strong">Answer questions <span class="instruction-edition">(about %VITE_EDITION_TITLE%)</span> correctly</span> to get bonus points.</li>
+          <li><span class="strong">Answer questions <span class="instruction-edition">(about %VITE_QUESTION_ABOUT_TEXT%)</span> correctly</span> to get bonus points.</li>
           <li><span class="strong">Challenge your friends</span> and try to be Sleepy's ultimate alarm clock!</li>
         </ul>
 
@@ -276,7 +277,7 @@
         </section>
 
         <section class="final-screen__buttons buttons-wrapper">
-          <button id="go-leaderboard" class="button --secondary">See leaderboard</button>
+          <button id="go-leaderboard" class="button --secondary">Ranking</button>
           <button id="share" class="button --secondary icon-share modal-trigger">Share!</button>
           <button id="play-again" class="button">Play again!</button>
         </section>
