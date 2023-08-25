@@ -7,8 +7,13 @@
   background-color: var(--color);
 }
 
-#root .credits a {
+#root a {
   color: black;
+  text-decoration: none;
+}
+
+#root a:hover {
+  text-decoration: underline;
 }
 
 #root .instructions-edition__title,
@@ -86,7 +91,8 @@
 }
 
 @media screen and (max-width: 40rem) {
-  #root .edition__title {
+  #root .edition__title,
+  #root .edition__title a {
     color: white;
   }
 }
