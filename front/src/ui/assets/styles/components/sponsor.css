@@ -1,12 +1,23 @@
 .sponsor {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
   pointer-events: auto;
   line-height: 1;
-  max-width: 8rem;
   cursor: pointer;
   transition: 150ms ease-in all;
   text-decoration: none;
+}
+
+.sponsor__title {
+  color: white;
+}
+
+.sponsor__subtitle {
+  color: black;
 }
 
 .sponsor:hover {
@@ -15,10 +26,17 @@
 
 .sponsor .sponsor__image {
   max-width: 100%;
+  margin-top: 1rem;
 }
 
-@media screen and (max-width: 50rem) {
+@media screen and (max-width: 40rem) {
   .sponsor {
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .sponsor__image {
     display: none;
   }
 }

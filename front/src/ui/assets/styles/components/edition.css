@@ -27,7 +27,6 @@
   padding: 1rem 3.5rem;
   font-family: var(--font-secondary);
   font-size: 1rem;
-  letter-spacing: 2px;
   text-transform: uppercase;
   color: white;
   background: var(--primary-color);
@@ -46,12 +45,6 @@
 
 @media screen and (max-width: 40rem) {
   .edition {
-    margin: 0 auto;
-    font-size: 0.6rem;
-    background-color: transparent;
-  }
-
-  .edition__title {
-
+    display: none;
   }
 }

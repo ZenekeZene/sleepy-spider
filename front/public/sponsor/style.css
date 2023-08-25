@@ -1,4 +1,3 @@
-
 :root {
   --color: #0d3046;
 }
@@ -49,13 +48,8 @@
   color: var(--color);
 }
 
-#root .edition__image {
-  border-radius: 0.2rem;
-}
-
-#root .sponsor .sponsor__image {
-  max-width: 4rem;
-  margin-top: 0.5rem;
+#root .edition {
+  display: none;
 }
 
 #root #buy-me-coffe-info-modal {
@@ -87,13 +81,20 @@
 }
 
 #root .sponsor {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-@media screen and (max-width: 40rem) {
-  #root .edition__title,
-  #root .edition__title a {
-    color: white;
-  }
+#root .sponsor__title {
+  color: white;
 }
 
+#root .sponsor__subtitle {
+  color: var(--primary-color);
+}
+
+#root .sponsor .sponsor__image {
+  max-width: 12rem;
+  margin-top: 1rem;
+}
