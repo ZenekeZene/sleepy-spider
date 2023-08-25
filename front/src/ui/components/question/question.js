@@ -1,6 +1,7 @@
 import { toggleElement, removeCommas, dispatchEvent, listenEvent } from "sleepy-spider-lib"
 import { QUESTION_TYPES } from "@/domain/question"
 import { EVENTS } from "@/adapter"
+import DoubleTapZoom from "@/ui/gui/doubleTapZoom/doubleTapZoom"
 import { dispatchAnsweredCorrect } from "./question.event"
 import { getQuestionSelectors as $el } from "./render/question.selectors"
 import { showCorrectAnswerBonus } from "./render/question.bonus"
@@ -48,6 +49,7 @@ function checkAnswer(question) {
     onAnswered(question, event)
     isAnswered = true
     unlisten()
+    DoubleTapZoom.enable()
     closeQuestion(event).then(() => {
       dispatchEvent(EVENTS.MODAL_CLOSE)
     })
@@ -74,6 +76,7 @@ function onShowQuestion (questions) {
   if (!questions || questions.length === 0) throw new Error('No questions to show')
   const question = questions.pop()
   launchQuestion(question)
+  DoubleTapZoom.disable()
 
   const { modal } = $el()
   eventsForcedClose.forEach(event => {
