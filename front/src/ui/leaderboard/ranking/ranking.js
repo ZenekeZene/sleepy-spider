@@ -5,6 +5,15 @@ import './ranking.css'
 const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
 
+const createLoadingRanking = ({ wrapper }) => {
+  createElement({
+    tag: 'div',
+    classNames: `${CLASSNAME_PREFIX}__loading`,
+    target: wrapper,
+    text: 'Loading the best players...',
+  })
+}
+
 const createSkeletonRankingItem = ({ wrapper, classname, insertMode }) => {
   const listItem = createElement({
     tag: 'li',
@@ -82,4 +91,5 @@ export {
   removeSkeletonRanking,
   prependRanking,
   createRankingItem,
+  createLoadingRanking,
 }

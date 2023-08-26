@@ -1,4 +1,3 @@
-import { delay } from "sleepy-spider-lib"
 import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
 import { prependRanking, showSkeletonRanking, removeSkeletonRanking } from '@/ui/leaderboard/ranking/ranking'
 import { getSelectors as $el, getUserScoreOnLeaderboard } from "./leaderboardPreview.signup.selectors"
