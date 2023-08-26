@@ -1,9 +1,19 @@
-import { classHelper as $class, createElement, createImage } from "sleepy-spider-lib"
+import { classHelper as $class, createElement } from "sleepy-spider-lib"
 import { createAvatar } from "../podium/podium.avatar"
 import './ranking.css'
 
 const CLASSNAME_PREFIX = 'ranking'
 const CLASSNAME_CURRENT_USER = '--current'
+
+const createSkeletonRankingItem = ({ wrapper, classname, insertMode }) => {
+  const listItem = createElement({
+    tag: 'li',
+    classNames: `${classname}__item`,
+    target: wrapper,
+    insertMode,
+  })
+  $class.add(listItem, `${classname}--skeleton`)
+}
 
 const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, classname, insertMode }) => {
   const listItem = createElement({
@@ -49,6 +59,18 @@ const showRanking = ({ players, wrapper }) => {
   players.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX }))
 }
 
+const showSkeletonRanking = ({ numPlayers, wrapper }) => {
+  // wrapper.innerHTML = ''
+  for (let i = 0; i < numPlayers; i++) {
+    createSkeletonRankingItem({ wrapper, classname: CLASSNAME_PREFIX, insertMode: 'prepend' })
+  }
+}
+
+const removeSkeletonRanking = ({ wrapper }) => {
+  const skeletonItems = wrapper.querySelectorAll(`.${CLASSNAME_PREFIX}--skeleton`)
+  skeletonItems.forEach((item) => item.remove())
+}
+
 const prependRanking = ({ players, wrapper }) => {
   const playersReversed = [...players].reverse()
   playersReversed.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX, insertMode: 'prepend' }))
@@ -56,6 +78,8 @@ const prependRanking = ({ players, wrapper }) => {
 
 export {
   showRanking,
+  showSkeletonRanking,
+  removeSkeletonRanking,
   prependRanking,
   createRankingItem,
 }
