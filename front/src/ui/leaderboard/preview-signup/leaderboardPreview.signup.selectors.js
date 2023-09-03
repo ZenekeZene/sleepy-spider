@@ -8,6 +8,7 @@ const getSelectors = () => ({
 
 const getUserScoreOnLeaderboard = () => {
   const userItemOnLeaderboard = findBySelector('.--current')
+  if (!userItemOnLeaderboard) return
   const userScore = userItemOnLeaderboard.querySelector('.ranking__score')
   return userScore
 }

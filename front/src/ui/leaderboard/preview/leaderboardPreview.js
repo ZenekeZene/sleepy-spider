@@ -7,11 +7,12 @@ const createPreviewRanking = async (user) => {
   const { leaderboardPreview } = $el()
   showSkeletonRanking({ numPlayers: 3, wrapper: leaderboardPreview })
   const players = await getLeaderboard({ user, limit: 5 })
-  showRanking({ players, wrapper: leaderboardPreview })
+  showRanking({ players, user, wrapper: leaderboardPreview })
 }
 
-const updatePreviewRanking = (finalScore) => {
+const updatePreviewRanking = async (finalScore) => {
   const userScore = getUserScoreOnLeaderboard()
+  if (!userScore) return
   userScore.textContent = finalScore
 }
 

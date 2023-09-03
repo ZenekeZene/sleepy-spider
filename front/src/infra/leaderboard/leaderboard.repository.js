@@ -1,4 +1,4 @@
-import { query, collection, getDocs, orderBy, limit } from "firebase/firestore"
+import { query, collection, getDocs, orderBy, limit, where, startAfter } from "firebase/firestore"
 import {
   createLeaderboardItem as create,
 } from '@/domain/leaderboard'
@@ -43,14 +43,15 @@ const parseLeader = (player) => {
 }
 const parseLeaders = (leaders) => leaders.map(parseLeader)
 
-const getLeaderboard = ({ limit = 5 }) =>
-  getLeaderboardDocs(limit)
+const getLeaderboard = async ({ limit = 5 }) => {
+  return getLeaderboardDocs(limit)
   .then(retrieveLeaderboard)
   .then(slice(limit))
   .then(position)
   .then(parseLeaders)
   .then(sort)
+}
 
 export {
-  getLeaderboard,
+  getLeaderboard
 }

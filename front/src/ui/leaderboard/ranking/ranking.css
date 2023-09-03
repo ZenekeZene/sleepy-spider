@@ -13,8 +13,10 @@
 .ranking__item.ranking__item.ranking--skeleton {
   position: relative;
   overflow: hidden;
-  padding: 1.25rem !important;
+  margin-bottom: 2px;
+  padding: 1.25rem;
   background-color: #f6f2f3;
+  border-radius: 4px;
 }
 
 .ranking--skeleton::after {
@@ -124,9 +126,6 @@
 }
 
 .ranking__signup {
-  position: absolute;
-  top: 2.2rem;
-  z-index: 1;
   color: var(--primary-color);
   background-color: rgb(255 255 255);
   border: 1px dashed #b95377;
@@ -137,8 +136,7 @@
 
 .ranking__signup-text {
   margin-bottom: 1rem;
-  margin-top: 1rem;
-  padding: 0 1rem;
+  padding: 1rem 1rem 0;
   color: black;
 }
 

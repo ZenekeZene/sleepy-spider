@@ -1,95 +1,51 @@
-import { classHelper as $class, createElement } from "sleepy-spider-lib"
-import { createAvatar } from "../podium/podium.avatar"
+import { stores } from '@/adapter'
+import * as Ranking from "./ranking.create"
 import './ranking.css'
-
-const CLASSNAME_PREFIX = 'ranking'
-const CLASSNAME_CURRENT_USER = '--current'
-
-const createLoadingRanking = ({ wrapper }) => {
-  createElement({
-    tag: 'div',
-    classNames: `${CLASSNAME_PREFIX}__loading`,
-    target: wrapper,
-    text: 'Loading the best players...',
-  })
-}
-
-const createSkeletonRankingItem = ({ wrapper, classname, insertMode }) => {
-  const listItem = createElement({
-    tag: 'li',
-    classNames: `${classname}__item`,
-    target: wrapper,
-    insertMode,
-  })
-  $class.add(listItem, `${classname}--skeleton`)
-}
-
-const createRankingItem = ({ name, score, photoURL, position, isUser, wrapper, classname, insertMode }) => {
-  const listItem = createElement({
-    tag: 'li',
-    classNames: `${classname}__item`,
-    target: wrapper,
-    insertMode,
-  })
-  createElement({
-    tag: 'span',
-    classNames: `${classname}__position`,
-    target: listItem,
-    text: position,
-  })
-  createAvatar(photoURL, name, classname, listItem)
-  createElement({
-    tag: 'span',
-    classNames: `${classname}__name`,
-    target: listItem,
-    text: name,
-  })
-
-  if (isUser) {
-    $class.add(listItem, CLASSNAME_CURRENT_USER)
-    createElement({
-      tag: 'span',
-      classNames: `${classname}__your-best`,
-      target: listItem,
-      text: 'Your best: ',
-    })
-  }
-
-  createElement({
-    tag: 'span',
-    classNames: `${classname}__score`,
-    target: listItem,
-    text: score,
-  })
-}
 
 const showRanking = ({ players, wrapper }) => {
   wrapper.innerHTML = ''
-  players.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX }))
+  players.map((player) => Ranking.createItem({ ...player, wrapper }))
 }
 
 const showSkeletonRanking = ({ numPlayers, wrapper }) => {
-  // wrapper.innerHTML = ''
   for (let i = 0; i < numPlayers; i++) {
-    createSkeletonRankingItem({ wrapper, classname: CLASSNAME_PREFIX, insertMode: 'prepend' })
+    Ranking.createSkeleton({ wrapper, insertMode: 'prepend' })
   }
-}
-
-const removeSkeletonRanking = ({ wrapper }) => {
-  const skeletonItems = wrapper.querySelectorAll(`.${CLASSNAME_PREFIX}--skeleton`)
-  skeletonItems.forEach((item) => item.remove())
+  return Ranking.removeSkeletons
 }
 
 const prependRanking = ({ players, wrapper }) => {
   const playersReversed = [...players].reverse()
-  playersReversed.map((player) => createRankingItem({ ...player, wrapper, classname: CLASSNAME_PREFIX, insertMode: 'prepend' }))
+  playersReversed.map((player) => Ranking.createItem({ ...player, wrapper, insertMode: 'prepend' }))
+}
+
+const reasignPositions = ({ players, localUser }) => {
+  const sortedPlayers = [...players, localUser].sort((a, b) => b.score - a.score)
+  const indexOfUser = sortedPlayers.findIndex((player) => player.isUser)
+  const userPosition = indexOfUser + 1
+  sortedPlayers[indexOfUser].position = userPosition
+  sortedPlayers.forEach((player, index) => {
+    player.position = index + 1
+  })
+  return sortedPlayers.sort((a, b) => b.score - a.score)
+}
+
+const createLocalUser = ({ name, score }) => {
+  const position = '?'
+  const isUser = true
+  return { name, score, position, isUser }
+}
+
+const appendUserRanking = ({ players, wrapper, score }) => {
+  const { user } = stores.auth
+  const localUser = createLocalUser({ name: user.displayName, score })
+  const sortedPlayers = reasignPositions({ players, localUser, wrapper })
+  showRanking({ players: sortedPlayers, wrapper })
 }
 
 export {
   showRanking,
   showSkeletonRanking,
-  removeSkeletonRanking,
   prependRanking,
-  createRankingItem,
-  createLoadingRanking,
+  appendUserRanking,
 }

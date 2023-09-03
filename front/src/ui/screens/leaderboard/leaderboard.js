@@ -2,7 +2,8 @@ import { listenEvent, classHelper as $class } from "sleepy-spider-lib"
 import { getLeaderboard } from '@/infra/leaderboard/leaderboard.repository'
 import { EVENTS } from "@/adapter"
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { showRanking, showSkeletonRanking, removeSkeletonRanking, createLoadingRanking } from '@/ui/leaderboard/ranking/ranking'
+import { showRanking, showSkeletonRanking } from '@/ui/leaderboard/ranking/ranking'
+import * as Ranking from "@/ui/leaderboard/ranking/ranking.create"
 import { showPodium } from '@/ui/leaderboard/podium/podium'
 import { getLeaderboardSelectors as $el } from "./leaderboard.selectors"
 import './leaderboard.css'
@@ -31,8 +32,8 @@ const handleCloseScreen = () => {
 const handleOpenScreen = async (detail) => {
   const { leaderboardScreen, closeButton, ranking } = $el()
   const { user } = detail
-  showSkeletonRanking({ numPlayers: 5, wrapper: ranking })
-  createLoadingRanking({ wrapper: ranking })
+  const removeSkeletonRanking = showSkeletonRanking({ numPlayers: 5, wrapper: ranking })
+  Ranking.createLoading({ wrapper: ranking })
   await showLeaderboard({ user, limit: 10 })
   removeSkeletonRanking({ wrapper: ranking })
   $class.remove(leaderboardScreen, HIDDEN_CLASS)

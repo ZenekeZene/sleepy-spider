@@ -1,15 +1,18 @@
 import { setDoc, updateDoc } from 'firebase/firestore'
 
-async function setFieldOnDocument ({ existsDocument, documentRef, field = 'value', value, user }) {
+const editionId = import.meta.env.VITE_EDITION_ID
+
+async function setFieldOnDocument ({ existsDocument, documentRef, value, user }) {
   const { displayName, photoURL, email } = user
   const action = existsDocument ? updateDoc : setDoc
 
   await action(documentRef, {
     userUid: user.uid,
-    [field]: value,
+    value,
     displayName,
     photoURL,
     email,
+    editionId,
   })
 }
 
