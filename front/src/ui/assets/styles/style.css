@@ -32,10 +32,6 @@
     display: none;
   }
 
-  .icons {
-    position: static;
-  }
-
   .leaderboard {
     left: 1rem;
   }

@@ -9,14 +9,13 @@
   z-index: 11;
   max-width: 29rem;
   width: 100%;
-  height: 100%;
+  height: auto;
   padding: 2rem;
   background-color: white;
 }
 
 @media screen and (min-width: 30rem) {
   .screen {
-    max-height: 43rem;
     border-radius: 10px;
   }
 }

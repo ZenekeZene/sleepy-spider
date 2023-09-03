@@ -7,9 +7,8 @@ import { initModal as initShareModal } from '@/ui/components/share/modal/share.m
 import { initLogoutButton } from '@/ui/components/logout/logout'
 import { initCallToTap } from '@/ui/gui/callToTap'
 import { onRefreshReferences } from '@/ui/components/sleepy/spider/drawSpider'
-import { toggleInvisibleElements } from './invisibleElements/toggle.invisible.elements'
-// import { drawSettingsPanel } from './settings/drawSettingsPanel'
-import { hideTitleOnFirstClick } from './hideTitle'
+import { toggleInvisibleElements } from '@/ui/gui/invisibleElements/toggle.invisible.elements'
+import { hideGUIOnFirstClick } from '@/ui/gui/hideGUIFirstClick/hideGUIFirstClick'
 
 const listenChangesInSettings = () => {
   listenEvent(EVENTS.CHANGES_IN_SETTINGS, () => {
@@ -21,10 +20,8 @@ const prepareGUI = () => {
   initInfoModal()
   initLogoutButton()
   initShareModal()
-
   toggleInvisibleElements()
-  // drawSettingsPanel(params)
-  hideTitleOnFirstClick()
+  hideGUIOnFirstClick()
   listenFirstClick()
   listenChangesInSettings()
   initCallToTap()

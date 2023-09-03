@@ -46,3 +46,10 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 40rem) {
+  .icons {
+    bottom: -4rem;
+    right: -1rem;
+  }
+}

@@ -6,12 +6,10 @@ import { show, hide } from './signIn.titles'
 const handleUserLogged = async () => {
   const { user } = stores.auth
   hide.title()
-  show.userTitle(user)
 }
 
 const handleUserNotLogged = () => {
   show.title()
-  hide.userTitle()
 }
 
 const handleErrorWithSignIn = () => {

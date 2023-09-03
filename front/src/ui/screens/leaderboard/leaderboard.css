@@ -1,4 +1,6 @@
 .leaderboard-screen {
+  max-height: 43.1rem;
+  height: 100%;
   padding: 1rem;
   background: linear-gradient(182deg, var(--secondary-color) 0%, white 33%);
 }
