@@ -32,7 +32,7 @@ const handleCloseScreen = () => {
 const handleOpenScreen = async (detail) => {
   const { leaderboardScreen, closeButton, ranking } = $el()
   const { user } = detail
-  const removeSkeletonRanking = showSkeletonRanking({ numPlayers: 5, wrapper: ranking })
+  const removeSkeletonRanking = showSkeletonRanking({ numPlayers: 5, wrapper: ranking, withReset: true })
   Ranking.createLoading({ wrapper: ranking })
   await showLeaderboard({ user, limit: 10 })
   removeSkeletonRanking({ wrapper: ranking })

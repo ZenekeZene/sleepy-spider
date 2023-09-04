@@ -26,6 +26,7 @@ function createAvatar (photoURL, name, classname, listItem) {
       text: letter
     })
   }
+  return avatar
 }
 
 export { createAvatar }

@@ -23,7 +23,8 @@
 #root .final-screen__score,
 #root .final-screen__record-value,
 #root .podium__score,
-#root .podium__you {
+#root .podium__you,
+#root .leaderboard-preview__subtitle {
   color: var(--color);
 }
 

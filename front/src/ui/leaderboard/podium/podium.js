@@ -37,23 +37,24 @@ const createPodiumItem = ({ name, score, photoURL, position, isUser, wrapper, cl
     target: listItem,
     text: position,
   })
+  const avatar = createAvatar(photoURL, name, classname, listItem)
   if (position === 1) {
     positionElement.innerHTML = crownSVG
+    $class.add(avatar, '--first')
   }
-  createAvatar(photoURL, name, classname, listItem)
-
-  createElement({
-    tag: 'span',
-    classNames: `${classname}__name`,
-    target: listItem,
-    text: name,
-  })
 
   createElement({
     tag: 'span',
     classNames: `${classname}__score`,
     target: listItem,
     text: score,
+  })
+
+  createElement({
+    tag: 'span',
+    classNames: `${classname}__name`,
+    target: listItem,
+    text: name,
   })
 }
 

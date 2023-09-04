@@ -7,7 +7,8 @@ const showRanking = ({ players, wrapper }) => {
   players.map((player) => Ranking.createItem({ ...player, wrapper }))
 }
 
-const showSkeletonRanking = ({ numPlayers, wrapper }) => {
+const showSkeletonRanking = ({ numPlayers, wrapper, withReset = false }) => {
+  if (withReset) wrapper.innerHTML = ''
   for (let i = 0; i < numPlayers; i++) {
     Ranking.createSkeleton({ wrapper, insertMode: 'prepend' })
   }
