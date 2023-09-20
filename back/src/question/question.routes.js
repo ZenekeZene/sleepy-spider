@@ -1,4 +1,5 @@
-const questionsJSON = require('./questions.database.json')
+const databaseUrl = process.env.DATABASE_FILE
+const questionsJSON = require('../databases/' + databaseUrl + '.json')
 const { parseQuestions } = require('./question.parse')
 
 async function getAll (req, res) {
