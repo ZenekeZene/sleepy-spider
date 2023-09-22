@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const helmet = require('helmet')
 // const morgan = require('morgan')
 
-
 dotenv.config()
 
 console.log('Environment:', process.env.NODE_ENV)
