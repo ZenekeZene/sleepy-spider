@@ -1,5 +1,10 @@
-const { encode: e } = require('sleepy-spider-lib')
+let { encode } = require('sleepy-spider-lib')
 const { MODEL } = require('./question.model')
+
+const environment = process.env.NODE_ENV
+const withEncoding = environment === 'development'
+
+const e = (value) => withEncoding ? encode(value) : value;
 
 const parseQuestion = (question) => ({
   [e(MODEL.OPTION1)]: e(question[MODEL.OPTION1]),
