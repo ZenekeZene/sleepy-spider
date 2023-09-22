@@ -44,7 +44,7 @@ Visit: https://sleepy.zenekezene.com.
   ```
 
 ### How install
-The ***all-in-one*** script to install and launch in development mode is defined above. But you can install front and back separately:
+The ***all-in-one*** script to install and launch in development mode is defined <a href="#all-in-one-script-included-installation">below</a>. But you can install front and back separately:
   ```
   $ cd front
   $ npm install
@@ -84,7 +84,28 @@ The backend will be listening in `localhost:3000`.
 ---
 
 ## Production mode
-(WIP)
+
+### Front:
+```
+$ cd front
+$ npm run build
+```
+
+### Library:
+```
+$ cd lib
+$ npm run build
+```
+Note: You may want to publish a new version of the package (in <a href="https://docs.npmjs.com/cli/v8/using-npm/registry">npm public registry</a>) and then install it in the front dependencies.
+```
+$ npm version X.X.X
+$ npm publish
+```
+
+### Back:
+Build process is not necessary. Only deploy the last version of back on your favorite server.
+We uses <a href="https://railway.app/">Railway</a> buy you can use whatever.
+
 
 # 🛣️ Roadmap
 Some next steps to include:
