@@ -1,4 +1,4 @@
-import { findById, classHelper as $class, delay, listenEvent } from 'sleepy-spider-lib'
+import { findById, classHelper as $class, listenEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
 
 const CALL_TO_TAP_CLASSNAME = 'heartbeat'
