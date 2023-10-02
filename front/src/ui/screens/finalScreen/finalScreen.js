@@ -54,7 +54,7 @@ function enablePointerEvents () {
 
 function showFinalScreen() {
   const awakeningStore = stores.awakening
-  const { finalScreen, score, avatar } = $el()
+  const { finalScreen, score } = $el()
   show(finalScreen)
 
   disablePointerEvents()
@@ -68,6 +68,8 @@ function showFinalScreen() {
   delay(2000).then(() => {
     enablePointerEvents()
   })
+
+  $class.remove(getBody(), 'headShakeHard')
 }
 
 const handleNewRecord = () => {
@@ -79,13 +81,12 @@ const handleNewRecord = () => {
 
 const handleEndTimer = () => {
   showFinalScreen()
-  $class.remove(getBody(), 'headShakeHard')
   if (!stores.auth.isLogged) {
     createSignUpRanking()
     return
-  } else {
-    createPreviewRanking(stores.auth.user)
   }
+
+  createPreviewRanking(stores.auth.user)
 }
 
 function prepareFinalScreen () {

@@ -16,12 +16,19 @@ const handleErrorWithSignIn = () => {
   show.errorWithSignIn()
 }
 
+const signInHandlers = {
+  [EVENTS.ERROR_WITH_SIGN_IN]: handleErrorWithSignIn,
+  [EVENTS.USER_LOGGED]: handleUserLogged,
+  [EVENTS.USER_NOT_LOGGED]: handleUserNotLogged,
+};
+
 const prepareSignIn = () => {
-  launchSignIn()
-  listenEvent(EVENTS.ERROR_WITH_SIGN_IN, handleErrorWithSignIn)
-  listenEvent(EVENTS.USER_LOGGED, handleUserLogged)
-  listenEvent(EVENTS.USER_NOT_LOGGED, handleUserNotLogged)
-}
+  launchSignIn();
+  Object.entries(signInHandlers).forEach(([event, handler]) => {
+    listenEvent(event, handler);
+  });
+};
+
 
 export {
   prepareSignIn,

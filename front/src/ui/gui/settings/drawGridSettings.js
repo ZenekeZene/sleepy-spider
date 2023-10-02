@@ -8,19 +8,32 @@ const onSettingsChanges = () => {
 }
 
 const toggleParametersByShape = ({ shape, inputs }) => {
-  const { columns, rows, totalEyesInCircle } = inputs
-  if (shape === SHAPES.SQUARE) {
-    totalEyesInCircle.hidden = true
-    columns.hidden = false
-    rows.hidden = false
-  } else if (shape === SHAPES.CIRCLE) {
-    totalEyesInCircle.hidden = false
-    columns.hidden = true
-    rows.hidden = true
-  } else {
-    throw new Error('Error with unknown shape')
+  const { columns, rows, totalEyesInCircle } = inputs;
+
+  const shapeMap = {
+    [SHAPES.SQUARE]: {
+      totalEyesInCircle: true,
+      columns: false,
+      rows: false,
+    },
+    [SHAPES.CIRCLE]: {
+      totalEyesInCircle: false,
+      columns: true,
+      rows: true,
+    },
+  };
+
+  const shapeProperties = shapeMap[shape];
+
+  if (!shapeProperties) {
+    throw new Error('Error with unknown shape');
   }
-}
+  
+  totalEyesInCircle.hidden = shapeProperties.totalEyesInCircle;
+  columns.hidden = shapeProperties.columns;
+  rows.hidden = shapeProperties.rows;
+};
+
 
 const drawShapeInput = ({ params, folder, inputs }) => {
   const shapeInput = folder.addInput(params, 'shape', { options: { ...SHAPES }, index: 0 })
