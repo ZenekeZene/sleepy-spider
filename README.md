@@ -149,13 +149,10 @@ And you can help donating:
 <div style="display: flex; gap: 1rem;">
 
   <a href="https://github.com/zenekezene" style="display: inline-flex; flex-direction: column; align-items: center;">
-    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/zenekezene.png" width="60px;" alt="Zeneke"
-    />
-    @zenekezene</a>
+    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/zenekezene.png" width="60px;" alt="Zeneke"/></a>
 
   <a href="https://github.com/arturobarbaro" style="display: inline-flex; flex-direction: column; align-items: center;">
-    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/arturobarbaro.png" width="60px;" alt="Arturo Barba" />
-    @arturobarbaro</a>
+    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/arturobarbaro.png" width="60px;" alt="Arturo Barba" /></a>
 
 </div>
 
