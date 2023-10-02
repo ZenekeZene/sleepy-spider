@@ -137,6 +137,7 @@ This project started like almost all of them: with pencil and paper.
 - [Instagram](https://instagram.com/zenekezene)
 - [Linkedin](https://www.linkedin.com/in/hectorvillarm/)
 
+
 # Contribution
 The main purpose of this repository is to continue learning JS and canvas posibilities. Development of Sleepy Spider happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements.
 
@@ -144,17 +145,28 @@ And you can help donating:
 
 <a href="https://www.buymeacoffee.com/zeneke" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
+## Contributors
+
+<div style="display: flex; gap: 1rem;">
+
+  <a href="https://github.com/zenekezene" style="display: inline-flex; flex-direction: column; align-items: center;">
+    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/zenekezene.png" width="60px;" alt="Zeneke"
+    />
+    @zenekezene</a>
+
+  <a href="https://github.com/arturobarbaro" style="display: inline-flex; flex-direction: column; align-items: center;">
+    <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" src="https://github.com/arturobarbaro.png" width="60px;" alt="Arturo Barba" />
+    @arturobarbaro</a>
+
+</div>
+
+
 ---
+
 
 # License
 Sleepy Spider is (WIP).
 
 <img src="https://sleepy.zenekezene.com/sleepy.jpg" alt="Sleepy Spider" width="200" style="border-radius: 10px"/>
 
-<section style="display: flex; align-items: baseline; margin-top: 1rem;">
-  <img style="display: inline; border-radius: 50%; margin-right: 0.5rem;" width="30" height="30" src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2023/04/tlKNdAFvx7ZIiqoQ.jpeg@300w_0e.webp" data-src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2023/04/tlKNdAFvx7ZIiqoQ.jpeg@300w_0e.webp" alt="Zeneke">
-  <p>Created with 🍺 by <a href="https://twitter.com/zenekezene">@zenekezene</a>.</p>
-  </section>
-</section>
-
-Copyright (c) 2022-present, Héctor Villar (Zenekezene).
+Copyright (c) 2022-present.
