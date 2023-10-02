@@ -62,10 +62,6 @@ This script launches the front and back projects together.
 ```
 $ ./wakeup.sh
 ```
-***Note:*** Maybe you dont have permissions to launch this script as a program. In these case, you have to give permissions:
-```
-chmod +x ./wakeup.sh
-```
 
 #### Separately
 You can launch back and front separately.
@@ -144,6 +140,9 @@ The main purpose of this repository is to continue learning JS and canvas posibi
 And you can help donating:
 
 <a href="https://www.buymeacoffee.com/zeneke" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<br />
+<br />
 
 ## Contributors
 
