@@ -102,6 +102,9 @@ $ npm publish
 Build process is not necessary. Only deploy the last version of back on your favorite server.
 We uses <a href="https://railway.app/">Railway</a> but you can use whatever.
 
+#### Different environments
+There are more instructions to generate differente API environment inside the subfolder [/back/README.md](./back/README.md).
+
 #### API URL
 https://css-api.up.railway.app/api/v1/questions
 
