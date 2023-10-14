@@ -1,7 +1,10 @@
 import {
   findAllByClassName,
   findById,
+  getCacheByKey,
 } from 'sleepy-spider-lib'
+
+const findByIdCached = getCacheByKey(findById)
 
 const getSelectors = () => ({
   mobileTitle: findById('title-mobile'),
@@ -10,6 +13,7 @@ const getSelectors = () => ({
   infoIconWrapper: findById('info-icon-wrapper'),
   infoIcon: findById('info-icon'),
   clock: findById('clock'),
+  sponsor: findByIdCached('sponsor'),
 })
 
 export {
