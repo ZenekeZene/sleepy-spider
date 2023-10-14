@@ -3,6 +3,7 @@
 @import './vendor/vendor.css';
 @import './components/components.css';
 @import './utils/utils.css';
+@import './animations/animations.css';
 
 .debug-mode * {
   border: 1px dashed white !important;
