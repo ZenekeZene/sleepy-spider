@@ -3,46 +3,48 @@ import { VISIBLE_CLASS, HIDDEN_CLASS } from '@/ui/constants'
 import { getSelectors as $el } from './signIn.selectors'
 import './errorWithSignIn.css'
 
+const show = (element) => $class.add(element, HIDDEN_CLASS)
+const hide = (element) => $class.remove(element, HIDDEN_CLASS)
+
 const GREETING = 'Welcome, '
 
 const showLeaderboardButton = () => {
-  $class.remove($el().goToLeaderboardButton, HIDDEN_CLASS)
+  hide($el().goToLeaderboardButton)
 }
 
 const hideLeaderboardButton = () => {
-  $class.add($el().goToLeaderboardButton, HIDDEN_CLASS)
+  show($el().goToLeaderboardButton)
 }
 
 const showUserTitle = ({ displayName }) => {
-  $class.remove($el().userTitle, HIDDEN_CLASS)
+  hide($el().userTitle)
   $el().userTitle.textContent = `${GREETING}${displayName}`
 }
 
 const removeUserTitle = () => {
-  $class.add($el().userTitle, HIDDEN_CLASS)
+  show($el().userTitle)
 }
 
 const showTitle = () => {
-  $class.remove($el().title, HIDDEN_CLASS)
-  $class.remove($el().titleMobile, HIDDEN_CLASS)
+  hide($el().title)
+  hide($el().titleMobile)
 }
 
 const hideTitle = () => {
   // $class.add($el().title, HIDDEN_CLASS)
-  $class.add($el().titleMobile, HIDDEN_CLASS)
+  show($el().titleMobile)
 }
 
 const showSignInButton = () => {
-  $class.remove($el().signInButton, HIDDEN_CLASS)
-  $class.remove($el().signInButton, HIDDEN_CLASS)
+  hide($el().signInButton)
 }
 
 const hideSignInButton = () => {
-  $class.add($el().signInButton, HIDDEN_CLASS)
+  show($el().signInButton)
 }
 
 const hideErrorWithSignIn = () => {
-  $class.add($el().errorWithSignIn, HIDDEN_CLASS)
+  show($el().errorWithSignIn)
   $class.remove($el().errorWithSignIn, VISIBLE_CLASS)
 }
 
@@ -56,7 +58,7 @@ const showErrorWithSignIn = () => {
 }
 
 
-const show = {
+const toShow = {
   title: showTitle,
   userTitle: showUserTitle,
   leaderboardButton: showLeaderboardButton,
@@ -64,7 +66,7 @@ const show = {
   errorWithSignIn: showErrorWithSignIn,
 }
 
-const hide = {
+const toHide = {
   title: hideTitle,
   userTitle: removeUserTitle,
   leaderboardButton: hideLeaderboardButton,
@@ -73,6 +75,6 @@ const hide = {
 }
 
 export {
-  show,
-  hide,
+  toShow,
+  toHide,
 }

@@ -6,7 +6,7 @@ import {
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { getSelectors as $el } from "./signIn.selectors"
-import { show, hide } from './signIn.titles'
+import { toShow, toHide } from './signIn.titles'
 import * as events from './signIn.events'
 
 const handleSignIn = () => {
@@ -20,7 +20,7 @@ const handleSignIn = () => {
 
 const listenSignInButton = () => {
   const { signInButton } = $el()
-  show.signInButton()
+  toShow.signInButton()
   signInButton.addEventListener('click', handleSignIn)
 }
 
@@ -31,7 +31,7 @@ const isFinalScreen = () => {
 
 const prepareScreensToReturningUser = (user) => {
   if (isFinalScreen()) {
-    show.leaderboardButton()
+    toShow.leaderboardButton()
     events.dispatchGoToLeaderboard(user)
     createPreviewRanking(user)
   }
@@ -39,7 +39,7 @@ const prepareScreensToReturningUser = (user) => {
 
 // (1)
 const handleUserLogged = async (user) => {
-  hide.signInButton()
+  toHide.signInButton()
   events.dispatchUserLogged(user)
   prepareScreensToReturningUser(user)
 }
