@@ -14,7 +14,9 @@ a,
 input,
 button,
 .icons,
-.collider {
+.collider,
+[class*='close'],
+.icon-info {
   touch-action: manipulation;
   pointer-events: auto;
 }
