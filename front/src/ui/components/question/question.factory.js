@@ -1,6 +1,7 @@
-import { renderQuestion } from "./render/question.render"
+import { QUESTION_TYPES, SPECIFICITY_PROBABILITY_PERCENTAGE } from "@/domain/question"
+import { generateQuestion } from "@/application/question/question.generate"
 import { parseSpecificityQuestion } from "@/infra/questions/question.mapper"
-import { QUESTION_TYPES, SPECIFICITY_PROBABILITY_PERCENTAGE, generateQuestion } from "@/domain/question"
+import { renderQuestion } from "./render/question.render"
 
 const title =  'Calculate the CSS specificity!'
 
@@ -29,11 +30,11 @@ function decideQuestionType (question) {
 
 function renderQuestionByType (question) {
   const { type } = question
-  const { specificityQuestion, multiChoiceQuestion } = renderQuestion()
+  const render = renderQuestion()
   if (type === QUESTION_TYPES.SPECIFICITY) {
-    specificityQuestion(question)
+    render.specificityQuestion(question)
   } else if (type === QUESTION_TYPES.MULTICHOICE) {
-    multiChoiceQuestion(question)
+    render.multiChoiceQuestion(question)
   }
 }
 

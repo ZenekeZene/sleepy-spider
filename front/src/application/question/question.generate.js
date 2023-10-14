@@ -1,7 +1,7 @@
 import { generateSelector } from "@/domain/selectorsCSS/selectorsCSS"
 import { calculateSpecificity } from "@/domain/specificity/specificity"
-import { generateOptions } from "./question.options"
-import { isCorrectQuestion } from "./question.correct"
+import { generateOptions } from "@/domain/question/question.options"
+import { isCorrectQuestion } from "@/domain/question/question.correct"
 
 function generateQuestion() {
   const selector = generateSelector()
