@@ -1,3 +1,6 @@
+/* Note: It's mandatory to use #root in each
+selector to override the default styles */
+
 :root {
   --color: #0d3046;
 }
