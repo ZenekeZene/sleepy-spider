@@ -43,9 +43,11 @@ test.describe('Playing [desktop]:', () => {
     test(`The user can click on the spider,
       and the info modal is not visible and
       the clock is visible`, async ({ page }) => {
+			await page.waitForTimeout(1000)
       await spider.click()
 
-      const infoIcon = page.locator('#info-icon')
+			await page.waitForTimeout(2000)
+      const infoIcon = page.getByRole('img', { name: 'Information button' })
       expect(infoIcon).not.toBeVisible()
 
       const clock = page.locator('#clock')

@@ -46,6 +46,7 @@ test.describe('After playing [desktop]:', () => {
   test(`when the time is ended (${MAX_SECONDS}"),
     when the user clicks on "Play again!" button,
     the game starts again`, async ({ page }) => {
+		await page.waitForTimeout(2000)
     const spider = page.locator('#spider')
     await spider.click()
     await waitToFinalScreen(page)
@@ -62,6 +63,7 @@ test.describe('After playing [desktop]:', () => {
     which will bring up a modal with Whatsapp, Twitter
     and Linkedin links to share. Then, the user can
     close the share modal and the final screen is visible again`,async ({ page }) => {
+		await page.waitForTimeout(2000)
     const spider = page.locator('#spider')
     await spider.click()
     await waitToFinalScreen(page)
