@@ -1,6 +1,4 @@
-import { range, spriteStates, Frame, Position } from 'sleepy-spider-lib'
-import canvasTintImage from "canvas-tint-image"
-import { LIMIT_TO_SHOW_QUESTION } from '@/domain/question'
+import { range, spriteStates, Frame, Position, getRoot } from 'sleepy-spider-lib'
 import settings from './eyeSettings'
 import { drawPupil } from './pupil'
 
@@ -26,6 +24,7 @@ class Eye {
 
   setHateLevel (hateLevel) {
     this.hateLevel = hateLevel
+		getRoot().style.setProperty('--hate-level', this.hateLevel / 10);
   }
 
   isAroundToTheMouse (mouseX, mouseY, extraOffset = 0) {
@@ -52,12 +51,6 @@ class Eye {
     this.context.strokeRect(x, y, width / 2, height / 2);
   }
 
-  tintImage (image) {
-    const opacity = this.hateLevel / LIMIT_TO_SHOW_QUESTION
-    const tintedImage = canvasTintImage(image, 'red', opacity)
-    return tintedImage
-  }
-
   draw (column, row) {
     const { x, y } = this.position
     const { width, height } = this.frame
@@ -69,8 +62,7 @@ class Eye {
     const sy = row * height
     const widthScaled = width * this.scale
     const heightScaled = height * this.scale
-    const tintedImage = this.tintImage(image)
-    this.context.drawImage(tintedImage, sx, sy, width, height, x, y, widthScaled, heightScaled)
+    this.context.drawImage(image, sx, sy, width, height, x, y, widthScaled, heightScaled)
 
     if (window.isDebugMode) {
       this.debug(x, y, width, height)

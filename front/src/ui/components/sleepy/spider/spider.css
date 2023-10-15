@@ -52,6 +52,9 @@
   transform: translate(-50%, -50%) skewX(-10.5deg);
   cursor: pointer;
   z-index: 1;
+	/* Tint the eyes with the hate level */
+	filter: sepia(1) hue-rotate(311deg) grayscale(0) saturate(var(--hate-level));
+	-webkit-filter: sepia(1) hue-rotate(311deg) grayscale(0) saturate(var(--hate-level));;
 }
 
 .body {
