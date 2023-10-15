@@ -76,7 +76,7 @@ const handleNewRecord = () => {
   const { newRecordMessage, recordMessage } = $el()
   show(newRecordMessage)
   hide(recordMessage)
-  launchConfetti()
+  // launchConfetti()
 }
 
 const handleEndTimer = () => {
