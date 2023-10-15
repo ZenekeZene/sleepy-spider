@@ -23,6 +23,7 @@
   border-radius: 0.5rem;
   box-shadow: inset -32px -26px 122px rgb(185 83 119 / 63%);
   cursor: pointer;
+	pointer-events: auto;
 }
 
 .final-screen__avatar-label {
