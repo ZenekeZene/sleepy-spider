@@ -16,7 +16,7 @@ async function addAwakening (value, onChange, onShowQuestion) {
 async function getAwakeningsOfUser () {
   const { isLogged, user } = stores.auth
   if (!isLogged) return Promise.reject('User not logged')
-  const snapshot = await getSnapshot({ documentId: 'awakenings', userUid: user.uid })
+  const snapshot = await getSnapshot({ userUid: user.uid })
   const awakenings = snapshot.data?.value || 0
   return { ...snapshot, awakenings }
 }

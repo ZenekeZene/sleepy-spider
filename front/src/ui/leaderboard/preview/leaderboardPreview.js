@@ -3,11 +3,13 @@ import { showRanking, showSkeletonRanking } from '@/ui/leaderboard/ranking/ranki
 import { getSelectors as $el, getUserScoreOnLeaderboard } from "./leaderboardPreview.selectors"
 import './leaderboardPreview.css'
 
+const NUM_PLAYERS = 5
+
 const createPreviewRanking = async (user) => {
   const { leaderboardPreview } = $el()
-  showSkeletonRanking({ numPlayers: 3, wrapper: leaderboardPreview })
-  const players = await getLeaderboard({ user, limit: 5 })
-  showRanking({ players, user, wrapper: leaderboardPreview })
+  showSkeletonRanking({ numPlayers: NUM_PLAYERS, wrapper: leaderboardPreview })
+  const players = await getLeaderboard({ limit: NUM_PLAYERS })
+  showRanking({ players, wrapper: leaderboardPreview })
 }
 
 const updatePreviewRanking = async (finalScore) => {

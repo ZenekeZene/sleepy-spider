@@ -7,7 +7,7 @@ const NUM_PLAYERS = 3
 const createSignUpRanking = async () => {
   const { leaderboardPreview } = $el()
   const removeSkeletonRanking = await showSkeletonRanking({ numPlayers: NUM_PLAYERS, wrapper: leaderboardPreview })
-  const rankingWithTopThree = await getLeaderboard({ user: null, limit: NUM_PLAYERS })
+  const rankingWithTopThree = await getLeaderboard({ limit: NUM_PLAYERS })
   removeSkeletonRanking({ wrapper: leaderboardPreview })
   prependRanking({ players: rankingWithTopThree, wrapper: leaderboardPreview })
 }
