@@ -5,7 +5,7 @@ import './leaderboardPreview.css'
 
 const NUM_PLAYERS = 5
 
-const createPreviewRanking = async (user) => {
+const createPreviewRanking = async () => {
   const { leaderboardPreview } = $el()
   showSkeletonRanking({ numPlayers: NUM_PLAYERS, wrapper: leaderboardPreview })
   const players = await getLeaderboard({ limit: NUM_PLAYERS })

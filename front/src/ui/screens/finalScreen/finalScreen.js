@@ -1,7 +1,8 @@
-import { classHelper as $class, listenEvent, getBody, delay, isMobile } from 'sleepy-spider-lib'
+import { classHelper as $class, listenEvent, getBody, delay } from 'sleepy-spider-lib'
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { launchConfetti } from '@/ui/components/confetti/confetti'
+import { updateAwakenings } from '@/infra/awakening/awakening.repository'
 import { listenBuyMeCoffeeOnAvatar } from '@/ui/components/buyMeCoffee/buyMeCoffee'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
@@ -42,8 +43,6 @@ function listenPlayAgainButton () {
   playAgainButton.addEventListener('click', reload)
 }
 
-
-
 function disablePointerEvents () {
   $class.add(getBody(), 'no-pointer')
 }
@@ -53,14 +52,12 @@ function enablePointerEvents () {
 }
 
 function showFinalScreen() {
-  const awakeningStore = stores.awakening
-  const { finalScreen, score } = $el()
+  const { finalScreen } = $el()
   show(finalScreen)
 
   disablePointerEvents()
 
   hideElements()
-  score.textContent = awakeningStore.value
   toggleLeaderboardButton()
   listenPlayAgainButton()
   listenBuyMeCoffeeOnAvatar()
@@ -79,14 +76,22 @@ const handleNewRecord = () => {
   // launchConfetti()
 }
 
-const handleEndTimer = () => {
+const updateRecord = () => {
+	const awakeningStore = stores.awakening
+  const { score } = $el()
+	score.textContent = awakeningStore.value
+}
+
+const handleEndTimer = async () => {
+
   showFinalScreen()
   if (!stores.auth.isLogged) {
     createSignUpRanking()
     return
   }
-
-  createPreviewRanking(stores.auth.user)
+	await updateAwakenings()
+  createPreviewRanking()
+	updateRecord()
 }
 
 function prepareFinalScreen () {
