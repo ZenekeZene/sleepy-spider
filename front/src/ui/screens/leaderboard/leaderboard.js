@@ -25,18 +25,20 @@ const showLeaderboard = async ({ user, limit }) => {
 }
 
 const handleCloseScreen = () => {
-  const { leaderboardScreen } = $el()
+  const { leaderboardScreen, finalScreenAvatar } = $el()
   $class.add(leaderboardScreen, HIDDEN_CLASS)
+	$class.remove(finalScreenAvatar, HIDDEN_CLASS)
 }
 
 const handleOpenScreen = async (detail) => {
-  const { leaderboardScreen, closeButton, ranking } = $el()
+  const { leaderboardScreen, closeButton, ranking, finalScreenAvatar } = $el()
   const { user } = detail
   const removeSkeletonRanking = showSkeletonRanking({ numPlayers: 5, wrapper: ranking, withReset: true })
   Ranking.createLoading({ wrapper: ranking })
   await showLeaderboard({ user, limit: 10 })
   removeSkeletonRanking({ wrapper: ranking })
   $class.remove(leaderboardScreen, HIDDEN_CLASS)
+	$class.add(finalScreenAvatar, HIDDEN_CLASS)
   closeButton.addEventListener('click', handleCloseScreen)
 }
 

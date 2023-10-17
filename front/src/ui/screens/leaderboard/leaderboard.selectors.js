@@ -7,6 +7,7 @@ const getLeaderboardSelectors = () => ({
   ranking: findByIdCached('leaderboard-ranking'),
   podium: findByIdCached('leaderboard-podium'),
   closeButton: findByIdCached('leaderboard-close-button'),
+	finalScreenAvatar: findByIdCached('final-screen-avatar'),
 })
 
 export {
