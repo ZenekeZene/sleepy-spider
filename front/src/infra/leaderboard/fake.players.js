@@ -17,6 +17,12 @@ const fakePlayers = [
 		value: 142,
 		position: 3,
 	},
+	{
+		userUid: '4',
+		displayName: 'The mega bot',
+		value: 111,
+		position: 4,
+	},
 ]
 
 export { fakePlayers }
