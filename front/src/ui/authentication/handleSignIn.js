@@ -1,20 +1,21 @@
-import { classHelper as $class } from "sleepy-spider-lib"
+import { classHelper as $class, dispatchEvent } from "sleepy-spider-lib"
 import {
   signInWithPopup,
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
 import { updateAwakenings } from '@/infra/awakening/awakening.repository'
 import { HIDDEN_CLASS } from '@/ui/constants'
+import { EVENTS } from "@/adapter"
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { getSelectors as $el } from "./signIn.selectors"
 import { toShow, toHide } from './signIn.titles'
-import * as events from './signIn.events'
 
 const handleSignIn = () => {
   signInWithPopup()
   .catch((error) => {
     error.mapErr((error) => {
-      events.dispatchErrorWithSignIn(error)
+      dispatchEvent(EVENTS.MODAL_OPEN)
+  		dispatchEvent(EVENTS.ERROR_WITH_SIGN_IN, { error })
     })
   })
 }
@@ -34,21 +35,23 @@ const prepareScreensToReturningUser = async (user) => {
   if (isFinalScreen()) {
 		await updateAwakenings()
     toShow.leaderboardButton()
-    events.dispatchGoToLeaderboard(user)
-    createPreviewRanking(user)
+		setTimeout(() => {
+			dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
+			createPreviewRanking(user)
+		}, 2000)
   }
 }
 
 // (1)
 const handleUserLogged = async (user) => {
   toHide.signInButton()
-  events.dispatchUserLogged(user)
+  dispatchEvent(EVENTS.USER_LOGGED, { user })
   prepareScreensToReturningUser(user)
 }
 
 const handleUserNotLogged = () => {
   listenSignInButton()
-  events.dispatchUserNotLogged()
+  dispatchEvent(EVENTS.USER_NOT_LOGGED)
 }
 
 const handleChangeOnAuthentication = async (result) => {
@@ -60,7 +63,7 @@ const handleChangeOnAuthentication = async (result) => {
   goToLeaderboardButton.addEventListener('click', () => {
     if (!user) return
     $class.remove(leaderboardScreen, HIDDEN_CLASS)
-    events.dispatchGoToLeaderboard(user)
+    dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
   })
 }
 
