@@ -32,11 +32,13 @@ const isFinalScreen = () => {
 }
 
 const prepareScreensToReturningUser = async (user) => {
+	alert('prepareScreensToReturningUser')
+	alert(isFinalScreen())
   if (isFinalScreen()) {
 		await updateAwakenings()
     toShow.leaderboardButton()
 		setTimeout(() => {
-			dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
+			// dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
 			createPreviewRanking(user)
 		}, 2000)
   }
@@ -55,6 +57,7 @@ const handleUserNotLogged = () => {
 }
 
 const handleChangeOnAuthentication = async (result) => {
+	alert('handleChangeOnAuthentication')
   const { user } = result
   !user ? handleUserNotLogged() : handleUserLogged(user)
 
