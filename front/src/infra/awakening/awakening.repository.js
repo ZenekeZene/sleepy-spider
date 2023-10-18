@@ -41,7 +41,7 @@ async function updateAwakenings () {
 		alert('De fuera tenias mas')
 		return
 	}
-	alert('Actualizamos score con tu local')
+	alert('Actualizamos score con tu local', awakeningStore.value)
   updateAwakeningsOfUser({ user, existsDocument, documentRef })
 }
 

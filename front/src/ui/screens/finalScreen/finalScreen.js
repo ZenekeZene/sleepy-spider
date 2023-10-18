@@ -84,6 +84,7 @@ const updateRecord = () => {
 
 const handleEndTimer = async () => {
   showFinalScreen()
+
   if (!stores.auth.isLogged) {
 		updateRecord()
     createSignUpRanking()
