@@ -83,13 +83,14 @@ const updateRecord = () => {
 }
 
 const handleEndTimer = async () => {
-
   showFinalScreen()
   if (!stores.auth.isLogged) {
-    createSignUpRanking()
 		updateRecord()
+    createSignUpRanking()
+		await updateAwakenings()
     return
   }
+
 	await updateAwakenings()
   createPreviewRanking()
 	updateRecord()

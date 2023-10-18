@@ -3,6 +3,7 @@ import {
   signInWithPopup,
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
+import { updateAwakenings } from '@/infra/awakening/awakening.repository'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { getSelectors as $el } from "./signIn.selectors"
@@ -29,8 +30,9 @@ const isFinalScreen = () => {
   return !$class.contains(finalScreen, HIDDEN_CLASS)
 }
 
-const prepareScreensToReturningUser = (user) => {
+const prepareScreensToReturningUser = async (user) => {
   if (isFinalScreen()) {
+		await updateAwakenings()
     toShow.leaderboardButton()
     events.dispatchGoToLeaderboard(user)
     createPreviewRanking(user)

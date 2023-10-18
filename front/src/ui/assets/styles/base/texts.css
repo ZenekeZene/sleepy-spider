@@ -1,7 +1,6 @@
 .info {
   position: relative;
   width: 100%;
-	pointer-events: auto;
 	z-index: 2;
 }
 

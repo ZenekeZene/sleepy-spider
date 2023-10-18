@@ -37,7 +37,9 @@ async function updateAwakenings () {
   const { isLogged, user } = stores.auth
   if (!isLogged) return
   const { existsDocument, documentRef, awakenings } = await getAwakeningsOfUser()
-  if (existsDocument && awakenings >= awakeningStore.value) return
+  if (existsDocument && awakenings >= awakeningStore.value) {
+		return
+	}
   updateAwakeningsOfUser({ user, existsDocument, documentRef })
 }
 
