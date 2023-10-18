@@ -34,6 +34,7 @@ function updateAwakeningsOfUser (props) {
 
 async function updateAwakenings () {
 	const awakeningStore = stores.awakening
+	console.log('awakeningStore', awakeningStore.value)
   const { isLogged, user } = stores.auth
   if (!isLogged) return
   const { existsDocument, documentRef, awakenings } = await getAwakeningsOfUser()
@@ -41,7 +42,8 @@ async function updateAwakenings () {
 		alert('De fuera tenias mas')
 		return
 	}
-	alert('Actualizamos score con tu local', awakeningStore.value)
+	alert('Actualizamos score con tu local. Value: ' + awakeningStore.value)
+	alert(awakeningStore.value)
   updateAwakeningsOfUser({ user, existsDocument, documentRef })
 }
 
