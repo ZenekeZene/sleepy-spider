@@ -3,7 +3,6 @@ import {
   signInWithPopup as signInWithPopupFirebase,
   TwitterAuthProvider,
 } from "firebase/auth"
-import { Ok, Fail } from '@nidstang/result'
 import { getInfraServices } from '@/infra/infra'
 
 const initializeAuth = ({ app }) => getAuth(app)
@@ -11,8 +10,8 @@ const initializeAuth = ({ app }) => getAuth(app)
 const parseResponse = (result) => {
   const { user, _tokenResponse } = result
   const isNewUser = _tokenResponse?.isNewUser || false
-  const { displayName, photoURL, uid } = user
-  return { displayName, photoURL, uid, isNewUser }
+  const { displayName, photoURL, uid, email } = user
+  return { displayName, photoURL, uid, isNewUser, email }
 }
 
 const signInWithPopup = () => {
@@ -22,10 +21,10 @@ const signInWithPopup = () => {
     signInWithPopupFirebase(authentication, provider)
     .then((result) => {
       const response = parseResponse(result)
-      resolve(Ok(response))
+      resolve(response)
     }).catch((error) => {
       console.error(error)
-      reject(Fail(error))
+      reject(error)
     });
   })
 }
@@ -35,15 +34,15 @@ const logout = () => {
   return new Promise((resolve, reject) => {
     authentication.signOut()
     .then(() => {
-      resolve(Ok())
+      resolve()
     }).catch((error) => {
       console.error(error)
-      reject(Fail(error))
+      reject(error)
     })
   })
 }
 
-const onAuthenticationStateChanged = ({ onChange }) => {
+const onAuthenticationStateChanged = ({ onChange = () => {} }) => {
   const { authentication } = getInfraServices()
   authentication.onAuthStateChanged((user) => {
     onChange({ user })

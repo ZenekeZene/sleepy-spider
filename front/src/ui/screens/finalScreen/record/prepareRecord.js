@@ -1,5 +1,5 @@
 import { listenEvent } from 'sleepy-spider-lib'
-import { getAwakeningsOfUser } from '@/infra/awakening/awakening.repository'
+import { fetchLastScoreOfUser } from '@/infra/awakening/awakening.repository'
 import { EVENTS, stores } from '@/adapter'
 import { changeAllShareLinks } from '@/ui/components/share/share'
 import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
@@ -14,7 +14,7 @@ function updateRecordAndPreviewRanking (record) {
 
 function updateRecordWithMaxScore () {
   const awakeningStore = stores.awakening
-  getAwakeningsOfUser()
+  fetchLastScoreOfUser()
   .then(({ awakenings }) => {
     const record = Math.max(awakenings, awakeningStore.value)
     updateRecordAndPreviewRanking(record)
@@ -36,7 +36,7 @@ function updateRecord () {
 function handleUserLogged () {
   const awakeningStore = stores.awakening
   removePersonalLocalRecord()
-  getAwakeningsOfUser()
+  fetchLastScoreOfUser()
   .then(({ existsDocument, awakenings }) => {
     if (!existsDocument) return
     if (awakeningStore.value > awakenings) return

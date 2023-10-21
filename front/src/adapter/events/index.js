@@ -8,6 +8,7 @@ const EVENTS = Object.freeze({
   USER_NOT_LOGGED: 'userNotLogged',
   GO_TO_LEADERBOARD: 'leaderboard',
   NEW_RECORD: 'newRecord',
+	UPDATE_BEST_SCORE_OF_USER: 'updateBestScoreOfUser',
   NO_INTERNET: 'noInternet',
   ERROR_WITH_SIGN_IN: 'errorWithSignIn',
   MODAL_OPEN: 'modalOpen',

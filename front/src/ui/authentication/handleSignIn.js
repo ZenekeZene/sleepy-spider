@@ -1,22 +1,20 @@
-import { classHelper as $class, dispatchEvent } from "sleepy-spider-lib"
+import { classHelper as $class, dispatchEvent, listenEvent } from "sleepy-spider-lib"
 import {
   signInWithPopup,
   onAuthenticationStateChanged
 } from '@/infra/services/authentication/authentication'
-import { updateAwakenings } from '@/infra/awakening/awakening.repository'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { EVENTS } from "@/adapter"
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { getSelectors as $el } from "./signIn.selectors"
 import { toShow, toHide } from './signIn.titles'
+import { signIn } from '@/application/signin/signin'
 
 const handleSignIn = () => {
-  signInWithPopup()
+	signIn(signInWithPopup)
   .catch((error) => {
-    error.mapErr((error) => {
-      dispatchEvent(EVENTS.MODAL_OPEN)
-  		dispatchEvent(EVENTS.ERROR_WITH_SIGN_IN, { error })
-    })
+		dispatchEvent(EVENTS.MODAL_OPEN)
+		dispatchEvent(EVENTS.ERROR_WITH_SIGN_IN, { error })
   })
 }
 
@@ -26,29 +24,15 @@ const listenSignInButton = () => {
   signInButton.addEventListener('click', handleSignIn)
 }
 
-const isFinalScreen = () => {
-  const { finalScreen } = $el()
-  return !$class.contains(finalScreen, HIDDEN_CLASS)
-}
-
-const prepareScreensToReturningUser = async (user) => {
-	alert('prepareScreensToReturningUser')
-	alert(isFinalScreen())
-  if (isFinalScreen()) {
-		await updateAwakenings()
+const prepareScreensToReturningUser = (score) => {
+		createPreviewRanking(score)
     toShow.leaderboardButton()
-		setTimeout(() => {
-			// dispatchEvent(EVENTS.GO_TO_LEADERBOARD, { user })
-			createPreviewRanking(user)
-		}, 2000)
-  }
 }
 
 // (1)
 const handleUserLogged = async (user) => {
   toHide.signInButton()
   dispatchEvent(EVENTS.USER_LOGGED, { user })
-  prepareScreensToReturningUser(user)
 }
 
 const handleUserNotLogged = () => {
@@ -57,7 +41,6 @@ const handleUserNotLogged = () => {
 }
 
 const handleChangeOnAuthentication = async (result) => {
-	alert('handleChangeOnAuthentication')
   const { user } = result
   !user ? handleUserNotLogged() : handleUserLogged(user)
 
@@ -71,6 +54,10 @@ const handleChangeOnAuthentication = async (result) => {
 }
 
 function launchSignIn () {
+	listenEvent(EVENTS.UPDATE_BEST_SCORE_OF_USER, ({ detail }) => {
+		const score = detail.score
+		prepareScreensToReturningUser(score)
+	})
   onAuthenticationStateChanged({
     onChange: handleChangeOnAuthentication,
   })

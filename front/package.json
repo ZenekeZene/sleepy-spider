@@ -6,7 +6,6 @@
   "type": "module",
   "base-directory": ".",
   "dependencies": {
-    "@nidstang/result": "^1.0.3",
     "canvas-tint-image": "^2.1.0",
     "clicks-checker": "^0.1.0",
     "firebase": "^9.13.0",

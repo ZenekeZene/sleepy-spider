@@ -2,7 +2,7 @@ import { classHelper as $class, listenEvent, getBody, delay } from 'sleepy-spide
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { launchConfetti } from '@/ui/components/confetti/confetti'
-import { updateAwakenings } from '@/infra/awakening/awakening.repository'
+import { fetchLastScoresOfAllUsers } from '@/infra/awakening/awakening.repository'
 import { listenBuyMeCoffeeOnAvatar } from '@/ui/components/buyMeCoffee/buyMeCoffee'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
@@ -76,25 +76,27 @@ const handleNewRecord = () => {
   // launchConfetti()
 }
 
-const updateRecord = () => {
+const updateScoreText = () => {
 	const awakeningStore = stores.awakening
   const { score } = $el()
 	score.textContent = awakeningStore.value
 }
 
+const handleScoreOfUserNotLogged = async () => {
+	updateScoreText()
+	createSignUpRanking()
+	await fetchLastScoresOfAllUsers()
+}
+
+const handleScoreOfUserLogged = async () => {
+	await fetchLastScoresOfAllUsers()
+  createPreviewRanking()
+	updateScoreText()
+}
+
 const handleEndTimer = async () => {
   showFinalScreen()
-
-  if (!stores.auth.isLogged) {
-		updateRecord()
-    createSignUpRanking()
-		await updateAwakenings()
-    return
-  }
-
-	await updateAwakenings()
-  createPreviewRanking()
-	updateRecord()
+  stores.auth.isLogged ? handleScoreOfUserLogged() : handleScoreOfUserNotLogged()
 }
 
 function prepareFinalScreen () {

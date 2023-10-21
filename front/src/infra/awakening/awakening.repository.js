@@ -3,9 +3,8 @@ import { getSnapshot } from '@/infra/services/database/getSnapshot'
 import { setFieldOnDocument } from '@/infra/services/database/incrementField'
 import { stores } from '@/adapter'
 
-const awakeningStore = stores.awakening
-
 async function addAwakening (value, onChange, onShowQuestion) {
+	const awakeningStore = stores.awakening
   awakeningStore.increment(value)
   onChange(value)
   if (!untilShowQuestionCounter.isLimitReachedByValue(value)) return
@@ -19,7 +18,7 @@ function startAwakeningsSystem (props) {
   return (value = 1) => addAwakening(value, props.onChange, props.onShowQuestion)
 }
 
-export async function getAwakeningsOfUser () {
+async function fetchLastScoreOfUser () {
   const { isLogged, user } = stores.auth
   if (!isLogged) return Promise.reject('User not logged')
   const snapshot = await getSnapshot({ userUid: user.uid })
@@ -32,23 +31,20 @@ function updateAwakeningsOfUser (props) {
   setFieldOnDocument({ ...props, value: awakeningStore.value })
 }
 
-async function updateAwakenings () {
+async function fetchLastScoresOfAllUsers () {
 	const awakeningStore = stores.awakening
-	alert('awakeningStore' + awakeningStore.value)
   const { isLogged, user } = stores.auth
   if (!isLogged) return
-  const { existsDocument, documentRef, awakenings } = await getAwakeningsOfUser()
+  const { existsDocument, documentRef, awakenings } = await fetchLastScoreOfUser()
   if (existsDocument && (awakenings >= awakeningStore.value)) {
-		alert('De fuera tenias mas')
+		console.log('Awakenings already updated')
 		return
 	}
-	alert('Actualizamos score con tu local. Value: ' + awakeningStore.value)
-	alert(awakeningStore.value)
   updateAwakeningsOfUser({ user, existsDocument, documentRef })
 }
 
 export {
   startAwakeningsSystem,
-	updateAwakenings,
-
+	fetchLastScoreOfUser,
+	fetchLastScoresOfAllUsers,
 }
