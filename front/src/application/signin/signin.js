@@ -40,20 +40,22 @@ const updateScore = async (score, snapshot, user) => {
 	await action(documentRef, parseRegistry(user, score))
 }
 
+const setRecord = async (record, snapshot, user) => {
+	try {
+		await updateScore(record, snapshot, user)
+	} catch (error) {
+		alert('Error updating the record: ' + error.message + " " + error.param)
+		console.error(error)
+	}
+}
+
 async function signIn(signInService) {
 	const user = await signInService();
 	const scoreLocal = getLocalScore()
 	const { scoreRemote, snapshot } = await getRemoteScore()
 	const { record, isNewRecord } = getRecord(scoreLocal, scoreRemote)
 	if (isNewRecord) {
-		try {
-			await updateScore(record, snapshot, user)
-		} catch (error) {
-			alert('Error updating the record: ' + error.message + " " + error.param)
-			console.error(error)
-		}
-	} else {
-		console.log('Record not getted')
+		await setRecord(record, snapshot, user)
 	}
 	dispatchEvent(EVENTS.UPDATE_BEST_SCORE_OF_USER, { score: record })
 }
