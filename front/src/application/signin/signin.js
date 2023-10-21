@@ -50,7 +50,7 @@ async function signIn(signInService) {
 		try {
 			await updateScore(record, snapshot, user)
 		} catch (error) {
-			alert('Error updated the record')
+			alert('Error updated the record' + error.message + " " + error.param)
 			console.error(error)
 		}
 	} else {
