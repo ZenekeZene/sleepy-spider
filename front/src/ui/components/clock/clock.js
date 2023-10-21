@@ -1,6 +1,7 @@
 import { classHelper as $class, startCountdown } from 'sleepy-spider-lib'
 import { findById, listenEvent, dispatchEvent } from 'sleepy-spider-lib'
 import { EVENTS } from '@/adapter'
+import { HIDDEN_CLASS } from '@/ui/constants'
 import * as constants from '@/domain/clock'
 import './clock.css'
 
@@ -41,9 +42,15 @@ function startClock() {
   countdown = startCountdown(config)
 }
 
+function hideClock () {
+	const clock = findById('clock')
+	$class.add(clock, HIDDEN_CLASS)
+}
+
 function pauseClock () {
   if (!countdown) throw new Error('Countdown not initialized')
   countdown.pause()
+	hideClock()
 }
 
 function prepareClock () {
