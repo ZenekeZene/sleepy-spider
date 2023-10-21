@@ -46,7 +46,7 @@ async function signIn(signInService) {
 	const { scoreRemote, snapshot } = await getRemoteScore()
 	const { record, isNewRecord } = getRecord(scoreLocal, scoreRemote)
 	if (isNewRecord) {
-		updateScore(record, snapshot, user)
+		await updateScore(record, snapshot, user)
 	} else {
 		console.log('Record not getted')
 	}
