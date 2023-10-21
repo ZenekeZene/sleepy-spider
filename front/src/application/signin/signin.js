@@ -15,7 +15,6 @@ const getRemoteScore = async () => {
 
 const getRecord = (scoreLocal, scoreRemote) => {
 	const isRecord = Number(scoreLocal) > Number(scoreRemote)
-	alert('isRecord' + isRecord + ' scoreLocal' + scoreLocal + ' scoreRemote' + scoreRemote)
 	const record = isRecord ? scoreLocal : scoreRemote
 	return {
 		record,
@@ -50,7 +49,7 @@ async function signIn(signInService) {
 		try {
 			await updateScore(record, snapshot, user)
 		} catch (error) {
-			alert('Error updated the record' + error.message + " " + error.param)
+			alert('Error updating the record: ' + error.message + " " + error.param)
 			console.error(error)
 		}
 	} else {
