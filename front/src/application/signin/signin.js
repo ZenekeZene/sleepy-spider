@@ -36,7 +36,7 @@ const parseRegistry = (user, score) => {
 
 const updateScore = async (score, snapshot, user) => {
 	const { existsDocument, documentRef } = snapshot
-	let action = existsDocument ? updateDoc : setDoc
+	const action = existsDocument ? updateDoc : setDoc
 	await action(documentRef, parseRegistry(user, score))
 }
 
@@ -46,7 +46,11 @@ async function signIn(signInService) {
 	const { scoreRemote, snapshot } = await getRemoteScore()
 	const { record, isNewRecord } = getRecord(scoreLocal, scoreRemote)
 	if (isNewRecord) {
-		await updateScore(record, snapshot, user)
+		try {
+			await updateScore(record, snapshot, user)
+		} catch (error) {
+			alert('Error updated the record')
+		}
 	} else {
 		console.log('Record not getted')
 	}
