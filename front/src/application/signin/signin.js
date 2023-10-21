@@ -13,7 +13,8 @@ const getRemoteScore = async () => {
 }
 
 const getRecord = (scoreLocal, scoreRemote) => {
-	const isRecord = scoreLocal > scoreRemote
+	const isRecord = Number(scoreLocal) > Number(scoreRemote)
+	alert('isRecord' + isRecord + ' scoreLocal' + scoreLocal + ' scoreRemote' + scoreRemote)
 	const record = isRecord ? scoreLocal : scoreRemote
 	return {
 		record,
