@@ -7,13 +7,13 @@ const fakePlayers = [
 	},
 	{
 		userUid: '2',
-		displayName: 'The awesome fake player',
+		displayName: 'FooBar_XXX',
 		value: 250,
 		position: 2,
 	},
 	{
 		userUid: '3',
-		displayName: 'I am not a bot, I swear',
+		displayName: 'I am not fake',
 		value: 142,
 		position: 3,
 	},
