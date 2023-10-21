@@ -8,7 +8,8 @@ const editionId = import.meta.env.VITE_EDITION_ID
 const getLocalScore = () => stores.awakening.value
 
 const getRemoteScore = async () => {
-	const { awakenings: scoreRemote, ...snapshot } = await fetchLastScoreOfUser()
+	const snapshot = await fetchLastScoreOfUser()
+	const { awakenings: scoreRemote } = snapshot
 	return { scoreRemote, snapshot }
 }
 
@@ -50,6 +51,7 @@ async function signIn(signInService) {
 			await updateScore(record, snapshot, user)
 		} catch (error) {
 			alert('Error updated the record')
+			console.error(error)
 		}
 	} else {
 		console.log('Record not getted')
