@@ -31,8 +31,6 @@ class UntilShowQuestionCounter {
   }
 }
 
-const untilShowQuestionCounter = new UntilShowQuestionCounter()
-
 export {
-  untilShowQuestionCounter,
+  UntilShowQuestionCounter,
 }
