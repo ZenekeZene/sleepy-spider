@@ -1,7 +1,7 @@
 import { findById } from 'sleepy-spider-lib'
 import { params } from '@/domain/settings'
 import { QUESTIONS_MAX_PER_QUIZ } from '@/domain/question'
-import { startAwakeningsSystem } from '@/infra/awakening/awakening.repository'
+import { startAwakeningsSystem } from '@/infra/awakening/awakening.system'
 import { getQuestions } from '@/infra/questions/questions.local.repository'
 import { drawSpider } from '@/ui/components/sleepy/spider/drawSpider'
 import { listenAnsweredCorrect, updateAwakeningsCounter } from '@/ui/components/awakeningCounter/drawAwakeningCount'
