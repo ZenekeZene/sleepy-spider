@@ -66,6 +66,8 @@ const getRemoteScoreOfUser = async () => {
 
 const calculateRecord = (localScore, remoteScore) => {
 	const isNewRecord = Number(localScore) > Number(remoteScore)
+	console.log('calculateRecord', localScore, remoteScore)
+
 	return {
 		record: isNewRecord ? localScore : remoteScore,
 		isNewRecord,
