@@ -11,7 +11,6 @@ async function updateRecord () {
 	updateSignUpRanking(record)
 	changeAllShareLinks(record)
 	updatePreviewRanking(record)
-	console.log('record', record)
 	updateRecordMessages(record)
 }
 
