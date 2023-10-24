@@ -75,7 +75,7 @@ const calculateRecord = (localScore, remoteScore) => {
 const updateScoreOfUser = async (score, snapshot) => {
 	const { existsDocument } = snapshot
 	const action = existsDocument ? updateDoc : setDoc
-	const doc = await getDocument()
+	const doc = await getAwakeningDocument()
   const documentRef = doc.ref
 	const user = getUser()
 	const parsedAwakeningRegistry = parseAwakeningRegistry(user, score)
@@ -92,6 +92,7 @@ const getBestScoreOfUser = async () => {
 const updateRecordOfUser = async () => {
 	const { record, snapshot, isNewRecord } = await getBestScoreOfUser()
 	if (isNewRecord) {
+		dispatchEvent(EVENTS.NEW_RECORD, { record })
 		try {
 			await updateScoreOfUser(record, snapshot)
 		} catch (error) {
