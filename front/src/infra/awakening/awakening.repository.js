@@ -29,7 +29,7 @@ const getAllAwakeningsWithLimit = async (size) => {
 
 const fetchAwakeningRegistryOfUser = async () => {
 	const { isLogged, user } = stores.auth
-	if (!isLogged) throw new Error('User not logged')
+	if (!isLogged) return null
 
 	const { uid } = user
   if (!uid) throw new Error('Unknown userUid')
@@ -47,8 +47,8 @@ const getUser = () => stores.auth.user
 
 const getRemoteScoreOfUser = async () => {
 	const snapshot = await fetchAwakeningRegistryOfUser()
-	const { data } = snapshot
-	const { value: remoteScore } = data
+	const { data } = snapshot || {}
+	const { value: remoteScore } = data || { value: 0 }
 	return { remoteScore, snapshot }
 }
 
@@ -80,10 +80,15 @@ const setRecord = async (record, snapshot) => {
 	}
 }
 
-const updateRecordOfUser = async () => {
+const getBestScoreOfUser = async () => {
 	const { remoteScore, snapshot } = await getRemoteScoreOfUser()
 	const localScore = getLocalScore()
 	const { record, isNewRecord } = getRecord(localScore, remoteScore)
+	return { record, isNewRecord, snapshot }
+}
+
+const updateRecordOfUser = async () => {
+	const { record, snapshot, isNewRecord } = await getBestScoreOfUser()
 	if (isNewRecord) {
 		await setRecord(record, snapshot)
 	}
@@ -91,6 +96,7 @@ const updateRecordOfUser = async () => {
 }
 
 export {
+	getBestScoreOfUser,
 	updateRecordOfUser,
 	getRemoteScoreOfUser,
 	getAllAwakeningsWithLimit,

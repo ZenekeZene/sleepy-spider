@@ -2,7 +2,7 @@ import { classHelper as $class, listenEvent, getBody, delay } from 'sleepy-spide
 import { EVENTS, stores } from '@/adapter'
 import { HIDDEN_CLASS } from '@/ui/constants'
 import { launchConfetti } from '@/ui/components/confetti/confetti'
-import { fetchLastScoresOfAllUsers } from '@/infra/awakening/awakening.repository'
+import { updateRecordOfUser } from '@/infra/awakening/awakening.repository'
 import { listenBuyMeCoffeeOnAvatar } from '@/ui/components/buyMeCoffee/buyMeCoffee'
 import { createPreviewRanking } from '@/ui/leaderboard/preview/leaderboardPreview'
 import { createSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
@@ -85,11 +85,10 @@ const updateScoreText = () => {
 const handleScoreOfUserNotLogged = async () => {
 	updateScoreText()
 	createSignUpRanking()
-	await fetchLastScoresOfAllUsers()
 }
 
 const handleScoreOfUserLogged = async () => {
-	await fetchLastScoresOfAllUsers()
+	await updateRecordOfUser()
   createPreviewRanking()
 	updateScoreText()
 }
