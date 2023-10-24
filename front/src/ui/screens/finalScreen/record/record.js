@@ -8,6 +8,7 @@ function updateRecordMessages(record) {
   const recordMessageElement = findById(RECORD_MESSAGE_ID)
   const recordCounters = findAllByClassName(RECORD_COUNTER_CLASSNAME)
   if (!recordMessageElement || !recordCounters.length) return
+	console.log('updateRecordMessages > record', record)
 
   $class.add(recordMessageElement, VISIBLE_CLASS)
   Array.from(recordCounters).forEach((counter) => {
