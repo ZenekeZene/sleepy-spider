@@ -59,7 +59,7 @@ const getUser = () => stores.auth.user
 
 const getRemoteScoreOfUser = async () => {
 	const snapshot = await fetchAwakeningRegistryOfUser()
-	const { data } = snapshot || {}
+	const { data } = snapshot || { data: null }
 	const { value: remoteScore } = data || { value: 0 }
 	return { remoteScore, snapshot }
 }
