@@ -1,30 +1,40 @@
 import { dispatchEvent } from "sleepy-spider-lib"
-import { setDoc, updateDoc, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
+import { setDoc, updateDoc, where, orderBy, limit } from 'firebase/firestore'
 import { stores, EVENTS } from '@/adapter'
 import { parseAwakeningRegistry } from '@/infra/awakening/awakening.parse'
 import { getCollectionReference } from '@/infra/awakening/awakening.collection'
+import { getQuerySnapshot } from '@/infra/firebase/firebase.getQuerySnapshot'
 
 const editionId = import.meta.env.VITE_EDITION_ID
 
-const getDocument = async () => {
-	const awakeningsRef = getCollectionReference()
-	const user = getUser()
-	const { uid } = user
-	const q = query(awakeningsRef, where("userUid", "==", uid), where("editionId", "==", editionId), limit(1))
-	const querySnapshot = await getDocs(q)
-	const doc = querySnapshot.docs[0]
+const getASingleDocument = async (snapshot) => {
+	if (snapshot.docs.length === 0) return null
+	const doc = snapshot.docs[0]
 	return doc
 }
 
-const getAllAwakeningsWithLimit = async (size) => {
-	let leaderboard = []
-	const awakeningsRef = getCollectionReference()
-	const q = query(awakeningsRef, where("editionId", "==", editionId), orderBy("value", "desc"), limit(size))
-	const querySnapshot = await getDocs(q)
-	querySnapshot.forEach((doc) => {
-		leaderboard.push(doc.data())
+const getDocuments = async (snapshot) => {
+	const documents = []
+	snapshot.forEach((doc) => {
+		documents.push(doc.data())
 	})
-	return leaderboard
+	return documents
+}
+
+const getAwakeningDocument = async () => {
+	const user = getUser()
+	const { uid } = user
+	const collection = getCollectionReference()
+	const criteria = [where("userUid", "==", uid), where("editionId", "==", editionId)]
+	const querySnapshot = await getQuerySnapshot(collection, criteria)
+	return getASingleDocument(querySnapshot)
+}
+
+const getAllAwakeningsWithLimit = async (size) => {
+	const collection = getCollectionReference()
+	const criteria = [where("editionId", "==", editionId), orderBy("value", "desc"), limit(size)]
+	const querySnapshot = await getQuerySnapshot(collection, criteria)
+	return getDocuments(querySnapshot)
 }
 
 const fetchAwakeningRegistryOfUser = async () => {
@@ -34,11 +44,13 @@ const fetchAwakeningRegistryOfUser = async () => {
 	const { uid } = user
   if (!uid) throw new Error('Unknown userUid')
 
-  const doc = await getDocument()
+  const doc = await getAwakeningDocument()
+	const data = doc?.data() || {}
+	const existsDocument = doc?.exists() || false
 
   return {
-    data: doc?.data() || {},
-    existsDocument: doc?.exists() || false,
+    data,
+    existsDocument,
   }
 }
 
@@ -52,12 +64,11 @@ const getRemoteScoreOfUser = async () => {
 	return { remoteScore, snapshot }
 }
 
-const getRecord = (localScore, remoteScore) => {
-	const isRecord = Number(localScore) > Number(remoteScore)
-	const record = isRecord ? localScore : remoteScore
+const calculateRecord = (localScore, remoteScore) => {
+	const isNewRecord = Number(localScore) > Number(remoteScore)
 	return {
-		record,
-		isNewRecord: isRecord,
+		record: isNewRecord ? localScore : remoteScore,
+		isNewRecord,
 	}
 }
 
@@ -71,26 +82,21 @@ const updateScoreOfUser = async (score, snapshot) => {
 	await action(documentRef, parsedAwakeningRegistry)
 }
 
-const setRecord = async (record, snapshot) => {
-	try {
-		await updateScoreOfUser(record, snapshot)
-	} catch (error) {
-		alert('Error updating the record: ' + error.message + " " + error.param)
-		console.error(error)
-	}
-}
-
 const getBestScoreOfUser = async () => {
 	const { remoteScore, snapshot } = await getRemoteScoreOfUser()
 	const localScore = getLocalScore()
-	const { record, isNewRecord } = getRecord(localScore, remoteScore)
+	const { record, isNewRecord } = calculateRecord(localScore, remoteScore)
 	return { record, isNewRecord, snapshot }
 }
 
 const updateRecordOfUser = async () => {
 	const { record, snapshot, isNewRecord } = await getBestScoreOfUser()
 	if (isNewRecord) {
-		await setRecord(record, snapshot)
+		try {
+			await updateScoreOfUser(record, snapshot)
+		} catch (error) {
+			console.error(error)
+		}
 	}
 	dispatchEvent(EVENTS.UPDATE_BEST_SCORE_OF_USER, { score: record })
 }
