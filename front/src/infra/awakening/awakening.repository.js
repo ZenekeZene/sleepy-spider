@@ -1,5 +1,5 @@
 import { dispatchEvent } from "sleepy-spider-lib"
-import { setDoc, updateDoc, where, orderBy, limit } from 'firebase/firestore'
+import { addDoc, updateDoc, where, orderBy, limit } from 'firebase/firestore'
 import { stores, EVENTS } from '@/adapter'
 import { parseAwakeningRegistry } from '@/infra/awakening/awakening.parse'
 import { getCollectionReference } from '@/infra/awakening/awakening.collection'
@@ -8,7 +8,7 @@ import { getQuerySnapshot } from '@/infra/firebase/firebase.getQuerySnapshot'
 const editionId = import.meta.env.VITE_EDITION_ID
 
 const getASingleDocument = async (snapshot) => {
-	if (snapshot.docs.length === 0) return null
+	if (snapshot.empty) return null
 	const doc = snapshot.docs[0]
 	return doc
 }
@@ -59,15 +59,13 @@ const getUser = () => stores.auth.user
 
 const getRemoteScoreOfUser = async () => {
 	const snapshot = await fetchAwakeningRegistryOfUser()
-	const { data } = snapshot || { data: null }
-	const { value: remoteScore } = data || { value: 0 }
+	const data = snapshot?.data
+	const remoteScore = data?.value || 0
 	return { remoteScore, snapshot }
 }
 
 const calculateRecord = (localScore, remoteScore) => {
 	const isNewRecord = Number(localScore) > Number(remoteScore)
-	console.log('calculateRecord', localScore, remoteScore)
-
 	return {
 		record: isNewRecord ? localScore : remoteScore,
 		isNewRecord,
@@ -76,9 +74,9 @@ const calculateRecord = (localScore, remoteScore) => {
 
 const updateScoreOfUser = async (score, snapshot) => {
 	const { existsDocument } = snapshot
-	const action = existsDocument ? updateDoc : setDoc
+	const action = existsDocument ? updateDoc : addDoc
 	const doc = await getAwakeningDocument()
-  const documentRef = doc.ref
+  const documentRef = doc?.ref || getCollectionReference()
 	const user = getUser()
 	const parsedAwakeningRegistry = parseAwakeningRegistry(user, score)
 	await action(documentRef, parsedAwakeningRegistry)
