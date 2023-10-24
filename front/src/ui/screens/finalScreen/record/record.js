@@ -1,5 +1,5 @@
 import { classHelper as $class, findById, findAllByClassName } from "sleepy-spider-lib"
-import { VISIBLE_CLASS } from '@/ui/constants'
+import { HIDDEN_CLASS } from '@/ui/constants'
 
 const RECORD_MESSAGE_ID = 'record-message'
 const RECORD_COUNTER_CLASSNAME = 'record-counter'
@@ -10,7 +10,7 @@ function updateRecordMessages(record) {
   if (!recordMessageElement || !recordCounters.length) return
 	console.log('updateRecordMessages > record', record)
 
-  $class.add(recordMessageElement, VISIBLE_CLASS)
+  $class.remove(recordMessageElement, HIDDEN_CLASS)
   Array.from(recordCounters).forEach((counter) => {
     counter.textContent = Number(record).toLocaleString()
   })
