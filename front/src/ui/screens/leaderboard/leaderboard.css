@@ -3,6 +3,7 @@
   height: 100%;
   padding: 1rem;
   background: linear-gradient(182deg, var(--secondary-color) 0%, white 33%);
+	pointer-events: initial;
 }
 
 .leaderboard-screen__title {
