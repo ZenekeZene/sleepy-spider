@@ -8,7 +8,7 @@
 ### Oh, no! Sleepy has fallen into a deep sleep!
 It's a game half clicker, half quiz. You have to achieve the highest possible score within a one-minute time limit.
 
-<img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AITFw-xHDdKQLDunpAfDBTZBiucFTW_s8HlQuElQVRPmn87gvQ3uz08Ia-kIffwuezWIIpSfTiN92OfWt1Dq1JPbeJWN_qWPfw=w3024-h1656" width="200">
+<img src="./front/public/readme_images/coffee.gif" width="200">
 
 <br />
 <br />
@@ -125,8 +125,8 @@ This project is an experiment to test the capabilities of canvas. It also serves
 This project started like almost all of them: with pencil and paper.
 
 <section style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AITFw-zAmdcbynt4mDHnQZCQzxQ9Z79gl2syLLiDtV530-iUPYguRjcg7-4Jf52Ur__IfzmfzHzDafkIExzgltzzXMiOCzOsgw=w3024-h1656" min-width="100" height="auto" max-height="100" alt="Sketch one" />
-  <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AITFw-yF_8ngZRvqRLGhoW4Uj4cFOj-z0RBgLyBeIxC-_Rizo_UjkhRWbQ0-cp7xhhVxJcndHutiavWgc0NSz9XnqNaavC6FRw=w2164-h1656" min-width="200" height="auto" max-height="200" alt="Sketch two" />
+  <img src="./front/public/readme_images/sketch.jpeg" min-width="100" height="auto" max-height="100" alt="Sketch one" />
+  <img src="./front/public/readme_images/sketch2.png" min-width="200" height="auto" max-height="200" alt="Sketch two" />
 </section>
 
 ---
