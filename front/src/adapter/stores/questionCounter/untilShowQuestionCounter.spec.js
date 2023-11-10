@@ -1,6 +1,12 @@
-import { untilShowQuestionCounter } from './untilShowQuestionCounter'
+import { UntilShowQuestionCounter } from './untilShowQuestionCounter'
 
 describe('untilShowQuestionCounter', () => {
+
+	let untilShowQuestionCounter = null
+
+	beforeEach(() => {
+		untilShowQuestionCounter = new UntilShowQuestionCounter()
+	})
 
   afterEach(() => {
     untilShowQuestionCounter.reset()
