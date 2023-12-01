@@ -6,17 +6,18 @@ import { updatePreviewRanking } from '@/ui/leaderboard/preview/leaderboardPrevie
 import { updateSignUpRanking } from '@/ui/leaderboard/preview-signup/leaderboardPreview.signup'
 import { updateRecordMessages } from './record'
 
-async function updateRecord () {
-  const { record } = await getBestScoreOfUser()
+async function updateRecord() {
+	const { record } = await getBestScoreOfUser()
 	updateSignUpRanking(record)
 	changeAllShareLinks(record)
 	updatePreviewRanking(record)
 	updateRecordMessages(record)
 }
 
-function prepareRecord () {
-  listenEvent(EVENTS.END_TIMER, updateRecord)
-  listenEvent(EVENTS.USER_LOGGED, updateRecord)
+function prepareRecord() {
+	listenEvent(EVENTS.END_TIMER, updateRecord)
+	listenEvent(EVENTS.USER_LOGGED, updateRecord)
+	listenEvent(EVENTS.USER_NOT_LOGGED, () => changeAllShareLinks(0));
 }
 
 export { prepareRecord }
