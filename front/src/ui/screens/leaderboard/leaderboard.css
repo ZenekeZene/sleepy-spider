@@ -30,6 +30,11 @@
   height: 100%;
   overflow-y: auto;
   padding: 1rem;
+	pointer-events: auto;
+
+	* {
+		pointer-events: auto;
+	}
 }
 
 .ranking__loading {

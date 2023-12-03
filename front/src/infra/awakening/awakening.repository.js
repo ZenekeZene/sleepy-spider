@@ -1,5 +1,5 @@
 import { dispatchEvent } from "sleepy-spider-lib"
-import { addDoc, updateDoc, where, orderBy, limit } from 'firebase/firestore'
+import { addDoc, updateDoc, where, orderBy, limit, startAfter } from 'firebase/firestore'
 import { stores, EVENTS } from '@/adapter'
 import { parseAwakeningRegistry } from '@/infra/awakening/awakening.parse'
 import { getCollectionReference } from '@/infra/awakening/awakening.collection'
@@ -30,9 +30,13 @@ const getAwakeningDocument = async () => {
 	return getASingleDocument(querySnapshot)
 }
 
-const getAllAwakeningsWithLimit = async (size) => {
+const getAllAwakeningsWithLimit = async (size, startAfterDoc) => {
 	const collection = getCollectionReference()
 	const criteria = [where("editionId", "==", editionId), orderBy("value", "desc"), limit(size)]
+
+	if (startAfterDoc) {
+		criteria.push(startAfter(startAfterDoc))
+	}
 	const querySnapshot = await getQuerySnapshot(collection, criteria)
 	return getDocuments(querySnapshot)
 }
@@ -42,16 +46,16 @@ const fetchAwakeningRegistryOfUser = async () => {
 	if (!isLogged) return null
 
 	const { uid } = user
-  if (!uid) throw new Error('Unknown userUid')
+	if (!uid) throw new Error('Unknown userUid')
 
-  const doc = await getAwakeningDocument()
+	const doc = await getAwakeningDocument()
 	const data = doc?.data() || {}
 	const existsDocument = doc?.exists() || false
 
-  return {
-    data,
-    existsDocument,
-  }
+	return {
+		data,
+		existsDocument,
+	}
 }
 
 const getLocalScore = () => stores.awakening.value
@@ -76,7 +80,7 @@ const updateScoreOfUser = async (score, snapshot) => {
 	const { existsDocument } = snapshot
 	const action = existsDocument ? updateDoc : addDoc
 	const doc = await getAwakeningDocument()
-  const documentRef = doc?.ref || getCollectionReference()
+	const documentRef = doc?.ref || getCollectionReference()
 	const user = getUser()
 	const parsedAwakeningRegistry = parseAwakeningRegistry(user, score)
 	await action(documentRef, parsedAwakeningRegistry)

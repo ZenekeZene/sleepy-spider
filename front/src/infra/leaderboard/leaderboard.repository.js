@@ -25,12 +25,12 @@ const position = (data) => data.map((item, index) => ({ ...item, position: index
 const parsePlayer = (player) => {
 	const createLeader = isOfUser(player) ? createUserPlayer : create
 	const leader = createLeader(player)
-  return leader
+	return leader
 }
 
 const parsePlayers = (players) => players.map(parsePlayer)
 
-const getAllPlayers = (players, limit) => {
+const getAllPlayersWithBots = (players, limit) => {
 	if (players.length === 0) return fakePlayers
 	else if (players.length < limit) {
 		return [...fakePlayers, ...players]
@@ -39,20 +39,28 @@ const getAllPlayers = (players, limit) => {
 }
 
 const getPlayers = (limit) => async (players) => {
-	const allPlayers = getAllPlayers(players, limit)
-
-	return Promise.resolve(allPlayers)
+	return Promise.resolve(players)
 		.then(parsePlayers)
-    .then(sort)
+		.then(sort)
 		.then(position)
 		.then(slice(limit))
 }
 
-const getLeaderboard = async ({ limit = 5 }) => {
-	return getAllAwakeningsWithLimit(limit)
-		.then(getPlayers(limit))
+const getPlayersIncludingBots = (limit) => async (players) => {
+	const allPlayers = getAllPlayersWithBots(players, limit)
+	return getPlayers(limit)(allPlayers)
 }
 
+const getLeaderboard = async ({ limit = 5 }) => {
+	return getAllAwakeningsWithLimit(limit)
+		.then(getPlayersIncludingBots(limit))
+}
+
+const getLeaderboardByOffset = async ({ limit = 5, offset }) => {
+	return getAllAwakeningsWithLimit(limit, offset)
+		.then(getPlayers(limit))
+}
 export {
-	getLeaderboard
+	getLeaderboard,
+	getLeaderboardByOffset,
 }
