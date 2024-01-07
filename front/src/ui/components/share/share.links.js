@@ -1,10 +1,17 @@
+const whatsappText = import.meta.env.VITE_SPONSOR_WHATSAPP_TEXT
+const twitterText = import.meta.env.VITE_SPONSOR_TWITTER_TEXT
+const linkedinText = import.meta.env.VITE_SPONSOR_LINKEDIN_TEXT
+
+const replaceWhitespace = (text) => text.replace(/\s/g, '%20')
+const replaceFinalScore = (text, finalScore) => text.replace('{finalScore}', finalScore)
+
 const shareLinks = {
-  twitter: (finalScore) => `https://twitter.com/intent/tweet?text=I've%20woken%20Sleepy%20up%20${finalScore}%20times.%20Can%20you%20beat%20my%20record?%20https://sleepy.zenekezene.com`,
-  whatsapp: (finalScore) => `https://wa.me/?text=I've%20woken%20Sleepy%20up%20${finalScore}%20times.%20Can%20you%20beat%20my%20record?%20https://sleepy.zenekezene.com`,
-  linkedin: () => `https://www.linkedin.com/sharing/share-offsite/?url=https://sleepy.zenekezene.com`,
-  metaDescription: (finalScore) => `I've woken Sleepy up ${finalScore} times. Can you beat my record?`,
+	whatsapp: (finalScore) => `https://wa.me/?text=${replaceFinalScore(replaceWhitespace(whatsappText), finalScore)}`,
+	twitter: (finalScore) => `https://twitter.com/intent/tweet?text=${replaceFinalScore(replaceWhitespace(twitterText), finalScore)}`,
+	linkedin: (finalScore) => `https://www.linkedin.com/sharing/share-offsite/?url=${replaceFinalScore(replaceWhitespace(linkedinText), finalScore)}`,
+	metaDescription: (finalScore) => `I've woken Sleepy up ${finalScore} times. Can you beat my record?`,
 }
 
 export {
-  shareLinks,
+	shareLinks,
 }
