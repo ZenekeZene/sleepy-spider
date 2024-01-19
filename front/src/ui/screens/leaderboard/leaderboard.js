@@ -2,7 +2,7 @@ import { listenEvent, classHelper as $class } from "sleepy-spider-lib"
 import { getLeaderboard, getLeaderboardByOffset } from '@/infra/leaderboard/leaderboard.repository'
 import { EVENTS } from "@/adapter"
 import { HIDDEN_CLASS } from '@/ui/constants'
-import { showRanking, showSkeletonRanking } from '@/ui/leaderboard/ranking/ranking'
+import { showRanking, showSkeletonRanking, appendRanking } from '@/ui/leaderboard/ranking/ranking'
 import * as Ranking from "@/ui/leaderboard/ranking/ranking.create"
 import { showPodium } from '@/ui/leaderboard/podium/podium'
 import { getLeaderboardSelectors as $el } from "./leaderboard.selectors"
@@ -27,11 +27,7 @@ const showLeaderboard = async ({ user, limit }) => {
 const appendLeaderboard = async ({ user, limit, offset }) => {
 	const players = await getLeaderboardByOffset({ user, limit, offset });
 	const { ranking } = $el();
-	players.forEach(player => {
-		const playerElement = document.createElement('div');
-		playerElement.textContent = `${player.name}: ${player.score}`;
-		ranking.appendChild(playerElement);
-	});
+	appendRanking({ players, wrapper: ranking });
 };
 
 const handleCloseScreen = () => {
@@ -60,12 +56,12 @@ const handleOpenScreen = async (detail) => {
 	const { user } = detail
 	const removeSkeletonRanking = showSkeletonRanking({ numPlayers: 5, wrapper: ranking, withReset: true })
 	Ranking.createLoading({ wrapper: ranking })
-	await showLeaderboard({ user, limit: 10 })
+	await showLeaderboard({ user, limit: 20 })
 	removeSkeletonRanking({ wrapper: ranking })
 	$class.remove(leaderboardScreen, HIDDEN_CLASS)
 	$class.add(finalScreenAvatar, HIDDEN_CLASS)
 	closeButton.addEventListener('click', handleCloseScreen)
-	loadMoreLeaders()
+	// loadMoreLeaders();
 }
 
 const listenLeaderboard = () => {
