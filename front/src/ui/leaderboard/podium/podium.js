@@ -39,7 +39,6 @@ const createPodiumItem = ({ name, score, photoURL, position, isUser, wrapper, cl
   })
   const avatar = createAvatar(photoURL, name, classname, listItem)
   if (position === 1) {
-    positionElement.innerHTML = crownSVG
     $class.add(avatar, '--first')
   }
 

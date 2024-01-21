@@ -69,10 +69,6 @@
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.1));
 }
 
-.podium__item:first-child .podium__position {
-  color: gold;
-}
-
 .podium__item:nth-child(2) {
   order: 1;
   height: 98%;

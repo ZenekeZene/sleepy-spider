@@ -60,6 +60,23 @@ selector to override the default styles */
   display: none;
 }
 
+#root .answers li {
+  background-color: var(--primary-color);
+  border-color: #d1b155;
+}
+
+#root .answers li.correct {
+  color: var(--color);
+  background-color: var(--tertiary-color);
+  border-color: var(--secondary-color);
+}
+
+#root .answers li.incorrect {
+  color: white;
+  background-color: #d84f4f;
+  border-bottom-color: #974251;
+}
+
 #root .instruction-edition {
   color: var(--secondary-color);
 }
