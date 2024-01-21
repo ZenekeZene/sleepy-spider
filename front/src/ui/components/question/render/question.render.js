@@ -4,7 +4,7 @@ import {
   getHighlightedCode,
   classHelper as $class,
   addCommas, removeCommas,
- } from "sleepy-spider-lib"
+} from "sleepy-spider-lib"
 import { getQuestionSelectors, setContent } from "./question.selectors"
 import { CLASSNAMES } from "./question.classnames"
 import './question.css'
@@ -26,13 +26,20 @@ const answers = (options) => {
 const shake = async (isCorrect) => {
   const shake = CLASSNAMES.getShake(isCorrect)
   $class.add($el.shake, shake)
-  await delay (DELAY_TO_HIDE_IN_MS)
+  await delay(DELAY_TO_HIDE_IN_MS)
   $class.remove($el.shake, shake)
 }
 
+
 const renderQuestion = () => {
-  const $el =  getQuestionSelectors()
+  const $el = getQuestionSelectors()
   const { code, modal, examScore, inner, options: answersList } = $el
+
+  const showCorrect = (answer) => {
+    const correctAnswer = $el.getCorrectAnswer(answer)
+    if (!correctAnswer) return
+    correctAnswer.classList.add(CLASSNAMES.CORRECT)
+  }
 
   return {
     answersSpecificity,
@@ -55,18 +62,19 @@ const renderQuestion = () => {
       code.style.display = 'none'
       setContent('options', answers(options))
     },
-    result: async (isCorrect, event) => {
+    result: async (isCorrect, answer, event) => {
       const className = CLASSNAMES.get(isCorrect)
       $class.forEach(examScore, CLASSNAMES.all, $class.remove)
       $class.forEach($el.getPossibleAnswers(), CLASSNAMES.DISABLED, $class.add)
       $class.addAll([event.target, examScore[className]], [CLASSNAMES.VISIBLE, className])
       $class.toggle(inner, className)
+      if (!isCorrect) showCorrect(answer)
       // await renderQuestion.shake(isCorrect)
     },
   }
 }
 
-async function closeQuestion ({ target }) {
+async function closeQuestion({ target }) {
   const { inner, examScore, modal } = getQuestionSelectors()
   await delay(DELAY_TO_HIDE_IN_MS)
   $class.removeAll([target, inner], CLASSNAMES.all)

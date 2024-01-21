@@ -25,7 +25,7 @@ function onAnswered(questionWithType, event) {
   }
 
   const isCorrect = answer === value
-  renderQuestion().result(isCorrect, event)
+  renderQuestion().result(isCorrect, answer, event)
 
   if (!isCorrect) return
   showCorrectAnswerBonus()
@@ -36,7 +36,7 @@ function checkAnswer(question) {
   let isAnswered = false
 
   const listen = (isAdd = true) => {
-    const listenerAction = isAdd ? 'addEventListener': 'removeEventListener'
+    const listenerAction = isAdd ? 'addEventListener' : 'removeEventListener'
     $el().eachAnswer(answer => {
       answer[listenerAction]('click', handleAnswer)
     })
@@ -72,7 +72,7 @@ function launchQuestion(rawQuestion) {
   drawQuestion(rawQuestion)
 }
 
-function onShowQuestion (questions) {
+function onShowQuestion(questions) {
   if (!questions || questions.length === 0) throw new Error('No questions to show')
   const question = questions.pop()
   launchQuestion(question)
