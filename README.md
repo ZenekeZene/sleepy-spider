@@ -15,7 +15,7 @@ It's a game half clicker, half quiz. You have to achieve the highest possible sc
 
 # 🎮 How to play
 
-Visit: https://sleepy.zenekezene.com.
+Visit: https://bilbostack.zenekezene.com.
 
 ### Instructions to play
 
