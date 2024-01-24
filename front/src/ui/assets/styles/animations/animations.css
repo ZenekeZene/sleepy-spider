@@ -9,11 +9,11 @@
   }
 
   50% {
-    transform: translate3d(-50%, -48%) scaleX(1.05);
+    transform: translate3d(-50%, -48%, 0) scaleX(1.05);
   }
 
   100% {
-    transform: translate3d(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
   }
 }
 
