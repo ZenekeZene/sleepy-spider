@@ -33,15 +33,7 @@ Visit: https://bilbostack.zenekezene.com.
 ## 🌱 Installation
 
 ### Prerequisites
-- ***NVM installed***. You can follow the next instructions: (https://github.com/nvm-sh/nvm#installing-and-updating).
 - ***Node v18 or higher***. If you had installed NVM, you can switch your Node version with:
-  ```
-  $ nvm use 18
-  ```
-  You can view your current node version with:
-  ```
-  $ node -v
-  ```
 
 ### How install
 The ***all-in-one*** script to install and launch in development mode is defined <a href="#all-in-one-script-included-installation">below</a>. But you can install front and back separately:
