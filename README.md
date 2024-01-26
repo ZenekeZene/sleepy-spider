@@ -33,7 +33,7 @@ Visit: https://bilbostack.zenekezene.com.
 ## 🌱 Installation
 
 ### Prerequisites
-- ***Node v18 or higher***. If you had installed NVM, you can switch your Node version with:
+- ***Node v18 or higher***.
 
 ### How install
 The ***all-in-one*** script to install and launch in development mode is defined <a href="#all-in-one-script-included-installation">below</a>. But you can install front and back separately:
